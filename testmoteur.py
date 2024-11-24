@@ -86,11 +86,15 @@ class Robot():
 corneille = Robot()
 
 while True:
-    instr = input("Press 'a' to run the routine: ")
+    instr = input("Press 'a' to run the routine, s to print speed, d to print distance : ")
     if instr == 'a':
         corneille.routine()
         corneille.stop()
         instr =input("Press 'a' to run the routine: ")
+    elif instr == 's':
+        corneille.get_speed()
+    elif instr == 'd':
+        corneille.get_distance()
     else :
         corneille.stop()
         break
