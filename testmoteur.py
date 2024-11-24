@@ -25,12 +25,12 @@ class Robot():
         self.speed = 0
         self.direction = "idle"
 
-        self.leftM = GPIO.PWM(12, 2000)
-        self.rightM = GPIO.PWM(13, 2000)
+        self.leftMotor = GPIO.PWM(12, 2000)
+        self.rightMotor = GPIO.PWM(13, 2000)
 
     def stop(self):
-        self.leftM.stop()
-        self.rightM.stop()
+        self.leftMotor.stop()
+        self.rightMotor.stop()
         GPIO.output((12, 13), GPIO.LOW)
         GPIO.output((5, 6), False)
 
@@ -57,9 +57,9 @@ class Robot():
         print("Speed (RPM):", rpm)
 
     def get_distance(self):
-        # Construct the command to read from address 0.........
-        # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x20 (address)
-        read_command = [0x20, 0x00, 0x00, 0x00, 0x00]
+        # Construct the command to read from address 0x12
+        # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x12 (address)
+        read_command = [0x12, 0x00, 0x00, 0x00, 0x00]
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
@@ -74,8 +74,8 @@ class Robot():
     def routine(self):
         GPIO.output(5, False)
         GPIO.output(6, False)
-        self.leftM.start(10)
-        self.rightM.start(20)
+        self.leftMotor.start(10)
+        self.rightMotor.start(20)
         sleep(5)
         self.get_speed()
         self.stop()
