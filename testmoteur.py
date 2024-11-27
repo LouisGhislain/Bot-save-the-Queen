@@ -12,7 +12,7 @@ spi.open(0, 1)
 
 # Set SPI speed and mode if needed
 spi.max_speed_hz = 1000000 
-spi.mode = 0
+spi.mode = 1
 
 
 class Robot():
