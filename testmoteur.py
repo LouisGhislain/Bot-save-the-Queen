@@ -11,7 +11,7 @@ spi = spidev.SpiDev()
 spi.open(0, 1)
 
 # Set SPI speed and mode if needed
-spi.max_speed_hz = 1000000  # A higher speed is typically needed, adjust as necessary
+spi.max_speed_hz = 1000000 
 spi.mode = 0
 
 
@@ -70,7 +70,6 @@ class Robot():
         distance = int.from_bytes(distance_bytes, byteorder='big', signed=True)
         print("Distance:", distance)
 
-
     def routine(self):
         GPIO.output(5, False)
         GPIO.output(6, False)
@@ -79,11 +78,67 @@ class Robot():
         sleep(5)
         self.get_speed()
         self.stop()
-        self.stop
-
-
 
 corneille = Robot()
+
+# Control of the motors
+
+# Initialize variables
+reference_position = 0.0
+measured_position = corneille.get_distance()
+reference_speed = 0.0
+measured_speed = corneille.get_speed()
+u_volt = 0.0
+
+# PI gains
+Kp_pos, Ki_pos = 1.0, 0.5  # Position controller gains
+Kp_speed, Ki_speed = 1.0, 0.5  # Speed controller gains
+
+# Error and integral terms
+e_pos_prev, e_speed_prev = 0.0, 0.0
+int_e_pos, int_e_speed = 0.0, 0.0
+
+# Sampling time (in seconds)
+Ts = 0.01
+
+# Control loop
+def control_loop(reference_position, reference_speed, measured_speed, measured_position):
+    global e_pos_prev, e_speed_prev, int_e_pos, int_e_speed
+
+    # Position controller
+    e_pos = reference_position - measured_position
+    int_e_pos += e_pos * Ts
+    reference_speed = Kp_pos * e_pos + Ki_pos * int_e_pos
+
+    # Speed controller
+    e_speed = reference_speed - measured_speed
+    int_e_speed += e_speed * Ts
+    u_volt_ref = Kp_speed * e_speed + Ki_speed * int_e_speed
+
+    # Voltage saturation
+    u_volt = max(-12, min(12, u_volt_ref))
+
+    # Update previous errors
+    e_pos_prev = e_pos
+    e_speed_prev = e_speed
+
+    return u_volt
+
+# Convert voltage to PWM duty cycle
+
+def voltage_to_duty_cycle(voltage):
+    # Convert voltage to duty cycle (0-100%)
+    duty_cycle = 100 * abs(voltage) / 12
+
+    # Set direction
+    if voltage > 0:
+        GPIO.output((5, 6), (False, True))
+    else:
+        GPIO.output((5, 6), (True, False))
+
+    return duty_cycle
+
+# Main loop
 
 while True:
     instr = input("Press 'a' to run the routine, s to print speed, d to print distance : ")
@@ -97,4 +152,6 @@ while True:
         corneille.get_distance()
     else :
         corneille.stop()
+        SPI.close()
+        GPIO.cleanup()
         break
