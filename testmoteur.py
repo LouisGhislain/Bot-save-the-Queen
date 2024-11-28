@@ -110,7 +110,7 @@ class Robot():
         ticks_per_second = ticks_per_ms * 100  # because data represents a 10 ms interval
 
         # Using a gearbox, divide by encoder counts per output shaft rotation (64 * gear_ratio)
-        rotations_per_second = ticks_per_second / (64 * 50)  # gear_ratio specific to motor
+        rotations_per_second = ticks_per_second / (64 * 30)  # gear_ratio specific to motor
         rpm = rotations_per_second * 60  # Convert to RPM
 
         return rpm
