@@ -57,9 +57,9 @@ class Robot():
         print("Speed (RPM):", rpm)
 
     def get_distance(self):
-        # Construct the command to read from address 0x12
+        # Construct the command to read from address 0x13
         # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x12 (address)
-        read_command = [0x12, 0x00, 0x00, 0x00, 0x00]
+        read_command = [0x13, 0x00, 0x00, 0x00, 0x00]
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
@@ -72,7 +72,7 @@ class Robot():
 
     def routine(self):
         GPIO.output(5, False)
-        GPIO.output(6, False)
+        GPIO.output(6, True)
         self.leftMotor.start(10)
         self.rightMotor.start(20)
         sleep(5)
