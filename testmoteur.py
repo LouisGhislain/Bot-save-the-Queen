@@ -1,6 +1,8 @@
 from time import sleep
 import RPi.GPIO as GPIO
 import spidev
+import matplotlib.pyplot as plt
+import numpy as np
 
 GPIO.setwarnings(False)
 
@@ -14,6 +16,64 @@ spi.open(0, 1)
 spi.max_speed_hz = 1000000 
 spi.mode = 1
 
+
+# Control of the motors
+
+# Initialize variables
+reference_position = 0.0
+reference_speed = 0.0
+u_volt = 0.0
+
+# PI gains
+Kp_pos, Ki_pos = 1.0, 0.0  # Position controller gains
+Kp_speed, Ki_speed = 0.1, 0.1  # Speed controller gains
+
+# Error and integral terms
+e_pos_prev, e_speed_prev = 0.0, 0.0
+int_e_pos, int_e_speed = 0.0, 0.0
+
+# Sampling time (in seconds)
+Ts = 0.01
+i = 0
+
+# Control loop
+def control_loop(reference_position, reference_speed):
+    global e_pos_prev, e_speed_prev, int_e_pos, int_e_speed, i
+    measured_speed = corneille.get_speed()
+    measured_position = corneille.get_distance()
+
+    # Position controller
+    '''e_pos = reference_position - measured_position
+    int_e_pos += e_pos * Ts
+    reference_speed = Kp_pos * e_pos + Ki_pos * int_e_pos'''
+
+    # Speed controller
+    e_speed = reference_speed - measured_speed
+    int_e_speed += e_speed * Ts
+    u_volt_ref = Kp_speed * e_speed + Ki_speed * int_e_speed
+
+    # Voltage saturation
+    u_volt = max(-12, min(12, u_volt_ref))
+    
+    # Convert voltage to duty cycle (0-100%)
+    duty_cycle = 100 * abs(u_volt) / 12
+
+    # Set direction
+    if u_volt > 0:
+        GPIO.output((5, 6), (False, True))
+    else:
+        GPIO.output((5, 6), (True, False))
+
+    # Update previous errors
+    #e_pos_prev = e_pos
+    e_speed_prev = e_speed
+
+    datacontrol[i] = duty_cycle
+    i += 1
+    return duty_cycle
+
+data = np.zeros(10000)
+datacontrol = np.zeros(10000)
 
 class Robot():
 
@@ -41,7 +101,6 @@ class Robot():
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
-        print("Received response:", response)
 
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         speed_bytes = response[1:]  # [255, 255, 255, 242]
@@ -51,10 +110,10 @@ class Robot():
         ticks_per_second = ticks_per_ms * 100  # because data represents a 10 ms interval
 
         # Using a gearbox, divide by encoder counts per output shaft rotation (64 * gear_ratio)
-        rotations_per_second = ticks_per_second / (64 * 30)  # gear_ratio specific to motor
+        rotations_per_second = ticks_per_second / (64 * 50)  # gear_ratio specific to motor
         rpm = rotations_per_second * 60  # Convert to RPM
 
-        print("Speed (RPM):", rpm)
+        return rpm
 
     def get_distance(self):
         # Construct the command to read from address 0x13
@@ -68,7 +127,8 @@ class Robot():
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         distance_bytes = response[1:]
         distance = int.from_bytes(distance_bytes, byteorder='big', signed=True)
-        print("Distance:", distance)
+        
+        return distance
 
     
     #0x7F: reset internal values
@@ -79,72 +139,20 @@ class Robot():
         print("Values reset")
 
     def routine(self):
-        GPIO.output(5, False)
-        GPIO.output(6, True)
-        self.leftMotor.start(10)
-        self.rightMotor.start(20)
-        sleep(5)
-        self.get_speed()
+        GPIO.output(5, True)
+        GPIO.output(6, False)
+        for i in range(10000):
+            self.leftMotor.start(control_loop(0, 60))
+            data[i] = self.get_speed()
         self.stop()
+        plt.plot(data)
+        plt.plot(datacontrol)
+        plt.savefig("plot.png")  # Save the plot to a PNG file
+
 
 corneille = Robot()
 
-# Control of the motors
 
-# Initialize variables
-reference_position = 0.0
-measured_position = corneille.get_distance()
-reference_speed = 0.0
-measured_speed = corneille.get_speed()
-u_volt = 0.0
-
-# PI gains
-Kp_pos, Ki_pos = 1.0, 0.5  # Position controller gains
-Kp_speed, Ki_speed = 1.0, 0.5  # Speed controller gains
-
-# Error and integral terms
-e_pos_prev, e_speed_prev = 0.0, 0.0
-int_e_pos, int_e_speed = 0.0, 0.0
-
-# Sampling time (in seconds)
-Ts = 0.01
-
-# Control loop
-def control_loop(reference_position, reference_speed, measured_speed, measured_position):
-    global e_pos_prev, e_speed_prev, int_e_pos, int_e_speed
-
-    # Position controller
-    e_pos = reference_position - measured_position
-    int_e_pos += e_pos * Ts
-    reference_speed = Kp_pos * e_pos + Ki_pos * int_e_pos
-
-    # Speed controller
-    e_speed = reference_speed - measured_speed
-    int_e_speed += e_speed * Ts
-    u_volt_ref = Kp_speed * e_speed + Ki_speed * int_e_speed
-
-    # Voltage saturation
-    u_volt = max(-12, min(12, u_volt_ref))
-
-    # Update previous errors
-    e_pos_prev = e_pos
-    e_speed_prev = e_speed
-
-    return u_volt
-
-# Convert voltage to PWM duty cycle
-
-def voltage_to_duty_cycle(voltage):
-    # Convert voltage to duty cycle (0-100%)
-    duty_cycle = 100 * abs(voltage) / 12
-
-    # Set direction
-    if voltage > 0:
-        GPIO.output((5, 6), (False, True))
-    else:
-        GPIO.output((5, 6), (True, False))
-
-    return duty_cycle
 
 # Main loop
 
