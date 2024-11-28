@@ -63,12 +63,20 @@ class Robot():
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
-        print("Received response:", response)
+        #print("Received response:", response)
 
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         distance_bytes = response[1:]
         distance = int.from_bytes(distance_bytes, byteorder='big', signed=True)
         print("Distance:", distance)
+
+    
+    #0x7F: reset internal values
+    def reset_values(self):
+
+        reset_command = [0x7F, 0x00, 0x00, 0x00, 0x00]
+        spi.xfer2(reset_command)
+        print("Values reset")
 
     def routine(self):
         GPIO.output(5, False)
@@ -141,7 +149,7 @@ def voltage_to_duty_cycle(voltage):
 # Main loop
 
 while True:
-    instr = input("Press 'a' to run the routine, s to print speed, d to print distance : ")
+    instr = input("Press 'a' to run the routine, s to print speed, d to print distance, r to reset values : ")
     if instr == 'a':
         corneille.routine()
         corneille.stop()
@@ -149,9 +157,12 @@ while True:
     elif instr == 's':
         corneille.get_speed()
     elif instr == 'd':
-        corneille.get_distance()
+        while True:
+            print(corneille.get_distance())
+    elif instr == 'r':
+        corneille.reset_values()
     else :
         corneille.stop()
-        SPI.close()
+        spi.close()
         GPIO.cleanup()
         break
