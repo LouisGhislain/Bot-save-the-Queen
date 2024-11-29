@@ -127,8 +127,10 @@ class Robot():
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         distance_bytes = response[1:]
         distance = int.from_bytes(distance_bytes, byteorder='big', signed=True)
-        
-        return distance
+        mm_per_tick = 50/(2048*4)  # radius of the wheel per number of ticks
+        mm = distance * mm_per_tick
+
+        return mm
 
     
     #0x7F: reset internal values
@@ -151,7 +153,6 @@ class Robot():
 
 
 corneille = Robot()
-
 
 
 # Main loop
