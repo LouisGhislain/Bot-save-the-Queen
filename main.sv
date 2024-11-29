@@ -3,26 +3,35 @@ module EncoderSpeed (
     input logic reset,
     input logic encoder_a,
     input logic encoder_b,                                                    
-    output logic [15:0] speed
+    output logic signed [15:0] speed
 );
     // Constants
     localparam int TIMER_MAX = 10000;
 
     // Internal variables for tick counting and time interval
-    logic [15:0] tick_count;
+    logic signed [15:0] tick_count;
     logic [15:0] timer;
+    logic previous_A, previous_B;
 
     always_ff @(posedge CLOCK_50 or posedge reset) begin
         if (reset) begin
             tick_count <= 0;
             timer <= 0;
             speed <= 0;
+            previous_A <= 0;
+            previous_B <= 0;
         end else begin
             // Increment timer and count encoder ticks
             timer <= timer + 1;
 
-            if (encoder_a ^ encoder_b) // Detect tick   
-                tick_count <= tick_count + 1;
+            case ({previous_A, previous_B, encoder_a, encoder_b})
+                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count - 1; // Backward
+                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count + 1; // Forward
+                default: tick_count <= tick_count;
+            endcase
+            // Update previous states
+            previous_A <= encoder_a;
+            previous_B <= encoder_b;
 
             // Calculate speed every TIMER_MAX cycles
             if (timer == TIMER_MAX) begin
@@ -35,22 +44,34 @@ module EncoderSpeed (
 endmodule
 
 
-module Odometer (                                                                  
+module Odometer (
     input logic CLOCK_50,
     input logic reset,
     input logic encoder_a,
     input logic encoder_b,
-    output logic [31:0] tick_count
+    output logic signed [31:0] tick_count // Signed for direction
 );
+    logic previous_A, previous_B;
+
     always_ff @(posedge CLOCK_50 or posedge reset) begin
         if (reset) begin
             tick_count <= 0;
-        end else if (encoder_a ^ encoder_b) begin
-            // Increment tick count on encoder signal change
-            tick_count <= tick_count + 1;
+            previous_A <= 0;
+            previous_B <= 0;
+        end else begin
+            case ({previous_A, previous_B, encoder_a, encoder_b})
+                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count - 1; // Backward
+                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count + 1; // Forward
+                default: tick_count <= tick_count;
+            endcase
+            // Update previous states
+            previous_A <= encoder_a;
+            previous_B <= encoder_b;
         end
     end
 endmodule
+
+
 module SpiInterface (
     input logic CLOCK_50,
     input logic reset,
@@ -58,10 +79,10 @@ module SpiInterface (
     input logic MOSI,
     input logic CE1,
     output logic MISO,
-    input logic [15:0] left_speed,
-    input logic [15:0] right_speed,
-    input logic [31:0] left_ticks,
-    input logic [31:0] right_ticks
+    input logic signed [15:0] left_speed,
+    input logic signed [15:0] right_speed,
+    input logic signed [31:0] left_ticks,
+    input logic signed [31:0] right_ticks
 );
     // Address parameters
     parameter ADDR_LEFT_SPEED = 8'h10;
@@ -165,6 +186,8 @@ module top_module (
     assign ENC_2A = GPIO2; // Encoder 2 Channel A
     assign ENC_2B = GPIO5; // Encoder 2 Channel B
 
+    assign ODO_1A = GPIO8;  // Odometer 1 Channel A
+    assign ODO_1B = GPIO9;  // Odometer 1 Channel B
     assign ODO_2A = GPIO10; // Odometer 2 Channel A
     assign ODO_2B = GPIO11; // Odometer 2 Channel B
     assign CE1 = GPIO20;    // SPI Chip Enable
@@ -174,8 +197,8 @@ module top_module (
     assign MISO = GPIO21;  // Master In Slave Out
 
     // Internal signals
-    logic [15:0] left_speed, right_speed;
-    logic [31:0] left_ticks, right_ticks;
+    logic signed [15:0] left_speed, right_speed;
+    logic signed [31:0] left_ticks, right_ticks;
 
     // Instantiate modules
     EncoderSpeed left_encoder_speed (
@@ -210,4 +233,3 @@ module top_module (
     );
 
 endmodule
-
