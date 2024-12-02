@@ -51,22 +51,22 @@ module Odometer (
     input logic encoder_b,
     output logic signed [31:0] tick_count // Signed for direction
 );
-    logic previous_A, previous_B;
+    logic actual_A, actual_B, previous_A, previous_B;
 
     always_ff @(posedge CLOCK_50 or posedge reset) begin
         if (reset) begin
             tick_count <= 0;
-            previous_A <= 0;
-            previous_B <= 0;
         end else begin
-            case ({previous_A, previous_B, encoder_a, encoder_b})
+            case ({previous_A, previous_B, actual_A, actual_B})
                 4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count - 1; // Backward
                 4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count + 1; // Forward
                 default: tick_count <= tick_count;
             endcase
             // Update previous states
-            previous_A <= encoder_a;
-            previous_B <= encoder_b;
+            previous_A <= actual_A;
+            previous_B <= actual_B;
+            actual_A <= encoder_a;
+            actual_B <= encoder_b;
         end
     end
 endmodule
@@ -74,7 +74,6 @@ endmodule
 
 module SpiInterface (
     input logic CLOCK_50,
-    input logic reset,
     input logic SCK,
     input logic MOSI,
     input logic CE1,
@@ -84,6 +83,17 @@ module SpiInterface (
     input logic signed [31:0] left_ticks,
     input logic signed [31:0] right_ticks
 );
+
+//---SPI Sysnchronization -------------------------------------
+
+	logic SPI_CLK_sync;
+	logic SPI_CS_sync;
+
+	always_ff @(posedge Clk) begin
+		SPI_CLK_sync <= SPI_CLK;
+		SPI_CS_sync  <= SPI_CS;
+	end
+
     // Address parameters
     parameter ADDR_LEFT_SPEED = 8'h10;
     parameter ADDR_RIGHT_SPEED = 8'h11;
