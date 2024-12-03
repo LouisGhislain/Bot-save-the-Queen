@@ -13,8 +13,8 @@ spi = spidev.SpiDev()
 spi.open(0, 1)
 
 # Set SPI speed and mode if needed
-spi.max_speed_hz = 1000000 
-spi.mode = 0
+spi.max_speed_hz = 50000 
+spi.mode = 1
 
 
 # Control of the motors
@@ -68,7 +68,7 @@ def control_loop(reference_position, reference_speed):
     #e_pos_prev = e_pos
     e_speed_prev = e_speed
 
-    datacontrol[i] = duty_cycle
+    #datacontrol[i] = duty_cycle
     i += 1
     return duty_cycle
 
@@ -101,6 +101,7 @@ class Robot():
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
+        print("Received response:", response)
 
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         speed_bytes = response[1:]  # [255, 255, 255, 242]
@@ -112,7 +113,7 @@ class Robot():
         # Using a gearbox, divide by encoder counts per output shaft rotation (64 * gear_ratio)
         rotations_per_second = ticks_per_second / (64 * 30)  # gear_ratio specific to motor
         rpm = rotations_per_second * 60  # Convert to RPM
-
+        print(rpm)
         return rpm
 
     def get_distance(self):
@@ -122,15 +123,13 @@ class Robot():
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
-        #print("Received response:", response)
+        # print("Received response:", response)
 
         # Convert the last 4 bytes of the response to a signed 32-bit integer
         distance_bytes = response[1:]
         distance = int.from_bytes(distance_bytes, byteorder='big', signed=True)
-        mm_per_tick = 50/(2048*4)  # radius of the wheel per number of ticks
-        mm = distance * mm_per_tick
-
-        return mm
+        
+        return distance
 
     
     #0x7F: reset internal values
@@ -144,7 +143,7 @@ class Robot():
         GPIO.output(5, True)
         GPIO.output(6, False)
         for i in range(10000):
-            self.leftMotor.start(control_loop(0, 60))
+            self.leftMotor.start(control_loop(0, 10000))
             data[i] = self.get_speed()
         self.stop()
         plt.plot(data)
@@ -153,6 +152,7 @@ class Robot():
 
 
 corneille = Robot()
+
 
 
 # Main loop
@@ -166,10 +166,12 @@ while True:
     elif instr == 's':
         corneille.get_speed()
     elif instr == 'd':
-        while True:
-            print(corneille.get_distance())
+        print(corneille.get_distance())
     elif instr == 'r':
         corneille.reset_values()
+    elif instr == 'c':
+            corneille.get_distance()
+            #sleep(0.1)
     else :
         corneille.stop()
         spi.close()
