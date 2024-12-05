@@ -14,7 +14,7 @@ spi.open(0, 1)
 
 # Set SPI speed and mode if needed
 spi.max_speed_hz = 50000 
-spi.mode = 1
+spi.mode = 0
 
 
 # Control of the motors
@@ -37,10 +37,10 @@ Ts = 0.01
 i = 0
 
 # Control loop
-def control_loop(reference_position, reference_speed):
+def control_loop(reference_position, reference_speed, motor):
     global e_pos_prev, e_speed_prev, int_e_pos, int_e_speed, i
     measured_speed = corneille.get_speed()
-    measured_position = corneille.get_distance()
+    measured_position = corneille.get_distance_left()
 
     # Position controller
     '''e_pos = reference_position - measured_position
@@ -60,9 +60,9 @@ def control_loop(reference_position, reference_speed):
 
     # Set direction
     if u_volt > 0:
-        GPIO.output((5, 6), (False, True))
+        GPIO.output((motor.direction,False))
     else:
-        GPIO.output((5, 6), (True, False))
+        GPIO.output((motor.direction,True))
 
     # Update previous errors
     #e_pos_prev = e_pos
@@ -77,6 +77,7 @@ datacontrol = np.zeros(10000)
 
 class Robot():
 
+
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup((12, 13), GPIO.OUT)
@@ -85,19 +86,54 @@ class Robot():
         self.speed = 0
         self.direction = "idle"
 
-        self.leftMotor = GPIO.PWM(12, 2000)
-        self.rightMotor = GPIO.PWM(13, 2000)
+        class Motor():
+            def __init__(self):
+                self.pwm =0
+                self.direction = "idle"
+                self.speed = 0
+                self.distance = 0
+        
+        leftMotor = Motor()
+        self.leftMotor.pwm = GPIO.PWM(12, 2000)
+        self.leftMotor.direction = 5
+        self.leftMotor.speed = get_speed_left()
+        self.leftMotor.distance = get_distance_left()
+
+
+        rightMotor = Motor()
+        self.rightMotor.pwm = GPIO.PWM(13, 2000)
+        self.leftMotor.direction = 6
 
     def stop(self):
-        self.leftMotor.stop()
-        self.rightMotor.stop()
-        GPIO.output((12, 13), GPIO.LOW)
-        GPIO.output((5, 6), False)
+        self.leftMotor.start(0)
+        self.rightMotor.start(0)
 
-    def get_speed(self):
+    def get_speed_left(self):
         # Construct the command to read from address 0x10
         # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x10 (address)
         read_command = [0x10, 0x00, 0x00, 0x00, 0x00]
+        
+        # Send the command and receive 5 bytes of response
+        response = spi.xfer2(read_command)
+        print("Received response:", response)
+
+        # Convert the last 4 bytes of the response to a signed 32-bit integer
+        speed_bytes = response[1:]  # [255, 255, 255, 242]
+        ticks_per_ms = -(int.from_bytes(speed_bytes, byteorder='big', signed=True)) # Convert to signed integer and invert sign because of motor direction
+
+        # Calculate the speed in ticks per second (scaling from 10 ms to 1 second)
+        ticks_per_second = ticks_per_ms * 100  # because data represents a 10 ms interval
+
+        # Using a gearbox, divide by encoder counts per output shaft rotation (64 * gear_ratio)
+        rotations_per_second = ticks_per_second / (4*64*30)  # gear_ratio specific to motor
+        rpm = rotations_per_second * 60  # Convert to RPM
+        print(rpm)
+        return rpm
+
+    def get_speed_right(self):
+        # Construct the command to read from address 0x10
+        # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x10 (address)
+        read_command = [0x11, 0x00, 0x00, 0x00, 0x00]
         
         # Send the command and receive 5 bytes of response
         response = spi.xfer2(read_command)
@@ -111,12 +147,27 @@ class Robot():
         ticks_per_second = ticks_per_ms * 100  # because data represents a 10 ms interval
 
         # Using a gearbox, divide by encoder counts per output shaft rotation (64 * gear_ratio)
-        rotations_per_second = ticks_per_second / (64 * 30)  # gear_ratio specific to motor
+        rotations_per_second = ticks_per_second / (4*64*30)  # gear_ratio specific to motor
         rpm = rotations_per_second * 60  # Convert to RPM
         print(rpm)
         return rpm
 
-    def get_distance(self):
+    def get_distance_left(self):
+        # Construct the command to read from address 0x13
+        # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x12 (address)
+        read_command = [0x12, 0x00, 0x00, 0x00, 0x00]
+        
+        # Send the command and receive 5 bytes of response
+        response = spi.xfer2(read_command)
+        # print("Received response:", response)
+
+        # Convert the last 4 bytes of the response to a signed 32-bit integer
+        distance_bytes = response[1:]
+        distance = -(int.from_bytes(distance_bytes, byteorder='big', signed=True))
+        
+        return distance
+
+    def get_distance_right(self):
         # Construct the command to read from address 0x13
         # First byte: set the 8th bit to 0 (read) and bits 1-7 to 0x12 (address)
         read_command = [0x13, 0x00, 0x00, 0x00, 0x00]
@@ -139,12 +190,15 @@ class Robot():
         spi.xfer2(reset_command)
         print("Values reset")
 
+
+
     def routine(self):
         GPIO.output(5, True)
         GPIO.output(6, False)
         for i in range(10000):
-            self.leftMotor.start(control_loop(0, 10000))
-            data[i] = self.get_speed()
+            self.leftMotor.start(control_loop(0, 20))
+            self.rightMotor.start(control_loop(0, 20))
+            #data[i] = self.get_speed()
         self.stop()
         plt.plot(data)
         plt.plot(datacontrol)
@@ -166,14 +220,16 @@ while True:
     elif instr == 's':
         corneille.get_speed()
     elif instr == 'd':
-        print(corneille.get_distance())
+        print(corneille.get_distance_right())
+    elif instr == 'g':
+        print(corneille.get_distance_left())
     elif instr == 'r':
         corneille.reset_values()
-    elif instr == 'c':
-            corneille.get_distance()
-            #sleep(0.1)
     else :
+        print("stop")
         corneille.stop()
-        spi.close()
-        GPIO.cleanup()
-        break
+        instr = input("Press 'a' to run the routine, s to print speed, d to print distance, r to reset values : ")
+
+
+spi.close()
+GPIO.cleanup()
