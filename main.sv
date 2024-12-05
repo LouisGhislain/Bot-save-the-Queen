@@ -6,11 +6,11 @@ module EncoderSpeed (
     output logic signed [15:0] speed
 );
     // Constants
-    int TIMER_MAX = 50000;
+    int TIMER_MAX = 500000;
 
     // Internal variables for tick counting and time interval
-    logic signed [15:0] tick_count, previous_tick_count;
-    logic [15:0] timer;
+    logic signed [15:0] tick_count;
+    logic [31:0] timer;
     logic actual_A, actual_B, previous_A, previous_B;
 
     always_ff @(posedge CLOCK_50 or posedge reset) begin
@@ -33,17 +33,20 @@ module EncoderSpeed (
             actual_B <= encoder_b;
 
             case ({previous_A, previous_B, actual_A, actual_B})
-                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count - 1; // Backward
-                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count + 1; // Forward
+                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count + 1; // Forward
+                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count - 1; // Backward
                 default: tick_count <= tick_count;
             endcase
 
             // Calculate speed every TIMER_MAX cycles
             if (timer >= TIMER_MAX) begin
-                speed = tick_count - previous_tick_count; // Assuming tick_count per TIMER_MAX = speed
-                previous_tick_count = tick_count;
+                speed <= tick_count; // Assuming tick_count per TIMER_MAX = speed
+                tick_count <= 0;
                 timer <= 0;
             end
+
+            
+
         end
     end
 endmodule
@@ -125,8 +128,7 @@ assign reset = ~KEY[0];
 assign {SPI_MOSI, SPI_CLK} = GPIO[23:22];
 assign SPI_CE			   = GPIO[20];
 
-//assign GPIO[21] = (SPI_CE) ? 1'bz : SPI_MISO;
-assign GPIO[21] = SPI_MISO;
+assign GPIO[21] = (SPI_CE) ? 1'bz : SPI_MISO;
 //assign SPI_To_Send = 32'hFFFFFFEC;
 
 assign ENC_1A = GPIO[1]; // Encoder 1 Channel A
@@ -189,9 +191,9 @@ spi_slave spi(
         .tick_count(right_ticks)
     );
 
-assign SPI_To_Send = left_speed;
+//assign SPI_To_Send = right_speed;
 
-/*always  begin
+always_ff @(posedge SPI_Ready)  begin
 
 		address <= SPI_Query;
 		
@@ -200,11 +202,10 @@ assign SPI_To_Send = left_speed;
 			8'h11: SPI_To_Send = right_speed;
 			8'h12: SPI_To_Send = left_ticks;
 			8'h13: SPI_To_Send = right_ticks;
-			// 8'h7F in decimal is 127
 			8'h7F: SPI_To_Send = 32'd127;
 		endcase
 	end
-*/
+
 
 assign LED = SPI_To_Send[7:0];
 
