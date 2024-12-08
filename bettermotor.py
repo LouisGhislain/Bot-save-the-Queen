@@ -2,16 +2,19 @@ from time import sleep
 import RPi.GPIO as GPIO
 import spidev
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Constants
 SPI_BUS = 0
 SPI_DEVICE = 1
 SPI_MAX_SPEED_HZ = 50000
 SAMPLING_TIME = 0.01  # 10ms
-MOTOR_PWM_FREQUENCY = 2000  # Hz
+MOTOR_PWM_FREQUENCY = 20000  # Hz
 GEAR_RATIO = 30
 ENCODER_COUNTS_PER_REV = 4 * 64 * GEAR_RATIO
 VOLTAGE_LIMIT = 12  # Maximum voltage for motors
+DURATION = 3  # Duration of the control loop in seconds
+DATA_LENGTH = int(DURATION / SAMPLING_TIME)+1
 
 GPIO.setwarnings(False)
 
@@ -43,17 +46,20 @@ class Motor:
         else:
             read_command = [self.speed_address, 0x00, 0x00, 0x00, 0x00]
         response = spi.xfer2(read_command)
+        print(response)
         return int.from_bytes(response[1:], byteorder='big', signed=True)
 
     def get_speed(self):
         """Get speed from the encoder."""
         ticks_per_ms = self.read_data("speed")
-        rpm = 60*(ticks_per_ms * 100)/ (4*ENCODER_COUNTS_PER_REV*GEAR_RATIO)
+        rpm = 60*(ticks_per_ms * 100)/(ENCODER_COUNTS_PER_REV)
+        print(rpm)
         return rpm
 
     def get_distance(self):
         """Get distance from the encoder."""
         distance = self.read_data("distance")
+        print (distance)
         return distance
     
     def set_speed(self, voltage):
@@ -85,10 +91,14 @@ class Robot:
 
         # PI gains
         self.Kp_pos, self.Ki_pos = 1.0, 0.0  # Position controller gains
-        self.Kp_speed, self.Ki_speed = 0.1, 0.1  # Speed controller gains
+        self.Kp_speed, self.Ki_speed = 1, 0.1  # Speed controller gains
 
-        self.data = []
-        self.datacontrol = []
+        self.data_left = np.zeros(DATA_LENGTH)
+        self.data_right = np.zeros(DATA_LENGTH)
+        self.data_leftcontrol = np.zeros(DATA_LENGTH)
+        self.data_rightcontrol = np.zeros(DATA_LENGTH)
+
+        self.data_counter = 0
 
     def stop(self):
         """Stop both motors."""
@@ -124,11 +134,17 @@ class Robot:
 
         # Set motor speeds
         # Collect data
-        self.data.append((self.left_motor.get_speed(), self.right_motor.get_speed()))
-        self.datacontrol.append((u_volt_left, u_volt_right))
+        self.data_left[self.data_counter] = self.left_motor.get_speed()
+        self.data_right[self.data_counter] = self.right_motor.get_speed()
+        self.data_leftcontrol[self.data_counter] = u_volt_left
+        self.data_rightcontrol[self.data_counter] = u_volt_right
+
+        self.data_counter += 1
 
         # Set motor speeds
+        self.left_motor.set_speed(u_volt_left)
         self.right_motor.set_speed(u_volt_right)
+
 
 
     def reset_values(self):
@@ -139,28 +155,42 @@ class Robot:
 
     def routine(self, reference_speed, duration):
         """Run the robot for a fixed duration with a given reference speed."""
-        self.data.clear()  # Clear old data
-        self.datacontrol.clear()  # Clear old data
         start_time = 0
         while start_time < duration:
             self.control_loop(reference_speed)
             sleep(SAMPLING_TIME)
             start_time += SAMPLING_TIME
+        self.data_counter = 0
         self.stop()
 
         # Plot data
         self.plot_data()
 
     def plot_data(self):
-        """Plot speed and control signal data."""
-        speeds = list(zip(*self.data))
-        controls = list(zip(*self.datacontrol))
-        plt.plot(speeds[0], label="Left Motor Speed")
-        plt.plot(speeds[1], label="Right Motor Speed")
-        plt.plot(controls[0], label="Control Signal Left")
-        plt.plot(controls[1], label="Control Signal Right")
-        plt.legend()
-        plt.savefig("plot.png")
+        """Plot speed and control signal data on two separate plots."""
+        fig, axs = plt.subplots(2, 1, figsize=(10, 8))  # Create two subplots vertically
+
+        # Plot motor speeds
+        axs[0].plot(self.data_left, label="Left Motor Speed", color='blue')
+        axs[0].plot(self.data_right, label="Right Motor Speed", color='green')
+        axs[0].set_title("Motor Speeds")
+        axs[0].set_xlabel("Time (samples)")
+        axs[0].set_ylabel("Speed (RPM)")
+        axs[0].legend()
+        axs[0].grid(True)
+
+        # Plot control signals
+        axs[1].plot(self.data_leftcontrol, label="Control Signal Left", color='red')
+        axs[1].plot(self.data_rightcontrol, label="Control Signal Right", color='orange')
+        axs[1].set_title("Control Signals")
+        axs[1].set_xlabel("Time (samples)")
+        axs[1].set_ylabel("Voltage (V)")
+        axs[1].legend()
+        axs[1].grid(True)
+
+        # Adjust layout and save
+        plt.tight_layout()
+        plt.savefig("plot_new.png")
         plt.show()
 
 
@@ -171,7 +201,7 @@ def main():
     while True:
         instr = input("Enter command (a=run, s=stop, d=distance, r=reset, q=quit): ")
         if instr == 'a':
-            corneille.routine(reference_speed=20, duration=10)  # Example
+            corneille.routine(reference_speed=10, duration=DURATION)  # Example
         elif instr == 's':
             print(f"Left Speed: {corneille.left_motor.get_speed()}")
             print(f"Right Speed: {corneille.right_motor.get_speed()}") 
