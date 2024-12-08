@@ -9,11 +9,11 @@ SPI_BUS = 0
 SPI_DEVICE = 1
 SPI_MAX_SPEED_HZ = 50000
 SAMPLING_TIME = 0.01  # 10ms
-MOTOR_PWM_FREQUENCY = 20000  # Hz
+MOTOR_PWM_FREQUENCY = 1120  # Hz
 GEAR_RATIO = 30
 ENCODER_COUNTS_PER_REV = 4 * 64 * GEAR_RATIO
 VOLTAGE_LIMIT = 12  # Maximum voltage for motors
-DURATION = 3  # Duration of the control loop in seconds
+DURATION = 10  # Duration of the control loop in seconds
 DATA_LENGTH = int(DURATION / SAMPLING_TIME)+1
 
 GPIO.setwarnings(False)
@@ -38,6 +38,8 @@ class Motor:
         # Create PWM instance
         self.pwm = GPIO.PWM(self.pwm_pin, MOTOR_PWM_FREQUENCY)
         self.pwm.start(0)  # Start with 0% duty cycle
+        
+        self.prev_voltage = 0
 
     def read_data(self, distance_or_speed):
         """Read encoder data (speed or distance) from SPI."""
@@ -50,15 +52,15 @@ class Motor:
 
     def get_speed(self):
         """Get speed from the encoder."""
-        ticks_per_ms = self.read_data("speed")
-        rpm = 60*(ticks_per_ms * 100)/(ENCODER_COUNTS_PER_REV)
-        print(rpm)
-        return rpm
+        ticks_per_10ms = self.read_data("speed")
+        rpm = 60*(ticks_per_10ms * 100)/(ENCODER_COUNTS_PER_REV)
+        meters_per_second = (rpm * 3.14159 * 0.060325) / 60
+        return meters_per_second
 
     def get_distance(self):
         """Get distance from the encoder."""
-        distance = self.read_data("distance")
-        print (distance)
+        ticks = self.read_data("distance")
+        distance = (ticks * 3.14159 * 4.5) / (4 * 2048)
         return distance
     
     def set_speed(self, voltage):
@@ -66,8 +68,11 @@ class Motor:
         voltage = max(-VOLTAGE_LIMIT, min(VOLTAGE_LIMIT, voltage))  # Limit voltage
         duty_cycle = 100 * abs(voltage) / VOLTAGE_LIMIT
 
-        GPIO.output(self.direction_pin, voltage >= 0)  # Set direction
+        if (voltage < 0) != (self.prev_voltage < 0):
+            GPIO.output(self.direction_pin, not GPIO.input(self.direction_pin))  # Toggle direction
+            print("CHANGE OF DIRECTION")
         self.pwm.ChangeDutyCycle(duty_cycle)  # Update PWM duty cycle
+        self.prev_voltage = voltage
 
 
 class Robot:
@@ -81,16 +86,18 @@ class Robot:
         spi.max_speed_hz = SPI_MAX_SPEED_HZ
 
         # Motors
-        self.left_motor = Motor(pwm_pin=12, direction_pin=6, speed_address=0x10, distance_address=0x12)
-        self.right_motor = Motor(pwm_pin=13, direction_pin=5, speed_address=0x11, distance_address=0x13)
+        self.left_motor = Motor(pwm_pin=13, direction_pin=6, speed_address=0x10, distance_address=0x13)
+        self.right_motor = Motor(pwm_pin=12, direction_pin=5, speed_address=0x11, distance_address=0x12)
+        GPIO.output(self.right_motor.direction_pin, True)
+        GPIO.output(self.left_motor.direction_pin, False)
 
         # Control variables
         self.int_e_speed_left, self.int_e_speed_right = 0.0, 0.0  # Speed controller integrals
         self.int_e_pos_left, self.int_e_pos_right = 0.0, 0.0 # Position controller integrals
 
         # PI gains
-        self.Kp_pos, self.Ki_pos = 1.0, 0.0  # Position controller gains
-        self.Kp_speed, self.Ki_speed = 0.001, 0.0  # Speed controller gains
+        self.Kp_pos, self.Ki_pos = 0.1, 0.0  # Position controller gains
+        self.Kp_speed, self.Ki_speed = 0.01, 0.0  # Speed controller gains
 
         self.data_left = np.zeros(DATA_LENGTH)
         self.data_right = np.zeros(DATA_LENGTH)
@@ -104,10 +111,10 @@ class Robot:
         self.left_motor.set_speed(0)
         self.right_motor.set_speed(0)
 
-    def control_loop(self, reference_speed): #reference_position,
+    def control_loop(self, reference_position): 
         global int_e_speed_left, int_e_speed_right, int_e_pos_left, int_e_pos_right
         """PI controller for motor speed."""
-        """# Position error
+        # Position error
         e_pos_left = reference_position - self.left_motor.get_distance()
         e_pos_right = reference_position - self.right_motor.get_distance()
 
@@ -116,12 +123,12 @@ class Robot:
         self.int_e_pos_right += e_pos_right * SAMPLING_TIME 
 
         # Calculate reference speed
-        ref_speed_left = self.Kp_pos * e_pos_left + self.Ki_pos * int_e_pos_left
-        ref_speed_right = self.Kp_pos * e_pos_right + self.Ki_pos * int_e_pos_right"""
+        ref_speed_left = self.Kp_pos * e_pos_left + self.Ki_pos * self.int_e_pos_left
+        ref_speed_right = self.Kp_pos * e_pos_right + self.Ki_pos * self.int_e_pos_right
     
         # Speed error
-        e_speed_left = reference_speed - self.left_motor.get_speed()
-        e_speed_right = reference_speed - self.right_motor.get_speed()
+        e_speed_left = ref_speed_left - self.left_motor.get_speed()
+        e_speed_right = ref_speed_right - self.right_motor.get_speed()
 
         # Integrate error
         self.int_e_speed_left += e_speed_left * SAMPLING_TIME
@@ -135,8 +142,8 @@ class Robot:
         # Collect data
         self.data_left[self.data_counter] = self.left_motor.get_speed()
         self.data_right[self.data_counter] = self.right_motor.get_speed()
-        self.data_leftcontrol[self.data_counter] = u_volt_left
-        self.data_rightcontrol[self.data_counter] = u_volt_right
+        self.data_leftcontrol[self.data_counter] = e_speed_left
+        self.data_rightcontrol[self.data_counter] = e_speed_right
 
         self.data_counter += 1
 
@@ -150,13 +157,16 @@ class Robot:
         """Send reset command to encoder."""
         reset_command = [0x7F, 0x00, 0x00, 0x00, 0x00]
         spi.xfer2(reset_command)
+        self.right_motor.get_speed()
+        self.left_motor.get_speed()
         print("Encoder values reset.")
 
-    def routine(self, reference_speed, duration):
+    def routine(self, reference_position, duration):
         """Run the robot for a fixed duration with a given reference speed."""
+        self.reset_values()
         start_time = 0
         while start_time < duration:
-            self.control_loop(reference_speed)
+            self.control_loop(reference_position)
             sleep(SAMPLING_TIME)
             start_time += SAMPLING_TIME
         self.data_counter = 0
@@ -174,7 +184,7 @@ class Robot:
         axs[0].plot(self.data_right, label="Right Motor Speed", color='green')
         axs[0].set_title("Motor Speeds")
         axs[0].set_xlabel("Time (samples)")
-        axs[0].set_ylabel("Speed (RPM)")
+        axs[0].set_ylabel("Speed (m/s)")
         axs[0].legend()
         axs[0].grid(True)
 
@@ -183,7 +193,7 @@ class Robot:
         axs[1].plot(self.data_rightcontrol, label="Control Signal Right", color='orange')
         axs[1].set_title("Control Signals")
         axs[1].set_xlabel("Time (samples)")
-        axs[1].set_ylabel("Voltage (V)")
+        axs[1].set_ylabel("Volts (V)")
         axs[1].legend()
         axs[1].grid(True)
 
@@ -200,13 +210,13 @@ def main():
     while True:
         instr = input("Enter command (a=run, s=stop, d=distance, r=reset, q=quit): ")
         if instr == 'a':
-            corneille.routine(reference_speed=30, duration=DURATION)  # Example
+            corneille.routine(reference_position=60, duration=DURATION)  # Example
         elif instr == 's':
             print(f"Left Speed: {corneille.left_motor.get_speed()}")
             print(f"Right Speed: {corneille.right_motor.get_speed()}") 
         elif instr == 'd':
-            print(f"Left Distance: {corneille.left_motor.get_distance()}")
-            print(f"Right Distance: {corneille.right_motor.get_distance()}")
+            print(f"Left Distance in centimeters: {corneille.left_motor.get_distance():.2f}")
+            print(f"Right Distance in centimeters: {corneille.right_motor.get_distance():.2f}")
         elif instr == 'r':
             corneille.reset_values()
         elif instr == 'q':
