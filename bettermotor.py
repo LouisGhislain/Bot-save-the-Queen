@@ -46,7 +46,6 @@ class Motor:
         else:
             read_command = [self.speed_address, 0x00, 0x00, 0x00, 0x00]
         response = spi.xfer2(read_command)
-        print(response)
         return int.from_bytes(response[1:], byteorder='big', signed=True)
 
     def get_speed(self):
@@ -67,7 +66,7 @@ class Motor:
         voltage = max(-VOLTAGE_LIMIT, min(VOLTAGE_LIMIT, voltage))  # Limit voltage
         duty_cycle = 100 * abs(voltage) / VOLTAGE_LIMIT
 
-        GPIO.output(self.direction_pin, voltage < 0)  # Set direction
+        GPIO.output(self.direction_pin, voltage >= 0)  # Set direction
         self.pwm.ChangeDutyCycle(duty_cycle)  # Update PWM duty cycle
 
 
@@ -82,8 +81,8 @@ class Robot:
         spi.max_speed_hz = SPI_MAX_SPEED_HZ
 
         # Motors
-        self.left_motor = Motor(pwm_pin=12, direction_pin=5, speed_address=0x10, distance_address=0x12)
-        self.right_motor = Motor(pwm_pin=13, direction_pin=6, speed_address=0x11, distance_address=0x13)
+        self.left_motor = Motor(pwm_pin=12, direction_pin=6, speed_address=0x10, distance_address=0x12)
+        self.right_motor = Motor(pwm_pin=13, direction_pin=5, speed_address=0x11, distance_address=0x13)
 
         # Control variables
         self.int_e_speed_left, self.int_e_speed_right = 0.0, 0.0  # Speed controller integrals
@@ -91,7 +90,7 @@ class Robot:
 
         # PI gains
         self.Kp_pos, self.Ki_pos = 1.0, 0.0  # Position controller gains
-        self.Kp_speed, self.Ki_speed = 1, 0.1  # Speed controller gains
+        self.Kp_speed, self.Ki_speed = 0.001, 0.0  # Speed controller gains
 
         self.data_left = np.zeros(DATA_LENGTH)
         self.data_right = np.zeros(DATA_LENGTH)
@@ -201,7 +200,7 @@ def main():
     while True:
         instr = input("Enter command (a=run, s=stop, d=distance, r=reset, q=quit): ")
         if instr == 'a':
-            corneille.routine(reference_speed=10, duration=DURATION)  # Example
+            corneille.routine(reference_speed=30, duration=DURATION)  # Example
         elif instr == 's':
             print(f"Left Speed: {corneille.left_motor.get_speed()}")
             print(f"Right Speed: {corneille.right_motor.get_speed()}") 
@@ -211,9 +210,18 @@ def main():
         elif instr == 'r':
             corneille.reset_values()
         elif instr == 'q':
-            corneille.stop()
-            spi.close()
-            GPIO.cleanup()
+            GPIO.output(corneille.right_motor.direction_pin, False)
+            GPIO.output(corneille.left_motor.direction_pin, True)
+            corneille.right_motor.pwm.start(100)
+            corneille.left_motor.pwm.start(100)
+            while corneille.data_counter < DATA_LENGTH:
+                corneille.data_left[corneille.data_counter] = corneille.left_motor.get_speed()
+                corneille.data_right[corneille.data_counter] = corneille.right_motor.get_speed()
+                corneille.data_leftcontrol[corneille.data_counter] = 100
+                corneille.data_rightcontrol[corneille.data_counter] = 100
+                sleep(SAMPLING_TIME)
+                corneille.data_counter += 1
+            corneille.plot_data()
         else:
             print("Invalid command!")
 
