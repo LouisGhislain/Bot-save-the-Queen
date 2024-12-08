@@ -210,8 +210,8 @@ def main():
         elif instr == 'r':
             corneille.reset_values()
         elif instr == 'q':
-            GPIO.output(corneille.right_motor.direction_pin, False)
-            GPIO.output(corneille.left_motor.direction_pin, True)
+            GPIO.output(corneille.right_motor.direction_pin, True)
+            GPIO.output(corneille.left_motor.direction_pin, False)
             corneille.right_motor.pwm.start(100)
             corneille.left_motor.pwm.start(100)
             while corneille.data_counter < DATA_LENGTH:
