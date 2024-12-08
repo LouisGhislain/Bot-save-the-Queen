@@ -18,10 +18,6 @@ module EncoderSpeed (
             tick_count <= 0;
             timer <= 0;
             speed <= 0;
-            previous_A <= 0;
-            previous_B <= 0;
-            actual_A <= 0;
-            actual_B <= 0;
         end else begin
             // Increment timer and count encoder ticks
             timer <= timer + 1;
@@ -123,7 +119,8 @@ logic [31:0]	SPI_Data;
 logic				SPI_Data_WE;
 // Assign to external signals
 assign clk = CLOCK_50;
-assign reset = ~KEY[0];
+logic internal_reset;
+assign reset = ~KEY[0] | internal_reset;
 
 assign {SPI_MOSI, SPI_CLK} = GPIO[23:22];
 assign SPI_CE			   = GPIO[20];
@@ -191,22 +188,32 @@ spi_slave spi(
         .tick_count(right_ticks)
     );
 
-//assign SPI_To_Send = right_speed;
 
-always_ff @(posedge SPI_Ready)  begin
+always_ff @(posedge SPI_Ready) begin
+    address <= SPI_Query;
 
-		address <= SPI_Query;
-		
-		case (address)
-			8'h10: SPI_To_Send = left_speed;
-			8'h11: SPI_To_Send = right_speed;
-			8'h12: SPI_To_Send = left_ticks;
-			8'h13: SPI_To_Send = right_ticks;
-			8'h7F: SPI_To_Send = 32'd127;
-		endcase
-	end
+    case (address)
+        8'h10: SPI_To_Send <= left_speed;
+        8'h11: SPI_To_Send <= -right_speed;
+        8'h12: SPI_To_Send <= -left_ticks;
+        8'h13: SPI_To_Send <= right_ticks;
+        8'h7F: ; // Do nothing for reset query
+        default: SPI_To_Send <= SPI_To_Send; // Hold previous value
+    endcase
+end
 
 
-assign LED = SPI_To_Send[7:0];
+// Generate a one-clock-cycle pulse for `internal_reset`
+always_ff @(posedge clk) begin
+    if (SPI_Query == 8'h7F) begin
+        internal_reset <= 1;
+    end else begin
+        internal_reset <= 0;
+    end
+end
+
+
+
+assign LED = right_ticks[7:0];
 
 endmodule
