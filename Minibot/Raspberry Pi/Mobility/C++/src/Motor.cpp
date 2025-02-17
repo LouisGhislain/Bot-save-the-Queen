@@ -29,16 +29,18 @@ int32_t Motor::readData(const std::string& type) {
 double Motor::getSpeed() {
     int32_t ticks_per_10ms = readData("speed");
     double diameter = 6.0325;  // cm
-    return (ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV)) * M_PI * diameter * 4;
+    double speed = (ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV)) * M_PI * diameter * 4;
+    return speed;
 }
 
 double Motor::getDistance() {
     int32_t ticks = readData("distance");
-    return (ticks * 3.14159 * 4.5) / (4.0 * 2048.0) * 1.01617;  // Corrective factor
+    double distance = (ticks * 3.14159 * 4.5) / (4.0 * 2048.0) * 1.01617;  // Corrective factor
+    return distance;
 }
 
 void Motor::setSpeed(double voltage) {
-    voltage = std::max(-VOLTAGE_LIMIT, std::min(VOLTAGE_LIMIT, voltage));
+    voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
     int dutyCycle = static_cast<int>(100 * std::abs(voltage) / VOLTAGE_LIMIT);
 
     if (voltage < 0) {
@@ -51,9 +53,9 @@ void Motor::setSpeed(double voltage) {
 }
 
 void Motor::stop() {
-    softPwmWrite(pwmPin, 0);
+    softPwmWrite(pwmPin, 0);  // Set duty cycle to 0% to stop the motor
 }
 
 void Motor::start() {
-    softPwmWrite(pwmPin, 0);
+    softPwmWrite(pwmPin, 0);  // Initialize with 0% duty cycle
 }

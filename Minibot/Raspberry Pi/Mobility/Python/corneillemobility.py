@@ -106,23 +106,11 @@ class Robot:
         self.Kp_pos, self.Ki_pos = 0.01, 0.0  # Position controller gains
         self.Kp_speed, self.Ki_speed = 10, 85.5 #17.3913 # Speed controller gains
 
-        self.data_left = np.zeros(DATA_LENGTH)
-        self.data_right = np.zeros(DATA_LENGTH)
-        self.speed_left = np.zeros(DATA_LENGTH)
-        self.speed_right = np.zeros(DATA_LENGTH)
-        self.time= np.zeros(DATA_LENGTH)
-        self.data_leftcontrol = np.zeros(DATA_LENGTH)
-        self.data_rightcontrol = np.zeros(DATA_LENGTH)
-        self.xcoordinates = np.zeros(DATA_LENGTH)
-        self.ycoordinates = np.zeros(DATA_LENGTH)
-
-        self.data_counter = 0
-
         # Robot position parameters
         self.x_coord = 3.8
         self.y_coord = 12.5
 
-        # High level controller gains
+        # Middle level controller gains
         self.Kp_rho = 0.00333
         self.Kp_alpha = 0.004
         self.Kp_beta = 0
@@ -130,15 +118,6 @@ class Robot:
         # Displacement since last calling
         self.lastleftdistance = 0
         self.lastrightdistance = 0
-
-        '''        
-        # Chemin vers l'exécutable C++
-        self.executable_path = "Le_BORDEL_DE_HUGO/lidar_example_cpp-main/output/Linux/Release/main_folder"
- 
-        #postionx, postiony = 0,0 #= self.get_position_from_cpp(self.executable_path)
-        #Lidar pos
-        self.lidarx = postionx
-        self.lidary = postiony '''
 
     def stop(self):
         """Stop both motors."""
@@ -204,9 +183,6 @@ class Robot:
         self.right_motor.set_speed(u_volt_right)
 
 
-
-
-
     def go_to_position(self, x, y, goal_angle):
         """Move the robot to a given position."""
         rho = 1000
@@ -226,8 +202,6 @@ class Robot:
             w = self.Kp_alpha * alpha + self.Kp_beta * beta
             ref_speed_left = v - w
             ref_speed_right = v + w
-            """print(f"V: {v:.2f}")
-            print(f"W: {w:.2f}")"""
 
             # Control loop
             self.control_loop(ref_speed_left, ref_speed_right)
@@ -239,13 +213,7 @@ class Robot:
             self.y_coord += displacement * np.sin((self.get_angle()/360)*2*np.pi) *(100/70.2)
 
             self.lastleftdistance = self.left_motor.get_distance()
-            self.lastrightdistance = self.right_motor.get_distance()
-
-            #print(f"X: {self.x_coord:.2f}, Y: {self.y_coord:.2f}, Theta: {(self.get_angle()):.2f}")
-            
-            """self.xcoordinates[self.data_counter] = self.x_coord
-            self.ycoordinates[self.data_counter] = self.y_coord
-            self.data_counter+=1"""
+            self.lastrightdistance = self.right_motor.get_distance()           
 
             # Sleep
             sleep(SAMPLING_TIME)
@@ -268,15 +236,6 @@ class Robot:
 
     def routine(self):
         """Run the robot for a fixed duration with a given reference speed."""
-        
-        self.data_left = np.zeros(DATA_LENGTH)
-        self.data_right = np.zeros(DATA_LENGTH)
-        self.speed_left = np.zeros(DATA_LENGTH)
-        self.speed_right = np.zeros(DATA_LENGTH)
-        self.time= np.zeros(DATA_LENGTH)
-        self.data_leftcontrol = np.zeros(DATA_LENGTH)
-        self.data_rightcontrol = np.zeros(DATA_LENGTH)
-        self.data_counter = 0
  
         self.reset_values()
         #self.go_to_position(115, 0, 0)
@@ -291,43 +250,6 @@ class Robot:
 
         
         print("You arrived at destination")
-
-
-    def plot_data(self):
-        """Plot speed and control signal data on two separate plots."""
-        fig, axs = plt.subplots(3, 1, figsize=(10, 8))  # Create two subplots vertically
-
-        # Plot motor position
-        axs[0].plot( self.data_left, label="Left Motor position", color='red')
-        axs[0].plot( self.data_right, label="Right Motor position", color='blue')
-        axs[0].set_title("Position")
-        axs[0].set_xlabel("Time (samples)")
-        axs[0].set_ylabel("Position (cm)")
-        axs[0].legend()
-        axs[0].grid(True)
-
-        # Plot speed
-        axs[1].plot( self.time, self.data_left, label="Wheel speed", color='red')
-        #axs[1].plot( self.data_right, label="Right Wheel speed", color='blue')
-        axs[1].set_title("Speed")
-        axs[1].set_xlabel("Time (seconds)")
-        axs[1].set_ylabel("Speed (m/s)")
-        axs[1].legend()
-        axs[1].grid(True)
-
-        # Plot control signals
-        axs[2].plot(self.time, self.data_leftcontrol, label="Control Signal", color='red')
-        #axs[2].plot(self.data_rightcontrol,label="Control Signal Right", color='blue')
-        axs[2].set_title("Control Signals")
-        axs[2].set_xlabel("Time (seconds)")
-        axs[2].set_ylabel("Control (Volts)")
-        axs[2].legend()
-        axs[2].grid(True)
-
-        # Adjust layout and save
-        plt.tight_layout()
-        plt.savefig("plot_new.png")
-        plt.show()
 
 # Main program
 def main():
