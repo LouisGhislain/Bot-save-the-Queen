@@ -19,6 +19,7 @@ public:
     void lowLevelController(double ref_speed_left, double ref_speed_right);
     void middleLevelController(double x, double y, double goal_angle);
     void routine();
+    void testMotors();
 
 private:
     void initializeSPI(); 

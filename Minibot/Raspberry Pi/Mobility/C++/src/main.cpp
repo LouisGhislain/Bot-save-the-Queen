@@ -9,6 +9,7 @@ int main() {
     std::cout << "  a: Run routine" << std::endl;
     std::cout << "  b: Print robot position (angle)" << std::endl;
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
+    std::cout << "  t: Motor test" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -17,6 +18,7 @@ int main() {
             std::cout << "Launching routine..." << std::endl;
             robot.routine();
             break;
+        
         case 'b': {
             double angle = robot.getAngle();
             std::cout << "Robot angle (as proxy for position): " << angle << " degrees" << std::endl;
@@ -31,6 +33,11 @@ int main() {
             // double speed = robot.getLeftMotorSpeed();
             // For now, we will print a message.
             std::cout << "Robot speed functionality is not yet implemented." << std::endl;
+            break;
+        }
+        case 't':{
+            std::cout << "Testing motors..." << std::endl;
+            robot.testMotors();
             break;
         }
         default:

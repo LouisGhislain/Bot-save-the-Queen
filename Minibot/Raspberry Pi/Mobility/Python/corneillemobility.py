@@ -16,7 +16,6 @@ GEAR_RATIO = 30
 ENCODER_COUNTS_PER_REV = 4 * 64 * GEAR_RATIO
 VOLTAGE_LIMIT = 12  # Maximum voltage for motors
 DURATION = 3  # Duration of the control loop in seconds
-DATA_LENGTH = 263#int(DURATION / SAMPLING_TIME)+1
 
 GPIO.setwarnings(False)
 
@@ -242,12 +241,6 @@ class Robot:
         self.go_to_position(100, -100, 0)   #( x, y, dest_angle) 
         self.go_to_position(200, 0, 0)
         self.go_to_position(200, -120, 0)
-        # Plot trajectory
-        plt.plot( self.xcoordinates, self.ycoordinates, label="Left Motor position", color='blue')
-
-        print("Data plotted")
-        plt.savefig("plot_new.png")
-
         
         print("You arrived at destination")
 

@@ -180,3 +180,21 @@ void Robot::routine() {
     std::cout << "Routine completed!" << std::endl;
 }
 
+void Robot::testMotors() {
+    leftMotor.setSpeed(3);
+    rightMotor.setSpeed(3);
+    usleep(1000000);  // 1 seconds
+    //Print speed
+    std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
+    std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
+    usleep(3000000);  // 3 seconds
+    leftMotor.setSpeed(-3);
+    rightMotor.setSpeed(-3);
+    usleep(1000000);  // 1 seconds
+    //Print speed
+    std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
+    std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
+    usleep(3000000);  // 3 seconds
+    leftMotor.stop();
+    rightMotor.stop();
+}
