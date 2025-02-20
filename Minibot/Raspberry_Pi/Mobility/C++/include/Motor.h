@@ -18,7 +18,7 @@ private:
 
 public:
     static constexpr int MOTOR_PWM_FREQUENCY = 1120;
-    static constexpr int GEAR_RATIO = 30;
+    static constexpr int GEAR_RATIO = 30;   
     static constexpr int ENCODER_COUNTS_PER_REV = 4*64*GEAR_RATIO;
     static constexpr double VOLTAGE_LIMIT = 12.0;
     
