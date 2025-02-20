@@ -54,8 +54,11 @@ void Motor::setSpeed(double voltage) {
 
 void Motor::stop() {
     softPwmWrite(pwmPin, 0);  // Set duty cycle to 0% to stop the motor
+    softPwmStop(pwmPin);  // Stop PWM
+    std::cout << "Motor stopped" << std::endl;
 }
 
 void Motor::start() {
+    
     softPwmWrite(pwmPin, 0);  // Initialize with 0% duty cycle
 }

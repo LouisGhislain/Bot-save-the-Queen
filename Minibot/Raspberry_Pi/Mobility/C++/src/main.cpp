@@ -43,7 +43,7 @@ int main() {
             break;
         }
         case 't':{
-            std::cout << "Testing motors..." << std::endl;
+            std::cout << "Testing low level controller..." << std::endl;
             robot.testMotors();
             break;
         }
