@@ -13,6 +13,13 @@ int main() {
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
+    try {
+        robot.start();  // This will initialize SPI and perform other setup tasks.
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+
     switch(choice) {
         case 'a':
             std::cout << "Launching routine..." << std::endl;
@@ -36,7 +43,7 @@ int main() {
             break;
         }
         case 't':{
-            std::cout << "Testing motors..." << std::endl;
+            std::cout << "Testing low level controller..." << std::endl;
             robot.testMotors();
             break;
         }

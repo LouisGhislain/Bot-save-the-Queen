@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX      = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -I. -MMD
-LIBS     = -lwiringPi
+CXXFLAGS = -Wall -Wextra -std=c++17 -I. -Iinclude -MMD  # Added -Iinclude
+LIBS     = -lwiringPi -lwiringPiDev  # Added -lwiringPiDev
 
 # Directories
 SRC_DIR  = ./src

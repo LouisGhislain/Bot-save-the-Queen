@@ -2,8 +2,8 @@
 #include "Robot.h"
 
 Robot::Robot() 
-    : leftMotor(12, 5, 0x10, 0x12, true), 
-      rightMotor(13, 6, 0x11, 0x13, false) {
+    : leftMotor(12, 5, 0x12, 0x10, true), 
+      rightMotor(13, 6, 0x13, 0x11, false) {
     wiringPiSetup();
 }
 
@@ -52,7 +52,7 @@ void Robot::stop() {
  */
 void Robot::resetValues() {
     // Send reset command to encoder
-    static const unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
+    static unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
     wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));    
 
     // Reset coordinates and distance values
@@ -159,7 +159,6 @@ stop();
  * This function makes the robot move through points using the middleLevelController.
  */
 void Robot::routine() {
-    start();
     // Define 3 target points (x, y, angle in degrees)
     std::vector<std::tuple<double, double, double>> points = {
         {100.0, -100.0, 0.0},   // Point 1: 100 cm forward, angle 0 degrees
@@ -181,20 +180,18 @@ void Robot::routine() {
 }
 
 void Robot::testMotors() {
-    leftMotor.setSpeed(3);
-    rightMotor.setSpeed(3);
+    lowLevelController(1, 1);
     usleep(1000000);  // 1 seconds
     //Print speed
     std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
     std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(3000000);  // 3 seconds
-    leftMotor.setSpeed(-3);
-    rightMotor.setSpeed(-3);
+    usleep(1000000);  // 3 seconds
+    lowLevelController(-1, -1);
     usleep(1000000);  // 1 seconds
     //Print speed
     std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
     std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(3000000);  // 3 seconds
+    usleep(1000000);  // 3 seconds
     leftMotor.stop();
     rightMotor.stop();
 }
