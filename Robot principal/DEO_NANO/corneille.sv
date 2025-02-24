@@ -126,17 +126,13 @@ module DE0_NANO_V3(
 	output		          		ADC_SCLK,
 	input 		          		ADC_SDAT,
 
-	//////////// 2x13 GPIO Header //////////
-	inout 		    [12:0]		GPIO_2,
-	input 		     [2:0]		GPIO_2_IN,
-
 	//////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
-	inout 		    [33:0]		GPIO-1,
-	input 		     [1:0]		GPIO-1_IN,
+	inout 		    [33:0]		GPIO_1,
+	input 		     [1:0]		GPIO_1_IN,
 
 	//////////// GPIO_1, GPIO_1 connect to GPIO Default //////////
-	inout 		    [33:0]		GPIO-2,
-	input 		     [1:0]		GPIO-2_IN
+	inout 		    [33:0]		GPIO_2,
+	input 		     [1:0]		GPIO_2_IN
 );
 
 
@@ -156,21 +152,22 @@ assign clk = CLOCK_50;
 logic internal_reset;
 assign reset = ~KEY[0] | internal_reset;
 
-assign {SPI_MOSI, SPI_CLK} = GPIO[23:22];
-assign SPI_CE			   = GPIO[20];
+assign SPI_MOSI = GPIO_2_IN[1];
+assign SPI_CLK  = GPIO_2[12];
+assign SPI_CE   = GPIO_2[14];
 
-assign GPIO[21] = (SPI_CE) ? 1'bz : SPI_MISO;
-//assign SPI_To_Send = 32'hFFFFFFEC;
+assign GPIO_2[11] = (SPI_CE) ? 1'bz : SPI_MISO;
+assign SPI_To_Send = 32'hFFFFFFEC;
 
-assign ENC_1A = GPIO-2[10]; // Encoder 1 Channel A
-assign ENC_1B = GPIO-2[3]; // Encoder 1 Channel B
-assign ENC_2A = GPIO-2[2]; // Encoder 2 Channel A
-assign ENC_2B = GPIO-2[5]; // Encoder 2 Channel B
+assign ENC_1A = GPIO_2[10]; // Encoder 1 Channel A
+assign ENC_1B = GPIO_2[3]; // Encoder 1 Channel B
+assign ENC_2A = GPIO_2[2]; // Encoder 2 Channel A
+assign ENC_2B = GPIO_2[5]; // Encoder 2 Channel B
 
-assign ODO_1A = GPIO-2[8];  // Odometer 1 Channel A
-assign ODO_1B = GPIO-2[9];  // Odometer 1 Channel B
-assign ODO_2A = GPIO-2[10]; // Odometer 2 Channel A
-assign ODO_2B = GPIO-2[11]; // Odometer 2 Channel B
+assign ODO_1A = GPIO_2[8];  // Odometer 1 Channel A
+assign ODO_1B = GPIO_2[9];  // Odometer 1 Channel B
+assign ODO_2A = GPIO_2[10]; // Odometer 2 Channel A
+assign ODO_2B = GPIO_2[11]; // Odometer 2 Channel B
 
 //=======================================================
 //  Structural coding
@@ -222,7 +219,7 @@ spi_slave spi(
         .tick_count(right_ticks)
     );
 
-
+/*
 always_ff @(posedge SPI_Ready) begin
     //address = SPI_Query;
     case (SPI_Query)
@@ -234,7 +231,7 @@ always_ff @(posedge SPI_Ready) begin
         default: SPI_To_Send <= SPI_To_Send; // Hold previous value
     endcase
 end
-
+*/
 
 // Generate a one-clock-cycle pulse for `internal_reset`
 always_ff @(posedge clk) begin

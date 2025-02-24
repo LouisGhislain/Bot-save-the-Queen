@@ -52,30 +52,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "GPIO_2[16]",
-					"strict" : false
-				},
-				{
-					"name" : "GPIO_2[18]",
-					"strict" : false
-				},
-				{
-					"name" : "GPIO_2[22]",
-					"strict" : false
-				},
-				{
-					"name" : "GPIO_2[24]",
-					"strict" : false
-				},
-				{
-					"name" : "GPIO_2[28]",
-					"strict" : false
-				},
-				{
-					"name" : "GPIO_2[30]",
-					"strict" : false
-				},
-				{
 					"name" : "CLOCK_50",
 					"strict" : false
 				},
