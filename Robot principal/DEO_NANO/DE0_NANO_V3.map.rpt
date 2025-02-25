@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE0_NANO_V3
-Sat Feb 22 19:01:52 2025
+Tue Feb 25 15:32:54 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -18,14 +18,10 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  10. Removed Registers Triggering Further Register Optimizations
  11. General Register Statistics
  12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Port Connectivity Checks: "Odometer:right_odometer"
- 14. Port Connectivity Checks: "Odometer:left_odometer"
- 15. Port Connectivity Checks: "EncoderSpeed:right_encoder_speed"
- 16. Port Connectivity Checks: "EncoderSpeed:left_encoder_speed"
- 17. Port Connectivity Checks: "spi_slave:spi"
- 18. Post-Synthesis Netlist Statistics for Top Partition
- 19. Elapsed Time Per Partition
- 20. Analysis & Synthesis Messages
+ 13. Port Connectivity Checks: "spi_slave:spi"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -51,15 +47,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Feb 22 19:01:52 2025       ;
+; Analysis & Synthesis Status        ; Successful - Tue Feb 25 15:32:54 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; DE0_NANO_V3                                 ;
 ; Top-level Entity Name              ; DE0_NANO_V3                                 ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 82                                          ;
-;     Total combinational functions  ; 76                                          ;
-;     Dedicated logic registers      ; 65                                          ;
-; Total registers                    ; 65                                          ;
+; Total logic elements               ; 43                                          ;
+;     Total combinational functions  ; 37                                          ;
+;     Dedicated logic registers      ; 32                                          ;
+; Total registers                    ; 32                                          ;
 ; Total pins                         ; 138                                         ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -186,20 +182,20 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 82             ;
+; Estimated Total logic elements              ; 43             ;
 ;                                             ;                ;
-; Total combinational functions               ; 76             ;
+; Total combinational functions               ; 37             ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 44             ;
-;     -- 3 input functions                    ; 18             ;
-;     -- <=2 input functions                  ; 14             ;
+;     -- 4 input functions                    ; 10             ;
+;     -- 3 input functions                    ; 15             ;
+;     -- <=2 input functions                  ; 12             ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 64             ;
+;     -- normal mode                          ; 25             ;
 ;     -- arithmetic mode                      ; 12             ;
 ;                                             ;                ;
-; Total registers                             ; 65             ;
-;     -- Dedicated logic registers            ; 65             ;
+; Total registers                             ; 32             ;
+;     -- Dedicated logic registers            ; 32             ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 138            ;
@@ -207,9 +203,9 @@ refer to the applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 65             ;
-; Total fan-out                               ; 692            ;
-; Average fan-out                             ; 1.38           ;
+; Maximum fan-out                             ; 32             ;
+; Total fan-out                               ; 443            ;
+; Average fan-out                             ; 1.03           ;
 +---------------------------------------------+----------------+
 
 
@@ -218,9 +214,9 @@ refer to the applicable agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                  ; Entity Name ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
-; |DE0_NANO_V3                 ; 76 (4)              ; 65 (1)                    ; 0           ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                         ; DE0_NANO_V3 ; work         ;
+; |DE0_NANO_V3                 ; 37 (4)              ; 32 (1)                    ; 0           ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                         ; DE0_NANO_V3 ; work         ;
 ;    |Odometer:right_odometer| ; 10 (10)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|Odometer:right_odometer ; Odometer    ; work         ;
-;    |spi_slave:spi|           ; 62 (62)             ; 52 (52)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|spi_slave:spi           ; spi_slave   ; work         ;
+;    |spi_slave:spi|           ; 23 (23)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|spi_slave:spi           ; spi_slave   ; work         ;
 +------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -265,78 +261,37 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 65    ;
+; Total registers                              ; 32    ;
 ; Number of registers using Synchronous Clear  ; 6     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 8     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 58    ;
+; Number of registers using Clock Enable       ; 26    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |DE0_NANO_V3|spi_slave:spi|SPI_reg[4]  ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |DE0_NANO_V3|spi_slave:spi|SPI_reg[24] ;
-; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE0_NANO_V3|spi_slave:spi|state       ;
-; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE0_NANO_V3|spi_slave:spi|state       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |DE0_NANO_V3|spi_slave:spi|SPI_cnt[0] ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE0_NANO_V3|spi_slave:spi|state      ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |DE0_NANO_V3|spi_slave:spi|state      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Odometer:right_odometer"                                                                         ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; tick_count[31..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Odometer:left_odometer"                                                                   ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port       ; Type   ; Severity ; Details                                                                             ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; tick_count ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "EncoderSpeed:right_encoder_speed"                                                    ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; speed ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "EncoderSpeed:left_encoder_speed"                                                     ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; speed ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "spi_slave:spi"                                                                               ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port          ; Type   ; Severity ; Details                                                                             ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
-; ToSend[31..5] ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ToSend[3..2]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; ToSend[1..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; ToSend[4]     ; Input  ; Info     ; Stuck at GND                                                                        ;
-; Ready         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; DataAddr      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; Data          ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; Data_WE       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "spi_slave:spi"                                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; SPI_MISO ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; DataAddr ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Data     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Data_WE  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -345,25 +300,25 @@ Encoding Type:  One-Hot
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 138                         ;
-; cycloneiii_ff         ; 65                          ;
-;     ENA               ; 44                          ;
+; cycloneiii_ff         ; 32                          ;
+;     ENA               ; 12                          ;
 ;     ENA CLR           ; 8                           ;
 ;     ENA SCLR          ; 6                           ;
-;     plain             ; 7                           ;
+;     plain             ; 6                           ;
 ; cycloneiii_io_obuf    ; 85                          ;
-; cycloneiii_lcell_comb ; 77                          ;
+; cycloneiii_lcell_comb ; 38                          ;
 ;     arith             ; 12                          ;
 ;         2 data inputs ; 6                           ;
 ;         3 data inputs ; 6                           ;
-;     normal            ; 65                          ;
+;     normal            ; 26                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 7                           ;
-;         3 data inputs ; 12                          ;
-;         4 data inputs ; 44                          ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 9                           ;
+;         4 data inputs ; 10                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 1.11                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 0.93                        ;
 +-----------------------+-----------------------------+
 
 
@@ -382,27 +337,27 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Feb 22 19:01:41 2025
+    Info: Processing started: Tue Feb 25 15:32:43 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE0_NANO_V3 -c DE0_NANO_V3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file spi.sv
     Info (12023): Found entity 1: spi_slave File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/SPI.sv Line: 1
-Warning (10275): Verilog HDL Module Instantiation warning at corneille.sv(194): ignored dangling comma in List of Port Connections File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 194
+Warning (10275): Verilog HDL Module Instantiation warning at corneille.sv(193): ignored dangling comma in List of Port Connections File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
 Info (12021): Found 3 design units, including 3 entities, in source file corneille.sv
     Info (12023): Found entity 1: EncoderSpeed File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 1
     Info (12023): Found entity 2: Odometer File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 51
     Info (12023): Found entity 3: DE0_NANO_V3 File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 85
 Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(151): created implicit net for "clk" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 151
 Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(153): created implicit net for "reset" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 153
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(162): created implicit net for "ENC_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 162
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(163): created implicit net for "ENC_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 163
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(164): created implicit net for "ENC_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 164
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(165): created implicit net for "ENC_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 165
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(167): created implicit net for "ODO_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 167
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(168): created implicit net for "ODO_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 168
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(169): created implicit net for "ODO_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 169
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(170): created implicit net for "ODO_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 170
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(161): created implicit net for "ENC_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 161
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(162): created implicit net for "ENC_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 162
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(163): created implicit net for "ENC_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 163
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(164): created implicit net for "ENC_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 164
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(166): created implicit net for "ODO_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 166
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(167): created implicit net for "ODO_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 167
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(168): created implicit net for "ODO_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 168
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(169): created implicit net for "ODO_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 169
 Info (12127): Elaborating entity "DE0_NANO_V3" for the top level hierarchy
 Warning (10034): Output port "DRAM_ADDR" at corneille.sv(100) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
 Warning (10034): Output port "DRAM_BA" at corneille.sv(101) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
@@ -421,20 +376,21 @@ Warning (10034): Output port "I2C_SCLK" at corneille.sv(120) has no driver File:
 Warning (10034): Output port "ADC_CS_N" at corneille.sv(124) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 124
 Warning (10034): Output port "ADC_SADDR" at corneille.sv(125) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 125
 Warning (10034): Output port "ADC_SCLK" at corneille.sv(126) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 126
-Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:spi" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 194
-Info (12128): Elaborating entity "EncoderSpeed" for hierarchy "EncoderSpeed:left_encoder_speed" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 202
-Warning (10230): Verilog HDL assignment warning at corneille.sv(32): truncated value with size 32 to match size of target (16) File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 32
-Warning (10230): Verilog HDL assignment warning at corneille.sv(33): truncated value with size 32 to match size of target (16) File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 33
-Info (12128): Elaborating entity "Odometer" for hierarchy "Odometer:left_odometer" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 214
+Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:spi" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
+Info (12128): Elaborating entity "EncoderSpeed" for hierarchy "EncoderSpeed:left_encoder_speed" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 201
+Info (12128): Elaborating entity "Odometer" for hierarchy "Odometer:left_odometer" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 213
 Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "GPIO_2[1]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[2]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[3]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[5]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[8]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[9]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[4]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[10]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[12]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[14]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[16]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[18]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[22]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[24]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[28]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[30]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
     Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
     Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
@@ -487,27 +443,25 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "GPIO_1[32]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
     Warning (13040): bidirectional pin "GPIO_1[33]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
     Warning (13040): bidirectional pin "GPIO_2[0]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[1]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[4]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[3]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[5]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[6]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[7]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[8]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[9]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[11]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[13]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[14]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[15]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[16]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[17]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[18]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[19]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[20]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[21]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[22]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[23]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[24]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[25]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[26]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[27]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[28]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[29]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[30]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[31]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[32]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
     Warning (13040): bidirectional pin "GPIO_2[33]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
@@ -559,15 +513,15 @@ Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "GPIO_1_IN[0]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
     Warning (15610): No output dependent on input pin "GPIO_1_IN[1]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
     Warning (15610): No output dependent on input pin "GPIO_2_IN[0]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
-Info (21057): Implemented 220 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 181 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 39 output pins
     Info (21060): Implemented 85 bidirectional pins
-    Info (21061): Implemented 82 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 160 warnings
+    Info (21061): Implemented 43 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 159 warnings
     Info: Peak virtual memory: 4783 megabytes
-    Info: Processing ended: Sat Feb 22 19:01:52 2025
+    Info: Processing ended: Tue Feb 25 15:32:54 2025
     Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:21
+    Info: Total CPU time (on all processors): 00:00:22
 
 

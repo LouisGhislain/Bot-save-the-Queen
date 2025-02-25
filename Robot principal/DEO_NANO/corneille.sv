@@ -3,13 +3,13 @@ module EncoderSpeed (
     input logic reset,
     input logic encoder_a,
     input logic encoder_b,                                                    
-    output logic signed [15:0] speed
+    output logic signed [31:0] speed
 );
     // Constants
     int TIMER_MAX = 500000;
 
     // Internal variables for tick counting and time interval
-    logic signed [15:0] tick_count;
+    logic signed [31:0] tick_count;
     logic [31:0] timer;
     logic actual_A, actual_B, previous_A, previous_B;
 
@@ -153,28 +153,27 @@ logic internal_reset;
 assign reset = ~KEY[0] | internal_reset;
 
 assign SPI_MOSI = GPIO_2_IN[1];
-assign SPI_CLK  = GPIO_2[12];
-assign SPI_CE   = GPIO_2[14];
-
-assign GPIO_2[11] = (SPI_CE) ? 1'bz : SPI_MISO;
-assign SPI_To_Send = 32'hFFFFFFEC;
+assign SPI_MISO = (SPI_CE) ? 1'bz : GPIO_2[1];
+assign SPI_CLK  = GPIO_2[2];
+assign SPI_CE   = GPIO_2[4];
+//assign SPI_To_Send = 32'hFFFFFFEC; to debug SPI if needed
 
 assign ENC_1A = GPIO_2[10]; // Encoder 1 Channel A
-assign ENC_1B = GPIO_2[3]; // Encoder 1 Channel B
-assign ENC_2A = GPIO_2[2]; // Encoder 2 Channel A
-assign ENC_2B = GPIO_2[5]; // Encoder 2 Channel B
+assign ENC_1B = GPIO_2[12]; // Encoder 1 Channel B
+assign ENC_2A = GPIO_2[16]; // Encoder 2 Channel A
+assign ENC_2B = GPIO_2[18]; // Encoder 2 Channel B
 
-assign ODO_1A = GPIO_2[8];  // Odometer 1 Channel A
-assign ODO_1B = GPIO_2[9];  // Odometer 1 Channel B
-assign ODO_2A = GPIO_2[10]; // Odometer 2 Channel A
-assign ODO_2B = GPIO_2[11]; // Odometer 2 Channel B
+assign ODO_1A = GPIO_2[22];  // Odometer 1 Channel A
+assign ODO_1B = GPIO_2[24];  // Odometer 1 Channel B
+assign ODO_2A = GPIO_2[28]; // Odometer 2 Channel A
+assign ODO_2B = GPIO_2[30]; // Odometer 2 Channel B
 
 //=======================================================
 //  Structural coding
 //=======================================================
 logic [7:0] address;
 
-logic signed [15:0] left_speed, right_speed;
+logic signed [31:0] left_speed, right_speed;
 logic signed [31:0] left_ticks, right_ticks;
 
 
@@ -219,7 +218,6 @@ spi_slave spi(
         .tick_count(right_ticks)
     );
 
-/*
 always_ff @(posedge SPI_Ready) begin
     //address = SPI_Query;
     case (SPI_Query)
@@ -231,7 +229,7 @@ always_ff @(posedge SPI_Ready) begin
         default: SPI_To_Send <= SPI_To_Send; // Hold previous value
     endcase
 end
-*/
+
 
 // Generate a one-clock-cycle pulse for `internal_reset`
 always_ff @(posedge clk) begin
