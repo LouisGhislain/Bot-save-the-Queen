@@ -152,11 +152,11 @@ assign clk = CLOCK_50;
 logic internal_reset;
 assign reset = ~KEY[0] | internal_reset;
 
-assign SPI_MOSI = GPIO_2_IN[1];
-assign SPI_MISO = (SPI_CE) ? 1'bz : GPIO_2[1];
+assign SPI_MOSI = GPIO_2[3];
+assign GPIO_2[1] = (SPI_CE) ? 1'bz : SPI_MISO;
 assign SPI_CLK  = GPIO_2[2];
 assign SPI_CE   = GPIO_2[4];
-//assign SPI_To_Send = 32'hFFFFFFEC; to debug SPI if needed
+assign SPI_To_Send = 32'hFFFFFFEC; //To debug SPI if needed
 
 assign ENC_1A = GPIO_2[10]; // Encoder 1 Channel A
 assign ENC_1B = GPIO_2[12]; // Encoder 1 Channel B
@@ -217,7 +217,7 @@ spi_slave spi(
         .encoder_a(ODO_2A), .encoder_b(ODO_2B), 
         .tick_count(right_ticks)
     );
-
+/*
 always_ff @(posedge SPI_Ready) begin
     //address = SPI_Query;
     case (SPI_Query)
@@ -229,7 +229,7 @@ always_ff @(posedge SPI_Ready) begin
         default: SPI_To_Send <= SPI_To_Send; // Hold previous value
     endcase
 end
-
+*/
 
 // Generate a one-clock-cycle pulse for `internal_reset`
 always_ff @(posedge clk) begin
