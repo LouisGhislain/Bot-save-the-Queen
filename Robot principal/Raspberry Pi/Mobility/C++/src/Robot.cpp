@@ -2,8 +2,8 @@
 #include "Robot.h"
 
 Robot::Robot() 
-    : leftMotor(13, 16, 7, 0x12, 0x10, true), // (pwmPin, forwardDirectionPin, backwardDirectionPin, distanceAddress, speedAddress, baseDir)
-      rightMotor(12, 23, 27, 0x13, 0x11, false) {
+    : leftMotor(13, 16, 7, 0x12, 0x10, false), // (pwmPin, forwardDirectionPin, backwardDirectionPin, distanceAddress, speedAddress, baseDir)
+      rightMotor(12, 23, 27, 0x13, 0x11, true) {
     wiringPiSetup();
 }
 
@@ -12,7 +12,7 @@ Robot::Robot()
  * @brief Initialize SPI communication
  */
 void Robot::initializeSPI() {
-    if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) < 0) { // (SPI CHANNEL, SPI SPEED)
+    if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) { // (SPI CHANNEL, SPI SPEED)
         throw std::runtime_error("Failed to initialize SPI");
     }
 }
@@ -181,17 +181,25 @@ void Robot::routine() {
 
 void Robot::testMotors() {
     lowLevelController(1, 1);
-    usleep(1000000);  // 1 seconds
+    usleep(2000000);  // 2 seconds
     //Print speed
     std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
     std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(1000000);  // 3 seconds
+    usleep(1000000);  // 1 seconds
     lowLevelController(-1, -1);
-    usleep(1000000);  // 1 seconds
+    usleep(2000000);  // 2 seconds
     //Print speed
     std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
     std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(1000000);  // 3 seconds
+    usleep(1000000);  // 1 seconds
     leftMotor.stop();
     rightMotor.stop();
 }
+
+void Robot::printDistance(){
+    std::cout<< "Left distance: "<< leftMotor.getDistance() << std::endl;
+    std::cout<< "Right distance: "<< rightMotor.getDistance() << std::endl;
+}
+
+
+

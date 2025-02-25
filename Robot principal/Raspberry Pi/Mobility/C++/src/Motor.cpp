@@ -21,7 +21,7 @@ int32_t Motor::readData(const std::string& type) const {
     uint8_t readCommand[5] = { (type == "distance") ? distanceAddress : speedAddress, 0x00, 0x00, 0x00, 0x00 };
     uint8_t response[5] = {0};
 
-    wiringPiSPIDataRW(1, readCommand, 5);
+    wiringPiSPIDataRW(SPI_CHANNEL, readCommand, 5);
     std::memcpy(response, readCommand, 5);  // SPI response is in the same buffer
 
     return (int32_t)((response[1] << 24) | (response[2] << 16) | (response[3] << 8) | response[4]);

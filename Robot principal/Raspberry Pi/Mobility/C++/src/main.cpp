@@ -10,6 +10,7 @@ int main() {
     std::cout << "  b: Print robot position (angle)" << std::endl;
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
     std::cout << "  t: Motor test" << std::endl;
+    std::cout << "  d: Distance test" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -43,8 +44,13 @@ int main() {
             break;
         }
         case 't':{
-            std::cout << "Testing low level controller..." << std::endl;
+            std::cout << "Testing motors..." << std::endl;
             robot.testMotors();
+            break;
+        }
+        case 'd':{
+            std::cout << "Printing distance..." << std::endl;
+            robot.printDistance();
             break;
         }
         default:
