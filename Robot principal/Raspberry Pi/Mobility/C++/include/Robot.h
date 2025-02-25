@@ -20,6 +20,7 @@ public:
     void middleLevelController(double x, double y, double goal_angle);
     void routine();
     void testMotors();
+    void printDistance();
 
 private:
     void initializeSPI(); 
@@ -56,7 +57,7 @@ private:
     double lastRightDistance = 0.0;
 
     // SPI Constants
-    static constexpr int SPI_CHANNEL = 1;
+    static constexpr int SPI_CHANNEL = 0;
     static constexpr int SPI_SPEED = 50000;
     
 };
