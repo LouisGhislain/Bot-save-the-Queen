@@ -30,13 +30,13 @@ int32_t Motor::readData(const std::string& type) const {
 double Motor::getSpeed() const {
     int32_t ticks_per_10ms = readData("speed");
     double diameter = 6.0325;  // cm
-    double speed = (ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV)) * M_PI * diameter * 4;
+    double speed = -(ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV)) * M_PI * diameter * 4;
     return speed;
 }
 
 double Motor::getDistance() const {
     int32_t ticks = readData("distance");
-    double distance = (ticks * 3.14159 * 4.5) / (4.0 * 2048.0) * 1.01617;  // Corrective factor
+    double distance = -(ticks * 3.14159 * 4.5) / (4.0 * 2048.0) * 1.01617;  // Corrective factor
     return distance;
 }
 
@@ -59,6 +59,13 @@ void Motor::stop() {
     softPwmWrite(pwmPin, 0);  // Set duty cycle to 0% to stop the motor
     softPwmStop(pwmPin);  // Stop PWM
     std::cout << "Motor stopped" << std::endl;
+}
+
+void Motor::brake() {
+    digitalWrite(forwardDirectionPin, true);  // Active braking (both direction pins on high)
+    digitalWrite(backwardDirectionPin, true);
+    softPwmWrite(pwmPin, 100);
+    std::cout << "Motor braking" << std::endl;
 }
 
 void Motor::start() {
