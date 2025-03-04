@@ -102,7 +102,7 @@ GPIO_1[33] <> <UNC>
 GPIO_1_IN[0] => ~NO_FANOUT~
 GPIO_1_IN[1] => ~NO_FANOUT~
 GPIO_2[0] <> <UNC>
-GPIO_2[3] <> <UNC>
+GPIO_2[1] <> GPIO_2[1]
 GPIO_2[5] <> <UNC>
 GPIO_2[6] <> <UNC>
 GPIO_2[7] <> <UNC>
@@ -125,7 +125,7 @@ GPIO_2[31] <> <UNC>
 GPIO_2[32] <> <UNC>
 GPIO_2[33] <> <UNC>
 GPIO_2_IN[0] => ~NO_FANOUT~
-GPIO_2_IN[1] => SPI_MOSI.IN1
+GPIO_2_IN[1] => ~NO_FANOUT~
 
 
 |DE0_NANO_V3|spi_slave:spi

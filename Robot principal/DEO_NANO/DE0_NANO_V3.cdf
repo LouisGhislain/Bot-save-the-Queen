@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22) Path("D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/") File("output_file.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 7));
+		Device PartName(EP4CE22F17) Path("D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/") File("DE0_NANO_V3.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
