@@ -184,7 +184,6 @@ void Robot::routine() {
 }
 
 void Robot::openLoopData() {
-    
     // Open file
     std::ofstream file;
     file.open("encoder_data.txt", std::ios::out);
