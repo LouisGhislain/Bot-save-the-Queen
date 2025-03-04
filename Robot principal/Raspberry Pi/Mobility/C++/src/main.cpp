@@ -11,6 +11,9 @@ int main() {
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
     std::cout << "  t: Motor test" << std::endl;
     std::cout << "  d: Distance test" << std::endl;
+    std::cout << "  l: Lowlevel test" << std::endl;
+    std::cout << "  f: Braking test" << std::endl;
+    std::cout << "  u: BZZZ BZZZZ" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -44,13 +47,28 @@ int main() {
             break;
         }
         case 't':{
-            std::cout << "Testing motors..." << std::endl;
-            robot.testMotors();
+            std::cout << "Acquiring open loop data..." << std::endl;
+            robot.openLoopData();
             break;
         }
         case 'd':{
             std::cout << "Printing distance..." << std::endl;
             robot.printDistance();
+            break;
+        }
+        case 'l':{
+            std::cout << "Testing low level..." << std::endl;
+            robot.lowLevelTest();
+            break;
+        }
+        case 'f':{
+            std::cout << "Braking test..." << std::endl;
+            robot.stop();
+            break;
+        }
+        case 'u':{
+            std::cout << "BZZZ BZZZZZ" << std::endl;
+            robot.buzzBuzzer();
             break;
         }
         default:

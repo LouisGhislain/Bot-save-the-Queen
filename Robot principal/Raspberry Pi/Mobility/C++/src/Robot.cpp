@@ -1,5 +1,6 @@
 // Robot.cpp
 #include "Robot.h"
+#include <fstream>
 
 Robot::Robot() 
     : leftMotor(13, 16, 7, 0x12, 0x10, false), // (pwmPin, forwardDirectionPin, backwardDirectionPin, distanceAddress, speedAddress, baseDir)
@@ -41,6 +42,9 @@ void Robot::start() {
  * This function stops the motors.
  */
 void Robot::stop() {
+    leftMotor.brake();
+    rightMotor.brake();
+    usleep(10000000);
     leftMotor.stop();
     rightMotor.stop();
 }
@@ -179,27 +183,84 @@ void Robot::routine() {
     std::cout << "Routine completed!" << std::endl;
 }
 
-void Robot::testMotors() {
-    lowLevelController(1, 1);
-    usleep(2000000);  // 2 seconds
-    //Print speed
-    std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
-    std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(1000000);  // 1 seconds
-    lowLevelController(-1, -1);
-    usleep(2000000);  // 2 seconds
-    //Print speed
-    std::cout << "Left motor speed: " << leftMotor.getSpeed() << std::endl;
-    std::cout << "Right motor speed: " << rightMotor.getSpeed() << std::endl;
-    usleep(1000000);  // 1 seconds
+void Robot::openLoopData() {
+    
+    // Open file
+    std::ofstream file;
+    file.open("encoder_data.txt", std::ios::out);
+    
+    if (!file) {
+        std::cout << "Erreur ouverture fichier" << std::endl;
+        return;
+    }
+    file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
+    
+    leftMotor.setSpeed(12);
+    rightMotor.setSpeed(12);
+    
+    unsigned long startTime = micros(); // Current time in µs
+    unsigned long currentTime;
+    
+    // Data taken every 100 microseconds 
+    unsigned long duration = 3000000; 
+    while (micros() - startTime < duration) {
+        currentTime = micros() - startTime;
+        
+        //Save data every 100 microseconds
+        if (currentTime % 1000 == 0) {
+            file << currentTime << ", " 
+                 << leftMotor.getSpeed() << ", " 
+                 << rightMotor.getSpeed() << "\n";
+        }
+    }
+
     leftMotor.stop();
     rightMotor.stop();
+    file.close();
+    std::cout << "Test completed" << std::endl;
+}
+
+void Robot::lowLevelTest(){
+    double ref_speed_left = 30;
+    double ref_speed_right = 30;
+
+    unsigned long startTime = micros(); // Current time in µs
+    unsigned long duration = 1000000; 
+    while (micros() - startTime < duration) {
+        lowLevelController(ref_speed_left, ref_speed_right);
+        usleep(SAMPLING_TIME * 1e6); // Convert to microseconds
+    }
+    ref_speed_left = 60;
+    ref_speed_right = 60;
+    startTime = micros(); 
+    while (micros() - startTime < duration) {
+        lowLevelController(ref_speed_left, ref_speed_right);
+        usleep(SAMPLING_TIME * 1e6); // Convert to microseconds
+    }
+    stop();
 }
 
 void Robot::printDistance(){
-    std::cout<< "Left distance: "<< leftMotor.getDistance() << std::endl;
-    std::cout<< "Right distance: "<< rightMotor.getDistance() << std::endl;
+    while(true){
+    std::cout<< "Left distance: "<< leftMotor.getDistance() << "     Right distance: "<< rightMotor.getDistance() << std::endl;
+    }
 }
 
 
+#define BUZZER_PIN 22  // GPIO22 corresponds to WiringPi pin 3
+void Robot::buzzBuzzer(){
+    // Set the buzzer pin as output
+    pinMode(BUZZER_PIN, OUTPUT);
+
+    std::cout << "Buzzer test started. Press Ctrl+C to exit." << std::endl;
+
+    // Turn the buzzer on
+    digitalWrite(BUZZER_PIN, HIGH);
+    std::cout << "Buzzer ON" << std::endl;
+    delay(1000);  // Wait for 1 second
+
+    // Turn the buzzer off
+    digitalWrite(BUZZER_PIN, LOW);
+    std::cout << "Buzzer OFF" << std::endl;
+}
 

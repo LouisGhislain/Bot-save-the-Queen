@@ -22,10 +22,10 @@ private:
     static constexpr int SPI_SPEED = 50000;
 
 public:
-    static constexpr int MOTOR_PWM_FREQUENCY = 1120;
+    static constexpr int MOTOR_PWM_FREQUENCY = 30000;
     static constexpr int GEAR_RATIO = 30;   
     static constexpr int ENCODER_COUNTS_PER_REV = 4*64*GEAR_RATIO;
-    static constexpr double VOLTAGE_LIMIT = 12.0;
+    static constexpr double VOLTAGE_LIMIT = 24.0;
     
     Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPinwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir);
     
@@ -35,4 +35,5 @@ public:
     void setSpeed(double voltage);
     void stop();
     void start();
+    void brake();
 };

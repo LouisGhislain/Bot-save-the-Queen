@@ -19,8 +19,10 @@ public:
     void lowLevelController(double ref_speed_left, double ref_speed_right);
     void middleLevelController(double x, double y, double goal_angle);
     void routine();
-    void testMotors();
+    void openLoopData();
     void printDistance();
+    void lowLevelTest();
+    void buzzBuzzer();
 
 private:
     void initializeSPI(); 
@@ -40,8 +42,8 @@ private:
     // PI gains
     static constexpr double KpPos = 0.01;
     static constexpr double KiPos = 0.0;
-    static constexpr double KpSpeed = 10.0;
-    static constexpr double KiSpeed = 85.5;
+    static constexpr double KpSpeed = 0.27381476752866646; //0.5476295350573329;
+    static constexpr double KiSpeed = 0.7205651777070171; //1.4411303554140342;
 
     // Robot position parameters
     double xCoord = 3.8;
