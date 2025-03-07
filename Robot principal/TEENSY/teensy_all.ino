@@ -5,46 +5,44 @@ lift myLift;
 hold_cans myHoldCans;
 
 #define floorHeight 0
-#define secondStageHeight 124
+#define secondStageHeight 150 // 124 mm
 #define thirdStageHeight 200
 
 void setup() {
 
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     myLift.begin();
     myHoldCans.begin();
+
+    
+    myHoldCans.releaseAll();
+    delay(1000);
 }
 
 void loop() {
 
-    /*int angle = 0;
-    int val = 0;
+    /*int number;
     if (Serial.available() > 0) {
-        angle = Serial.parseInt();  // Read full integer input
+        number = Serial.parseInt();  // Read full integer input
     
-        if(angle > 0){
-          val = map(angle, 0, 270, 6, 32);  // Ensure valid servo range
-    
-          Serial.print("Angle received: ");
-          Serial.print(angle);
-          Serial.print(" - PWM value: ");
-          Serial.println(val);
-          Serial.println(" ");
-    
-          analogWrite(33, val);
-          analogWrite(28, val);  // Move servo to position
-    
-          delay(100);
-        }
+        myHoldCans.grabNumber(number);
+        delay(2000);
+        myHoldCans.releaseNumber(number);
+        delay(2000);
     }*/
-    myLift.up_and_down(floorHeight);
+    myHoldCans.grabCenter();
     delay(1000);
     myLift.up_and_down(secondStageHeight);
-    delay(1000);
-    myLift.up_and_down(thirdStageHeight);
-    delay(1000);
-
+    delay(6000);
+    myHoldCans.releaseCenter();
+    delay(2000);
+    myLift.up_and_down(floorHeight);
+    delay(6000);
+    myHoldCans.grabAll();
+    delay(2000);
+    myHoldCans.releaseAll();
+    delay(2000);
 
     /*Serial.println("Center...");
     myHoldCans.grabCenter();
@@ -52,11 +50,14 @@ void loop() {
     myHoldCans.releaseCenter();
     delay(3000);
 
-    Serial.println("All...");
+    Serial.println("External...");
+    myHoldCans.grabExternal();
+    delay(3000);
+    myHoldCans.releaseExternal();
+    delay(3000);
+
     myHoldCans.grabAll();
     delay(3000);
     myHoldCans.releaseAll();
-    delay(3000);
-
-    Serial.println("Finished");*/
+    delay(3000);*/
 }

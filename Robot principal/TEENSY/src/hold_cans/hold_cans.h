@@ -25,6 +25,8 @@ public:
     void releaseExternal();
     void grabAll();
     void releaseAll();
+    void grabNumber(int number);
+    void releaseNumber(int number);
 
 private:
     ServoMotor servo1;
