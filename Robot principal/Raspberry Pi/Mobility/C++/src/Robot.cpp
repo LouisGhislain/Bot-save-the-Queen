@@ -102,8 +102,8 @@ void Robot::lowLevelController(double ref_speed_left, double ref_speed_right) {
     intESpeedRight += e_speed_right * SAMPLING_TIME;
 
     // Calculate control signal
-    double u_volt_left = KpSpeed * e_speed_left + KiSpeed * intESpeedLeft;
-    double u_volt_right = KpSpeed * e_speed_right + KiSpeed * intESpeedRight;
+    u_volt_left = KpSpeed * e_speed_left + KiSpeed * intESpeedLeft;
+    u_volt_right = KpSpeed * e_speed_right + KiSpeed * intESpeedRight;
 
     // Set motor speeds
     leftMotor.setSpeed(u_volt_left);
@@ -220,23 +220,49 @@ void Robot::openLoopData() {
 }
 
 void Robot::lowLevelTest(){
+    // Open file
+    std::ofstream file;
+    file.open("closedloop_data.txt", std::ios::out);
+    
+    if (!file) {
+        std::cout << "Erreur ouverture fichier" << std::endl;
+        return;
+    }
+    file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
+
     double ref_speed_left = 30;
     double ref_speed_right = 30;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 1000000; 
+    unsigned long duration = 1000000;
+    unsigned long currentTime;
+
     while (micros() - startTime < duration) {
+        currentTime = micros() - startTime;
         lowLevelController(ref_speed_left, ref_speed_right);
         usleep(SAMPLING_TIME * 1e6); // Convert to microseconds
+        file << currentTime << ", " 
+                << leftMotor.getSpeed() << ", " 
+                << rightMotor.getSpeed() << ", "
+                << u_volt_left << ", " 
+                << u_volt_right << "\n";
     }
+
     ref_speed_left = 60;
     ref_speed_right = 60;
-    startTime = micros(); 
-    while (micros() - startTime < duration) {
+    while (micros() - startTime < 2*duration) {
+        currentTime = micros() - startTime;
         lowLevelController(ref_speed_left, ref_speed_right);
         usleep(SAMPLING_TIME * 1e6); // Convert to microseconds
+        file << currentTime << ", " 
+                << leftMotor.getSpeed() << ", " 
+                << rightMotor.getSpeed() << ", "
+                << u_volt_left << ", " 
+                << u_volt_right << "\n";
     }
     stop();
+    file.close();
+    std::cout << "Test completed" << std::endl;
 }
 
 void Robot::printDistance(){
@@ -263,3 +289,45 @@ void Robot::buzzBuzzer(){
     std::cout << "Buzzer OFF" << std::endl;
 }
 
+#define STATE1_PIN 6
+#define STATE2_PIN 19
+
+void Robot::teensy_cans(){  
+    pinMode(STATE1_PIN, OUTPUT);
+    pinMode(STATE2_PIN, OUTPUT);
+
+    //Sending 01 on the teensy
+    digitalWrite(STATE1_PIN, HIGH);
+    digitalWrite(STATE2_PIN, LOW);
+    delay(10000);
+    //Turn off
+    digitalWrite(STATE1_PIN, LOW);
+    std::cout << "Stop sending" << std::endl ;
+}
+
+void Robot::teensy_lift(){  
+    pinMode(STATE1_PIN, OUTPUT);
+    pinMode(STATE2_PIN, OUTPUT);
+    
+    //Sending 10 on the teensy
+    digitalWrite(STATE1_PIN, LOW);
+    digitalWrite(STATE2_PIN, HIGH);
+    delay(5000);
+    //Turn off
+    digitalWrite(STATE2_PIN, LOW);
+    std::cout << "Stop sending" << std::endl ;
+}
+
+void Robot::teensy_cans_lift(){  
+    pinMode(STATE1_PIN, OUTPUT);
+    pinMode(STATE2_PIN, OUTPUT);
+    
+    //Sending 11 on the teensy
+    digitalWrite(STATE1_PIN, HIGH);
+    digitalWrite(STATE2_PIN, HIGH);
+    delay(5000);
+    //Turn off
+    digitalWrite(STATE1_PIN, LOW);
+    digitalWrite(STATE2_PIN, LOW);
+    std::cout << "Stop sending" << std::endl ;
+}

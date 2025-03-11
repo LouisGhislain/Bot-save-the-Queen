@@ -1,8 +1,11 @@
 #include <iostream>
 #include "Robot.h"
+#include "Screen.h"
 
 int main() {
     Robot robot;
+    Screen screen;
+
     char choice;
 
     std::cout << "Select an option:" << std::endl;
@@ -14,6 +17,10 @@ int main() {
     std::cout << "  l: Lowlevel test" << std::endl;
     std::cout << "  f: Braking test" << std::endl;
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
+    std::cout << "  x: Teensy - cans" << std::endl;
+    std::cout << "  y: Teensy - lift" << std::endl;
+    std::cout << "  z: Teensy - lift+cans" << std::endl;
+    std::cout << "  o: Test OLED" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -71,6 +78,33 @@ int main() {
             robot.buzzBuzzer();
             break;
         }
+        case 'x' :{
+            std::cout << "Sending '01' on Teensy board" << std::endl;
+            robot.teensy_cans();
+            break;
+        }
+        case 'y' :{
+            std::cout << "Sending '10' on Teensy board" << std::endl;
+            robot.teensy_lift();
+            break;
+        }
+        case 'z' :{
+            std::cout << "Sending '11' on Teensy board" << std::endl;
+            robot.teensy_cans_lift();
+            break;
+        }
+
+        case 'o': {
+            screen.init();
+            std::string message;
+            std::cout << "Entrez le message à afficher : ";
+            std::cin.ignore(); // Évite un problème de buffer
+            std::getline(std::cin, message);
+            screen.clear();
+            screen.displayText(message);
+            break;
+        }
+        
         default:
             std::cout << "Invalid option." << std::endl;
             break;
