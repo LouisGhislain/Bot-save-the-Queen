@@ -1,3 +1,6 @@
+NE PAS ENLEVER LE FOLDER SRC: Arduino n'autorise de sous dossier ssi il est sous le nom src 
+
+
 ###########PRISE DU STACK###############
 0. vérifier sa position avec les infrarouges
 1. activer 4 aimants
@@ -42,3 +45,5 @@ LIFT :  DIR = 34
 	MS2 = 38
 	MS1 = 39
 	EN = 40
+
+	Microswitch = 27 
