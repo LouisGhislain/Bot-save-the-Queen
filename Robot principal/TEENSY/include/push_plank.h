@@ -15,7 +15,7 @@
 #define SERVO_PIN2 10
 
 // Déclaration des microswitch 
-#define SWITCH_RIGHT 26 
+#define SWITCH_RIGHT A12
 #define SWITCH_LEFT 11  
 class push_plank {
     public:

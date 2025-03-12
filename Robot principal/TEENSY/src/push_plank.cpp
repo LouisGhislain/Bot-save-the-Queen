@@ -1,7 +1,7 @@
 #include "push_plank.h"
 
 
-#define distance_extension 135 // mm 
+#define distance_extension 110 // mm 
 
 // engrenage à 13 dents
 // crémaillère entre 13 dents : 56.55 mm
@@ -15,7 +15,8 @@ void push_plank::begin() {
     pinMode(STEP_PIN_PUSH, OUTPUT);
     pinMode(DIR_PIN_PUSH, OUTPUT);
     pinMode(EN_PIN_PUSH, OUTPUT);
-    pinMode(SWITCH_RIGHT, INPUT);
+    pinMode(SWITCH_RIGHT, INPUT_PULLDOWN);
+    pinMode(SWITCH_LEFT, INPUT_PULLDOWN);
 
     // Enable the driver
     digitalWrite(EN_PIN_PUSH, LOW);  // Enable TMC2209 (LOW to enable)
@@ -28,11 +29,18 @@ void push_plank::begin() {
 }
 
 void push_plank::calibration() {
+    const int seuil = 25.00;
     stepper.setMaxSpeed(500);
     stepper.setAcceleration(300);
     stepper.setSpeed(200);
 
-    while (digitalRead(SWITCH_RIGHT) == LOW) {
+    // left pin is in degital pin 11
+    while (analogRead(SWITCH_RIGHT) < seuil) {
+        stepper.move(10);
+        stepper.run();
+    }
+
+    while (digitalRead(SWITCH_LEFT) == LOW) {
         stepper.move(10);
         stepper.run();
     }
