@@ -34,8 +34,6 @@ void setup() {
     
     myHoldCans.releaseAll();
     delay(1000);
-    myHoldCans.grabAll();
-    delay(1000);
 }
 
 void loop() {
@@ -139,4 +137,17 @@ void loop() {
         default:
             break;
         }
+
+        myHoldCans.releaseAll();
+        delay(2000);
+        myHoldCans.grabCenter();
+        delay(500);
+        myPushPlank.routine_separation_stack();
+        delay(3000);
+        myLift.up_and_down(secondStageHeight);
+        delay(3000);
+        myHoldCans.releaseCenter();
+        delay(1000);
+        myLift.up_and_down(floorHeight);
+        
 }
