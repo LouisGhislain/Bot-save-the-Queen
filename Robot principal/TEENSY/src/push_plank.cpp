@@ -3,6 +3,11 @@
 
 #define distance_extension 135 // mm 
 
+#define servo_right_grab_angle 21
+#define servo_left_grab_angle 22
+#define servo_right_release_angle 114
+#define servo_left_release_angle 116
+
 // engrenage à 13 dents
 // crémaillère entre 13 dents : 56.55 mm
 // => 56.55mm / revolution 
@@ -66,13 +71,13 @@ void push_plank::servo_motor_right(int angle) {
 }
 
 void push_plank::pull_plank_grab() {
-    servo_motor_right(102);
-    servo_motor_left(81);
+    servo_motor_right(servo_right_grab_angle);
+    servo_motor_left(servo_left_grab_angle);
 }
 
 void push_plank::pull_plank_release() {
-    servo_motor_right(215);
-    servo_motor_left(177);
+    servo_motor_right(servo_right_release_angle);
+    servo_motor_left(servo_left_release_angle);
 }
 
 void push_plank::routine_separation_stack() {
