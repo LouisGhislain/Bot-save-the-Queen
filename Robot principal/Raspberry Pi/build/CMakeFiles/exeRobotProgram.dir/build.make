@@ -69,10 +69,206 @@ include CMakeFiles/exeRobotProgram.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/exeRobotProgram.dir/flags.make
 
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyCans.cpp
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCans.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCans.cpp" > CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCans.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyCansLift.cpp
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCansLift.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCansLift.cpp" > CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyCansLift.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyLift.cpp
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyLift.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyLift.cpp" > CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Actuators/teensyLift.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/getAngle.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/getAngle.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/getAngle.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/getAngle.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/initializeSPI.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/initializeSPI.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/initializeSPI.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/initializeSPI.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/lowLevelController.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelController.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelController.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelController.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/lowLevelTest.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelTest.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelTest.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/lowLevelTest.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/middleLevelController.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/middleLevelController.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/middleLevelController.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/middleLevelController.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/openLoopData.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/openLoopData.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/openLoopData.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/openLoopData.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/printDistance.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/printDistance.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/printDistance.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/printDistance.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/resetValues.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/resetValues.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/resetValues.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/resetValues.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/routine.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/routine.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/routine.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/routine.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/startRobot.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/startRobot.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/startRobot.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/startRobot.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/stopRobot.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/stopRobot.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/stopRobot.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Mobility/stopRobot.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.s
+
 CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Motor.cpp
 CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Motor.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.i: cmake_force
@@ -83,10 +279,38 @@ CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Motor.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.s
 
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Multimedia/Buzzer.cpp
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Buzzer.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Buzzer.cpp" > CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Buzzer.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Multimedia/Screen.cpp
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Screen.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Screen.cpp" > CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Multimedia/Screen.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s
+
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Robot.cpp
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Robot.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.i: cmake_force
@@ -100,7 +324,7 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Screen.cpp
 CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/Screen.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.i: cmake_force
@@ -114,7 +338,7 @@ CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/main.cpp
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/main.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/main.cpp.o -c "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/src/main.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.i: cmake_force
@@ -127,7 +351,23 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.s: cmake_force
 
 # Object files for target exeRobotProgram
 exeRobotProgram_OBJECTS = \
+"CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
@@ -135,14 +375,30 @@ exeRobotProgram_OBJECTS = \
 # External object files for target exeRobotProgram
 exeRobotProgram_EXTERNAL_OBJECTS =
 
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/build.make
 exeRobotProgram: /usr/local/lib/libwiringPi.so
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable exeRobotProgram"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable exeRobotProgram"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exeRobotProgram.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
