@@ -22,9 +22,12 @@ class push_plank {
         push_plank();
         void begin();
         void calibration();
-        void Stepper(int position);
+        void move_to_mm(int distance_mm);
         void servo_motor_left(int angle);
         void servo_motor_right(int angle);
+        void pull_plank_grab();
+        void pull_plank_release();
+
         void routine_separation_stack();
     
     private:

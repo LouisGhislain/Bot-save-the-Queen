@@ -1,5 +1,14 @@
 #include "push_plank.h"
 
+
+#define distance_extension 135 // mm 
+
+// engrenage à 13 dents
+// crémaillère entre 13 dents : 56.55 mm
+// => 56.55mm / revolution 
+// 1 rev = 1600 steps
+// => 1mm = 1600 / 56.55 = 28.3 steps
+
 push_plank::push_plank() : stepper(AccelStepper::DRIVER, STEP_PIN_PUSH, DIR_PIN_PUSH) {}
 
 void push_plank::begin() {
@@ -36,11 +45,11 @@ void push_plank::calibration() {
     stepper.setCurrentPosition(0);
 }
 
-void push_plank::Stepper(int position) {
+void push_plank::move_to_mm(int distance_mm) {
     stepper.setMaxSpeed(1500);
     stepper.setAcceleration(1000);
     stepper.setSpeed(500);
-    stepper.moveTo(position);
+    stepper.moveTo(distance_mm * 28.3); // get distance in steps
     while (stepper.distanceToGo() != 0) {
         stepper.run();
     }
@@ -56,16 +65,22 @@ void push_plank::servo_motor_right(int angle) {
     myservo2.write(angle);
 }
 
+void push_plank::pull_plank_grab() {
+    servo_motor_right(102);
+    servo_motor_left(81);
+}
+
+void push_plank::pull_plank_release() {
+    servo_motor_right(215);
+    servo_motor_left(177);
+}
+
 void push_plank::routine_separation_stack() {
-    delay(3000);
-    servo_motor_right(103);
-    servo_motor_left(83);
+    pull_plank_grab();
     delay(1000);
-    Stepper(-3000);
-    delay(1000);
-    Stepper(0);
-    delay(1000);
-    servo_motor_right(210);
-    servo_motor_left(175);
+    move_to_mm(-distance_extension);
+    delay(500);
+    pull_plank_release();
+    move_to_mm(0);
     delay(1000);
 }
