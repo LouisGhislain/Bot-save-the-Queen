@@ -33,9 +33,11 @@ void setup() {
 
     Serial.begin(115200);
 
-    myLift.begin();
-    myHoldCans.begin();
     myPushPlank.begin();
+    delay(2000);
+    myHoldCans.begin();
+    delay(100);
+    myLift.begin();
     init_input_rasp();
 
     myHoldCans.releaseAll();
