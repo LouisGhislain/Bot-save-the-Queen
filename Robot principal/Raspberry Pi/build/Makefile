@@ -201,6 +201,30 @@ src/Actuators/teensyLift.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.s
 .PHONY : src/Actuators/teensyLift.cpp.s
 
+src/Mobility/Motors/Motor.o: src/Mobility/Motors/Motor.cpp.o
+.PHONY : src/Mobility/Motors/Motor.o
+
+# target to build an object file
+src/Mobility/Motors/Motor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o
+.PHONY : src/Mobility/Motors/Motor.cpp.o
+
+src/Mobility/Motors/Motor.i: src/Mobility/Motors/Motor.cpp.i
+.PHONY : src/Mobility/Motors/Motor.i
+
+# target to preprocess a source file
+src/Mobility/Motors/Motor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.i
+.PHONY : src/Mobility/Motors/Motor.cpp.i
+
+src/Mobility/Motors/Motor.s: src/Mobility/Motors/Motor.cpp.s
+.PHONY : src/Mobility/Motors/Motor.s
+
+# target to generate assembly for a file
+src/Mobility/Motors/Motor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.s
+.PHONY : src/Mobility/Motors/Motor.cpp.s
+
 src/Mobility/getAngle.o: src/Mobility/getAngle.cpp.o
 .PHONY : src/Mobility/getAngle.o
 
@@ -465,30 +489,6 @@ src/Mobility/stopRobot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.s
 .PHONY : src/Mobility/stopRobot.cpp.s
 
-src/Motor.o: src/Motor.cpp.o
-.PHONY : src/Motor.o
-
-# target to build an object file
-src/Motor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o
-.PHONY : src/Motor.cpp.o
-
-src/Motor.i: src/Motor.cpp.i
-.PHONY : src/Motor.i
-
-# target to preprocess a source file
-src/Motor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.i
-.PHONY : src/Motor.cpp.i
-
-src/Motor.s: src/Motor.cpp.s
-.PHONY : src/Motor.s
-
-# target to generate assembly for a file
-src/Motor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.s
-.PHONY : src/Motor.cpp.s
-
 src/Multimedia/Buzzer.o: src/Multimedia/Buzzer.cpp.o
 .PHONY : src/Multimedia/Buzzer.o
 
@@ -561,30 +561,6 @@ src/Robot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s
 .PHONY : src/Robot.cpp.s
 
-src/Screen.o: src/Screen.cpp.o
-.PHONY : src/Screen.o
-
-# target to build an object file
-src/Screen.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o
-.PHONY : src/Screen.cpp.o
-
-src/Screen.i: src/Screen.cpp.i
-.PHONY : src/Screen.i
-
-# target to preprocess a source file
-src/Screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.i
-.PHONY : src/Screen.cpp.i
-
-src/Screen.s: src/Screen.cpp.s
-.PHONY : src/Screen.s
-
-# target to generate assembly for a file
-src/Screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.s
-.PHONY : src/Screen.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -627,6 +603,9 @@ help:
 	@echo "... src/Actuators/teensyLift.o"
 	@echo "... src/Actuators/teensyLift.i"
 	@echo "... src/Actuators/teensyLift.s"
+	@echo "... src/Mobility/Motors/Motor.o"
+	@echo "... src/Mobility/Motors/Motor.i"
+	@echo "... src/Mobility/Motors/Motor.s"
 	@echo "... src/Mobility/getAngle.o"
 	@echo "... src/Mobility/getAngle.i"
 	@echo "... src/Mobility/getAngle.s"
@@ -660,9 +639,6 @@ help:
 	@echo "... src/Mobility/stopRobot.o"
 	@echo "... src/Mobility/stopRobot.i"
 	@echo "... src/Mobility/stopRobot.s"
-	@echo "... src/Motor.o"
-	@echo "... src/Motor.i"
-	@echo "... src/Motor.s"
 	@echo "... src/Multimedia/Buzzer.o"
 	@echo "... src/Multimedia/Buzzer.i"
 	@echo "... src/Multimedia/Buzzer.s"
@@ -672,9 +648,6 @@ help:
 	@echo "... src/Robot.o"
 	@echo "... src/Robot.i"
 	@echo "... src/Robot.s"
-	@echo "... src/Screen.o"
-	@echo "... src/Screen.i"
-	@echo "... src/Screen.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
