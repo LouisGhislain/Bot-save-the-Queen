@@ -1,5 +1,6 @@
 #include "servo_motor.h"
 #include <PWMServo.h>
+#include <Arduino.h>
 
 ServoMotor::ServoMotor(int pin, int grabAngle, int releaseAngle)
     : pin(pin), grabAngle(grabAngle), releaseAngle(releaseAngle) {

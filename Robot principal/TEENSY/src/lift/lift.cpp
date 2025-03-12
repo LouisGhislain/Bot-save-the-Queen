@@ -1,4 +1,5 @@
 #include "lift.h"
+#include <Arduino.h>
 
 
 // Constructor: Initialize stepper object

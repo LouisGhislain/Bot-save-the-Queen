@@ -1,7 +1,6 @@
 #ifndef MOTEURSERVO_H
 #define MOTEURSERVO_H
 
-#include <Arduino.h>
 #include <AccelStepper.h>
 #include <Servo.h>
 

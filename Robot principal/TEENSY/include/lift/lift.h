@@ -1,7 +1,6 @@
 #ifndef LIFT_H
 #define LIFT_H
 
-#include <Arduino.h>
 #include <AccelStepper.h>
 #include <string.h> //needed for memcpy
 

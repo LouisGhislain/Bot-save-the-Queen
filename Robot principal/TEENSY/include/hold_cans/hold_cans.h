@@ -1,7 +1,6 @@
 #ifndef HOLD_CANS_H
 #define HOLD_CANS_H
 
-#include "Arduino.h"
 #include "servo_motor.h"
 #include <PWMServo.h>
 #include <string.h> //needed for memcpy

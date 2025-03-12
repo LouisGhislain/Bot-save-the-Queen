@@ -1,4 +1,5 @@
 #include "hold_cans.h"
+#include <Arduino.h>
 
 hold_cans::hold_cans()
     : servo1(SERVO1_PIN, MAX_ANGLE + 12, 30), // grabAngle, releaseAngle
