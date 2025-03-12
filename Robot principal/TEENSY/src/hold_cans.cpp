@@ -37,13 +37,13 @@ void hold_cans::releaseExternal() {
 
 void hold_cans::grabAll() {
     grabCenter();
-    delay(200);
+    //delay(200);
     grabExternal();
 }
 
 void hold_cans::releaseAll() {
     releaseCenter();
-    delay(200);
+    //delay(200);
     releaseExternal();
 }
 

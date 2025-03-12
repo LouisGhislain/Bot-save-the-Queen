@@ -15,7 +15,7 @@ void lift::begin() {
 
     // Configure stepper motor
     stepper.setMaxSpeed(2000);
-    stepper.setAcceleration(3000);
+    stepper.setAcceleration(2000);
 }
 
 void lift::moveToHome() {
