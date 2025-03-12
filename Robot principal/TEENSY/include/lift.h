@@ -13,15 +13,19 @@
 #define MS3 37
 #define MICROSWTICH_LIFT_PIN 27
 
+#define zero_level_offset 83.5 // 83.8 mm = hauteur du microswitch par rapport au bas du robot
+
 // 1.8°/step -> 360° = 200 step 
 // but microstepping exists 1/8 microstepping --> 1600 steps = 1 rev 
 
 // pulley diameter = 22mm = 2.2cm
 // circumference = 2pi*1.1 cm = 6.9 cm
 
-// 1 rev = 1600 steps -> 6.9 cm 
-// 1 cm ->  231.88 steps ~= 232 steps
-// 1 mm -> 23 steps
+// Move to desired height 
+//-> 1rev = 1600 steps 
+//-> 1rev = 2pi*r = 2pi*11mm = 69.115 mm 
+//=> 1mm = 1600/69.115 = 23.15 steps 
+//take microswitch offset into account
 
 class lift {
 public:

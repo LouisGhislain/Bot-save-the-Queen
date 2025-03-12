@@ -25,10 +25,10 @@ void lift::moveToHome() {
     }
 }
 
-void lift::up_and_down(int height_in_mm) {
+void lift::up_and_down(int height_in_mm) {   //height defined as the top of the hold cans
     //Serial.println(digitalRead(MICROSWTICH_LIFT_PIN));
 
-    stepper.moveTo(-height_in_mm*23);  // Move 1 full revolution (assuming 1/16 microstepping) //environ 5000 pas = montée jusqu'en haut 
+    stepper.moveTo((-height_in_mm + zero_level_offset) * 23.15);  // Move to desired height -> 1rev = 1600 steps -> 1rev = 2pi*r = 2pi*11mm = 69.115 mm => 1mm = 1600/69.115 = 23.15 steps 
     while (stepper.distanceToGo() != 0) {
       stepper.run();  // Must be called continuously
     }

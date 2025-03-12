@@ -11,8 +11,8 @@ push_plank myPushPlank;
 
 
 #define floorHeight 0
-#define secondStageHeight 140 // 124 mm
-#define thirdStageHeight 230 // 230 mm
+#define secondStageHeight 124 // 124 mm
+#define thirdStageHeight 248 // 248 mm
 
 #define pinCommunicationRasp_1 5
 #define pinCommunicationRasp_2 6
@@ -137,17 +137,18 @@ void loop() {
         default:
             break;
         }
+    myLift.up_and_down(124);
+}
 
-        myHoldCans.releaseAll();
-        delay(2000);
-        myHoldCans.grabCenter();
-        delay(500);
-        myPushPlank.routine_separation_stack();
-        delay(3000);
-        myLift.up_and_down(secondStageHeight);
-        delay(3000);
-        myHoldCans.releaseCenter();
-        delay(1000);
-        myLift.up_and_down(floorHeight);
-        
+void build_second_stage(){
+    myHoldCans.releaseExternal();
+    myHoldCans.grabCenter();
+    delay(500);
+    myPushPlank.routine_separation_stack();
+    delay(1000);
+    myLift.up_and_down(secondStageHeight);
+    delay(1000);
+    myHoldCans.releaseCenter();
+    delay(1000);
+    myLift.up_and_down(floorHeight);
 }
