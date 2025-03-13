@@ -17,11 +17,11 @@ void lift::begin() {
     stepper.setMaxSpeed(2000);
     stepper.setAcceleration(2000);
 
-    calibration();
+    //calibration();
 }
 
 void lift::moveToHome() {
-    stepper.moveTo(10000);  // Large movement towards home position
+    stepper.moveTo(-10000);  // Large movement towards home position
     while (digitalRead(MICROSWTICH_LIFT_PIN) == 1) {  // While switch is not pressed
         stepper.run();  // Move stepper
     }

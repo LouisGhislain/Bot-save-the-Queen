@@ -21,7 +21,7 @@ void build_second_stage(){
     delay(500);
     myPushPlank.routine_separation_stack();
     delay(1000);
-    myLift.up_and_down(secondStageHeight);
+    myLift.up_and_down(secondStageHeight + 10);
     delay(1000);
     myHoldCans.releaseCenter();
     delay(1000);
@@ -33,18 +33,14 @@ void setup() {
 
     Serial.begin(115200);
 
-    myPushPlank.begin();
-    delay(2000);
+    /*myPushPlank.begin();
     myHoldCans.begin();
-    delay(100);
     myLift.begin();
-    init_input_rasp();
+    init_input_rasp();*/
 
     myHoldCans.releaseAll();
     delay(1000);
 }
-
-int angle = 0;
 
 void loop() {
 
@@ -52,8 +48,16 @@ void loop() {
     // Temporary code
     //==================================================================================================
 
-    build_second_stage();
-    delay(100);
+    /*myHoldCans.grabCenter();
+    delay(2000);
+    myPushPlank.routine_separation_stack();
+    delay(2000);
+    myHoldCans.grabExternal();
+    delay(2000);
+    myHoldCans.releaseAll();
+    delay(2000);*/
+    //build_second_stage();
+    delay(1000);
 
     //==================================================================================================
     // end of Temporary code
