@@ -33,10 +33,10 @@ void setup() {
 
     Serial.begin(115200);
 
-    /*myPushPlank.begin();
+    myPushPlank.begin();
     myHoldCans.begin();
     myLift.begin();
-    init_input_rasp();*/
+    init_input_rasp();
 
     myHoldCans.releaseAll();
     delay(1000);
@@ -56,7 +56,7 @@ void loop() {
     delay(2000);
     myHoldCans.releaseAll();
     delay(2000);*/
-    //build_second_stage();
+    build_second_stage();
     delay(1000);
 
     //==================================================================================================

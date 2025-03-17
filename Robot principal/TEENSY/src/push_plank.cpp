@@ -93,7 +93,7 @@ void push_plank::routine_separation_stack() {
     delay(1000);
     move_to_mm(-distance_extension);
     delay(500);
-    pull_plank_release();
     move_to_mm(0);
+    pull_plank_release();
     delay(1000);
 }
