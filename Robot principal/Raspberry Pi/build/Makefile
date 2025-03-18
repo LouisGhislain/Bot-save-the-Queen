@@ -129,29 +129,413 @@ exeRobotProgram/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/build
 .PHONY : exeRobotProgram/fast
 
-src/Motor.o: src/Motor.cpp.o
-.PHONY : src/Motor.o
+src/Actuators/teensyCans.o: src/Actuators/teensyCans.cpp.o
+.PHONY : src/Actuators/teensyCans.o
 
 # target to build an object file
-src/Motor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.o
-.PHONY : src/Motor.cpp.o
+src/Actuators/teensyCans.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o
+.PHONY : src/Actuators/teensyCans.cpp.o
 
-src/Motor.i: src/Motor.cpp.i
-.PHONY : src/Motor.i
+src/Actuators/teensyCans.i: src/Actuators/teensyCans.cpp.i
+.PHONY : src/Actuators/teensyCans.i
 
 # target to preprocess a source file
-src/Motor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.i
-.PHONY : src/Motor.cpp.i
+src/Actuators/teensyCans.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.i
+.PHONY : src/Actuators/teensyCans.cpp.i
 
-src/Motor.s: src/Motor.cpp.s
-.PHONY : src/Motor.s
+src/Actuators/teensyCans.s: src/Actuators/teensyCans.cpp.s
+.PHONY : src/Actuators/teensyCans.s
 
 # target to generate assembly for a file
-src/Motor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Motor.cpp.s
-.PHONY : src/Motor.cpp.s
+src/Actuators/teensyCans.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.s
+.PHONY : src/Actuators/teensyCans.cpp.s
+
+src/Actuators/teensyCansLift.o: src/Actuators/teensyCansLift.cpp.o
+.PHONY : src/Actuators/teensyCansLift.o
+
+# target to build an object file
+src/Actuators/teensyCansLift.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o
+.PHONY : src/Actuators/teensyCansLift.cpp.o
+
+src/Actuators/teensyCansLift.i: src/Actuators/teensyCansLift.cpp.i
+.PHONY : src/Actuators/teensyCansLift.i
+
+# target to preprocess a source file
+src/Actuators/teensyCansLift.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.i
+.PHONY : src/Actuators/teensyCansLift.cpp.i
+
+src/Actuators/teensyCansLift.s: src/Actuators/teensyCansLift.cpp.s
+.PHONY : src/Actuators/teensyCansLift.s
+
+# target to generate assembly for a file
+src/Actuators/teensyCansLift.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.s
+.PHONY : src/Actuators/teensyCansLift.cpp.s
+
+src/Actuators/teensyLift.o: src/Actuators/teensyLift.cpp.o
+.PHONY : src/Actuators/teensyLift.o
+
+# target to build an object file
+src/Actuators/teensyLift.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o
+.PHONY : src/Actuators/teensyLift.cpp.o
+
+src/Actuators/teensyLift.i: src/Actuators/teensyLift.cpp.i
+.PHONY : src/Actuators/teensyLift.i
+
+# target to preprocess a source file
+src/Actuators/teensyLift.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.i
+.PHONY : src/Actuators/teensyLift.cpp.i
+
+src/Actuators/teensyLift.s: src/Actuators/teensyLift.cpp.s
+.PHONY : src/Actuators/teensyLift.s
+
+# target to generate assembly for a file
+src/Actuators/teensyLift.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.s
+.PHONY : src/Actuators/teensyLift.cpp.s
+
+src/Mobility/Motors/Motor.o: src/Mobility/Motors/Motor.cpp.o
+.PHONY : src/Mobility/Motors/Motor.o
+
+# target to build an object file
+src/Mobility/Motors/Motor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o
+.PHONY : src/Mobility/Motors/Motor.cpp.o
+
+src/Mobility/Motors/Motor.i: src/Mobility/Motors/Motor.cpp.i
+.PHONY : src/Mobility/Motors/Motor.i
+
+# target to preprocess a source file
+src/Mobility/Motors/Motor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.i
+.PHONY : src/Mobility/Motors/Motor.cpp.i
+
+src/Mobility/Motors/Motor.s: src/Mobility/Motors/Motor.cpp.s
+.PHONY : src/Mobility/Motors/Motor.s
+
+# target to generate assembly for a file
+src/Mobility/Motors/Motor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.s
+.PHONY : src/Mobility/Motors/Motor.cpp.s
+
+src/Mobility/getAngle.o: src/Mobility/getAngle.cpp.o
+.PHONY : src/Mobility/getAngle.o
+
+# target to build an object file
+src/Mobility/getAngle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.o
+.PHONY : src/Mobility/getAngle.cpp.o
+
+src/Mobility/getAngle.i: src/Mobility/getAngle.cpp.i
+.PHONY : src/Mobility/getAngle.i
+
+# target to preprocess a source file
+src/Mobility/getAngle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.i
+.PHONY : src/Mobility/getAngle.cpp.i
+
+src/Mobility/getAngle.s: src/Mobility/getAngle.cpp.s
+.PHONY : src/Mobility/getAngle.s
+
+# target to generate assembly for a file
+src/Mobility/getAngle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/getAngle.cpp.s
+.PHONY : src/Mobility/getAngle.cpp.s
+
+src/Mobility/initializeSPI.o: src/Mobility/initializeSPI.cpp.o
+.PHONY : src/Mobility/initializeSPI.o
+
+# target to build an object file
+src/Mobility/initializeSPI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.o
+.PHONY : src/Mobility/initializeSPI.cpp.o
+
+src/Mobility/initializeSPI.i: src/Mobility/initializeSPI.cpp.i
+.PHONY : src/Mobility/initializeSPI.i
+
+# target to preprocess a source file
+src/Mobility/initializeSPI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.i
+.PHONY : src/Mobility/initializeSPI.cpp.i
+
+src/Mobility/initializeSPI.s: src/Mobility/initializeSPI.cpp.s
+.PHONY : src/Mobility/initializeSPI.s
+
+# target to generate assembly for a file
+src/Mobility/initializeSPI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/initializeSPI.cpp.s
+.PHONY : src/Mobility/initializeSPI.cpp.s
+
+src/Mobility/lowLevelController.o: src/Mobility/lowLevelController.cpp.o
+.PHONY : src/Mobility/lowLevelController.o
+
+# target to build an object file
+src/Mobility/lowLevelController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.o
+.PHONY : src/Mobility/lowLevelController.cpp.o
+
+src/Mobility/lowLevelController.i: src/Mobility/lowLevelController.cpp.i
+.PHONY : src/Mobility/lowLevelController.i
+
+# target to preprocess a source file
+src/Mobility/lowLevelController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.i
+.PHONY : src/Mobility/lowLevelController.cpp.i
+
+src/Mobility/lowLevelController.s: src/Mobility/lowLevelController.cpp.s
+.PHONY : src/Mobility/lowLevelController.s
+
+# target to generate assembly for a file
+src/Mobility/lowLevelController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelController.cpp.s
+.PHONY : src/Mobility/lowLevelController.cpp.s
+
+src/Mobility/lowLevelTest.o: src/Mobility/lowLevelTest.cpp.o
+.PHONY : src/Mobility/lowLevelTest.o
+
+# target to build an object file
+src/Mobility/lowLevelTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o
+.PHONY : src/Mobility/lowLevelTest.cpp.o
+
+src/Mobility/lowLevelTest.i: src/Mobility/lowLevelTest.cpp.i
+.PHONY : src/Mobility/lowLevelTest.i
+
+# target to preprocess a source file
+src/Mobility/lowLevelTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.i
+.PHONY : src/Mobility/lowLevelTest.cpp.i
+
+src/Mobility/lowLevelTest.s: src/Mobility/lowLevelTest.cpp.s
+.PHONY : src/Mobility/lowLevelTest.s
+
+# target to generate assembly for a file
+src/Mobility/lowLevelTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.s
+.PHONY : src/Mobility/lowLevelTest.cpp.s
+
+src/Mobility/middleLevelController.o: src/Mobility/middleLevelController.cpp.o
+.PHONY : src/Mobility/middleLevelController.o
+
+# target to build an object file
+src/Mobility/middleLevelController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o
+.PHONY : src/Mobility/middleLevelController.cpp.o
+
+src/Mobility/middleLevelController.i: src/Mobility/middleLevelController.cpp.i
+.PHONY : src/Mobility/middleLevelController.i
+
+# target to preprocess a source file
+src/Mobility/middleLevelController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.i
+.PHONY : src/Mobility/middleLevelController.cpp.i
+
+src/Mobility/middleLevelController.s: src/Mobility/middleLevelController.cpp.s
+.PHONY : src/Mobility/middleLevelController.s
+
+# target to generate assembly for a file
+src/Mobility/middleLevelController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s
+.PHONY : src/Mobility/middleLevelController.cpp.s
+
+src/Mobility/openLoopData.o: src/Mobility/openLoopData.cpp.o
+.PHONY : src/Mobility/openLoopData.o
+
+# target to build an object file
+src/Mobility/openLoopData.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o
+.PHONY : src/Mobility/openLoopData.cpp.o
+
+src/Mobility/openLoopData.i: src/Mobility/openLoopData.cpp.i
+.PHONY : src/Mobility/openLoopData.i
+
+# target to preprocess a source file
+src/Mobility/openLoopData.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.i
+.PHONY : src/Mobility/openLoopData.cpp.i
+
+src/Mobility/openLoopData.s: src/Mobility/openLoopData.cpp.s
+.PHONY : src/Mobility/openLoopData.s
+
+# target to generate assembly for a file
+src/Mobility/openLoopData.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.s
+.PHONY : src/Mobility/openLoopData.cpp.s
+
+src/Mobility/printDistance.o: src/Mobility/printDistance.cpp.o
+.PHONY : src/Mobility/printDistance.o
+
+# target to build an object file
+src/Mobility/printDistance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o
+.PHONY : src/Mobility/printDistance.cpp.o
+
+src/Mobility/printDistance.i: src/Mobility/printDistance.cpp.i
+.PHONY : src/Mobility/printDistance.i
+
+# target to preprocess a source file
+src/Mobility/printDistance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.i
+.PHONY : src/Mobility/printDistance.cpp.i
+
+src/Mobility/printDistance.s: src/Mobility/printDistance.cpp.s
+.PHONY : src/Mobility/printDistance.s
+
+# target to generate assembly for a file
+src/Mobility/printDistance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.s
+.PHONY : src/Mobility/printDistance.cpp.s
+
+src/Mobility/resetValues.o: src/Mobility/resetValues.cpp.o
+.PHONY : src/Mobility/resetValues.o
+
+# target to build an object file
+src/Mobility/resetValues.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o
+.PHONY : src/Mobility/resetValues.cpp.o
+
+src/Mobility/resetValues.i: src/Mobility/resetValues.cpp.i
+.PHONY : src/Mobility/resetValues.i
+
+# target to preprocess a source file
+src/Mobility/resetValues.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.i
+.PHONY : src/Mobility/resetValues.cpp.i
+
+src/Mobility/resetValues.s: src/Mobility/resetValues.cpp.s
+.PHONY : src/Mobility/resetValues.s
+
+# target to generate assembly for a file
+src/Mobility/resetValues.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.s
+.PHONY : src/Mobility/resetValues.cpp.s
+
+src/Mobility/routine.o: src/Mobility/routine.cpp.o
+.PHONY : src/Mobility/routine.o
+
+# target to build an object file
+src/Mobility/routine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.o
+.PHONY : src/Mobility/routine.cpp.o
+
+src/Mobility/routine.i: src/Mobility/routine.cpp.i
+.PHONY : src/Mobility/routine.i
+
+# target to preprocess a source file
+src/Mobility/routine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.i
+.PHONY : src/Mobility/routine.cpp.i
+
+src/Mobility/routine.s: src/Mobility/routine.cpp.s
+.PHONY : src/Mobility/routine.s
+
+# target to generate assembly for a file
+src/Mobility/routine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/routine.cpp.s
+.PHONY : src/Mobility/routine.cpp.s
+
+src/Mobility/startRobot.o: src/Mobility/startRobot.cpp.o
+.PHONY : src/Mobility/startRobot.o
+
+# target to build an object file
+src/Mobility/startRobot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.o
+.PHONY : src/Mobility/startRobot.cpp.o
+
+src/Mobility/startRobot.i: src/Mobility/startRobot.cpp.i
+.PHONY : src/Mobility/startRobot.i
+
+# target to preprocess a source file
+src/Mobility/startRobot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.i
+.PHONY : src/Mobility/startRobot.cpp.i
+
+src/Mobility/startRobot.s: src/Mobility/startRobot.cpp.s
+.PHONY : src/Mobility/startRobot.s
+
+# target to generate assembly for a file
+src/Mobility/startRobot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/startRobot.cpp.s
+.PHONY : src/Mobility/startRobot.cpp.s
+
+src/Mobility/stopRobot.o: src/Mobility/stopRobot.cpp.o
+.PHONY : src/Mobility/stopRobot.o
+
+# target to build an object file
+src/Mobility/stopRobot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.o
+.PHONY : src/Mobility/stopRobot.cpp.o
+
+src/Mobility/stopRobot.i: src/Mobility/stopRobot.cpp.i
+.PHONY : src/Mobility/stopRobot.i
+
+# target to preprocess a source file
+src/Mobility/stopRobot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.i
+.PHONY : src/Mobility/stopRobot.cpp.i
+
+src/Mobility/stopRobot.s: src/Mobility/stopRobot.cpp.s
+.PHONY : src/Mobility/stopRobot.s
+
+# target to generate assembly for a file
+src/Mobility/stopRobot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/stopRobot.cpp.s
+.PHONY : src/Mobility/stopRobot.cpp.s
+
+src/Multimedia/Buzzer.o: src/Multimedia/Buzzer.cpp.o
+.PHONY : src/Multimedia/Buzzer.o
+
+# target to build an object file
+src/Multimedia/Buzzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o
+.PHONY : src/Multimedia/Buzzer.cpp.o
+
+src/Multimedia/Buzzer.i: src/Multimedia/Buzzer.cpp.i
+.PHONY : src/Multimedia/Buzzer.i
+
+# target to preprocess a source file
+src/Multimedia/Buzzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.i
+.PHONY : src/Multimedia/Buzzer.cpp.i
+
+src/Multimedia/Buzzer.s: src/Multimedia/Buzzer.cpp.s
+.PHONY : src/Multimedia/Buzzer.s
+
+# target to generate assembly for a file
+src/Multimedia/Buzzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.s
+.PHONY : src/Multimedia/Buzzer.cpp.s
+
+src/Multimedia/Screen.o: src/Multimedia/Screen.cpp.o
+.PHONY : src/Multimedia/Screen.o
+
+# target to build an object file
+src/Multimedia/Screen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o
+.PHONY : src/Multimedia/Screen.cpp.o
+
+src/Multimedia/Screen.i: src/Multimedia/Screen.cpp.i
+.PHONY : src/Multimedia/Screen.i
+
+# target to preprocess a source file
+src/Multimedia/Screen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.i
+.PHONY : src/Multimedia/Screen.cpp.i
+
+src/Multimedia/Screen.s: src/Multimedia/Screen.cpp.s
+.PHONY : src/Multimedia/Screen.s
+
+# target to generate assembly for a file
+src/Multimedia/Screen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s
+.PHONY : src/Multimedia/Screen.cpp.s
 
 src/Robot.o: src/Robot.cpp.o
 .PHONY : src/Robot.o
@@ -176,30 +560,6 @@ src/Robot.s: src/Robot.cpp.s
 src/Robot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s
 .PHONY : src/Robot.cpp.s
-
-src/Screen.o: src/Screen.cpp.o
-.PHONY : src/Screen.o
-
-# target to build an object file
-src/Screen.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.o
-.PHONY : src/Screen.cpp.o
-
-src/Screen.i: src/Screen.cpp.i
-.PHONY : src/Screen.i
-
-# target to preprocess a source file
-src/Screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.i
-.PHONY : src/Screen.cpp.i
-
-src/Screen.s: src/Screen.cpp.s
-.PHONY : src/Screen.s
-
-# target to generate assembly for a file
-src/Screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Screen.cpp.s
-.PHONY : src/Screen.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -234,15 +594,60 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exeRobotProgram"
-	@echo "... src/Motor.o"
-	@echo "... src/Motor.i"
-	@echo "... src/Motor.s"
+	@echo "... src/Actuators/teensyCans.o"
+	@echo "... src/Actuators/teensyCans.i"
+	@echo "... src/Actuators/teensyCans.s"
+	@echo "... src/Actuators/teensyCansLift.o"
+	@echo "... src/Actuators/teensyCansLift.i"
+	@echo "... src/Actuators/teensyCansLift.s"
+	@echo "... src/Actuators/teensyLift.o"
+	@echo "... src/Actuators/teensyLift.i"
+	@echo "... src/Actuators/teensyLift.s"
+	@echo "... src/Mobility/Motors/Motor.o"
+	@echo "... src/Mobility/Motors/Motor.i"
+	@echo "... src/Mobility/Motors/Motor.s"
+	@echo "... src/Mobility/getAngle.o"
+	@echo "... src/Mobility/getAngle.i"
+	@echo "... src/Mobility/getAngle.s"
+	@echo "... src/Mobility/initializeSPI.o"
+	@echo "... src/Mobility/initializeSPI.i"
+	@echo "... src/Mobility/initializeSPI.s"
+	@echo "... src/Mobility/lowLevelController.o"
+	@echo "... src/Mobility/lowLevelController.i"
+	@echo "... src/Mobility/lowLevelController.s"
+	@echo "... src/Mobility/lowLevelTest.o"
+	@echo "... src/Mobility/lowLevelTest.i"
+	@echo "... src/Mobility/lowLevelTest.s"
+	@echo "... src/Mobility/middleLevelController.o"
+	@echo "... src/Mobility/middleLevelController.i"
+	@echo "... src/Mobility/middleLevelController.s"
+	@echo "... src/Mobility/openLoopData.o"
+	@echo "... src/Mobility/openLoopData.i"
+	@echo "... src/Mobility/openLoopData.s"
+	@echo "... src/Mobility/printDistance.o"
+	@echo "... src/Mobility/printDistance.i"
+	@echo "... src/Mobility/printDistance.s"
+	@echo "... src/Mobility/resetValues.o"
+	@echo "... src/Mobility/resetValues.i"
+	@echo "... src/Mobility/resetValues.s"
+	@echo "... src/Mobility/routine.o"
+	@echo "... src/Mobility/routine.i"
+	@echo "... src/Mobility/routine.s"
+	@echo "... src/Mobility/startRobot.o"
+	@echo "... src/Mobility/startRobot.i"
+	@echo "... src/Mobility/startRobot.s"
+	@echo "... src/Mobility/stopRobot.o"
+	@echo "... src/Mobility/stopRobot.i"
+	@echo "... src/Mobility/stopRobot.s"
+	@echo "... src/Multimedia/Buzzer.o"
+	@echo "... src/Multimedia/Buzzer.i"
+	@echo "... src/Multimedia/Buzzer.s"
+	@echo "... src/Multimedia/Screen.o"
+	@echo "... src/Multimedia/Screen.i"
+	@echo "... src/Multimedia/Screen.s"
 	@echo "... src/Robot.o"
 	@echo "... src/Robot.i"
 	@echo "... src/Robot.s"
-	@echo "... src/Screen.o"
-	@echo "... src/Screen.i"
-	@echo "... src/Screen.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -224,15 +224,6 @@ exeRobotProgram_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 exeRobotProgram_SOURCE_DIR:STATIC=/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi
 
-//Value Computed by CMake
-robotProgramExe_BINARY_DIR:STATIC=/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build
-
-//Value Computed by CMake
-robotProgramExe_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-robotProgramExe_SOURCE_DIR:STATIC=/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi
-
 
 ########################
 # INTERNAL cache entries
