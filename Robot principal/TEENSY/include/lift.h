@@ -33,6 +33,7 @@ public:
     void begin();
     void moveToHome();
     void up_and_down(int height_in_mm);
+    void calibration();
 
 private:
     AccelStepper stepper;

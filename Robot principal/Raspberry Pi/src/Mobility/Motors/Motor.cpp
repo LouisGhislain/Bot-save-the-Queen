@@ -1,0 +1,86 @@
+#include "../../../include/Motor.h"
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <wiringPi.h>
+
+Motor::Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir)
+    : pwmPin(pwmPin), forwardDirectionPin(forwardDirectionPin), backwardDirectionPin(backwardDirectionPin), distanceAddress(distanceAddress), speedAddress(speedAddress), baseDir(baseDir){
+    
+    // Initialize GPIO
+    wiringPiSetupGpio();  // Use BCM numbering
+    pinMode(pwmPin, PWM_OUTPUT);
+    pinMode(forwardDirectionPin, OUTPUT);
+    pinMode(backwardDirectionPin, OUTPUT);
+
+    // Set PWM range and divider
+    pwmSetClock(300); // => 20kHz PWM frequency
+    pwmSetRange(1024); // resolution
+    pwmWrite(pwmPin, 0); // Set duty cycle to 0%
+}
+
+int32_t Motor::readData(const std::string& type) const {
+    uint8_t readCommand[5] = { (type == "distance") ? distanceAddress : speedAddress, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t response[5] = {0};
+
+    wiringPiSPIDataRW(SPI_CHANNEL, readCommand, 5);
+    std::memcpy(response, readCommand, 5);  // SPI response is in the same buffer
+
+    return (int32_t)((response[1] << 24) | (response[2] << 16) | (response[3] << 8) | response[4]);
+}
+
+
+/*
+* @brief Get the speed of the motor in rad/s
+*
+* @return Speed of the motor in rad/s
+*/
+double Motor::getSpeed() const {
+    int32_t ticks_per_10ms = readData("speed");
+    double speed = -(ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV))*100*2*M_PI; // Speed in rad/s
+    return speed;
+}
+
+
+/*
+* @brief Get the distance travelled by the odometer in cm
+*
+* @return Distance travelled by the odometer in cm
+*/
+double Motor::getDistance() const {
+    int32_t ticks = readData("distance");
+    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1;  // Corrective factor
+    return distance;
+}
+
+void Motor::setSpeed(double voltage) {
+    voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
+    //int dutyCycle = static_cast<int>(100 * std::abs(voltage) / VOLTAGE_LIMIT);
+
+    if (voltage < 0) {
+        digitalWrite(forwardDirectionPin, !baseDir);  // Backward
+        digitalWrite(backwardDirectionPin, baseDir);
+    } else {
+        digitalWrite(forwardDirectionPin, baseDir);   // Forward
+        digitalWrite(backwardDirectionPin, !baseDir);
+    }
+
+    pwmWrite(pwmPin, 1024*(voltage/100));
+}
+
+void Motor::stop() {
+    pwmWrite(pwmPin, 0); // Set duty cycle to 0%
+    std::cout << "Motor stopped" << std::endl;
+}
+
+void Motor::brake() {
+    digitalWrite(forwardDirectionPin, true);  // Active braking (both direction pins on high)
+    digitalWrite(backwardDirectionPin, true);
+    pwmWrite(pwmPin, 0);
+    std::cout << "Motor braking" << std::endl;
+}
+
+void Motor::start() {
+    
+    pwmWrite(pwmPin, 0);
+}

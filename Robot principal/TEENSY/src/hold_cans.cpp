@@ -4,7 +4,7 @@ hold_cans::hold_cans()
     : servo1(SERVO1_PIN, MAX_ANGLE + 12, 30), // grabAngle, releaseAngle
       servo2(SERVO2_PIN, 4, MAX_ANGLE-4),
       servo3(SERVO3_PIN, MAX_ANGLE, 14),
-      servo4(SERVO4_PIN, 10, MAX_ANGLE - 3) {}
+      servo4(SERVO4_PIN, 10, MAX_ANGLE - 1) {}
 
 void hold_cans::begin() {
     pwmServo1.attach(SERVO1_PIN);

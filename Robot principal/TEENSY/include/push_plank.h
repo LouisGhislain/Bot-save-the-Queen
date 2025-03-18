@@ -15,16 +15,19 @@
 #define SERVO_PIN2 10
 
 // Déclaration des microswitch 
-#define SWITCH_RIGHT 26 
+#define SWITCH_RIGHT A12
 #define SWITCH_LEFT 11  
 class push_plank {
     public:
         push_plank();
         void begin();
         void calibration();
-        void Stepper(int position);
+        void move_to_mm(int distance_mm);
         void servo_motor_left(int angle);
         void servo_motor_right(int angle);
+        void pull_plank_grab();
+        void pull_plank_release();
+
         void routine_separation_stack();
     
     private:

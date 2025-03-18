@@ -4,7 +4,7 @@
 
 int main() {
     Robot robot;
-    Screen screen;
+    //Screen screen;
 
     char choice;
 
@@ -94,7 +94,7 @@ int main() {
             break;
         }
 
-        case 'o': {
+        /*case 'o': {
             screen.init();
             std::string message;
             std::cout << "Entrez le message à afficher : ";
@@ -103,7 +103,7 @@ int main() {
             screen.clear();
             screen.displayText(message);
             break;
-        }
+        }*/
         
         default:
             std::cout << "Invalid option." << std::endl;

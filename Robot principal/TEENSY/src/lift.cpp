@@ -16,10 +16,12 @@ void lift::begin() {
     // Configure stepper motor
     stepper.setMaxSpeed(2000);
     stepper.setAcceleration(2000);
+
+    //calibration();
 }
 
 void lift::moveToHome() {
-    stepper.moveTo(10000);  // Large movement towards home position
+    stepper.moveTo(-10000);  // Large movement towards home position
     while (digitalRead(MICROSWTICH_LIFT_PIN) == 1) {  // While switch is not pressed
         stepper.run();  // Move stepper
     }
@@ -41,4 +43,27 @@ void lift::up_and_down(int height_in_mm) {   //height defined as the top of the 
     }
 
     delay(2000);  // Wait*/
+}
+
+void lift::calibration() {
+  stepper.setMaxSpeed(500);
+  stepper.setAcceleration(300);
+  stepper.setSpeed(200);
+
+  stepper.move(500);
+  while (stepper.distanceToGo() != 0) {
+      stepper.run();
+  }
+
+  while (digitalRead(MICROSWTICH_LIFT_PIN) == HIGH) {
+      stepper.move(-10);
+      stepper.run();
+  }
+
+  stepper.move(-10);
+  while (stepper.distanceToGo() != 0) {
+      stepper.run();
+  }
+
+  stepper.setCurrentPosition(0);
 }

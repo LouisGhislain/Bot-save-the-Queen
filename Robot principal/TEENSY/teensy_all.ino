@@ -4,89 +4,67 @@
 #include "lift.h"
 #include "push_plank.h"
 #include "infrared.h"
+#include "get_input.h"
 
 lift myLift;
 hold_cans myHoldCans;
 push_plank myPushPlank;
 
 
-#define floorHeight 0
-#define secondStageHeight 124 // 124 mm
-#define thirdStageHeight 248 // 248 mm
+#define floorHeight 90
+#define secondStageHeight 214 // in mm = 90 + 124
+#define thirdStageHeight 338 // in mm = 90 + 124 + 124
 
-#define pinCommunicationRasp_1 5
-#define pinCommunicationRasp_2 6
-#define pinCommunicationRasp_3 7
+void build_second_stage(){
+    myHoldCans.releaseExternal();
+    myHoldCans.grabCenter();
+    delay(500);
+    myPushPlank.routine_separation_stack();
+    delay(1000);
+    myLift.up_and_down(secondStageHeight + 10);
+    delay(1000);
+    myHoldCans.releaseCenter();
+    delay(1000);
+    myLift.up_and_down(floorHeight);
+    delay(1000);
+}
 
 void setup() {
 
     Serial.begin(115200);
 
-    pinMode(pinCommunicationRasp_1, INPUT);
-    pinMode(pinCommunicationRasp_2, INPUT);
-    pinMode(pinCommunicationRasp_3, INPUT);
-
-
-    myLift.begin();
-    myHoldCans.begin();
     myPushPlank.begin();
+    myHoldCans.begin();
+    myLift.begin();
+    init_input_rasp();
 
-    
     myHoldCans.releaseAll();
     delay(1000);
 }
 
 void loop() {
 
-    /*int number;
-    if (Serial.available() > 0) {
-        number = Serial.parseInt();  // Read full integer input
-    
-        myHoldCans.grabNumber(number);
-        delay(2000);
-        myHoldCans.releaseNumber(number);
-        delay(2000);
-    }*/
-
     //==================================================================================================
     // Temporary code
     //==================================================================================================
 
-    /*myLift.up_and_down(secondStageHeight);
+    /*myHoldCans.grabCenter();
+    delay(2000);
+    myPushPlank.routine_separation_stack();
+    delay(2000);
+    myHoldCans.grabExternal();
+    delay(2000);
+    myHoldCans.releaseAll();
+    delay(2000);*/
+    build_second_stage();
     delay(1000);
-    myLift.up_and_down(thirdStageHeight);
-    delay(1000);
-    myLift.up_and_down(floorHeight);
-    delay(1000);*/
 
     //==================================================================================================
     // end of Temporary code
     //==================================================================================================
 
-
-    int rasp_input_1 = digitalRead(pinCommunicationRasp_1);
-    int rasp_input_2 = digitalRead(pinCommunicationRasp_2);
-    int rasp_input_3 = digitalRead(pinCommunicationRasp_3);
-    int rasp_input = (rasp_input_1 << 2) | (rasp_input_2 << 1) | (rasp_input_3);
-
-    //Serial.println(rasp_input_1);
-    //Serial.println(rasp_input_2);
-    if(rasp_input_1 == HIGH){
-        Serial.println(rasp_input_1);
-        Serial.println(rasp_input);
-        delay(1000);
-    }
-    if(rasp_input_2 == HIGH){
-        Serial.println(rasp_input_2);
-        Serial.println(rasp_input);
-        delay(1000);
-    }
-    if(rasp_input_3 == HIGH){
-        Serial.println(rasp_input_3);
-        Serial.println(rasp_input);
-        delay(1000);
-    }
-    // create a binary number of the three input :
+    int rasp_input = get_input_rasp(0); // verbose = 0 (no prints) 
+    rasp_input = 0; // for testion, input imposed to 0
 
     switch (rasp_input){ // until 8
         case 0:
@@ -137,18 +115,5 @@ void loop() {
         default:
             break;
         }
-    myLift.up_and_down(124);
 }
 
-void build_second_stage(){
-    myHoldCans.releaseExternal();
-    myHoldCans.grabCenter();
-    delay(500);
-    myPushPlank.routine_separation_stack();
-    delay(1000);
-    myLift.up_and_down(secondStageHeight);
-    delay(1000);
-    myHoldCans.releaseCenter();
-    delay(1000);
-    myLift.up_and_down(floorHeight);
-}
