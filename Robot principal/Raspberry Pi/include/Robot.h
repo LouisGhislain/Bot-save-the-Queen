@@ -43,13 +43,16 @@ private:
     double u_volt_right = 0;
 
     // Sampling time
-    static constexpr double SAMPLING_TIME = 0.01;
+    static constexpr double SAMPLING_TIME = 0.001;
+
+    // Back EMF Constant
+    static constexpr double K_phi = 0.02859;
 
     // PI gains
     static constexpr double KpPos = 0.01;
     static constexpr double KiPos = 0.0;
-    static constexpr double KpSpeed = 0.1825431783524443; //0.27381476752866646; //0.5476295350573329;
-    static constexpr double KiSpeed = 0.48037678513801135; //0.7205651777070171; //1.4411303554140342;
+    static constexpr double KpSpeed = 0.1825431783524443; 
+    static constexpr double KiSpeed = 0.48037678513801135; 
 
     // Robot position parameters
     double xCoord = 3.8;
@@ -73,6 +76,8 @@ private:
     static constexpr int STATE1_PIN = 31;
     static constexpr int STATE2_PIN = 29;
     
+
+
     
 };
 

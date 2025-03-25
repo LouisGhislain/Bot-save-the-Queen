@@ -21,11 +21,11 @@ void Robot::lowLevelTest(){
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
 
-    double ref_speed_left = 30;
-    double ref_speed_right = 30;
+    double ref_speed_left = 13.5;
+    double ref_speed_right = 13.5;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 1000000;
+    unsigned long duration = 3*1000000; // To seconds;
     unsigned long currentTime;
 
     while (micros() - startTime < duration) {
@@ -38,7 +38,7 @@ void Robot::lowLevelTest(){
                 << u_volt_left << ", " 
                 << u_volt_right << "\n";
     }
-
+    /*
     ref_speed_left = 60;
     ref_speed_right = 60;
     while (micros() - startTime < 2*duration) {
@@ -51,6 +51,7 @@ void Robot::lowLevelTest(){
                 << u_volt_left << ", " 
                 << u_volt_right << "\n";
     }
+    */
     stop();
     file.close();
     std::cout << "Test completed" << std::endl;

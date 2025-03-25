@@ -12,7 +12,7 @@ int main() {
     std::cout << "  a: Run routine" << std::endl;
     std::cout << "  b: Print robot position (angle)" << std::endl;
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
-    std::cout << "  t: Motor test" << std::endl;
+    std::cout << "  t: Open Loop test" << std::endl;
     std::cout << "  d: Distance test" << std::endl;
     std::cout << "  l: Lowlevel test" << std::endl;
     std::cout << "  f: Braking test" << std::endl;

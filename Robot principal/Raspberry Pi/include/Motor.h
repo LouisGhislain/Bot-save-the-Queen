@@ -29,7 +29,7 @@ public:
     static constexpr double WHEEL_DIAMETER = 6.0325;  // cm
     static constexpr double ODOMETER_DIAMETER = 4.45;  // cm
 
-    static constexpr double VOLTAGE_LIMIT = 100.0;
+    static constexpr double VOLTAGE_LIMIT = 24.0;
     
     Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPinwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir);
     

@@ -21,20 +21,28 @@ void Robot::openLoopData() {
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
     
-    leftMotor.setSpeed(5.0);
-    rightMotor.setSpeed(5.0);
-    
     unsigned long startTime = micros(); // Current time in µs
     unsigned long currentTime;
     
+    double robotspeed;
+    double backemf;
+    double previoustime = 0.0;
+
     // Data taken every 100 microseconds 
-    unsigned long duration = 10*1000000; // To seconds; 
+    unsigned long duration = 9*1000000; // To seconds; 
     while (micros() - startTime < duration) {
         currentTime = micros() - startTime;
-        
+
+        robotspeed = (leftMotor.getSpeed() + rightMotor.getSpeed())/2;
+        backemf = K_phi*robotspeed;
+
+        leftMotor.setSpeed(4+backemf);
+        rightMotor.setSpeed(4+backemf);
+
         //Save data every 100 microseconds
-        if (currentTime % 1000 == 0) {
+        if (currentTime-previoustime > 1000) {
             file << currentTime << ", " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
+            previoustime = currentTime;
         }
     }
 

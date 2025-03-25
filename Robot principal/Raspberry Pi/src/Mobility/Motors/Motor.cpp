@@ -14,8 +14,9 @@ Motor::Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPin, uint
     pinMode(backwardDirectionPin, OUTPUT);
 
     // Set PWM range and divider
-    pwmSetClock(300); // => 20kHz PWM frequency
-    pwmSetRange(1024); // resolution
+    pwmSetMode(PWM_MODE_MS); // Mark:Space mode
+    pwmSetClock(2); // => 20kHz PWM frequency
+    pwmSetRange(320); // 
     pwmWrite(pwmPin, 0); // Set duty cycle to 0%
 }
 
@@ -65,7 +66,7 @@ void Motor::setSpeed(double voltage) {
         digitalWrite(backwardDirectionPin, !baseDir);
     }
 
-    pwmWrite(pwmPin, 1024*(voltage/100));
+    pwmWrite(pwmPin, 320*(voltage/VOLTAGE_LIMIT));
 }
 
 void Motor::stop() {
@@ -76,7 +77,7 @@ void Motor::stop() {
 void Motor::brake() {
     digitalWrite(forwardDirectionPin, true);  // Active braking (both direction pins on high)
     digitalWrite(backwardDirectionPin, true);
-    pwmWrite(pwmPin, 0);
+    pwmWrite(pwmPin, 320); // Set duty cycle to 100%
     std::cout << "Motor braking" << std::endl;
 }
 
