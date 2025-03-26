@@ -15,21 +15,18 @@ Motor::Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPin, uint
 
     // Set PWM range and divider
     pwmSetMode(PWM_MODE_MS); // Mark:Space mode
-    pwmSetClock(2); // => 20kHz PWM frequency
-    pwmSetRange(320); // 
+    pwmSetClock(2); // 
+    pwmSetRange(480); // 
     pwmWrite(pwmPin, 0); // Set duty cycle to 0%
 }
 
 int32_t Motor::readData(const std::string& type) const {
     uint8_t readCommand[5] = { (type == "distance") ? distanceAddress : speedAddress, 0x00, 0x00, 0x00, 0x00 };
-    uint8_t response[5] = {0};
 
     wiringPiSPIDataRW(SPI_CHANNEL, readCommand, 5);
-    std::memcpy(response, readCommand, 5);  // SPI response is in the same buffer
 
-    return (int32_t)((response[1] << 24) | (response[2] << 16) | (response[3] << 8) | response[4]);
+    return (int32_t)((readCommand[1] << 24) | (readCommand[2] << 16) | (readCommand[3] << 8) | readCommand[4]);
 }
-
 
 /*
 * @brief Get the speed of the motor in rad/s
@@ -37,6 +34,7 @@ int32_t Motor::readData(const std::string& type) const {
 * @return Speed of the motor in rad/s
 */
 double Motor::getSpeed() const {
+    
     int32_t ticks_per_10ms = readData("speed");
     double speed = -(ticks_per_10ms / static_cast<double>(ENCODER_COUNTS_PER_REV))*100*2*M_PI; // Speed in rad/s
     return speed;
@@ -66,7 +64,7 @@ void Motor::setSpeed(double voltage) {
         digitalWrite(backwardDirectionPin, !baseDir);
     }
 
-    pwmWrite(pwmPin, 320*(voltage/VOLTAGE_LIMIT));
+    pwmWrite(pwmPin, 480*(voltage/VOLTAGE_LIMIT));
 }
 
 void Motor::stop() {
@@ -77,7 +75,7 @@ void Motor::stop() {
 void Motor::brake() {
     digitalWrite(forwardDirectionPin, true);  // Active braking (both direction pins on high)
     digitalWrite(backwardDirectionPin, true);
-    pwmWrite(pwmPin, 320); // Set duty cycle to 100%
+    pwmWrite(pwmPin, 480); // Set duty cycle to 100%
     std::cout << "Motor braking" << std::endl;
 }
 

@@ -51,8 +51,8 @@ private:
     // PI gains
     static constexpr double KpPos = 0.01;
     static constexpr double KiPos = 0.0;
-    static constexpr double KpSpeed = 0.1825431783524443; 
-    static constexpr double KiSpeed = 0.48037678513801135; 
+    static constexpr double KpSpeed = 0.2907153916120467; 
+    static constexpr double KiSpeed = 0.3773649177102203; 
 
     // Robot position parameters
     double xCoord = 3.8;
@@ -69,8 +69,8 @@ private:
 
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;
-    static constexpr int SPI_SPEED = 50000;
-    
+    static constexpr int SPI_SPEED = 7500000; // 7.5 MHz
+     
     //State pin teensy
     static constexpr int STATE0_PIN = 35;
     static constexpr int STATE1_PIN = 31;

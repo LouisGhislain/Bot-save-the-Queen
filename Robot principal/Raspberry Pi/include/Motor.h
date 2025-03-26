@@ -19,7 +19,7 @@ private:
     
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;
-    static constexpr int SPI_SPEED = 50000;
+    static constexpr int SPI_SPEED = 500000;
 
 public:
     static constexpr int MOTOR_PWM_FREQUENCY = 30000;
