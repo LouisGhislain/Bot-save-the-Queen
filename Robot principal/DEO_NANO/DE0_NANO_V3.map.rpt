@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE0_NANO_V3
-Thu Feb 27 12:38:21 2025
+Wed Mar 26 14:27:08 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -54,13 +54,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Feb 27 12:38:21 2025       ;
+; Analysis & Synthesis Status        ; Successful - Wed Mar 26 14:27:08 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; DE0_NANO_V3                                 ;
 ; Top-level Entity Name              ; DE0_NANO_V3                                 ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 1,037                                       ;
-;     Total combinational functions  ; 799                                         ;
+; Total logic elements               ; 1,038                                       ;
+;     Total combinational functions  ; 800                                         ;
 ;     Dedicated logic registers      ; 733                                         ;
 ; Total registers                    ; 733                                         ;
 ; Total pins                         ; 138                                         ;
@@ -174,69 +174,69 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                              ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                    ; Library     ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-; SPI.sv                                                             ; yes             ; User SystemVerilog HDL File                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/SPI.sv                                                             ;             ;
-; corneille.sv                                                       ; yes             ; User SystemVerilog HDL File                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv                                                       ;             ;
-; sld_signaltap.vhd                                                  ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap.vhd                                                                        ;             ;
-; sld_signaltap_impl.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd                                                                   ;             ;
-; sld_ela_control.vhd                                                ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_control.vhd                                                                      ;             ;
-; lpm_shiftreg.tdf                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_shiftreg.tdf                                                                         ;             ;
-; lpm_constant.inc                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_constant.inc                                                                         ;             ;
-; dffeea.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/dffeea.inc                                                                               ;             ;
-; aglobal181.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                           ;             ;
-; sld_mbpmg.vhd                                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_mbpmg.vhd                                                                            ;             ;
-; sld_ela_trigger_flow_mgr.vhd                                       ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd                                                             ;             ;
-; sld_buffer_manager.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_buffer_manager.vhd                                                                   ;             ;
-; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                           ;             ;
-; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                    ;             ;
-; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                              ;             ;
-; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                           ;             ;
-; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                            ;             ;
-; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                                                               ;             ;
-; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                                                               ;             ;
-; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                             ;             ;
-; db/altsyncram_u124.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/altsyncram_u124.tdf                                             ;             ;
-; altdpram.tdf                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                             ;             ;
-; memmodes.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/others/maxplus2/memmodes.inc                                                                           ;             ;
-; a_hdffe.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_hdffe.inc                                                                              ;             ;
-; alt_le_rden_reg.inc                                                ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_le_rden_reg.inc                                                                      ;             ;
-; altsyncram.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.inc                                                                           ;             ;
-; lpm_mux.tdf                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.tdf                                                                              ;             ;
-; muxlut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/muxlut.inc                                                                               ;             ;
-; bypassff.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc                                                                             ;             ;
-; altshift.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc                                                                             ;             ;
-; db/mux_ssc.tdf                                                     ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/mux_ssc.tdf                                                     ;             ;
-; lpm_decode.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.tdf                                                                           ;             ;
-; declut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/declut.inc                                                                               ;             ;
-; lpm_compare.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_compare.inc                                                                          ;             ;
-; db/decode_dvf.tdf                                                  ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/decode_dvf.tdf                                                  ;             ;
-; lpm_counter.tdf                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.tdf                                                                          ;             ;
-; lpm_add_sub.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                                          ;             ;
-; cmpconst.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/cmpconst.inc                                                                             ;             ;
-; lpm_counter.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.inc                                                                          ;             ;
-; alt_counter_stratix.inc                                            ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_counter_stratix.inc                                                                  ;             ;
-; db/cntr_qei.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_qei.tdf                                                    ;             ;
-; db/cntr_i6j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_i6j.tdf                                                    ;             ;
-; db/cntr_egi.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_egi.tdf                                                    ;             ;
-; db/cmpr_qgc.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_qgc.tdf                                                    ;             ;
-; db/cntr_23j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_23j.tdf                                                    ;             ;
-; db/cmpr_ngc.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_ngc.tdf                                                    ;             ;
-; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                           ;             ;
-; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                            ;             ;
-; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                        ;             ;
-; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                              ; altera_sld  ;
-; db/ip/sld0d4166f7/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/alt_sld_fab.v                                    ; alt_sld_fab ;
-; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
-; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
-; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
-; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
-; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
-; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                         ;             ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                                                        ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                                              ; Library     ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; SPI.sv                                                             ; yes             ; User SystemVerilog HDL File                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/SPI.sv                                                             ;             ;
+; corneille.sv                                                       ; yes             ; User SystemVerilog HDL File                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv                                                       ;             ;
+; sld_signaltap.vhd                                                  ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap.vhd                                                                                                  ;             ;
+; sld_signaltap_impl.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd                                                                                             ;             ;
+; sld_ela_control.vhd                                                ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_control.vhd                                                                                                ;             ;
+; lpm_shiftreg.tdf                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_shiftreg.tdf                                                                                                   ;             ;
+; lpm_constant.inc                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_constant.inc                                                                                                   ;             ;
+; dffeea.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/dffeea.inc                                                                                                         ;             ;
+; aglobal181.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                                                     ;             ;
+; sld_mbpmg.vhd                                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_mbpmg.vhd                                                                                                      ;             ;
+; sld_ela_trigger_flow_mgr.vhd                                       ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd                                                                                       ;             ;
+; sld_buffer_manager.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_buffer_manager.vhd                                                                                             ;             ;
+; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                                                     ;             ;
+; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                              ;             ;
+; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                                        ;             ;
+; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                                     ;             ;
+; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                                      ;             ;
+; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                                                                                         ;             ;
+; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                                                                                         ;             ;
+; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                       ;             ;
+; db/altsyncram_u124.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/altsyncram_u124.tdf                                             ;             ;
+; altdpram.tdf                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                                                       ;             ;
+; memmodes.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/others/maxplus2/memmodes.inc                                                                                                     ;             ;
+; a_hdffe.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_hdffe.inc                                                                                                        ;             ;
+; alt_le_rden_reg.inc                                                ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_le_rden_reg.inc                                                                                                ;             ;
+; altsyncram.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.inc                                                                                                     ;             ;
+; lpm_mux.tdf                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.tdf                                                                                                        ;             ;
+; muxlut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/muxlut.inc                                                                                                         ;             ;
+; bypassff.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc                                                                                                       ;             ;
+; altshift.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc                                                                                                       ;             ;
+; db/mux_ssc.tdf                                                     ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/mux_ssc.tdf                                                     ;             ;
+; lpm_decode.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.tdf                                                                                                     ;             ;
+; declut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/declut.inc                                                                                                         ;             ;
+; lpm_compare.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_compare.inc                                                                                                    ;             ;
+; db/decode_dvf.tdf                                                  ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/decode_dvf.tdf                                                  ;             ;
+; lpm_counter.tdf                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.tdf                                                                                                    ;             ;
+; lpm_add_sub.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                                                                    ;             ;
+; cmpconst.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/cmpconst.inc                                                                                                       ;             ;
+; lpm_counter.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.inc                                                                                                    ;             ;
+; alt_counter_stratix.inc                                            ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_counter_stratix.inc                                                                                            ;             ;
+; db/cntr_qei.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_qei.tdf                                                    ;             ;
+; db/cntr_i6j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_i6j.tdf                                                    ;             ;
+; db/cntr_egi.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_egi.tdf                                                    ;             ;
+; db/cmpr_qgc.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_qgc.tdf                                                    ;             ;
+; db/cntr_23j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_23j.tdf                                                    ;             ;
+; db/cmpr_ngc.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_ngc.tdf                                                    ;             ;
+; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                                                     ;             ;
+; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                                      ;             ;
+; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                                  ;             ;
+; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                                                        ; altera_sld  ;
+; db/ip/sld0d4166f7/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/alt_sld_fab.v                                    ; alt_sld_fab ;
+; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
+; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
+; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
+; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
+; db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
+; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                                                   ;             ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 
 
 +--------------------------------------------------------------+
@@ -244,16 +244,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,037          ;
+; Estimated Total logic elements              ; 1,038          ;
 ;                                             ;                ;
-; Total combinational functions               ; 799            ;
+; Total combinational functions               ; 800            ;
 ; Logic element usage by number of LUT inputs ;                ;
 ;     -- 4 input functions                    ; 302            ;
-;     -- 3 input functions                    ; 252            ;
+;     -- 3 input functions                    ; 253            ;
 ;     -- <=2 input functions                  ; 245            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 507            ;
+;     -- normal mode                          ; 508            ;
 ;     -- arithmetic mode                      ; 292            ;
 ;                                             ;                ;
 ; Total registers                             ; 733            ;
@@ -267,7 +267,7 @@ refer to the applicable agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 429            ;
-; Total fan-out                               ; 5384           ;
+; Total fan-out                               ; 5387           ;
 ; Average fan-out                             ; 2.82           ;
 +---------------------------------------------+----------------+
 
@@ -277,8 +277,8 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                     ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |DE0_NANO_V3                                                                                                                            ; 799 (134)           ; 733 (33)                  ; 512         ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                                                                                                                                                                                                                                                                                                                                            ; DE0_NANO_V3                       ; work         ;
-;    |EncoderSpeed:left_encoder_speed|                                                                                                    ; 76 (76)             ; 100 (100)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:left_encoder_speed                                                                                                                                                                                                                                                                                                            ; EncoderSpeed                      ; work         ;
+; |DE0_NANO_V3                                                                                                                            ; 800 (134)           ; 733 (33)                  ; 512         ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                                                                                                                                                                                                                                                                                                                                            ; DE0_NANO_V3                       ; work         ;
+;    |EncoderSpeed:left_encoder_speed|                                                                                                    ; 77 (77)             ; 100 (100)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:left_encoder_speed                                                                                                                                                                                                                                                                                                            ; EncoderSpeed                      ; work         ;
 ;    |EncoderSpeed:right_encoder_speed|                                                                                                   ; 35 (35)             ; 68 (68)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:right_encoder_speed                                                                                                                                                                                                                                                                                                           ; EncoderSpeed                      ; work         ;
 ;    |Odometer:left_odometer|                                                                                                             ; 34 (34)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|Odometer:left_odometer                                                                                                                                                                                                                                                                                                                     ; Odometer                          ; work         ;
 ;    |Odometer:right_odometer|                                                                                                            ; 34 (34)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|Odometer:right_odometer                                                                                                                                                                                                                                                                                                                    ; Odometer                          ; work         ;
@@ -579,19 +579,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SCLR          ; 6                           ;
 ;     plain             ; 7                           ;
 ; cycloneiii_io_obuf    ; 85                          ;
-; cycloneiii_lcell_comb ; 375                         ;
+; cycloneiii_lcell_comb ; 376                         ;
 ;     arith             ; 222                         ;
 ;         2 data inputs ; 102                         ;
 ;         3 data inputs ; 120                         ;
-;     normal            ; 153                         ;
+;     normal            ; 154                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
 ;         2 data inputs ; 12                          ;
-;         3 data inputs ; 10                          ;
+;         3 data inputs ; 11                          ;
 ;         4 data inputs ; 126                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 6.10                        ;
-; Average LUT depth     ; 3.20                        ;
+; Average LUT depth     ; 3.21                        ;
 +-----------------------+-----------------------------+
 
 
@@ -600,7 +600,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -659,69 +659,69 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Feb 27 12:37:52 2025
+    Info: Processing started: Wed Mar 26 14:26:18 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE0_NANO_V3 -c DE0_NANO_V3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file spi.sv
-    Info (12023): Found entity 1: spi_slave File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/SPI.sv Line: 1
-Warning (10275): Verilog HDL Module Instantiation warning at corneille.sv(193): ignored dangling comma in List of Port Connections File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
+    Info (12023): Found entity 1: spi_slave File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/SPI.sv Line: 1
+Warning (10275): Verilog HDL Module Instantiation warning at corneille.sv(193): ignored dangling comma in List of Port Connections File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
 Info (12021): Found 3 design units, including 3 entities, in source file corneille.sv
-    Info (12023): Found entity 1: EncoderSpeed File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 1
-    Info (12023): Found entity 2: Odometer File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 51
-    Info (12023): Found entity 3: DE0_NANO_V3 File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 85
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(151): created implicit net for "clk" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 151
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(153): created implicit net for "reset" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 153
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(161): created implicit net for "ENC_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 161
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(162): created implicit net for "ENC_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 162
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(163): created implicit net for "ENC_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 163
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(164): created implicit net for "ENC_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 164
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(166): created implicit net for "ODO_1A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 166
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(167): created implicit net for "ODO_1B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 167
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(168): created implicit net for "ODO_2A" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 168
-Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(169): created implicit net for "ODO_2B" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 169
+    Info (12023): Found entity 1: EncoderSpeed File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 1
+    Info (12023): Found entity 2: Odometer File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 51
+    Info (12023): Found entity 3: DE0_NANO_V3 File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 85
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(151): created implicit net for "clk" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 151
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(153): created implicit net for "reset" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 153
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(161): created implicit net for "ENC_1A" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 161
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(162): created implicit net for "ENC_1B" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 162
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(163): created implicit net for "ENC_2A" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 163
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(164): created implicit net for "ENC_2B" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 164
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(166): created implicit net for "ODO_1A" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 166
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(167): created implicit net for "ODO_1B" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 167
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(168): created implicit net for "ODO_2A" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 168
+Warning (10236): Verilog HDL Implicit Net warning at corneille.sv(169): created implicit net for "ODO_2B" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 169
 Info (12127): Elaborating entity "DE0_NANO_V3" for the top level hierarchy
-Warning (10034): Output port "DRAM_ADDR" at corneille.sv(100) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-Warning (10034): Output port "DRAM_BA" at corneille.sv(101) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
-Warning (10034): Output port "DRAM_DQM" at corneille.sv(107) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
-Warning (10034): Output port "DRAM_CAS_N" at corneille.sv(102) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 102
-Warning (10034): Output port "DRAM_CKE" at corneille.sv(103) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 103
-Warning (10034): Output port "DRAM_CLK" at corneille.sv(104) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 104
-Warning (10034): Output port "DRAM_CS_N" at corneille.sv(105) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 105
-Warning (10034): Output port "DRAM_RAS_N" at corneille.sv(108) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 108
-Warning (10034): Output port "DRAM_WE_N" at corneille.sv(109) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 109
-Warning (10034): Output port "EPCS_ASDO" at corneille.sv(112) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 112
-Warning (10034): Output port "EPCS_DCLK" at corneille.sv(114) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 114
-Warning (10034): Output port "EPCS_NCSO" at corneille.sv(115) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 115
-Warning (10034): Output port "G_SENSOR_CS_N" at corneille.sv(118) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 118
-Warning (10034): Output port "I2C_SCLK" at corneille.sv(120) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 120
-Warning (10034): Output port "ADC_CS_N" at corneille.sv(124) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 124
-Warning (10034): Output port "ADC_SADDR" at corneille.sv(125) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 125
-Warning (10034): Output port "ADC_SCLK" at corneille.sv(126) has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 126
-Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:spi" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
-Info (12128): Elaborating entity "EncoderSpeed" for hierarchy "EncoderSpeed:left_encoder_speed" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 201
-Info (12128): Elaborating entity "Odometer" for hierarchy "Odometer:left_odometer" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 213
+Warning (10034): Output port "DRAM_ADDR" at corneille.sv(100) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+Warning (10034): Output port "DRAM_BA" at corneille.sv(101) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
+Warning (10034): Output port "DRAM_DQM" at corneille.sv(107) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
+Warning (10034): Output port "DRAM_CAS_N" at corneille.sv(102) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 102
+Warning (10034): Output port "DRAM_CKE" at corneille.sv(103) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 103
+Warning (10034): Output port "DRAM_CLK" at corneille.sv(104) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 104
+Warning (10034): Output port "DRAM_CS_N" at corneille.sv(105) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 105
+Warning (10034): Output port "DRAM_RAS_N" at corneille.sv(108) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 108
+Warning (10034): Output port "DRAM_WE_N" at corneille.sv(109) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 109
+Warning (10034): Output port "EPCS_ASDO" at corneille.sv(112) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 112
+Warning (10034): Output port "EPCS_DCLK" at corneille.sv(114) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 114
+Warning (10034): Output port "EPCS_NCSO" at corneille.sv(115) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 115
+Warning (10034): Output port "G_SENSOR_CS_N" at corneille.sv(118) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 118
+Warning (10034): Output port "I2C_SCLK" at corneille.sv(120) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 120
+Warning (10034): Output port "ADC_CS_N" at corneille.sv(124) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 124
+Warning (10034): Output port "ADC_SADDR" at corneille.sv(125) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 125
+Warning (10034): Output port "ADC_SCLK" at corneille.sv(126) has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 126
+Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:spi" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 193
+Info (12128): Elaborating entity "EncoderSpeed" for hierarchy "EncoderSpeed:left_encoder_speed" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 201
+Info (12128): Elaborating entity "Odometer" for hierarchy "Odometer:left_odometer" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 213
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_u124.tdf
-    Info (12023): Found entity 1: altsyncram_u124 File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/altsyncram_u124.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_u124 File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/altsyncram_u124.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_ssc.tdf
-    Info (12023): Found entity 1: mux_ssc File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/mux_ssc.tdf Line: 22
+    Info (12023): Found entity 1: mux_ssc File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/mux_ssc.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_dvf.tdf
-    Info (12023): Found entity 1: decode_dvf File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/decode_dvf.tdf Line: 22
+    Info (12023): Found entity 1: decode_dvf File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/decode_dvf.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_qei.tdf
-    Info (12023): Found entity 1: cntr_qei File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_qei.tdf Line: 25
+    Info (12023): Found entity 1: cntr_qei File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_qei.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_i6j.tdf
-    Info (12023): Found entity 1: cntr_i6j File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_i6j.tdf Line: 25
+    Info (12023): Found entity 1: cntr_i6j File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_i6j.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_egi.tdf
-    Info (12023): Found entity 1: cntr_egi File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_egi.tdf Line: 27
+    Info (12023): Found entity 1: cntr_egi File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_egi.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_qgc.tdf
-    Info (12023): Found entity 1: cmpr_qgc File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_qgc.tdf Line: 22
+    Info (12023): Found entity 1: cmpr_qgc File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_qgc.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_23j.tdf
-    Info (12023): Found entity 1: cntr_23j File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_23j.tdf Line: 27
+    Info (12023): Found entity 1: cntr_23j File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cntr_23j.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_ngc.tdf
-    Info (12023): Found entity 1: cmpr_ngc File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_ngc.tdf Line: 22
+    Info (12023): Found entity 1: cmpr_ngc File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_ngc.tdf Line: 22
 Info (12033): Analysis and Synthesis generated Signal Tap or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2025.02.27.12:38:10 Progress: Loading sld0d4166f7/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2025.03.26.14:26:47 Progress: Loading sld0d4166f7/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -732,163 +732,163 @@ Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification
 Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
 Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld0d4166f7/alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/alt_sld_fab.v Line: 9
+    Info (12023): Found entity 1: alt_sld_fab File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/alt_sld_fab.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
 Info (12021): Found 2 design units, including 1 entities, in source file db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
-    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
+    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/ip/sld0d4166f7/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
 Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "GPIO_2[2]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[3]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[4]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[10]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[12]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[16]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[18]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[22]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[24]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[28]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[30]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
-    Warning (13040): bidirectional pin "I2C_SDAT" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 121
-    Warning (13040): bidirectional pin "GPIO_1[0]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[1]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[2]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[3]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[4]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[5]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[6]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[7]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[8]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[9]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[10]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[11]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[12]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[13]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[14]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[15]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[16]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[17]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[18]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[19]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[20]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[21]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[22]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[23]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[24]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[25]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[26]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[27]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[28]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[29]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[30]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[31]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[32]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_1[33]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
-    Warning (13040): bidirectional pin "GPIO_2[0]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[5]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[6]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[7]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[8]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[9]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[11]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[13]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[14]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[15]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[17]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[19]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[20]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[21]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[23]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[25]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[26]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[27]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[29]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[31]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[32]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
-    Warning (13040): bidirectional pin "GPIO_2[33]" has no driver File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[2]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[3]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[4]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[10]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[12]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[16]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[18]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[22]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[24]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[28]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[30]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "DRAM_DQ[0]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[1]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[2]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[3]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[4]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[5]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[6]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[7]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[8]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[9]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[10]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[11]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[12]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[13]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[14]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "DRAM_DQ[15]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 106
+    Warning (13040): bidirectional pin "I2C_SDAT" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 121
+    Warning (13040): bidirectional pin "GPIO_1[0]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[1]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[2]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[3]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[4]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[5]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[6]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[7]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[8]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[9]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[10]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[11]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[12]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[13]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[14]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[15]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[16]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[17]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[18]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[19]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[20]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[21]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[22]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[23]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[24]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[25]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[26]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[27]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[28]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[29]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[30]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[31]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[32]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_1[33]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 130
+    Warning (13040): bidirectional pin "GPIO_2[0]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[5]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[6]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[7]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[8]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[9]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[11]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[13]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[14]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[15]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[17]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[19]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[20]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[21]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[23]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[25]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[26]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[27]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[29]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[31]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[32]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
+    Warning (13040): bidirectional pin "GPIO_2[33]" has no driver File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 134
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
-    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
-    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
-    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 102
-    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 103
-    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 104
-    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 105
-    Warning (13410): Pin "DRAM_DQM[0]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
-    Warning (13410): Pin "DRAM_DQM[1]" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
-    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 108
-    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 109
-    Warning (13410): Pin "EPCS_ASDO" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 112
-    Warning (13410): Pin "EPCS_DCLK" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 114
-    Warning (13410): Pin "EPCS_NCSO" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 115
-    Warning (13410): Pin "G_SENSOR_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 118
-    Warning (13410): Pin "I2C_SCLK" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 120
-    Warning (13410): Pin "ADC_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 124
-    Warning (13410): Pin "ADC_SADDR" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 125
-    Warning (13410): Pin "ADC_SCLK" is stuck at GND File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 126
+    Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[1]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[5]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[9]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[10]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 100
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 101
+    Warning (13410): Pin "DRAM_CAS_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 102
+    Warning (13410): Pin "DRAM_CKE" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 103
+    Warning (13410): Pin "DRAM_CLK" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 104
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 105
+    Warning (13410): Pin "DRAM_DQM[0]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
+    Warning (13410): Pin "DRAM_DQM[1]" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 107
+    Warning (13410): Pin "DRAM_RAS_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 108
+    Warning (13410): Pin "DRAM_WE_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 109
+    Warning (13410): Pin "EPCS_ASDO" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 112
+    Warning (13410): Pin "EPCS_DCLK" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 114
+    Warning (13410): Pin "EPCS_NCSO" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 115
+    Warning (13410): Pin "G_SENSOR_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 118
+    Warning (13410): Pin "I2C_SCLK" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 120
+    Warning (13410): Pin "ADC_CS_N" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 124
+    Warning (13410): Pin "ADC_SADDR" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 125
+    Warning (13410): Pin "ADC_SCLK" is stuck at GND File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 126
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
 Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 41 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 12 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 94
-    Warning (15610): No output dependent on input pin "SW[0]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
-    Warning (15610): No output dependent on input pin "SW[1]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
-    Warning (15610): No output dependent on input pin "SW[2]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
-    Warning (15610): No output dependent on input pin "SW[3]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
-    Warning (15610): No output dependent on input pin "EPCS_DATA0" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 113
-    Warning (15610): No output dependent on input pin "G_SENSOR_INT" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 119
-    Warning (15610): No output dependent on input pin "ADC_SDAT" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 127
-    Warning (15610): No output dependent on input pin "GPIO_1_IN[0]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
-    Warning (15610): No output dependent on input pin "GPIO_1_IN[1]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
-    Warning (15610): No output dependent on input pin "GPIO_2_IN[0]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
-    Warning (15610): No output dependent on input pin "GPIO_2_IN[1]" File: D:/Inge/Q8/LELME2002/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
-Info (21057): Implemented 1197 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "KEY[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 94
+    Warning (15610): No output dependent on input pin "SW[0]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
+    Warning (15610): No output dependent on input pin "SW[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
+    Warning (15610): No output dependent on input pin "SW[2]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
+    Warning (15610): No output dependent on input pin "SW[3]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 97
+    Warning (15610): No output dependent on input pin "EPCS_DATA0" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 113
+    Warning (15610): No output dependent on input pin "G_SENSOR_INT" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 119
+    Warning (15610): No output dependent on input pin "ADC_SDAT" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 127
+    Warning (15610): No output dependent on input pin "GPIO_1_IN[0]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
+    Warning (15610): No output dependent on input pin "GPIO_1_IN[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
+    Warning (15610): No output dependent on input pin "GPIO_2_IN[0]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
+    Warning (15610): No output dependent on input pin "GPIO_2_IN[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
+Info (21057): Implemented 1198 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 40 output pins
     Info (21060): Implemented 85 bidirectional pins
-    Info (21061): Implemented 1050 logic cells
+    Info (21061): Implemented 1051 logic cells
     Info (21064): Implemented 4 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 159 warnings
-    Info: Peak virtual memory: 4840 megabytes
-    Info: Processing ended: Thu Feb 27 12:38:21 2025
-    Info: Elapsed time: 00:00:29
-    Info: Total CPU time (on all processors): 00:00:48
+    Info: Peak virtual memory: 4855 megabytes
+    Info: Processing ended: Wed Mar 26 14:27:08 2025
+    Info: Elapsed time: 00:00:50
+    Info: Total CPU time (on all processors): 00:01:17
 
 
