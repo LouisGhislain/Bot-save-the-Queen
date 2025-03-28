@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <AccelStepper.h>
 #include <Servo.h>
+#include <Wire.h>
+
 
 // Déclaration des broches moteur pas à pas
 #define STEP_PIN_PUSH 14
