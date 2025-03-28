@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE0_NANO_V3
-Wed Mar 26 14:27:08 2025
+Fri Mar 28 15:06:51 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -54,13 +54,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Mar 26 14:27:08 2025       ;
+; Analysis & Synthesis Status        ; Successful - Fri Mar 28 15:06:51 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; DE0_NANO_V3                                 ;
 ; Top-level Entity Name              ; DE0_NANO_V3                                 ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 1,038                                       ;
-;     Total combinational functions  ; 800                                         ;
+; Total logic elements               ; 1,036                                       ;
+;     Total combinational functions  ; 798                                         ;
 ;     Dedicated logic registers      ; 733                                         ;
 ; Total registers                    ; 733                                         ;
 ; Total pins                         ; 138                                         ;
@@ -244,16 +244,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,038          ;
+; Estimated Total logic elements              ; 1,036          ;
 ;                                             ;                ;
-; Total combinational functions               ; 800            ;
+; Total combinational functions               ; 798            ;
 ; Logic element usage by number of LUT inputs ;                ;
 ;     -- 4 input functions                    ; 302            ;
-;     -- 3 input functions                    ; 253            ;
+;     -- 3 input functions                    ; 251            ;
 ;     -- <=2 input functions                  ; 245            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 508            ;
+;     -- normal mode                          ; 506            ;
 ;     -- arithmetic mode                      ; 292            ;
 ;                                             ;                ;
 ; Total registers                             ; 733            ;
@@ -267,7 +267,7 @@ refer to the applicable agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 429            ;
-; Total fan-out                               ; 5387           ;
+; Total fan-out                               ; 5381           ;
 ; Average fan-out                             ; 2.82           ;
 +---------------------------------------------+----------------+
 
@@ -277,8 +277,8 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                     ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |DE0_NANO_V3                                                                                                                            ; 800 (134)           ; 733 (33)                  ; 512         ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                                                                                                                                                                                                                                                                                                                                            ; DE0_NANO_V3                       ; work         ;
-;    |EncoderSpeed:left_encoder_speed|                                                                                                    ; 77 (77)             ; 100 (100)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:left_encoder_speed                                                                                                                                                                                                                                                                                                            ; EncoderSpeed                      ; work         ;
+; |DE0_NANO_V3                                                                                                                            ; 798 (134)           ; 733 (33)                  ; 512         ; 0            ; 0       ; 0         ; 138  ; 0            ; |DE0_NANO_V3                                                                                                                                                                                                                                                                                                                                            ; DE0_NANO_V3                       ; work         ;
+;    |EncoderSpeed:left_encoder_speed|                                                                                                    ; 75 (75)             ; 100 (100)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:left_encoder_speed                                                                                                                                                                                                                                                                                                            ; EncoderSpeed                      ; work         ;
 ;    |EncoderSpeed:right_encoder_speed|                                                                                                   ; 35 (35)             ; 68 (68)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|EncoderSpeed:right_encoder_speed                                                                                                                                                                                                                                                                                                           ; EncoderSpeed                      ; work         ;
 ;    |Odometer:left_odometer|                                                                                                             ; 34 (34)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|Odometer:left_odometer                                                                                                                                                                                                                                                                                                                     ; Odometer                          ; work         ;
 ;    |Odometer:right_odometer|                                                                                                            ; 34 (34)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO_V3|Odometer:right_odometer                                                                                                                                                                                                                                                                                                                    ; Odometer                          ; work         ;
@@ -579,19 +579,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SCLR          ; 6                           ;
 ;     plain             ; 7                           ;
 ; cycloneiii_io_obuf    ; 85                          ;
-; cycloneiii_lcell_comb ; 376                         ;
+; cycloneiii_lcell_comb ; 374                         ;
 ;     arith             ; 222                         ;
 ;         2 data inputs ; 102                         ;
 ;         3 data inputs ; 120                         ;
-;     normal            ; 154                         ;
+;     normal            ; 152                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
 ;         2 data inputs ; 12                          ;
-;         3 data inputs ; 11                          ;
+;         3 data inputs ; 9                           ;
 ;         4 data inputs ; 126                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 6.10                        ;
-; Average LUT depth     ; 3.21                        ;
+; Average LUT depth     ; 3.24                        ;
 +-----------------------+-----------------------------+
 
 
@@ -600,7 +600,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -659,7 +659,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Mar 26 14:26:18 2025
+    Info: Processing started: Fri Mar 28 15:06:13 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE0_NANO_V3 -c DE0_NANO_V3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -721,7 +721,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_ngc File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/db/cmpr_ngc.tdf Line: 22
 Info (12033): Analysis and Synthesis generated Signal Tap or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2025.03.26.14:26:47 Progress: Loading sld0d4166f7/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2025.03.28.15:06:37 Progress: Loading sld0d4166f7/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -879,16 +879,16 @@ Warning (21074): Design contains 12 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "GPIO_1_IN[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 131
     Warning (15610): No output dependent on input pin "GPIO_2_IN[0]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
     Warning (15610): No output dependent on input pin "GPIO_2_IN[1]" File: D:/Inge/Q8/LELME2002 - Project in mechatronics/INFO/GitHub/Bot-save-the-Queen/Robot principal/DEO_NANO/corneille.sv Line: 136
-Info (21057): Implemented 1198 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1196 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 40 output pins
     Info (21060): Implemented 85 bidirectional pins
-    Info (21061): Implemented 1051 logic cells
+    Info (21061): Implemented 1049 logic cells
     Info (21064): Implemented 4 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 159 warnings
-    Info: Peak virtual memory: 4855 megabytes
-    Info: Processing ended: Wed Mar 26 14:27:08 2025
-    Info: Elapsed time: 00:00:50
-    Info: Total CPU time (on all processors): 00:01:17
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Fri Mar 28 15:06:51 2025
+    Info: Elapsed time: 00:00:38
+    Info: Total CPU time (on all processors): 00:01:02
 
 
