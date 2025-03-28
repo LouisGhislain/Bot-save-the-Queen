@@ -6,7 +6,7 @@ module EncoderSpeed (
     output logic signed [31:0] speed
 );
     // Constants
-    int TIMER_MAX = 5000; // 100 µs @ 50 MHz
+    int TIMER_MAX = 50000; // 1 ms @ 50 MHz
 
     // Internal variables for tick counting and time interval
     logic signed [31:0] tick_count;
