@@ -94,6 +94,10 @@ int main() {
             break;
         }
 
+        case 'w': {
+            break;
+        }
+
         /*case 'o': {
             screen.init();
             std::string message;
