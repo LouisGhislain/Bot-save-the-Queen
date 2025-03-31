@@ -34,9 +34,14 @@ int32_t Motor::readData(const std::string& type) const {
 * @return Speed of the motor in rad/s
 */
 double Motor::getSpeed() const {
+<<<<<<< HEAD
     
     int32_t ticks_per_10µs = readData("speed");
     double speed = -(ticks_per_10µs / static_cast<double>(ENCODER_COUNTS_PER_REV))*10000*2*M_PI; // Speed in rad/s
+=======
+    int32_t ticks_per_1ms = readData("speed");
+    double speed = -(ticks_per_1ms / static_cast<double>(ENCODER_COUNTS_PER_REV))*1000*2*M_PI; // Speed in rad/s
+>>>>>>> e07ecbc0aceecc316639241ad2438a83a58c59eb
     return speed;
 }
 
