@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/printDistance.cpp.o"

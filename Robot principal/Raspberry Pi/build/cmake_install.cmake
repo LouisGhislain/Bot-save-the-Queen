@@ -1,4 +1,4 @@
-# Install script for directory: /home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi
+# Install script for directory: /home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
