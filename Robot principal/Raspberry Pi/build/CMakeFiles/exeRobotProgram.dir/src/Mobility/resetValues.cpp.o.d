@@ -1,8 +1,8 @@
 CMakeFiles/exeRobotProgram.dir/src/Mobility/resetValues.cpp.o: \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/resetValues.cpp \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/resetValues.cpp \
  /usr/include/stdc-predef.h \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Robot.h \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Motor.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Robot.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Motor.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

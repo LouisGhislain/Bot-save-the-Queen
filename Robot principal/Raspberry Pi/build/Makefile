@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi"
+CMAKE_SOURCE_DIR = "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build"
+CMAKE_BINARY_DIR = "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/CMakeFiles" "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BOT SAVE THE QUEEN github/Bot-save-the-Queen/Robot principal/Raspberry Pi/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -344,6 +344,30 @@ src/Mobility/middleLevelController.s: src/Mobility/middleLevelController.cpp.s
 src/Mobility/middleLevelController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s
 .PHONY : src/Mobility/middleLevelController.cpp.s
+
+src/Mobility/odometry.o: src/Mobility/odometry.cpp.o
+.PHONY : src/Mobility/odometry.o
+
+# target to build an object file
+src/Mobility/odometry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.o
+.PHONY : src/Mobility/odometry.cpp.o
+
+src/Mobility/odometry.i: src/Mobility/odometry.cpp.i
+.PHONY : src/Mobility/odometry.i
+
+# target to preprocess a source file
+src/Mobility/odometry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.i
+.PHONY : src/Mobility/odometry.cpp.i
+
+src/Mobility/odometry.s: src/Mobility/odometry.cpp.s
+.PHONY : src/Mobility/odometry.s
+
+# target to generate assembly for a file
+src/Mobility/odometry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.s
+.PHONY : src/Mobility/odometry.cpp.s
 
 src/Mobility/openLoopData.o: src/Mobility/openLoopData.cpp.o
 .PHONY : src/Mobility/openLoopData.o
@@ -621,6 +645,9 @@ help:
 	@echo "... src/Mobility/middleLevelController.o"
 	@echo "... src/Mobility/middleLevelController.i"
 	@echo "... src/Mobility/middleLevelController.s"
+	@echo "... src/Mobility/odometry.o"
+	@echo "... src/Mobility/odometry.i"
+	@echo "... src/Mobility/odometry.s"
 	@echo "... src/Mobility/openLoopData.o"
 	@echo "... src/Mobility/openLoopData.i"
 	@echo "... src/Mobility/openLoopData.s"
