@@ -33,15 +33,12 @@ void Robot::openLoopData() {
     leftMotor.setSpeed(12);
     rightMotor.setSpeed(12);
 
-    // Data taken every 100 microseconds 
+    // Data taken every millisecond 
     unsigned long duration = 1*1000000; // To seconds; 
     while (micros() - startTime < duration) {
         currentTime = micros() - startTime;
 
-        //robotspeed = (leftMotor.getSpeed() + rightMotor.getSpeed())/2;
-        //backemf = K_phi*robotspeed;
-
-        //Save data every 100 microseconds
+        //Save data every millisecond
         if (currentTime-previoustime > 1000) {
             file << currentTime << ", " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
             previoustime = currentTime;

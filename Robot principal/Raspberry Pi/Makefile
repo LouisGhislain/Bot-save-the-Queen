@@ -345,6 +345,30 @@ src/Mobility/middleLevelController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/middleLevelController.cpp.s
 .PHONY : src/Mobility/middleLevelController.cpp.s
 
+src/Mobility/odometry.o: src/Mobility/odometry.cpp.o
+.PHONY : src/Mobility/odometry.o
+
+# target to build an object file
+src/Mobility/odometry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.o
+.PHONY : src/Mobility/odometry.cpp.o
+
+src/Mobility/odometry.i: src/Mobility/odometry.cpp.i
+.PHONY : src/Mobility/odometry.i
+
+# target to preprocess a source file
+src/Mobility/odometry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.i
+.PHONY : src/Mobility/odometry.cpp.i
+
+src/Mobility/odometry.s: src/Mobility/odometry.cpp.s
+.PHONY : src/Mobility/odometry.s
+
+# target to generate assembly for a file
+src/Mobility/odometry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/odometry.cpp.s
+.PHONY : src/Mobility/odometry.cpp.s
+
 src/Mobility/openLoopData.o: src/Mobility/openLoopData.cpp.o
 .PHONY : src/Mobility/openLoopData.o
 
@@ -621,6 +645,9 @@ help:
 	@echo "... src/Mobility/middleLevelController.o"
 	@echo "... src/Mobility/middleLevelController.i"
 	@echo "... src/Mobility/middleLevelController.s"
+	@echo "... src/Mobility/odometry.o"
+	@echo "... src/Mobility/odometry.i"
+	@echo "... src/Mobility/odometry.s"
 	@echo "... src/Mobility/openLoopData.o"
 	@echo "... src/Mobility/openLoopData.i"
 	@echo "... src/Mobility/openLoopData.s"
