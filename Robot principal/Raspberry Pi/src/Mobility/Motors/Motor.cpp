@@ -41,19 +41,18 @@ double Motor::getSpeed() const {
 
 
 /*
-* @brief Get the distance travelled by the odometer in cm
+* @brief Get the distance travelled by the odometer in m
 *
-* @return Distance travelled by the odometer in cm
+* @return Distance travelled by the odometer in m
 */
 double Motor::getDistance() const {
     int32_t ticks = readData("distance");
-    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1;  // Corrective factor
+    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1.012215896;  // Corrective factor
     return distance;
 }
 
 void Motor::setSpeed(double voltage) {
     voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
-    //int dutyCycle = static_cast<int>(100 * std::abs(voltage) / VOLTAGE_LIMIT);
 
     if (voltage < 0) {
         digitalWrite(forwardDirectionPin, !baseDir);  // Backward

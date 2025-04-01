@@ -1,4 +1,4 @@
-#include "../../include/Robot.h"
+#include "../../../include/Robot.h"
 #include <fstream>
 
 /**
@@ -34,7 +34,7 @@ void Robot::openLoopData() {
     rightMotor.setSpeed(12);
 
     // Data taken every millisecond 
-    unsigned long duration = 1*1000000; // To seconds; 
+    unsigned long duration = 4*1000000; // To seconds; 
     while (micros() - startTime < duration) {
         currentTime = micros() - startTime;
 

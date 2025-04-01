@@ -27,7 +27,7 @@ public:
     static constexpr double TICKS_COUNT_AMT_103 = 4*2048;  // AMT103
     static constexpr int ENCODER_COUNTS_PER_REV = TICKS_COUNT_AMT_103 * GEAR_RATIO;
     static constexpr double WHEEL_DIAMETER = 6.0325;  // cm
-    static constexpr double ODOMETER_DIAMETER = 4.45;  // cm
+    static constexpr double ODOMETER_DIAMETER = 0.0445;  // m
 
     static constexpr double VOLTAGE_LIMIT = 24.0;
     

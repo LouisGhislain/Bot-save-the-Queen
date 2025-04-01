@@ -15,10 +15,8 @@ public:
     Robot();
     void start();
     void stop();
-    double getAngle() const;
     void lowLevelController(double ref_speed_left, double ref_speed_right);
     void middleLevelController(double x, double y, double goal_angle);
-    void routine();
     void openLoopData();
     void printDistance();
     void lowLevelTest();
@@ -29,6 +27,14 @@ public:
     void updateOdometry();
     void initCoords();
     //void teensy_push();
+
+    // Sampling time
+    static constexpr double SAMPLING_TIME = 0.001;
+
+    // Odometry variables
+    double xCoord = 0.0;                 // in m (x-coordinate of the robot)
+    double yCoord = 0.0;                 // in m (y-coordinate of the robot)
+    double theta = 0.0;                  // in radians (angle of the robot, 0 = x-axis)
 
 private:
     void initializeSPI(); 
@@ -44,8 +50,7 @@ private:
     double u_volt_left = 0;
     double u_volt_right = 0;
 
-    // Sampling time
-    static constexpr double SAMPLING_TIME = 0.001;
+
 
     // Back EMF Constant
     static constexpr double K_phi = 0.02859;
@@ -53,8 +58,8 @@ private:
     // PI gains
     static constexpr double KpPos = 0.01;
     static constexpr double KiPos = 0.0;
-    static constexpr double KpSpeed = 0.1825431783524443; //0.27381476752866646; //0.5476295350573329;
-    static constexpr double KiSpeed = 0.48037678513801135; //0.7205651777070171; //1.4411303554140342;
+    static constexpr double KpSpeed = 1.1218459631554034;
+    static constexpr double KiSpeed = 2.8040330710262706;
 
     // Middle level controller gains
     static constexpr double KpRho = 0.00333;
@@ -74,12 +79,8 @@ private:
     double last_distr = 0.0;
     double distl = 0.0;
     double distr = 0.0;
-    double distanceBetweenWheels = 0.15; // in m (distance between the two wheels)
-    double wheel_radius = 0.035;         // in m (radius of the wheels)
-
-    double xCoord = 0.0;                 // in m (x-coordinate of the robot)
-    double yCoord = 0.0;                 // in m (y-coordinate of the robot)
-    double theta = 0.0;                  // in radians (angle of the robot, 0 = x-axis)
+    double distanceBetweenOdometers = 0.28806; // in m (distance between the two wheels)
+    double wheel_radius = 0.0295;         // in m (radius of the wheels)
 
     int starting_pos = 0;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
     double starting_angle = 0.0;         // in radians (initial angle of the robot, 0 = x-axis)
@@ -88,9 +89,6 @@ private:
     static constexpr int STATE0_PIN = 35;
     static constexpr int STATE1_PIN = 31;
     static constexpr int STATE2_PIN = 29;
-    
-
-
     
 };
 

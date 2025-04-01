@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Robot.h"
 #include "Screen.h"
+#include <unistd.h> // For usleep function
+#include <cmath>
 
 int main() {
     Robot robot;
@@ -9,11 +11,10 @@ int main() {
     char choice;
 
     std::cout << "Select an option:" << std::endl;
-    std::cout << "  a: Run routine" << std::endl;
-    std::cout << "  b: Print robot position (angle)" << std::endl;
+    std::cout << "  b: Odometry (x,y,theta)" << std::endl;
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
     std::cout << "  t: Open Loop test" << std::endl;
-    std::cout << "  d: Distance test" << std::endl;
+    std::cout << "  d: Distance test (meters)" << std::endl;
     std::cout << "  l: Lowlevel test" << std::endl;
     std::cout << "  f: Braking test" << std::endl;
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
@@ -32,14 +33,32 @@ int main() {
     }
 
     switch(choice) {
-        case 'a':
-            std::cout << "Launching routine..." << std::endl;
-            robot.routine();
-            break;
-        
         case 'b': {
-            double angle = robot.getAngle();
-            std::cout << "Robot angle (as proxy for position): " << angle << " degrees" << std::endl;
+            /*
+            while (true) {
+                robot.updateOdometry();
+                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *360/(2*M_PI)<< std::endl;
+                usleep(100000); // Sleep for 0.1 seconds
+            }
+            */
+            unsigned long startloop;
+            unsigned long looptime;
+        
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry();
+                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *360/(2*M_PI)<< std::endl;
+                
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }else{
+                    std::cout << "Loop time okay: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
+
             break;
         }
         case 'c': {

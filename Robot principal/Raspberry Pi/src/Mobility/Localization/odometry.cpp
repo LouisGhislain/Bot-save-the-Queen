@@ -1,4 +1,4 @@
-#include "../../include/Robot.h"
+#include "../../../include/Robot.h"
 
 /*! \brief Odometry
  * Updates the robot position
@@ -6,16 +6,13 @@
  * This function computes the robot's x and y coordinates and its angle based on the wheel speeds over time
  */
 void Robot::updateOdometry(){
-    // Update last distances
-    last_distl = distl;
-    last_distr = distr;
 
     // Get distance travelled by each wheel
-    distl = distl + (leftMotor.getSpeed() * SAMPLING_TIME * wheel_radius); // in m
-    distr = distr + (rightMotor.getSpeed() * SAMPLING_TIME * wheel_radius);
+    distl = leftMotor.getDistance(); // in m
+    distr = rightMotor.getDistance();
 
     // Compute the angle of the robot
-    theta = ((distr - distl) / (distanceBetweenWheels)) + starting_angle; // in radians
+    theta = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians
     // Normalize angle to range [-π, π]
     while (theta > M_PI) {
         theta -= 2 * M_PI;
@@ -28,6 +25,10 @@ void Robot::updateOdometry(){
     double displacement = (distl - last_distl + distr - last_distr) / 2;
     xCoord = xCoord + displacement * cos(theta);
     yCoord = yCoord + displacement * sin(theta);
+
+    // Update last distances
+    last_distl = distl; 
+    last_distr = distr;
 
     // Print for verification
     // printf("X: %.2f, Y: %.2f, Theta: %.2f\n", xCoord, yCoord, theta);

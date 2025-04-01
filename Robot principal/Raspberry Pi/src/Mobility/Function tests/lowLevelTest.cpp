@@ -1,4 +1,4 @@
-#include "../../include/Robot.h"
+#include "../../../include/Robot.h"
 #include <fstream>
 
 /**
@@ -21,11 +21,11 @@ void Robot::lowLevelTest(){
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
 
-    double ref_speed_left = 41.3;
-    double ref_speed_right = 41.3;
+    double ref_speed_left = 10.0;
+    double ref_speed_right = 10.0;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 3*1000000; // To seconds;
+    unsigned long duration = 4*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;
@@ -50,20 +50,7 @@ void Robot::lowLevelTest(){
         }
         usleep(SAMPLING_TIME*1e6 - looptime);
         }
-    /*
-    ref_speed_left = 60;
-    ref_speed_right = 60;
-    while (micros() - startTime < 2*duration) {
-        currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
-        usleep(SAMPLING_TIME * 1e6); // Convert to microseconds
-        file << currentTime << ", " 
-                << leftMotor.getSpeed() << ", " 
-                << rightMotor.getSpeed() << ", "
-                << u_volt_left << ", " 
-                << u_volt_right << "\n";
-    }
-    */
+    
     stop();
     file.close();
     std::cout << "Test completed" << std::endl;
