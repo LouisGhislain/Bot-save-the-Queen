@@ -47,7 +47,7 @@ double Motor::getSpeed() const {
 */
 double Motor::getDistance() const {
     int32_t ticks = readData("distance");
-    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1.012215896;  // Corrective factor
+    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1.009748223;  // Corrective factor
     return distance;
 }
 
