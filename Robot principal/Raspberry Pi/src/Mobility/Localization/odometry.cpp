@@ -9,7 +9,7 @@ void Robot::updateOdometry(){
 
     // Get distance travelled by each wheel
     distl = leftMotor.getDistance(); // in m
-    distr = rightMotor.getDistance();
+    distr = rightMotor.getDistance(); // Corrective factor for right wheel = 0.997126437
 
     // Compute the angle of the robot
     theta = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians
@@ -23,8 +23,8 @@ void Robot::updateOdometry(){
 
     // Compute the position of the robot
     double displacement = (distl - last_distl + distr - last_distr) / 2;
-    xCoord = xCoord + displacement * cos(theta);
-    yCoord = yCoord + displacement * sin(theta);
+    xCoord = xCoord + displacement * cosl(theta);
+    yCoord = yCoord + displacement * sinl(theta);
 
     // Update last distances
     last_distl = distl; 
@@ -51,12 +51,12 @@ void Robot::initCoords(){
     case 2: // Yellow bottom
         xCoord = 2.7;
         yCoord = 0.9;
-        starting_angle = M_PI;
+        starting_angle = M_PIL;
         break;
     case 3: // Yellow side
         xCoord = 0.15;
         yCoord = 0.7;
-        starting_angle = M_PI;
+        starting_angle = M_PIL;
         break;    
     default: // Default case (if no starting position is set)
         xCoord = 0.3;

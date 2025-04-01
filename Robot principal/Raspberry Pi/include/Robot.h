@@ -34,7 +34,7 @@ public:
     // Odometry variables
     double xCoord = 0.0;                 // in m (x-coordinate of the robot)
     double yCoord = 0.0;                 // in m (y-coordinate of the robot)
-    double theta = 0.0;                  // in radians (angle of the robot, 0 = x-axis)
+    long double theta = 0.0;                  // in radians (angle of the robot, 0 = x-axis)
 
 private:
     void initializeSPI(); 
