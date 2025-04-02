@@ -53,7 +53,7 @@ private:
 
 
     // Back EMF Constant
-    static constexpr double K_phi = 0.02859;
+    static constexpr double K_phi = 0.02859; // in V/(rad/s) (Back EMF constant for the motors)
 
     // PI gains
     static constexpr double KpPos = 0.01;

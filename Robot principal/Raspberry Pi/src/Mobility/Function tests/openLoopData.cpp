@@ -30,25 +30,27 @@ void Robot::openLoopData() {
     double backemf;
     double previoustime = 0.0;
 
-    //leftMotor.setSpeed(6.25);
+
     double integratedDistance= 0.0;
     unsigned long startloop;
     unsigned long looptime;
 
-    rightMotor.setSpeed(2);
+    rightMotor.setSpeed(3);
+    leftMotor.setSpeed(3);
+
     unsigned long startTime = micros(); // Current time in µs
 
-    while (integratedDistance<2*M_PI){
-        startloop = micros();
-        integratedDistance += ((rightMotor.getSpeed())/2)*(0.001); // in m
-        fprintf(stderr, "Integrated distance: %f\n", integratedDistance);
-        looptime = micros() - startloop;
-        usleep(0.001*1e6 - looptime);
-    }
-    leftMotor.setSpeed(0);
-    /*
-    // Data taken every millisecond 
-    unsigned long duration = 4*1000000; // To seconds; 
+    // while (integratedDistance<2*M_PI){
+    //     startloop = micros();
+    //     integratedDistance += ((rightMotor.getSpeed()))*(0.001); // in m
+    //     fprintf(stderr, "Integrated distance: %f\n", integratedDistance);
+    //     looptime = micros() - startloop;
+    //     usleep(0.001*1e6 - looptime);
+    // }
+    // leftMotor.setSpeed(0);
+    
+    //Data taken every millisecond 
+    unsigned long duration = 100*1000000; // To seconds; 
     while (micros() - startTime < duration) {
         currentTime = micros() - startTime;
 
@@ -59,7 +61,6 @@ void Robot::openLoopData() {
             previoustime = currentTime;
         }
     }
-    */
 
     leftMotor.stop();
     rightMotor.stop();
