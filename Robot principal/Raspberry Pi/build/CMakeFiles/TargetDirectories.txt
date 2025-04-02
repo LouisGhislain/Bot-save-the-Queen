@@ -1,3 +1,0 @@
-/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir
-/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/CMakeFiles/edit_cache.dir
-/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/CMakeFiles/rebuild_cache.dir
