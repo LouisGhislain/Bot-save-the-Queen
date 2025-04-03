@@ -63,7 +63,7 @@ double Motor::getBackEMF() const {
     return BackEMF;
 }
 
-void Motor::setSpeed(double voltage) {
+void Motor::setVoltage(double voltage) {
     voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
     double BackEMF = this->getBackEMF();
     double dutyCycle = (voltage-BackEMF)/(24-BackEMF) ; // Duty cycle in [0, 1]

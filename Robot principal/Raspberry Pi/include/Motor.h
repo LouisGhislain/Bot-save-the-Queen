@@ -38,7 +38,7 @@ public:
     double getSpeed() const;
     double getDistance() const;
     double getBackEMF() const;
-    void setSpeed(double voltage);
+    void setVoltage(double voltage);
     void stop();
     void start();
     void brake();

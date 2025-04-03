@@ -4,7 +4,7 @@
  * @brief Low-level controller - Imposes a speed to the motors
  * 
  * This function implements a PI controller for the motors by modifying directly the speed of the motors.
- * Feeds into the setSpeed function of the Motor class.
+ * Feeds into the setVoltage function of the Motor class.
  * 
  * @param ref_speed_left Reference speed for the left motor
  * @param ref_speed_right Reference speed for the right motor
@@ -34,6 +34,6 @@ void Robot::lowLevelController(double ref_speed_left, double ref_speed_right) {
     u_volt_right += backEMF_right;*/
 
     // Set motor speeds
-    leftMotor.setSpeed(u_volt_left);
-    rightMotor.setSpeed(u_volt_right);
+    leftMotor.setVoltage(u_volt_left);
+    rightMotor.setVoltage(u_volt_right);
 }
