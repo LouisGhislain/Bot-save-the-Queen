@@ -3,6 +3,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: \
  /usr/include/stdc-predef.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Localization/../../../include/Robot.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Localization/../../../include/Motor.h \
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Localization/../../../include/SharedStruct.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

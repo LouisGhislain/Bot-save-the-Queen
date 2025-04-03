@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SharedStruct.h"
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
 #include <cmath>

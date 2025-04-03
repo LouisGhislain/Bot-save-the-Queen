@@ -2,6 +2,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/Motor.cpp \
  /usr/include/stdc-predef.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/../../../include/Motor.h \
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/../../../include/SharedStruct.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

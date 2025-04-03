@@ -49,8 +49,8 @@ void Robot::openLoopData() {
     //Data taken every millisecond 
     unsigned long duration = 100*1000000; // To seconds; 
     while (micros() - startTime < duration) {
-        rightMotor.setSpeed(-6.4);
-        leftMotor.setSpeed(-6.4);
+        rightMotor.setSpeed(6);
+        leftMotor.setSpeed(6);
         currentTime = micros() - startTime;
 
         //Save data every millisecond

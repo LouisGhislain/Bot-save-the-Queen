@@ -6,6 +6,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -243,6 +244,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -480,6 +482,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -717,6 +720,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -954,6 +958,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -1191,6 +1196,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -1433,6 +1439,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -1675,6 +1682,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -1912,6 +1920,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/star
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -2149,6 +2158,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stop
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -2386,6 +2396,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -2622,6 +2633,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/Mobility/Motors/Motor.cpp
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -2852,6 +2864,7 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -3285,6 +3298,7 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o
  /usr/include/stdc-predef.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath
@@ -3522,6 +3536,11 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
  /usr/include/c++/12/bits/fstream.tcc
 
+CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/SharedSruct.cpp
+ /usr/include/stdc-predef.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
+
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/main.cpp
  /usr/include/stdc-predef.h
@@ -3708,6 +3727,7 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o
  /usr/include/c++/12/bits/istream.tcc
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Robot.h
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/Motor.h
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include/SharedStruct.h
  /usr/local/include/wiringPi.h
  /usr/local/include/wiringPiSPI.h
  /usr/include/c++/12/cmath

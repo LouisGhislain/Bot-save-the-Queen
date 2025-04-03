@@ -1,4 +1,5 @@
 #include "../../../include/Robot.h"
+#include "../../../include/SharedStruct.h"
 
 /**
  * @brief Start the robot

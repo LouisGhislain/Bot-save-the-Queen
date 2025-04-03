@@ -489,6 +489,30 @@ src/Robot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s
 .PHONY : src/Robot.cpp.s
 
+src/SharedSruct.o: src/SharedSruct.cpp.o
+.PHONY : src/SharedSruct.o
+
+# target to build an object file
+src/SharedSruct.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o
+.PHONY : src/SharedSruct.cpp.o
+
+src/SharedSruct.i: src/SharedSruct.cpp.i
+.PHONY : src/SharedSruct.i
+
+# target to preprocess a source file
+src/SharedSruct.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.i
+.PHONY : src/SharedSruct.cpp.i
+
+src/SharedSruct.s: src/SharedSruct.cpp.s
+.PHONY : src/SharedSruct.s
+
+# target to generate assembly for a file
+src/SharedSruct.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.s
+.PHONY : src/SharedSruct.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -567,6 +591,9 @@ help:
 	@echo "... src/Robot.o"
 	@echo "... src/Robot.i"
 	@echo "... src/Robot.s"
+	@echo "... src/SharedSruct.o"
+	@echo "... src/SharedSruct.i"
+	@echo "... src/SharedSruct.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/Multimedia/Buzzer.cpp" "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o" "gcc" "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o.d"
   "/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/Multimedia/Screen.cpp" "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o" "gcc" "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o.d"
   "/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/Robot.cpp" "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o" "gcc" "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d"
+  "/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/SharedSruct.cpp" "CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o" "gcc" "CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o.d"
   "/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/src/main.cpp" "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o" "gcc" "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d"
   )
 

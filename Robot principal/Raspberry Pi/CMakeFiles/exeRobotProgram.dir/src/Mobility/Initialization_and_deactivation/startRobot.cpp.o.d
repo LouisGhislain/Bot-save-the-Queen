@@ -3,6 +3,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/star
  /usr/include/stdc-predef.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Initialization\ and\ deactivation/../../../include/Robot.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Initialization\ and\ deactivation/../../../include/Motor.h \
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/src/Mobility/Initialization\ and\ deactivation/../../../include/SharedStruct.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

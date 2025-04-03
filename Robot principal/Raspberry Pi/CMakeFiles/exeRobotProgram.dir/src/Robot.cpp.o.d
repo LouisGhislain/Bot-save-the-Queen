@@ -3,6 +3,7 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
  /usr/include/stdc-predef.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/Robot.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/Motor.h \
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/SharedStruct.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

@@ -151,6 +151,7 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/istream.tcc \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/Robot.h \
  /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/Motor.h \
+ /home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot\ principal/Raspberry\ Pi/include/SharedStruct.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath /usr/include/math.h \
  /usr/include/aarch64-linux-gnu/bits/math-vector.h \

@@ -5,6 +5,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: src/Actuators/tee
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -241,6 +242,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCansLift.cpp.o: src/Actuators
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -477,6 +479,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyLift.cpp.o: src/Actuators/tee
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -713,6 +716,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o:
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -949,6 +953,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -1185,6 +1190,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.o: s
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -1426,6 +1432,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o: s
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -1667,6 +1674,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o: 
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -1903,6 +1911,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/star
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -2139,6 +2148,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stop
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -2375,6 +2385,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: src/Mob
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -2610,6 +2621,7 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: src/Mob
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: src/Mobility/Motors/Motor.cpp \
   /usr/include/stdc-predef.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -2839,6 +2851,7 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: src/Multimedia/Buzze
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -3270,6 +3283,7 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: src/Robot.cpp \
   /usr/include/stdc-predef.h \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -3507,6 +3521,10 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: src/Robot.cpp \
   /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
   /usr/include/c++/12/bits/fstream.tcc
 
+CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o: src/SharedSruct.cpp \
+  /usr/include/stdc-predef.h \
+  include/SharedStruct.h
+
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/stdc-predef.h \
   /usr/include/c++/12/iostream \
@@ -3692,6 +3710,7 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/12/bits/istream.tcc \
   include/Robot.h \
   include/Motor.h \
+  include/SharedStruct.h \
   /usr/local/include/wiringPi.h \
   /usr/local/include/wiringPiSPI.h \
   /usr/include/c++/12/cmath \
@@ -3747,6 +3766,10 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: src/main.cpp \
 
 
 src/main.cpp:
+
+src/SharedSruct.cpp:
+
+include/Screen.h:
 
 /usr/include/c++/12/clocale:
 
@@ -3822,8 +3845,6 @@ src/main.cpp:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h:
 
-include/Screen.h:
-
 /usr/include/c++/12/bits/exception_defines.h:
 
 /usr/include/aarch64-linux-gnu/bits/getopt_posix.h:
@@ -3864,17 +3885,7 @@ src/Multimedia/Buzzer.cpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/c++/12/bits/refwrap.h:
-
-/usr/include/c++/12/cerrno:
-
-/usr/include/aarch64-linux-gnu/bits/posix_opt.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/c++/12/bits/fstream.tcc:
+/usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/c++/12/cmath:
 
@@ -3902,17 +3913,23 @@ src/Multimedia/Buzzer.cpp:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs.h:
 
-/usr/include/aarch64-linux-gnu/bits/floatn.h:
+include/SharedStruct.h:
+
+/usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/c++/12/bits/fstream.tcc:
 
 /usr/include/c++/12/bits/allocator.h:
 
-/usr/include/aarch64-linux-gnu/bits/types.h:
+/usr/include/aarch64-linux-gnu/bits/floatn.h:
 
-/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
+/usr/include/c++/12/bits/refwrap.h:
 
-/usr/include/aarch64-linux-gnu/bits/setjmp.h:
+/usr/include/c++/12/cerrno:
 
-/usr/include/aarch64-linux-gnu/bits/timesize.h:
+/usr/include/aarch64-linux-gnu/bits/posix_opt.h:
 
 /usr/include/c++/12/bits/new_allocator.h:
 
@@ -3920,15 +3937,23 @@ src/Multimedia/Buzzer.cpp:
 
 /usr/include/features-time64.h:
 
-/usr/include/aarch64-linux-gnu/bits/select.h:
-
-/usr/include/c++/12/cctype:
-
 /usr/include/c++/12/stdexcept:
 
 /usr/include/c++/12/istream:
 
 src/Mobility/Function\ tests/lowLevelTest.cpp:
+
+/usr/include/aarch64-linux-gnu/bits/timesize.h:
+
+/usr/include/c++/12/cctype:
+
+/usr/include/aarch64-linux-gnu/bits/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/types.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/aarch64-linux-gnu/bits/setjmp.h:
 
 /usr/include/c++/12/bits/concept_check.h:
 
@@ -3939,8 +3964,6 @@ src/Mobility/Function\ tests/lowLevelTest.cpp:
 /usr/include/aarch64-linux-gnu/bits/typesizes.h:
 
 /usr/include/c++/12/bits/basic_string.tcc:
-
-/usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/c++/12/bits/exception.h:
 
@@ -4054,8 +4077,6 @@ src/Mobility/Initialization\ and\ deactivation/stopRobot.cpp:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h:
 
-/usr/include/aarch64-linux-gnu/bits/locale.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/c++/12/bits/cxxabi_init_exception.h:
@@ -4093,6 +4114,8 @@ src/Mobility/Motors/Motor.cpp:
 /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h:
 
 /usr/include/aarch64-linux-gnu/sys/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/locale.h:
 
 /usr/include/c++/12/iosfwd:
 
