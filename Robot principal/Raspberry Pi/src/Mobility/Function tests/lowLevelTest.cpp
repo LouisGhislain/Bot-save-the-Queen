@@ -21,11 +21,11 @@ void Robot::lowLevelTest(){
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
 
-    double ref_speed_left = 10.0;
-    double ref_speed_right = 10.0;
+    double ref_speed_left = 30.0;
+    double ref_speed_right = 30.0;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 4*1000000; // To seconds;
+    unsigned long duration = 3*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;

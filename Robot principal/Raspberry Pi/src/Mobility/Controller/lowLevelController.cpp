@@ -25,14 +25,6 @@ void Robot::lowLevelController(double ref_speed_left, double ref_speed_right) {
     u_volt_left = KpSpeed * e_speed_left + KiSpeed * intESpeedLeft;
     u_volt_right = KpSpeed * e_speed_right + KiSpeed * intESpeedRight;
 
-    // Back EMF Compensation
-    /*
-    double backEMF_left = K_phi * current_speed_left;
-    double backEMF_right = K_phi * current_speed_right;
-
-    u_volt_left += backEMF_left;
-    u_volt_right += backEMF_right;*/
-
     // Set motor speeds
     leftMotor.setVoltage(u_volt_left);
     rightMotor.setVoltage(u_volt_right);

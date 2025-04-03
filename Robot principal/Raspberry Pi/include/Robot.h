@@ -55,8 +55,8 @@ private:
     // PI gains
     static constexpr double KpPos = 0.01;
     static constexpr double KiPos = 0.0;
-    static constexpr double KpSpeed = 1.1218459631554034;
-    static constexpr double KiSpeed = 2.8040330710262706;
+    static constexpr double KpSpeed = 1.4048464035277164;
+    static constexpr double KiSpeed = 2.6222100340415317;
 
     // Middle level controller gains
     static constexpr double KpRho = 0.00333;
