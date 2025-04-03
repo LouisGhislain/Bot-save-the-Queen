@@ -3,6 +3,7 @@
 
 #include "Motor.h"
 #include <wiringPi.h>
+#include "SharedStruct.h"
 #include <cstdint>
 #include <cmath>
 #include <unistd.h> // For sleep function
@@ -31,11 +32,6 @@ public:
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
 
-    // Odometry variables
-    double xCoord = 0.0;                 // in m (x-coordinate of the robot)
-    double yCoord = 0.0;                 // in m (y-coordinate of the robot)
-    long double theta = 0.0;                  // in radians (angle of the robot, 0 = x-axis)
-
 private:
     void initializeSPI(); 
     void resetValues();
@@ -43,6 +39,7 @@ private:
     Motor leftMotor;
     Motor rightMotor;
 
+    // Motor control variables
     double intESpeedLeft = 0.0;
     double intESpeedRight = 0.0;
     double intEPosLeft = 0.0;

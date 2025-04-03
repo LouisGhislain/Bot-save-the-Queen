@@ -33,8 +33,8 @@ void Robot::resetValues() {
     wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));    
 
     // Reset coordinates and distance values
-    xCoord = 0;
-    yCoord = 0;
+    sv.xCoord = 0;
+    sv.yCoord = 0;
     lastLeftDistance = 0;
     lastRightDistance = 0;
     intEPosLeft = intEPosRight = 0.0;

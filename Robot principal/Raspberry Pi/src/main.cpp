@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Robot.h"
 #include "Screen.h"
+#include "SharedStruct.h"
 #include <unistd.h> // For usleep function
 #include <cmath>
 
@@ -48,7 +49,7 @@ int main() {
                 startloop = micros();
         
                 robot.updateOdometry();
-                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *180/(M_PI)<< std::endl;
+                std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
                 
                 looptime = micros() - startloop;
                 if (looptime > robot.SAMPLING_TIME*1e6) {

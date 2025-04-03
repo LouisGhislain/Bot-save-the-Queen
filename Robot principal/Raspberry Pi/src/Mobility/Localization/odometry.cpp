@@ -12,19 +12,19 @@ void Robot::updateOdometry(){
     distr = rightMotor.getDistance(); // Corrective factor for right wheel = 0.997126437
 
     // Compute the angle of the robot
-    theta = 0.999683332 * ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
+    sv.theta = 0.999683332 * ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
     // Normalize angle to range [-π, π]
-    while (theta > M_PI) {
-        theta -= 2 * M_PI;
+    while (sv.theta > M_PI) {
+        sv.theta -= 2 * M_PI;
     }
-    while (theta <= -M_PI) {
-        theta += 2 * M_PI;
+    while (sv.theta <= -M_PI) {
+        sv.theta += 2 * M_PI;
     }
 
     // Compute the position of the robot
     double displacement = (distl - last_distl + distr - last_distr) / 2;
-    xCoord = xCoord + displacement * cosl(theta);
-    yCoord = yCoord + displacement * sinl(theta);
+    sv.xCoord = sv.xCoord + displacement * cosl(sv.theta);
+    sv.yCoord = sv.yCoord + displacement * sinl(sv.theta);
 
     // Update last distances
     last_distl = distl; 
@@ -39,28 +39,28 @@ void Robot::initCoords(){
     switch (starting_pos)
     {
     case 0: // Blue bottom
-        xCoord = 0.3;             // in m (with 0,0 at the low left corner, angle 0 = x-axis)
-        yCoord = 0.9;             // in m
+        sv.xCoord = 0.3;             // in m (with 0,0 at the low left corner, angle 0 = x-axis)
+        sv.yCoord = 0.9;             // in m
         starting_angle = 0.0;     // in radians
         break;
     case 1: // Blue side
-        xCoord = 2.85;
-        yCoord = 0.7;
+        sv.xCoord = 2.85;
+        sv.yCoord = 0.7;
         starting_angle = 0.0;
         break;
     case 2: // Yellow bottom
-        xCoord = 2.7;
-        yCoord = 0.9;
+        sv.xCoord = 2.7;
+        sv.yCoord = 0.9;
         starting_angle = M_PI;
         break;
     case 3: // Yellow side
-        xCoord = 0.15;
-        yCoord = 0.7;
+        sv.xCoord = 0.15;
+        sv.yCoord = 0.7;
         starting_angle = M_PI;
         break;    
     default: // Default case (if no starting position is set)
-        xCoord = 0.3;
-        yCoord = 0.9;
+        sv.xCoord = 0.3;
+        sv.yCoord = 0.9;
         starting_angle = 0.0;
         break;
     }
