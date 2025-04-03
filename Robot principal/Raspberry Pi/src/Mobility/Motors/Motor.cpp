@@ -53,10 +53,22 @@ double Motor::getDistance() const {
     return distance;
 }
 
+/*
+* @brief Compute the back EMF of the motor based on its speed
+*
+* @return Back EMF of the motor in V
+*/
+double Motor::getBackEMF() const {
+    double BackEMF = this->getSpeed() * kPhiOfMotor * GEAR_RATIO; // Back EMF in V
+    return BackEMF;
+}
+
 void Motor::setSpeed(double voltage) {
     voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
+    double BackEMF = this->getBackEMF();
+    double dutyCycle = (voltage-BackEMF)/(24-BackEMF) ; // Duty cycle in [0, 1]
 
-    if (voltage < 0) {
+    if (dutyCycle < 0) {
         digitalWrite(forwardDirectionPin, !baseDir);  // Backward
         digitalWrite(backwardDirectionPin, baseDir);
     } else {
@@ -64,7 +76,7 @@ void Motor::setSpeed(double voltage) {
         digitalWrite(backwardDirectionPin, !baseDir);
     }
 
-    pwmWrite(pwmPin, 480*(voltage/VOLTAGE_LIMIT));
+    pwmWrite(pwmPin, 480*(fabs(dutyCycle)));
 }
 
 void Motor::stop() {
