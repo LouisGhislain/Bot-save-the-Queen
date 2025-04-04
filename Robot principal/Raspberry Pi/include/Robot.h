@@ -9,6 +9,14 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+//I2C
+#include <wiringPiI2C.h>
+#include <wiringPi.h>
+#include <string>
+#define OLED_ADDR 0x3C 
+#define OLED_CMD  0x00  
+#define OLED_DATA 0x40  
+
 
 class Robot {
 public:
@@ -26,7 +34,12 @@ public:
     void teensy_cans();
     void teensy_lift();
     void teensy_cans_lift();
-    //void teensy_push();
+    void screen_init();         
+    void screen_clear();        
+    void screen_displayText(const std::string &text); 
+    void teensy_init();
+    void teensy_send_command(uint8_t command);
+
 
 private:
     void initializeSPI(); 
@@ -72,6 +85,10 @@ private:
     static constexpr int STATE0_PIN = 35;
     static constexpr int STATE1_PIN = 31;
     static constexpr int STATE2_PIN = 29;
+
+    // File descriptor for I2C
+    int fd_OLED;
+    int fd_teensy: 
     
     
 };

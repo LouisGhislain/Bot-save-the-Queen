@@ -50,15 +50,17 @@ void receiveEvent(int bytes) {
                 grabInProgress = true;
                 myHoldCans.grabAll();
                 delay(2000);
+                blinkLED(3);
                 myLift.up_and_down(110); //2cm 
                 delay(2000);
                 myPushPlank.pull_plank_grab();
                 delay(100);
                 grabInProgress = false ; 
                 Wire.write(CMD_GRAB_DONE);
+            break;
                 break;
             case CMD_SEPARATE_STACK:
-                build_second_stage();
+                //build_second_stage();
                 break;
         }
     }
@@ -76,7 +78,7 @@ void setup() {
     myPushPlank.begin();
     myHoldCans.begin();
     myLift.begin();
-    init_input_rasp();
+    //init_input_rasp();
 
     myHoldCans.releaseAll();
 

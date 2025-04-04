@@ -1,10 +1,8 @@
 #include <iostream>
 #include "Robot.h"
-#include "Screen.h"
 
 int main() {
     Robot robot;
-    //Screen screen;
 
     char choice;
 
@@ -95,13 +93,13 @@ int main() {
         }
 
         /*case 'o': {
-            screen.init();
+            robot.screen_init();
             std::string message;
             std::cout << "Entrez le message à afficher : ";
             std::cin.ignore(); // Évite un problème de buffer
             std::getline(std::cin, message);
-            screen.clear();
-            screen.displayText(message);
+            robot.screen_clear();
+            robot.screen_displayText(message);
             break;
         }*/
         
