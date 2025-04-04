@@ -1,5 +1,27 @@
 #include "../../../include/Robot.h"
 
+// Define global movement parameters (must be defined in one .cpp file)
+const MovementParams manoeuvre {
+    true,   // activated_target_angle
+    0.005,  // d0
+    0.2,    // vMax
+    0.001   // stop_robot_distance
+};
+
+const MovementParams deplacement {
+    false,  // activated_target_angle
+    0.010,  // d0
+    0.5,    // vMax
+    0.005   // stop_robot_distance
+};
+
+const MovementParams orientation {
+    true,   // activated_target_angle
+    0.005,  // d0
+    0.0,    // vMax
+    0.001   // stop_robot_distance
+};
+
 /**
  * @brief Middle-level controller - Go to a position
  * 

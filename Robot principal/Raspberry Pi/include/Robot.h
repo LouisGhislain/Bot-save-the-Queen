@@ -12,47 +12,36 @@
 #include <vector>
 #include <tuple>
 
-// Use a common base struct or class for polymorphism if needed
 struct MovementParams {
     bool activated_target_angle;
-    double d0;          // in m (distance of acceleration phase)
-    double vMax;         // in m/s (maximum speed)
-    double acceleration; // in m/s²
-    double stop_robot_distance; // in m
-    double wmax; // in rad/s (maximum angular speed)
-    
-    // Constructor to ensure proper initialization
-    MovementParams(bool angle, double d, double v, double stop_dist)
-        : activated_target_angle(angle), d0(d), vMax(v),
-          acceleration((v * v) / (2 * d)), stop_robot_distance(stop_dist), wmax(2 * v / 0.25276) {} // 0.25276 = distanceBetweenWheels
+    double d0;          
+    double vMax;        
+    double stop_robot_distance; 
+    double acceleration;
+    double wmax;
+
+    static constexpr double distanceBetweenWheel = 0.25276;
+
+    MovementParams()
+        : activated_target_angle(false), d0(0), vMax(0), stop_robot_distance(0), acceleration(0), wmax(0) {}
+
+    MovementParams(bool activated_target_angle, double d0, double vMax, double stop_robot_distance)
+        : activated_target_angle(activated_target_angle),
+          d0(d0),
+          vMax(vMax),
+          stop_robot_distance(stop_robot_distance),
+          acceleration((d0 > 0) ? (vMax * vMax / (2 * d0)) : 0.0),
+          wmax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
 };
 
-// Then define your specific configurations
-const MovementParams manoeuvre {
-    true,   // activated_target_angle
-    0.005,  // d0
-    0.2,    // vMax
-    0.001   // stop_robot_distance
-};
+// Declare as extern to be used in multiple files
+extern const MovementParams manoeuvre;
+extern const MovementParams deplacement;
+extern const MovementParams orientation;
 
-const MovementParams deplacement {
-    false,  // activated_target_angle
-    0.010,  // d0
-    0.5,    // vMax
-    0.005   // stop_robot_distance
-};
+// Declare the function
+void controlRobot(const MovementParams& params);
 
-const MovementParams orientation {
-    true,   // activated_target_angle
-    0.005,  // d0
-    0.0,    // vMax
-    0.001   // stop_robot_distance
-};
-
-// Your function would look like:
-void controlRobot(const MovementParams& params) {
-    // Use params.activated_target_angle, params.vMax, etc.
-}
 class Robot {
 public:
     Robot();
