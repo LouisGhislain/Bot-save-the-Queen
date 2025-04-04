@@ -5,26 +5,29 @@
  * 
  * This function computes the robot's x and y coordinates and its angle based on the wheel speeds over time
  */
-void Robot::updateOdometry(){
+void Robot::updateOdometry(void *sqid){
+
+    GAME * squid = (GAME *)sqid;
+    Robot& robot = *squid->robot;   
 
     // Get distance travelled by each wheel
     distl = leftMotor.getDistance(); // in m
     distr = rightMotor.getDistance(); // Corrective factor for right wheel = 0.997126437
 
     // Compute the angle of the robot
-    sv.theta = 0.999683332 * ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
+    robot->angle = 0.999683332 * ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
     // Normalize angle to range [-π, π]
-    while (sv.theta > M_PI) {
-        sv.theta -= 2 * M_PI;
+    while (robot->angle > M_PI) {    
+        robot->angle -= 2 * M_PI;
     }
-    while (sv.theta <= -M_PI) {
-        sv.theta += 2 * M_PI;
+    while (robot->angle <= -M_PI) {
+        robot->angle += 2 * M_PI;
     }
 
     // Compute the position of the robot
     double displacement = (distl - last_distl + distr - last_distr) / 2;
-    sv.xCoord = sv.xCoord + displacement * cosl(sv.theta);
-    sv.yCoord = sv.yCoord + displacement * sinl(sv.theta);
+    robot->cart_pos->x = robot->cart_pos->x + displacement * cosl(robot->angle);
+    robot->cart_pos->y = robot->cart_pos->y + displacement * sinl(robot->angle);
 
     // Update last distances
     last_distl = distl; 
@@ -35,33 +38,36 @@ void Robot::updateOdometry(){
 
 }
 
-void Robot::initCoords(){
+void Robot::initCoords(void *sqid) {
+    GAME *squid = (GAME *)sqid;
+    Robot& robot = *squid->robot; 
+
     switch (starting_pos)
     {
     case 0: // Blue bottom
-        sv.xCoord = 0.3;             // in m (with 0,0 at the low left corner, angle 0 = x-axis)
-        sv.yCoord = 0.9;             // in m
-        starting_angle = 0.0;     // in radians
+        robot->cart_pos->x = 0.3;  // in m (origin at the bottom left, angle 0 = x-axis)
+        robot->cart_pos->y = 0.9;  // in m
+        robot->angle     = 0.0;   // in radians
         break;
     case 1: // Blue side
-        sv.xCoord = 2.85;
-        sv.yCoord = 0.7;
-        starting_angle = 0.0;
+        robot->cart_pos->x = 2.85;
+        robot->cart_pos->y = 0.7;
+        robot->angle     = 0.0;
         break;
     case 2: // Yellow bottom
-        sv.xCoord = 2.7;
-        sv.yCoord = 0.9;
-        starting_angle = M_PI;
+        robot->cart_pos->x = 2.7;
+        robot->cart_pos->y = 0.9;
+        robot->angle     = M_PI;
         break;
     case 3: // Yellow side
-        sv.xCoord = 0.15;
-        sv.yCoord = 0.7;
-        starting_angle = M_PI;
-        break;    
-    default: // Default case (if no starting position is set)
-        sv.xCoord = 0.3;
-        sv.yCoord = 0.9;
-        starting_angle = 0.0;
+        robot->cart_pos->x = 0.15;
+        robot->cart_pos->y = 0.7;
+        robot->angle     = M_PI;
+        break;
+    default: // Default starting position
+        robot->cart_pos->x = 0.3;
+        robot->cart_pos->y = 0.9;
+        robot->angle     = 0.0;
         break;
     }
 }

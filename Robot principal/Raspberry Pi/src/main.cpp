@@ -23,11 +23,13 @@ int main() {
     std::cout << "  y: Teensy - lift" << std::endl;
     std::cout << "  z: Teensy - lift+cans" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
+    std::cout << "  m: Middle level" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
     try {
         robot.start();  // This will initialize SPI and perform other setup tasks.
+        robot.initCoords(GAME); // Initialize coordinates
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
@@ -113,6 +115,43 @@ int main() {
         }
 
         case 'w': {
+            break;
+        }
+
+        case 'm': {
+            std::cout << "Middle level test..." << std::endl;
+            
+            // Get target coordinates from user
+            float targetX, targetY;
+            std::cout << "Enter target X coordinate (meters): ";
+            std::cin >> targetX;
+            std::cout << "Enter target Y coordinate (meters): ";
+            std::cin >> targetY;
+
+            unsigned long startloop;
+            unsigned long looptime;
+            int counter = 0;
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry();
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
+                std::cout << "speed vref = " << robot.vref << std::endl;
+                
+                if(counter == 10){
+                    robot.middleLevelController(targetX, targetY, 0, deplacement, GAME);
+                    counter = 0;
+                }
+                counter++;
+
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
             break;
         }
 
