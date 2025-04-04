@@ -29,10 +29,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d"
-  "CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o"
-  "CMakeFiles/exeRobotProgram.dir/src/SharedSruct.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o.d"
   "exeRobotProgram"
   "exeRobotProgram.pdb"
 )

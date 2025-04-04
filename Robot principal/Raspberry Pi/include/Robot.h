@@ -1,9 +1,10 @@
 // Robot.h
-#pragma once
+#ifndef ROBOT_H
+#define ROBOT_H
 
 #include "Motor.h"
 #include <wiringPi.h>
-#include "SharedStruct.h"
+#include "struct.h"
 #include <cstdint>
 #include <cmath>
 #include <unistd.h> // For sleep function
@@ -23,7 +24,7 @@ struct MovementParams {
     // Constructor to ensure proper initialization
     MovementParams(bool angle, double d, double v, double stop_dist)
         : activated_target_angle(angle), d0(d), vMax(v),
-          acceleration((v * v) / (2 * d)), stop_robot_distance(stop_dist), wmax(2 * v / distanceBetweenWheels) {}
+          acceleration((v * v) / (2 * d)), stop_robot_distance(stop_dist), wmax(2 * v / 0.25276) {} // 0.25276 = distanceBetweenWheels
 };
 
 // Then define your specific configurations
@@ -58,7 +59,8 @@ public:
     void start();
     void stop();
     void lowLevelController(double ref_speed_left, double ref_speed_right);
-    void middleLevelController(double x, double y, double goal_angle);
+    void middleLevelController(double x_coord_target, double y_coord_target, double goal_angle, const MovementParams& params, void *game);
+    void highLevelController(void *game);
     void openLoopData();
     void printDistance();
     void lowLevelTest();
@@ -66,8 +68,8 @@ public:
     void teensy_cans();
     void teensy_lift();
     void teensy_cans_lift();
-    void updateOdometry();
-    void initCoords();
+    void updateOdometry(void *game);
+    void initCoords(void *game);
     //void teensy_push();
 
     // Sampling time
@@ -105,17 +107,13 @@ private:
     static constexpr double KpBeta = -4.0;
 
     // Middle level controller variables
-    double distl = 0.0; // in m
-    double distr = 0.0; // in m
-    double last_distl = 0.0; // in m
-    double last_distr = 0.0; // in m
     double delta_x_target;
     double delta_y_target;
 
     // High level controller variables (used in middle)
     double rho = 0.0; // in m (distance to target)
     double travelled_distance = 0.0; // in m (distance from the starting point)
-    double vref = 0.0; // in m/s (linear speed)
+    double v_ref = 0.0; // in m/s (linear speed)
 
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;
@@ -138,4 +136,6 @@ private:
     static constexpr int STATE2_PIN = 29;
     
 };
+
+#endif // ROBOT_H
 

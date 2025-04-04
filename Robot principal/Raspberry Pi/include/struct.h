@@ -57,14 +57,14 @@ typedef struct MAP{
     size_t cluster_count; // Nombre de clusters
 } MAP;
 
-typedef struct Robot{
+typedef struct Queen{
     Cartesian *cart_pos; // Position cartésienne du robot
     double angle; // Angle du robot
-} Robot;
+} Queen;
 
 typedef struct GAME{
     MAP *map; // Carte du jeu
-    Robot *robot; // Robot du jeu
+    Queen *queen; // Robot du jeu
     
 } GAME;
 

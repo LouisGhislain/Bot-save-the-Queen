@@ -28,12 +28,13 @@ Cluster * init_cluster() {
     return cluster;
 }
 
-Robot * init_robot() {
-    Robot *robot = (Robot *)malloc(sizeof(Robot));
-    robot->cart_pos = init_cartesian();
-    robot->cart_pos->x = 0.0;
-    robot->cart_pos->y = 0.0;
-    return robot;
+Queen * init_robot() {
+    Queen *queen = (Queen *)malloc(sizeof(Queen));
+    queen->cart_pos = init_cartesian();
+    queen->cart_pos->x = 0.0;
+    queen->cart_pos->y = 0.0;
+    queen->angle = 0.0; // in radians
+    return queen;
 }
 
 MAP * init_map(){
@@ -65,7 +66,7 @@ MAP * init_map(){
 GAME * init_game() {
     GAME *game = (GAME *)malloc(sizeof(GAME));
     game->map = init_map();
-    game->robot = init_robot();
+    game->queen = init_robot();
     return game;
 }
 

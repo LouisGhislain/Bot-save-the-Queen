@@ -4,8 +4,8 @@
 #include <cstring>
 #include <wiringPi.h>
 
-Motor::Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir)
-    : pwmPin(pwmPin), forwardDirectionPin(forwardDirectionPin), backwardDirectionPin(backwardDirectionPin), distanceAddress(distanceAddress), speedAddress(speedAddress), baseDir(baseDir){
+Motor::Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir, double odometerDiameter)
+    : pwmPin(pwmPin), forwardDirectionPin(forwardDirectionPin), backwardDirectionPin(backwardDirectionPin), distanceAddress(distanceAddress), speedAddress(speedAddress), baseDir(baseDir), odometerDiameter(odometerDiameter){
     
     // Initialize GPIO
     wiringPiSetupGpio();  // Use BCM numbering
@@ -49,7 +49,7 @@ double Motor::getSpeed() const {
 */
 double Motor::getDistance() const {
     int32_t ticks = readData("distance");
-    double distance = -(ticks * M_PI * ODOMETER_DIAMETER) / (TICKS_COUNT_AMT_103) * 1.009748223;  // Corrective factor
+    double distance = -(ticks * M_PI * odometerDiameter) / (TICKS_COUNT_AMT_103) * 1.009748223;  // Corrective factor
     return distance;
 }
 

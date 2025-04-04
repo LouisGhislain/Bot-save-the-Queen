@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SharedStruct.h"
+#include "struct.h"
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
 #include <cmath>
@@ -17,6 +17,7 @@ private:
     uint8_t distanceAddress;
     uint8_t speedAddress;
     bool baseDir;
+    double odometerDiameter;
     
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;
@@ -31,7 +32,7 @@ public:
     static constexpr double kPhiOfMotor = 0.02859; // in V/(rad/s) (Back EMF constant for the motors)
     static constexpr double VOLTAGE_LIMIT = 24.0;
     
-    Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPinwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir);
+    Motor(int pwmPin, int forwardDirectionPin, int backwardDirectionPinwardDirectionPin, uint8_t distanceAddress, uint8_t speedAddress, bool baseDir, double odometerDiameter);
     
     int32_t readData(const std::string& type) const;
     double getSpeed() const;

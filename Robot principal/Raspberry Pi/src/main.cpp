@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Robot.h"
 #include "Screen.h"
-#include "SharedStruct.h"
+#include "struct.h"
 #include <unistd.h> // For usleep function
 #include <cmath>
 
 int main() {
     Robot robot;
+
+    GAME *game = init_game(); 
     //Screen screen;
 
     char choice;
@@ -29,7 +31,7 @@ int main() {
 
     try {
         robot.start();  // This will initialize SPI and perform other setup tasks.
-        robot.initCoords(GAME); // Initialize coordinates
+        robot.initCoords(game); // Initialize coordinates
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
@@ -50,8 +52,8 @@ int main() {
             while (true) {
                 startloop = micros();
         
-                robot.updateOdometry();
-                std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                robot.updateOdometry(game);
+                std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y << ", Theta: " << game->queen->angle *180/(M_PI)<< std::endl;
                 
                 looptime = micros() - startloop;
                 if (looptime > robot.SAMPLING_TIME*1e6) {
@@ -134,14 +136,13 @@ int main() {
             while (true) {
                 startloop = micros();
         
-                robot.updateOdometry();
+                robot.updateOdometry(game);
                 
                 //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
                 // print speed
-                std::cout << "speed vref = " << robot.vref << std::endl;
                 
                 if(counter == 10){
-                    robot.middleLevelController(targetX, targetY, 0, deplacement, GAME);
+                    robot.middleLevelController(targetX, targetY, 0, deplacement, game);
                     counter = 0;
                 }
                 counter++;

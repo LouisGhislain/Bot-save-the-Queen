@@ -151,9 +151,12 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/istream.tcc \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Robot.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Motor.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/SharedStruct.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath /usr/include/math.h \
+ /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/struct.h \
+ /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
+ /usr/include/c++/12/bits/stl_vector.h \
+ /usr/include/c++/12/bits/stl_bvector.h \
+ /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/stdlib.h \
+ /usr/include/c++/12/math.h /usr/include/c++/12/cmath /usr/include/math.h \
  /usr/include/aarch64-linux-gnu/bits/math-vector.h \
  /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h \
@@ -175,8 +178,36 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/tr1/modified_bessel_func.tcc \
  /usr/include/c++/12/tr1/poly_hermite.tcc \
  /usr/include/c++/12/tr1/poly_laguerre.tcc \
- /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/c++/12/algorithm \
- /usr/include/c++/12/bits/stl_algo.h \
+ /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/c++/12/utility \
+ /usr/include/c++/12/bits/stl_relops.h /usr/include/c++/12/tuple \
+ /usr/include/c++/12/bits/uses_allocator.h /usr/include/c++/12/optional \
+ /usr/include/c++/12/bits/enable_special_members.h \
+ /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+ /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/filesystem \
+ /usr/include/c++/12/bits/fs_fwd.h /usr/include/c++/12/bits/chrono.h \
+ /usr/include/c++/12/ratio /usr/include/c++/12/ctime \
+ /usr/include/c++/12/bits/parse_numbers.h \
+ /usr/include/c++/12/bits/fs_path.h /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/locale_facets_nonio.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12/bits/locale_conv.h /usr/include/c++/12/iomanip \
+ /usr/include/c++/12/bits/quoted_string.h /usr/include/c++/12/sstream \
+ /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/codecvt \
+ /usr/include/c++/12/ext/concurrence.h \
+ /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/bits/unique_ptr.h \
+ /usr/include/c++/12/ext/aligned_buffer.h \
+ /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h \
+ /usr/include/c++/12/thread /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
  /usr/include/c++/12/bits/algorithmfwd.h \
  /usr/include/c++/12/bits/stl_heap.h \
  /usr/include/c++/12/bits/stl_tempbuf.h \
@@ -189,11 +220,7 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/c++/12/vector \
- /usr/include/c++/12/bits/stl_uninitialized.h \
- /usr/include/c++/12/bits/stl_vector.h \
- /usr/include/c++/12/bits/stl_bvector.h \
- /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/tuple \
- /usr/include/c++/12/bits/uses_allocator.h \
+ /usr/include/linux/close_range.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Screen.h \
- /usr/local/include/wiringPiI2C.h
+ /usr/local/include/wiringPiI2C.h \
+ /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/struct.h
