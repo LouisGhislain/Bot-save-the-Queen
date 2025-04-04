@@ -47,16 +47,16 @@ void Robot::openLoopData() {
     // leftMotor.setVoltage(0);
     
     //Data taken every millisecond 
-    unsigned long duration = 100*1000000; // To seconds; 
+    unsigned long duration = 4*1000000; // To seconds; 
     while (micros() - startTime < duration) {
-        rightMotor.setVoltage(6);
-        leftMotor.setVoltage(6);
+        rightMotor.setVoltage(12);
+        leftMotor.setVoltage(12);
         currentTime = micros() - startTime;
 
         //Save data every millisecond
         if (currentTime-previoustime > 1000) {
-            //file << currentTime << ", " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
-            fprintf(stderr, "Time: %lu, Left speed: %f, Right speed: %f\n", currentTime, leftMotor.getSpeed(), rightMotor.getSpeed());
+            file << currentTime << ", " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << "\n";
+            //fprintf(stderr, "Time: %lu, Left speed: %f, Right speed: %f\n", currentTime, leftMotor.getSpeed(), rightMotor.getSpeed());
             previoustime = currentTime;
         }
     }

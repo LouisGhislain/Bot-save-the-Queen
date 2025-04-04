@@ -1,3 +1,3 @@
-/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir
-/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/CMakeFiles/edit_cache.dir
-/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/CMakeFiles/rebuild_cache.dir
+/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir
+/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/CMakeFiles/edit_cache.dir
+/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/CMakeFiles/rebuild_cache.dir

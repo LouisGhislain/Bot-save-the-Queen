@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/TheQueen/BOT-SAVE-THE-QUEEN-GITHUB/Robot principal/Raspberry Pi/include"
+CXX_INCLUDES = -I"/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/include"
 
 CXX_FLAGS = 
 
