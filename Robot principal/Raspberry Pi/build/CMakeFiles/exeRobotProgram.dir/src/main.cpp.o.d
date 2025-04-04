@@ -1,5 +1,5 @@
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/main.cpp \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/12/iostream \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
@@ -149,8 +149,8 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/include/Robot.h \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/include/Motor.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Robot.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Motor.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
  /usr/include/c++/12/cmath /usr/include/math.h \
  /usr/include/aarch64-linux-gnu/bits/math-vector.h \
@@ -194,5 +194,5 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/tuple \
  /usr/include/c++/12/bits/uses_allocator.h \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/include/Screen.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Screen.h \
  /usr/local/include/wiringPiI2C.h

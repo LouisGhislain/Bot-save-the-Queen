@@ -1,7 +1,7 @@
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Multimedia/Screen.cpp \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Multimedia/Screen.cpp \
  /usr/include/stdc-predef.h \
- /home/TheQueen/BOT\ SAVE\ THE\ QUEEN\ github/Bot-save-the-Queen/Robot\ principal/Raspberry\ Pi/src/Multimedia/../../include/Screen.h \
+ /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Multimedia/../../include/Screen.h \
  /usr/local/include/wiringPiI2C.h \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
