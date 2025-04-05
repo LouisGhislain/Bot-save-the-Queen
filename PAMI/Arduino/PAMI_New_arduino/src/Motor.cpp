@@ -73,3 +73,12 @@ void set_motor(float tension_left, float tension_right) {
     }
     
 }
+
+void active_brake(){
+    analogWrite(ENA, 9 * PWM_max / tension_max);
+    analogWrite(ENB, 9 * PWM_max / tension_max);
+    digitalWrite(DIR3, HIGH);
+    digitalWrite(DIR4, HIGH);
+    digitalWrite(DIR1, HIGH);
+    digitalWrite(DIR2, HIGH);
+}

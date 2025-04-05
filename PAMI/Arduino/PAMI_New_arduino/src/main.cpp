@@ -4,6 +4,7 @@
 #include "Encoder.h"
 #include "Tail.h"
 #include "Microswitch.h"
+#include "Sonar.h"
 
 
 volatile int leftTicks_data = 0;
@@ -13,25 +14,64 @@ float Interval = 0;
 unsigned long startTime;
 int iteration = 0;
 
+//TRUC DE CHACHAT
+unsigned long previousStepTime = 0;
+int motionStep = 0;  // Pour suivre quelle étape on est en train d'exécuter
+bool isStopped = false;
 
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("Attente de 5 secondes...");
-    delay(10000); // Attente avant le démarrage du test
+    delay(100); // Attente avant le démarrage du test
 
     Pin_Motor_Initialization();
+    Pin_Sonar_Initialization();
     
 }
+  
+  void loop() {
+      // Vérifie la distance en permanence
+    double distance = Sonar_Get_Distance();
+    delay(60);
+    //Serial.print("Distance : ");
+    //Serial.print(distance, 2);  // 2 décimales
+    //Serial.println(" cm");
 
-void loop() {
-    set_motor(0, 0);
-    delay(2000);
-    set_motor(8, 8);
-    delay(5000);
 
-
-}
+      if (distance < 8.0) {
+          active_brake();
+          Serial.print("JE FREINE");
+          isStopped = true;
+          return;  // On ne fait rien d'autre si obstacle
+      } else {
+          isStopped = false;
+      }
+  
+      // S'il n'y a pas d'obstacle, exécuter la séquence de mouvement sans delay bloquant
+      unsigned long currentTime = millis();
+  
+      if (currentTime - previousStepTime > 20 && !isStopped && distance!=0) {
+          switch (motionStep) {
+              case 0:
+                  set_motor(4, 5);  // Avance
+                  previousStepTime = currentTime;
+                  motionStep++;
+                  break;
+              case 1:
+                  set_motor(3, 3);  // Tourne un peu
+                  previousStepTime = currentTime;
+                  motionStep++;
+                  break;
+              case 2:
+                  set_motor(4, 5);  // Reprend l'avance
+                  previousStepTime = currentTime;
+                  motionStep = 0;  // Reboucle
+                  break;
+          }
+      }
+  }
+  
 
 
     
