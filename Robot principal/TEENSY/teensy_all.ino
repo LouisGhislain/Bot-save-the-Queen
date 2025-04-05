@@ -13,9 +13,13 @@ push_plank myPushPlank;
 //Define I2C cmd
 #define CMD_START_IR 0x01
 #define CMD_GRAB 0x02
-#define CMD_SEPARATE_STACK 0x03
-#define CMD_GET_POSITION 0x04
-#define CMD_GRAB_DONE 0x05
+#define CMD_GRAB_DONE 0x03
+#define CMD_DROP_CANS_EXT 0x04
+#define CMD_PUSH_PLANK 0x05
+#define CMD_CANS_UP 0x06
+#define CMD_CANS_UP_DONE 0x07
+#define CMD_DROP_SECOND_STAGE 0x08
+
 
 #define floorHeight 90
 #define secondStageHeight 214 // in mm = 90 + 124
@@ -57,9 +61,26 @@ void receiveEvent(int bytes) {
                 grabInProgress = false ; 
                 Wire.write(CMD_GRAB_DONE);
                 break;
-            case CMD_SEPARATE_STACK:
-                build_second_stage();
+            case CMD_DROP_CANS_EXT  : 
+                myHoldCans.releaseExternal();
                 break;
+            case CMD_PUSH_PLANK :
+                myPushPlank.move_to_mm(-110);
+                break; 
+            case CMD_CANS_UP :
+                myPushPlank.pull_plank_release();
+                delay(2000);
+                myPushPlank.move_to_mm(0);
+                delay(2000);
+                myLift.up_and_down(220);
+                delay(2000);
+                Wire.write(CMD_CANS_UP_DONE);
+                break;
+            case CMD_DROP_SECOND_STAGE : 
+                myLift.up_and_down(214);
+                myHoldCans.releaseCenter();
+                break;
+            
         }
     }
 }
@@ -76,7 +97,6 @@ void setup() {
     myPushPlank.begin();
     myHoldCans.begin();
     myLift.begin();
-    init_input_rasp();
 
     myHoldCans.releaseAll();
 

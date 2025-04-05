@@ -1,7 +1,11 @@
 #include "../../include/Robot.h"
+#include "../../include/Robot.h"
 #include <iostream>
 #include <unistd.h> // Pour sleep()
 
+void Robot::screen_init() {
+    fd_OLED = wiringPiI2CSetup(OLED_ADDR);
+    if (fd_OLED < 0) {
 void Robot::screen_init() {
     fd_OLED = wiringPiI2CSetup(OLED_ADDR);
     if (fd_OLED < 0) {
@@ -9,6 +13,17 @@ void Robot::screen_init() {
     }
     
     // Séquence d'initialisation du SSD1306
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xAE); // Désactive l'affichage
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xD5);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x80);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xA8);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x3F);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xD3);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x00);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x40);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x8D);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x14);
+    wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xAF); // Active l'affichage
     wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xAE); // Désactive l'affichage
     wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0xD5);
     wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x80);
@@ -37,6 +52,7 @@ void Robot::screen_clear() {
         wiringPiI2CWriteReg8(fd_OLED, OLED_CMD, 0x10);
 
         for (int j = 0; j < 128; j++) {
+            wiringPiI2CWriteReg8(fd_OLED, OLED_DATA, 0x00);
             wiringPiI2CWriteReg8(fd_OLED, OLED_DATA, 0x00);
         }
     }
