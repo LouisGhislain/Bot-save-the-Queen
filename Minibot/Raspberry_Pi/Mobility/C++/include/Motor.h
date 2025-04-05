@@ -27,7 +27,7 @@ public:
     int32_t readData(const std::string& type) const;
     double getSpeed() const;
     double getDistance() const;
-    void setSpeed(double voltage);
+    void setVoltage(double voltage);
     void stop();
     void start();
 };

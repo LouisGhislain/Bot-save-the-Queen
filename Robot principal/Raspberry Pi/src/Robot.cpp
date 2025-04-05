@@ -3,8 +3,8 @@
 #include <fstream>
 
 Robot::Robot() 
-    : leftMotor(13, 16, 7, 0x12, 0x10, false), // (pwmPin, forwardDirectionPin, backwardDirectionPin, distanceAddress, speedAddress, baseDir)
-      rightMotor(12, 23, 27, 0x13, 0x11, true) {
+    : leftMotor(13, 16, 7, 0x12, 0x10, false, 0.0445*1.000615016), // (pwmPin, forwardDirectionPin, backwardDirectionPin, distanceAddress, speedAddress, baseDir, odometerDiameter)
+      rightMotor(12, 23, 27, 0x13, 0x11, true, 0.0445*0.99938574) {
     wiringPiSetup();
 }
 

@@ -39,7 +39,7 @@ double Motor::getDistance() const {
     return distance;
 }
 
-void Motor::setSpeed(double voltage) {
+void Motor::setVoltage(double voltage) {
     voltage = std::clamp(voltage, -VOLTAGE_LIMIT, VOLTAGE_LIMIT);
     int dutyCycle = static_cast<int>(100 * std::abs(voltage) / VOLTAGE_LIMIT);
 

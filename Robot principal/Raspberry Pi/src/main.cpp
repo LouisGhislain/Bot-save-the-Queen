@@ -1,21 +1,23 @@
 #include <iostream>
-#include "../include/Robot.h"
+#include "Robot.h"
+#include "Screen.h"
 
 int main() {
     Robot robot;
+    //Screen screen;
 
     char choice;
 
     std::cout << "Select an option:" << std::endl;
-    std::cout << "  a: Run routine" << std::endl;
-    std::cout << "  b: Print robot position (angle)" << std::endl;
+    std::cout << "  b: Odometry (x,y,theta)" << std::endl;
     std::cout << "  c: Print robot speed (left motor)" << std::endl;
-    std::cout << "  t: Motor test" << std::endl;
-    std::cout << "  d: Distance test" << std::endl;
+    std::cout << "  t: Open Loop test" << std::endl;
+    std::cout << "  d: Distance test (meters)" << std::endl;
     std::cout << "  l: Lowlevel test" << std::endl;
     std::cout << "  f: Braking test" << std::endl;
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
+    std::cout << "  m: Middle level" << std::endl;
     std::cout << "  p: Test teensy" << std::endl;
     std::cout << "  q: RESET teensy" << std::endl;
     std::cout << "Enter your choice: ";
@@ -23,20 +25,37 @@ int main() {
 
     try {
         robot.start();  // This will initialize SPI and perform other setup tasks.
+        robot.initCoords(game); // Initialize coordinates
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
 
     switch(choice) {
-        case 'a':
-            std::cout << "Launching routine..." << std::endl;
-            robot.routine();
-            break;
-        
         case 'b': {
-            double angle = robot.getAngle();
-            std::cout << "Robot angle (as proxy for position): " << angle << " degrees" << std::endl;
+            /*
+            while (true) {
+                robot.updateOdometry();
+                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *360/(2*M_PI)<< std::endl;
+                usleep(100000); // Sleep for 0.1 seconds
+            }
+            */
+            unsigned long startloop;
+            unsigned long looptime;
+        
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry(game);
+                std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y << ", Theta: " << game->queen->angle *180/(M_PI)<< std::endl;
+                
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
+
             break;
         }
         case 'c': {
@@ -75,11 +94,59 @@ int main() {
             robot.buzzBuzzer();
             break;
         }
-
-        case 'o': {
-            robot.screen_init();
-            std::cout << "Initialisation écran OK." << std::endl;
+        case 'x' :{
+            std::cout << "Sending '01' on Teensy board" << std::endl;
+            robot.teensy_cans();
+            break;
+        }
+        case 'y' :{
+            std::cout << "Sending '10' on Teensy board" << std::endl;
+            robot.teensy_lift();
+            break;
+        }
+        case 'z' :{
+            std::cout << "Sending '11' on Teensy board" << std::endl;
+            robot.teensy_cans_lift();
+            break;
+        }
+        case 'm': {
+            std::cout << "Middle level test..." << std::endl;
             
+            // Get target coordinates from user
+            float targetX, targetY;
+            std::cout << "Enter target X coordinate (meters): ";
+            std::cin >> targetX;
+            std::cout << "Enter target Y coordinate (meters): ";
+            std::cin >> targetY;
+
+            unsigned long startloop;
+            unsigned long looptime;
+            int counter = 0;
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry(game);
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
+                
+                if(counter == 10){
+                    robot.middleLevelController(targetX, targetY, 0, deplacement, game);
+                    counter = 0;
+                }
+                counter++;
+
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
+            break;
+        }
+
+        /*case 'o': {
+            screen.init();
             std::string message;
             std::cout << "Entrez le message à afficher : ";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -95,6 +162,7 @@ int main() {
             
             break;
         }
+        */
         case 'p': {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
@@ -112,7 +180,7 @@ int main() {
             break ; 
         }
         default:
-        
+    
             std::cout << "Invalid option." << std::endl;
             break;
     }
