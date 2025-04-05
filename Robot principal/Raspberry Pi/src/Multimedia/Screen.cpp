@@ -3,9 +3,7 @@
 #include <iostream>
 #include <unistd.h> // Pour sleep()
 
-void Robot::screen_init() {
-    fd_OLED = wiringPiI2CSetup(OLED_ADDR);
-    if (fd_OLED < 0) {
+
 void Robot::screen_init() {
     fd_OLED = wiringPiI2CSetup(OLED_ADDR);
     if (fd_OLED < 0) {

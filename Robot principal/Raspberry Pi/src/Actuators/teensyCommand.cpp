@@ -18,20 +18,12 @@ void Robot::teensy_send_command(uint8_t command){
 }
 
 void Robot::teensy_separate_stack(){
-    /*
-    0. vérifier sa position avec les infrarouges
-    1. activer 4 aimants
-    2. lever de quelques millimètres
-    3. descendre les doigts */
-
-    //teensy_send_command(0x01);
-    /*teensy_send_command(0x02);
+    std::cout << "Entring in separate stack" << std::endl;
+    teensy_send_command(0x02);//RELEASE EXT CANS
     int grab_done = 0;
     do {
         usleep(100000);
         grab_done = wiringPiI2CRead(fd_teensy);
-    } while (grab_done != 0x05);
-    printf("J'ai fini d'attraper le stack");
-    */
-
+    } while (grab_done != 0x03);
+    teensy_send_command(0x04); //SEND CREMAILLERE
 }

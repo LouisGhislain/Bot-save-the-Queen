@@ -15,9 +15,6 @@ int main() {
     std::cout << "  l: Lowlevel test" << std::endl;
     std::cout << "  f: Braking test" << std::endl;
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
-    std::cout << "  x: Teensy - cans" << std::endl;
-    std::cout << "  y: Teensy - lift" << std::endl;
-    std::cout << "  z: Teensy - lift+cans" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
     std::cout << "  p: Test teensy" << std::endl;
     std::cout << "  q: RESET teensy" << std::endl;
@@ -78,21 +75,6 @@ int main() {
             robot.buzzBuzzer();
             break;
         }
-        case 'x' :{
-            std::cout << "Sending '01' on Teensy board" << std::endl;
-            robot.teensy_cans();
-            break;
-        }
-        case 'y' :{
-            std::cout << "Sending '10' on Teensy board" << std::endl;
-            robot.teensy_lift();
-            break;
-        }
-        case 'z' :{
-            std::cout << "Sending '11' on Teensy board" << std::endl;
-            robot.teensy_cans_lift();
-            break;
-        }
 
         case 'o': {
             robot.screen_init();
@@ -117,7 +99,7 @@ int main() {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x02);
+            robot.teensy_send_command(0x10);
             std::cout << "C'est envoyé" << std::endl;
             break ; 
         }
@@ -125,8 +107,8 @@ int main() {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x06);
-            std::cout << "C'est envoyé - RESET envoyé" << std::endl;
+            robot.teensy_separate_stack();
+            std::cout << "C'est envoyé - SEPARATE envoyé" << std::endl;
             break ; 
         }
         default:

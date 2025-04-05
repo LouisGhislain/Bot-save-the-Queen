@@ -38,7 +38,7 @@ public:
     void teensy_init();
     void teensy_send_command(uint8_t command);
     void teensy_separate_stack();
-    void teensy_check_IR();
+    int teensy_check_IR();
 
 private:
     void initializeSPI(); 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Robot.h"
+#include "../../include/Robot.h"
 
-void Robot::teensy_check_IR(){
+int Robot::teensy_check_IR(){
     int position;
     for (int i = 0; i < 100; i++)
     {
@@ -9,4 +9,5 @@ void Robot::teensy_check_IR(){
         position = wiringPiI2CReadReg16(fd_teensy,0x01);
         std::cout << "Position : " << position << " cm" << std::endl;
     }
+    return position ; 
 }
