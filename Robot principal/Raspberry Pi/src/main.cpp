@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Robot.h"
+#include "../include/Robot.h"
 
 int main() {
     Robot robot;
@@ -19,6 +19,8 @@ int main() {
     std::cout << "  y: Teensy - lift" << std::endl;
     std::cout << "  z: Teensy - lift+cans" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
+    std::cout << "  p: Test teensy" << std::endl;
+    std::cout << "  q: RESET teensy" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -92,18 +94,43 @@ int main() {
             break;
         }
 
-        /*case 'o': {
+        case 'o': {
             robot.screen_init();
+            std::cout << "Initialisation écran OK." << std::endl;
+            
             std::string message;
             std::cout << "Entrez le message à afficher : ";
-            std::cin.ignore(); // Évite un problème de buffer
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline(std::cin, message);
+            
+            std::cout << "Message reçu : " << message << std::endl;
+            
             robot.screen_clear();
-            robot.screen_displayText(message);
-            break;
-        }*/
+            std::cout << "Écran nettoyé." << std::endl;
         
+            robot.screen_displayText(message);
+            std::cout << "Message affiché." << std::endl;
+            
+            break;
+        }
+        case 'p': {
+            std::cout << "Seending information to teensy" << std::endl;
+            robot.teensy_init();
+            std::cout << "Initialisation OK" << std::endl;
+            robot.teensy_send_command(0x02);
+            std::cout << "C'est envoyé" << std::endl;
+            break ; 
+        }
+        case 'q': {
+            std::cout << "Seending information to teensy" << std::endl;
+            robot.teensy_init();
+            std::cout << "Initialisation OK" << std::endl;
+            robot.teensy_send_command(0x06);
+            std::cout << "C'est envoyé - RESET envoyé" << std::endl;
+            break ; 
+        }
         default:
+        
             std::cout << "Invalid option." << std::endl;
             break;
     }

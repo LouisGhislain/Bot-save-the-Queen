@@ -17,7 +17,6 @@
 #define OLED_CMD  0x00  
 #define OLED_DATA 0x40  
 
-
 class Robot {
 public:
     Robot();
@@ -31,17 +30,15 @@ public:
     void printDistance();
     void lowLevelTest();
     void buzzBuzzer();
-    void teensy_cans();
-    void teensy_lift();
-    void teensy_cans_lift();
+    void updateOdometry();
+    void initCoords();
     void screen_init();         
     void screen_clear();        
     void screen_displayText(const std::string &text); 
     void teensy_init();
     void teensy_send_command(uint8_t command);
-
-    void updateOdometry();
-    void initCoords();
+    void teensy_separate_stack();
+    void teensy_check_IR();
 
 private:
     void initializeSPI(); 
@@ -98,11 +95,11 @@ private:
     static constexpr int STATE0_PIN = 35;
     static constexpr int STATE1_PIN = 31;
     static constexpr int STATE2_PIN = 29;
-
+    
     // File descriptor for I2C
     int fd_OLED;
-    int fd_teensy: 
-    
+    int fd_teensy;
+        
     
 };
 
