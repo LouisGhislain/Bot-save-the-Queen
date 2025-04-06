@@ -1,77 +1,59 @@
-#include <Arduino.h>
 #include "Encoder.h"
 
-// Constants
-int PPR = 13;
-int Gear_ratio = 42;
-int PPR_total = PPR * Gear_ratio;
+Encoder* Encoder::leftInstance = nullptr;
+Encoder* Encoder::rightInstance = nullptr;
 
-// Pin definitions
-#define PHASE_A_LEFT 2  // Pin 2 pour interruptions
-#define PHASE_B_LEFT 4  
-#define PHASE_A_RIGHT 3  // Pin 3 pour interruptions
-#define PHASE_B_RIGHT 5  
 
-// Variables
-volatile int leftTicks = 0;
-volatile int rightTicks = 0;
+Encoder::Encoder(int pinA, int pinB, bool isLeft) : PHASE_A(pinA), PHASE_B(pinB), ticks(0) {
+    pinMode(PHASE_A, INPUT_PULLUP);
+    pinMode(PHASE_B, INPUT_PULLUP);
 
-// Function to reset the left encoder count
-void resetLeftEncoder() {
-    leftTicks = 0;
-}
-
-// Function to reset the right encoder count
-void resetRightEncoder() {
-    rightTicks = 0;
-}
-
-// Pin Initialization
-void Pin_Encoder_Initialization() {
-    pinMode(PHASE_A_LEFT, INPUT_PULLUP);
-    pinMode(PHASE_B_LEFT, INPUT_PULLUP);
-    pinMode(PHASE_A_RIGHT, INPUT_PULLUP);
-    pinMode(PHASE_B_RIGHT, INPUT_PULLUP);
-    resetLeftEncoder();
-    resetRightEncoder();
-    attachInterrupt(digitalPinToInterrupt(PHASE_A_LEFT), leftEncoder, RISING);
-    attachInterrupt(digitalPinToInterrupt(PHASE_A_RIGHT), rightEncoder, RISING);
-}
-
-// Interrupt Service Routine for the left encoder
-void leftEncoder() {
-    if (digitalRead(PHASE_B_LEFT) == LOW) {
-        leftTicks++;
+    if (isLeft) {
+        leftInstance = this;
+        attachInterrupt(digitalPinToInterrupt(PHASE_A), handleLeftInterrupt, RISING);
     } else {
-        leftTicks--;
+        rightInstance = this;
+        attachInterrupt(digitalPinToInterrupt(PHASE_A), handleRightInterrupt, RISING);
     }
 }
 
-// Interrupt Service Routine for the right encoder
-void rightEncoder() {
-    if (digitalRead(PHASE_B_RIGHT) == LOW) {
-        rightTicks++;
+void Encoder::handleInterruptRight() {
+    if (digitalRead(PHASE_B) == LOW) {
+        ticks++;
     } else {
-        rightTicks--;
+        ticks--;
     }
 }
 
-// Function to get the left encoder count
-int getLeftEncoder() {
-    return leftTicks;
+void Encoder::handleInterruptLeft() {
+    if (digitalRead(PHASE_B) == LOW) {
+        ticks--;
+    } else {
+        ticks++;
+    }
 }
 
-// Function to get the right encoder count
-int getRightEncoder() {
-    return rightTicks;
+void Encoder::reset() {
+    ticks = 0;
 }
 
-// Function to get the left encoder count in radians
-float getLeftEncoderRad() {
-    return (leftTicks * 2.0 * PI) / PPR_total;
+int Encoder::getTicks() {
+    return ticks;
 }
 
-// Function to get the right encoder count in radians
-float getRightEncoderRad() {
-    return (rightTicks * 2.0 * PI) / PPR_total;
+float Encoder::getRadians() {
+    int totalPPR = PPR * gearRatio;
+    return (ticks * 2.0 * PI) / totalPPR;
+}
+
+void Encoder::handleLeftInterrupt() {
+    if (leftInstance != nullptr) {
+        leftInstance->handleInterruptLeft();
+    }
+}
+
+void Encoder::handleRightInterrupt() {
+    if (rightInstance != nullptr) {
+        rightInstance->handleInterruptRight();
+    }
 }

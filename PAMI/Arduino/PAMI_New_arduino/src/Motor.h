@@ -1,14 +1,40 @@
-// Include guard
 #pragma once
-
-// Include the necessary libraries
 #include <Arduino.h>
+#include "Encoder.h"
 
-// Fonction de configuration des broches
-void Pin_Motor_Initialization();
+class Motor {
+private:
+    int PWM_PIN;
+    int dir1; // Pin de direction 1
+    int dir2; // Pin de direction 2
+    int PWM_max = 255;
+    int tension_max = 12;
+    float speed;
+    float targetSpeed; // Vitesse cible du moteur
+    int TICKS_PER_REV = 13;
 
-// Fonction de contrôle des moteurs
-void set_motor(float tension_left, float tension_right);
+    Encoder* encoder; // Lien vers l'encodeur associé
 
-//Fonction freinage
-void active_brake();
+    // Time interval in seconds
+    float lastTime;
+    float currentTime;
+
+    int lastTicks;
+    int currentTicks;
+
+    static Motor* leftInstance;
+    static Motor* rightInstance;
+
+
+public:
+
+    Motor(int pwmPin, int DIR1, int DIR2, Encoder* encoder, bool isLeft = false);
+    void updateSpeed();
+
+    void brake();
+    void stop_motor();
+    void set_motor(float tension);
+    float getSpeed();
+
+
+};

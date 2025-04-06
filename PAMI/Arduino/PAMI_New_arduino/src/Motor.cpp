@@ -1,84 +1,70 @@
 #include <Arduino.h>
 #include "Motor.h"
+#include "Encoder.h"
 
+#define TICKS_PER_REV 13 // Nombre de ticks par révolution
+#define gearRatio 42 // Rapport de réduction
+#define WheelDiameter 0.060325 // Diamètre de la roue en mètres
 
+Motor* Motor::leftInstance = nullptr;
+Motor* Motor::rightInstance = nullptr;
 
-// Constants
-int PWM_max = 255;
-int tension_max = 12;
-
-// Pin definitions
-#define ENA 5
-#define ENB 6
-#define DIR2 8
-#define DIR1 7
-#define DIR4 11
-#define DIR3 10
-
-// Pin Initialization
-
-void Pin_Motor_Initialization() {
-    pinMode(ENA, OUTPUT);
-    pinMode(ENB, OUTPUT);
-    pinMode(DIR1, OUTPUT);
-    pinMode(DIR2, OUTPUT);
-    pinMode(DIR3, OUTPUT);
-    pinMode(DIR4, OUTPUT);
+Motor::Motor(int pwmPin, int DIR1, int DIR2, Encoder* encoder, bool isLeft) : PWM_PIN(pwmPin), dir1(DIR1), dir2(DIR2), speed(0), targetSpeed(0), encoder(encoder), lastTime(0), currentTime(0), lastTicks(0), currentTicks(0) {
+    pinMode(PWM_PIN, OUTPUT);
+    if (isLeft) {
+        leftInstance = this;
+    } else {
+        rightInstance = this;
+    }
 }
 
-void set_motor(float tension_left, float tension_right) {
-    // Set the direction of the motors
-    digitalWrite(DIR1, LOW);
-    digitalWrite(DIR2, HIGH);
-    digitalWrite(DIR3, LOW);
-    digitalWrite(DIR4, HIGH);
-
-    if (tension_left > tension_max) {
-        tension_left = tension_max;
-    }
-    if (tension_right > tension_max) {
-        tension_right = tension_max;
+void Motor::updateSpeed() {
+    if (encoder == nullptr) {
+        speed = 0;
+        return;
     }
 
-    // If 2 tension values are positive => move forward
-    if (tension_left >= 0 && tension_right >= 0) {
-        analogWrite(ENA, tension_left * PWM_max / tension_max);
-        analogWrite(ENB, tension_right * PWM_max / tension_max);
+    currentTicks = encoder->getTicks();
+    currentTime = millis() / 1000.0; // Convertir en secondes
+
+    float deltaTime = currentTime - lastTime;
+    if (deltaTime > 0) {
+        speed = (currentTicks - lastTicks) / deltaTime; // Vitesse en ticks/s
+        // Speed in rad/s
+        speed = ((currentTicks - lastTicks) * 2.0 * PI) / (TICKS_PER_REV * deltaTime);
+        speed = speed*PI*WheelDiameter / (TICKS_PER_REV * gearRatio); // Vitesse en m/s
+    } else {
+        speed = 0;
     }
 
-    // If 2 tension values are negative => move backward
-    if (tension_left < 0 && tension_right < 0) {
-        analogWrite(ENA, -tension_left * PWM_max / tension_max);
-        analogWrite(ENB, -tension_right * PWM_max / tension_max);
-        digitalWrite(DIR1, HIGH);
-        digitalWrite(DIR2, LOW);
-        digitalWrite(DIR3, HIGH);
-        digitalWrite(DIR4, LOW);
-    }
-
-    // If left tension is negative and right tension is positive => turn left
-    if (tension_left < 0 && tension_right >= 0) {
-        analogWrite(ENA, -tension_left * PWM_max / tension_max);
-        analogWrite(ENB, tension_right * PWM_max / tension_max);
-        digitalWrite(DIR1, HIGH);
-        digitalWrite(DIR2, LOW);
-    }
-
-    // If left tension is positive and right tension is negative => turn right
-    if (tension_left >= 0 && tension_right < 0) {
-        analogWrite(ENA, tension_left * PWM_max / tension_max);
-        analogWrite(ENB, -tension_right * PWM_max / tension_max);
-        digitalWrite(DIR3, HIGH);
-        digitalWrite(DIR4, LOW);
-    }
-    
+    lastTime = currentTime;
+    lastTicks = currentTicks;
 }
 
-void active_brake(){
-    analogWrite(ENA, 9 * PWM_max / tension_max);
-    analogWrite(ENB, 9 * PWM_max / tension_max);
-    digitalWrite(DIR3, HIGH);
-    digitalWrite(DIR4, HIGH);
-    digitalWrite(DIR1, HIGH);
-    digitalWrite(DIR2, HIGH);
+float Motor::getSpeed() {
+    return speed; // Vitesse en ticks/s
+}
+
+
+void Motor::set_motor(float tension) {
+    if (tension > 0) {
+        digitalWrite(dir1, LOW);
+        digitalWrite(dir2, HIGH);
+    } else if (tension < 0) {
+        digitalWrite(dir1, HIGH);
+        digitalWrite(dir2, LOW);
+    } else {
+        stop_motor();
+        return;
+    }
+
+    int pwmValue = abs(tension) * PWM_max / tension_max;
+    analogWrite(PWM_PIN, pwmValue);
+}
+
+
+void Motor::stop_motor() {
+    analogWrite(PWM_PIN, 0);
+    digitalWrite(dir1, LOW);
+    digitalWrite(dir2, LOW);
 }

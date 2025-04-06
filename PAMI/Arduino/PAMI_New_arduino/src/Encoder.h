@@ -1,33 +1,31 @@
-// Include guard
 #pragma once
-
-// Include the necessary libraries
 #include <Arduino.h>
 
-// Fonction de configuration des broches
-void Pin_Encoder_Initialization();
+class Encoder {
+private:
+    int PHASE_A;
+    int PHASE_B;
+    volatile int ticks;
 
-// Fonction reinisialisation du compteur de l'encodeur gauche
-void resetLeftEncoder();
 
-// Fonction reinisialisation du compteur de l'encodeur droit
-void resetRightEncoder();
+    int PPR = 13;
+    int gearRatio = 42;
 
-// Fonction pour obtenir le compteur de l'encodeur gauche
-int getLeftEncoder();
+    static Encoder* leftInstance;
+    static Encoder* rightInstance;
 
-// Fonction pour obtenir le compteur de l'encodeur droit
-int getRightEncoder();
+public:
 
-// Interrupt service routine pour l'encodeur gauche
-void leftEncoder();
+    Encoder(int pinA, int pinB, bool isLeft = false);
+    void handleInterruptLeft();
+    void handleInterruptRight();
 
-// Interrupt service routine pour l'encodeur droit
-void rightEncoder();
 
-// Fonction pour obtenir le compteur de l'encodeur gauche en radian
-float getLeftEncoderRad();
+    void reset();
+    int getTicks();
+    float getRadians();
 
-// Fonction pour obtenir le compteur de l'encodeur droit en radian
-float getRightEncoderRad();
+    static void handleLeftInterrupt();
+    static void handleRightInterrupt();
 
+};
