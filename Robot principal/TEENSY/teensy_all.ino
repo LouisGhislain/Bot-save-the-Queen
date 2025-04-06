@@ -19,6 +19,7 @@ push_plank myPushPlank;
 #define CMD_CANS_UP 0x06
 #define CMD_CANS_UP_DONE 0x07
 #define CMD_DROP_SECOND_STAGE 0x08
+#define CMD_CLEAR 0x10
 
 
 #define floorHeight 90
@@ -47,21 +48,29 @@ void receiveEvent(int bytes) {
     if (Wire.available()) {
         byte command = Wire.read();
         switch (command) {
+            case CMD_CLEAR : 
+                myPushPlank.begin();
+                myHoldCans.begin();
+                myLift.begin();
+            
+                myHoldCans.releaseAll();
+                myPushPlank.pull_plank_release();
+                break;
             case CMD_START_IR:
                 distance = give_distance();
                 break;
             case CMD_GRAB:
                 grabInProgress = true;
                 myHoldCans.grabAll();
-                delay(2000);
-                myLift.up_and_down(110); //2cm 
-                delay(2000);
+                delay(200);
+                myLift.up_and_down(98); //2cm 
+                delay(200);
                 myPushPlank.pull_plank_grab();
                 delay(100);
                 grabInProgress = false ; 
                 Wire.write(CMD_GRAB_DONE);
                 break;
-            case CMD_DROP_CANS_EXT  : 
+            case CMD_DROP_CANS_EXT : 
                 myHoldCans.releaseExternal();
                 break;
             case CMD_PUSH_PLANK :
