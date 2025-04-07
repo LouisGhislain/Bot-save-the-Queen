@@ -70,7 +70,9 @@ public:
     void teensy_send_command(uint8_t command);
     void teensy_separate_stack();
     int teensy_check_IR();
-
+    void teensy_ready_to_lift();
+    void lowLevelForward();
+    void lowLevelBackward();
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
 

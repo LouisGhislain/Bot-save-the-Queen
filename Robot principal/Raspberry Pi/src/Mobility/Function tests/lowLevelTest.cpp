@@ -10,6 +10,7 @@
  * Format of the data: time, left motor speed, right motor speed, left motor voltage, right motor voltage
  * 
  */
+
 void Robot::lowLevelTest(){
     // Open file
     std::ofstream file;
@@ -21,11 +22,11 @@ void Robot::lowLevelTest(){
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
 
-    double ref_speed_left = 30.0;
-    double ref_speed_right = 30.0;
+    double ref_speed_left = 2;
+    double ref_speed_right = 2;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 3*1000000; // To seconds;
+    unsigned long duration = 2.5*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;
@@ -43,11 +44,12 @@ void Robot::lowLevelTest(){
                 << u_volt_right << "\n";
         
         looptime = micros() - startloop;
-        if (looptime > SAMPLING_TIME*1e6) {
+        /*if (looptime > SAMPLING_TIME*1e6) {
             std::cout << "Loop time exceeded: " << looptime << std::endl;
         }else{
             std::cout << "Loop time okay: " << looptime << std::endl;
         }
+        */
         usleep(SAMPLING_TIME*1e6 - looptime);
         }
     

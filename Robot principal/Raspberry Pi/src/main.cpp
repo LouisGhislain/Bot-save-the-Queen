@@ -1,10 +1,9 @@
 #include <iostream>
 #include "Robot.h"
-#include "Screen.h"
 
 int main() {
     Robot robot;
-    //Screen screen;
+    GAME *game = init_game(); 
 
     char choice;
 
@@ -18,8 +17,8 @@ int main() {
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
     std::cout << "  m: Middle level" << std::endl;
-    std::cout << "  p: Test teensy" << std::endl;
-    std::cout << "  q: RESET teensy" << std::endl;
+    std::cout << "  p: RESET teensy" << std::endl;
+    std::cout << "  q: SEPARATE1 teensy" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -94,21 +93,6 @@ int main() {
             robot.buzzBuzzer();
             break;
         }
-        case 'x' :{
-            std::cout << "Sending '01' on Teensy board" << std::endl;
-            robot.teensy_cans();
-            break;
-        }
-        case 'y' :{
-            std::cout << "Sending '10' on Teensy board" << std::endl;
-            robot.teensy_lift();
-            break;
-        }
-        case 'z' :{
-            std::cout << "Sending '11' on Teensy board" << std::endl;
-            robot.teensy_cans_lift();
-            break;
-        }
         case 'm': {
             std::cout << "Middle level test..." << std::endl;
             
@@ -164,23 +148,23 @@ int main() {
         }
         */
         case 'p': {
+            
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x10);
+            robot.teensy_send_command(0x06);
             std::cout << "C'est envoyé" << std::endl;
             break ; 
+            
         }
         case 'q': {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
             robot.teensy_separate_stack();
-            std::cout << "C'est envoyé - SEPARATE envoyé" << std::endl;
             break ; 
         }
         default:
-    
             std::cout << "Invalid option." << std::endl;
             break;
     }
