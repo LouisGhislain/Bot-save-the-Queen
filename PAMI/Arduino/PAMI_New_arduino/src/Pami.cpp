@@ -3,10 +3,11 @@
 #include "Encoder.h"
 
 
-PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false) {
+PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false), starting_switch(A5), left_switch(1),right_switch(15), tail(9),sonar(A3,4) {
     // Initialisation des moteurs et encodeurs
     leftMotor.set_motor(0);
     rightMotor.set_motor(0);
+    PAMI_state = moving ; 
 }
 
 // void PAMI::getAngle() {
@@ -109,3 +110,32 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     // Serial.println(ref_speed_right);
 }
 
+void PAMI::pami_brake(){
+    leftMotor.brake();
+    rightMotor.brake();
+}
+
+
+State_t PAMI::getState() {
+    return PAMI_state;
+}
+
+void PAMI::setState(State_t new_state) {
+    PAMI_state = new_state;
+}
+
+bool PAMI::isStartPressed() {
+    return starting_switch.switch_state();
+}
+
+bool PAMI::isLeftPressed() {
+    return left_switch.switch_state();
+}
+
+double PAMI::getSonarDistance() {
+    return sonar.Sonar_Get_Distance();
+}
+
+void PAMI::turnTail() {
+    tail.Turn_tail();
+}

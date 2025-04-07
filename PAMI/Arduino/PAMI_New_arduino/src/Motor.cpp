@@ -68,3 +68,9 @@ void Motor::stop_motor() {
     digitalWrite(dir1, LOW);
     digitalWrite(dir2, LOW);
 }
+
+void Motor::brake(){
+    analogWrite(PWM_PIN,8);
+    digitalWrite(dir1,HIGH);
+    digitalWrite(dir2,HIGH);
+}

@@ -4,10 +4,16 @@
 // Include the necessary libraries
 #include <Arduino.h>
 
-// Fonction de configuration des broches
-void Pin_Microswitch_Initialization();
+class Microswitch{
+public : 
+    Microswitch(int pin);
 
-// Fonction pour lire l'état du switch
-void Check_press();
+    void Check_press(); // Fonction pour lire l'état du switch
 
-int Microswitch_state ();
+    int switch_state();
+private : 
+    int PIN ; 
+    static Microswitch* starting_switch;
+    static Microswitch* left_switch;
+    static Microswitch* right_switch; 
+};

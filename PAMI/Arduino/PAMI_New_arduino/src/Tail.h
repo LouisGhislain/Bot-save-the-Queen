@@ -1,11 +1,15 @@
-// Include guard
 #pragma once
 
-// Include the necessary libraries
 #include <Arduino.h>
+#include <Servo.h>
 
-// Fonction de configuration des broches
-void Pin_Tail_Initialization();
+class Tail{
+private : 
+    int PIN_TAIL ; 
+    Servo Servo_Tail;
+    static Tail* tail ; 
+public : 
+    Tail(int pin_tail);
+    void Turn_tail();
+};
 
-// Fonction pour tourner la queue
-void Turn_tail();

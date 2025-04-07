@@ -1,11 +1,17 @@
-// Include guard
 #pragma once
 
-// Include the necessary libraries
 #include <Arduino.h>
-#define Sonar_trig A3
-#define Sonar_echo 4
 
-//extern volatile bool state_asking;
-void Pin_Sonar_Initialization();
-int Sonar_Get_Distance();
+class Sonar {
+public:
+    Sonar(int pin_trig, int pin_echo);      
+    int Sonar_Get_Distance();               
+
+private:
+    int PIN_TRIG;
+    int PIN_ECHO;
+};
+
+
+//#define Sonar_trig A3
+//#define Sonar_echo 4
