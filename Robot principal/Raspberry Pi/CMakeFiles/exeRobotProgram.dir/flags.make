@@ -4,11 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/flags.make
-CXX_INCLUDES = -I"/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/include"
-=======
 CXX_INCLUDES = -I"/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/include"
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/flags.make
 
 CXX_FLAGS = 
 

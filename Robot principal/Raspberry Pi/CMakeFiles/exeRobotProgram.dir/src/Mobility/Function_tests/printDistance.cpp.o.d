@@ -220,4 +220,5 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o: 
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/c++/12/iostream
+ /usr/include/linux/close_range.h /usr/include/c++/12/iostream \
+ /usr/local/include/wiringPiI2C.h

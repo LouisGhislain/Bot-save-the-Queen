@@ -1,18 +1,8 @@
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o.d
-CMakeFiles/exeRobotProgram.dir/src/Mobility/openLoopData.cpp.o: \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/openLoopData.cpp \
- /usr/include/stdc-predef.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Robot.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Motor.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath \
-=======
 CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o: \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/struct.cpp \
  /usr/include/stdc-predef.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/struct.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o.d
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \

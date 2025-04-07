@@ -104,12 +104,14 @@ private:
     static constexpr double KiSpeed = 2.6222100340415317;
 
     // Middle level controller gains
-    static constexpr double KpAlpha = 5.0;
-    static constexpr double KpBeta = -4.0;
+    static constexpr double KpAlpha = 0.0;
+    static constexpr double KpBeta = -0.0;
 
     // Middle level controller variables
     double delta_x_target;
     double delta_y_target;
+    double last_distl_middle = 0;
+    double last_distr_middle = 0;
 
     // High level controller variables (used in middle)
     double rho = 0.0; // in m (distance to target)

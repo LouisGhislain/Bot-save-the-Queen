@@ -1,19 +1,10 @@
-CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o.d
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyCans.cpp \
- /usr/include/stdc-predef.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Actuators/../../include/Robot.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Actuators/../../include/Motor.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath \
-=======
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyCans.cpp \
+CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCheckIR.cpp.o: \
+ /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Actuators/teensyCheckIR.cpp \
  /usr/include/stdc-predef.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Actuators/../../include/Robot.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Actuators/../../include/Motor.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Actuators/../../include/struct.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o.d
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -229,4 +220,5 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCans.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/c++/12/iostream
+ /usr/include/linux/close_range.h /usr/include/c++/12/iostream \
+ /usr/local/include/wiringPiI2C.h

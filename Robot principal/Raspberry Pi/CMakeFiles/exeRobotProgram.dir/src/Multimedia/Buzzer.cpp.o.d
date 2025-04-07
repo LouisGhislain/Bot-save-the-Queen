@@ -1,12 +1,3 @@
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o.d
-CMakeFiles/exeRobotProgram.dir/src/Mobility/lowLevelTest.cpp.o: \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/lowLevelTest.cpp \
- /usr/include/stdc-predef.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Robot.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/../../include/Motor.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath \
-=======
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Multimedia/Buzzer.cpp \
  /usr/include/stdc-predef.h \
@@ -14,7 +5,6 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Multimedia/../../include/Motor.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Multimedia/../../include/struct.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o.d
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -230,4 +220,5 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/c++/12/iostream
+ /usr/include/linux/close_range.h /usr/include/c++/12/iostream \
+ /usr/local/include/wiringPiI2C.h

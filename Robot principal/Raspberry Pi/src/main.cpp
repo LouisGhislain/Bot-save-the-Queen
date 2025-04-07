@@ -49,10 +49,10 @@ int main() {
                 std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y << ", Theta: " << game->queen->angle *180/(M_PI)<< std::endl;
                 
                 looptime = micros() - startloop;
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
                 if (looptime > robot.SAMPLING_TIME*1e6) {
                     std::cout << "Loop time exceeded: " << looptime << std::endl;
                 }
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
                 }
 
             break;
@@ -110,10 +110,7 @@ int main() {
                 startloop = micros();
         
                 robot.updateOdometry(game);
-                
-                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-                // print speed
-                
+
                 if(counter == 10){
                     robot.middleLevelController(targetX, targetY, 0, deplacement, game);
                     counter = 0;

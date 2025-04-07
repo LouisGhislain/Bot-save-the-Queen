@@ -1,17 +1,9 @@
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o.d
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/Motor.cpp \
- /usr/include/stdc-predef.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/../../../include/Motor.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath \
-=======
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/Motor.cpp \
  /usr/include/stdc-predef.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/../../../include/Motor.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/../../../include/struct.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o.d
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \

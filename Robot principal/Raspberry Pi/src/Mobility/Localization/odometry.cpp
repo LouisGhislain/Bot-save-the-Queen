@@ -12,10 +12,10 @@ void Robot::updateOdometry(void *sqid){
 
     // Get distance travelled by each wheel
     distl = leftMotor.getDistance(); // in m
-    distr = rightMotor.getDistance(); // Corrective factor for right wheel = 0.997126437
+    distr = rightMotor.getDistance(); // 
 
     // Compute the angle of the robot
-    queen->angle = 0.999683332 * ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
+    queen->angle = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
     // Normalize angle to range [-π, π]
     while (queen->angle > M_PI) {    
         queen->angle -= 2 * M_PI;
@@ -45,8 +45,8 @@ void Robot::initCoords(void *sqid) {
     switch (starting_pos)
     {
     case 0: // Blue bottom
-        queen->cart_pos->x = 0.3;  // in m (origin at the bottom left, angle 0 = x-axis)
-        queen->cart_pos->y = 0.9;  // in m
+        queen->cart_pos->x = 0.0;  // in m (origin at the bottom left, angle 0 = x-axis)
+        queen->cart_pos->y = 0.0;  // in m
         queen->angle     = 0.0;   // in radians
         break;
     case 1: // Blue side
@@ -65,8 +65,8 @@ void Robot::initCoords(void *sqid) {
         queen->angle     = M_PI;
         break;
     default: // Default starting position
-        queen->cart_pos->x = 0.3;
-        queen->cart_pos->y = 0.9;
+        queen->cart_pos->x = 0.0;
+        queen->cart_pos->y = 0.0;
         queen->angle     = 0.0;
         break;
     }

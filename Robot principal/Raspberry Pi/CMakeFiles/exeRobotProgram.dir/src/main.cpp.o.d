@@ -1,9 +1,5 @@
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/src/main.cpp \
-=======
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/main.cpp \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
  /usr/include/stdc-predef.h /usr/include/c++/12/iostream \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
@@ -153,12 +149,6 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Robot.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Motor.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/cmath /usr/include/math.h \
-=======
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Robot.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Motor.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/struct.h \
@@ -167,7 +157,6 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/stdlib.h \
  /usr/include/c++/12/math.h /usr/include/c++/12/cmath /usr/include/math.h \
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
  /usr/include/aarch64-linux-gnu/bits/math-vector.h \
  /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h \
@@ -231,18 +220,4 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
- /usr/include/linux/close_range.h /usr/include/c++/12/vector \
- /usr/include/c++/12/bits/stl_uninitialized.h \
- /usr/include/c++/12/bits/stl_vector.h \
- /usr/include/c++/12/bits/stl_bvector.h \
- /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/tuple \
- /usr/include/c++/12/bits/uses_allocator.h \
- /home/TheQueen/BotSaveHugo/Robot\ principal/Raspberry\ Pi/include/Screen.h \
- /usr/local/include/wiringPiI2C.h
-=======
- /usr/include/linux/close_range.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Screen.h \
- /usr/local/include/wiringPiI2C.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/struct.h
->>>>>>> dev_1:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d
+ /usr/include/linux/close_range.h /usr/local/include/wiringPiI2C.h

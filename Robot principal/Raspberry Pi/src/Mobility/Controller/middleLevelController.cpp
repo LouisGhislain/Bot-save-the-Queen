@@ -41,8 +41,15 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     delta_x_target = x_coord_target - queen->cart_pos->x; // in m
     delta_y_target = y_coord_target - queen->cart_pos->y; // in m
 
-    travelled_distance += abs(((distl + distr)-(last_distl + last_distr))/2);
+    travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
     rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
+
+    fprintf(stderr, "rho: %f, travelled distance %f\n", rho, travelled_distance);
+    fprintf(stderr, "last distl: %f, last_distr: %f\n", last_distl_middle, last_distr_middle);
+    fprintf(stderr, "distl: %f, distr: %f\n", distl, distr);
+
+    last_distl_middle = distl;
+    last_distr_middle = distr;
 
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
