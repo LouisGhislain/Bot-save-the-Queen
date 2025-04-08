@@ -1,0 +1,3 @@
+/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir
+/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles/edit_cache.dir
+/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles/rebuild_cache.dir

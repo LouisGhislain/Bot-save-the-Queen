@@ -1,37 +1,60 @@
 cmake_minimum_required(VERSION 3.25.1)
+project(exeRobotProgram)
 
-project(exeRobotProgram) # name of the project 
-
+# Définir le standard C++
 set(CMAKE_CXX_STANDARD 17)
 
-# Recursively find all .h and .hpp files in the include directory
+# Inclure les répertoires d'en-tête du LIDAR
+include_directories(lib/rplidar_sdk/sdk/include)
+include_directories(src)
+
+# Rechercher récursivement tous les fichiers .h et .hpp dans le répertoire include
 file(GLOB_RECURSE HEADER_FILES "include/*.h" "include/*.hpp")
 
-# Extract unique directories from the header files
+# Extraire les répertoires uniques des fichiers d'en-tête
 foreach(HEADER ${HEADER_FILES})
     get_filename_component(HEADER_DIR ${HEADER} DIRECTORY)
     list(APPEND INCLUDE_DIRS ${HEADER_DIR})
 endforeach()
 
-# Remove duplicate directories
+# Supprimer les répertoires en double
 list(REMOVE_DUPLICATES INCLUDE_DIRS)
 
-# Add the include directories
+# Ajouter les répertoires d'inclusion
 include_directories(${INCLUDE_DIRS})
 
-# Recursively find all .cpp files in src
+# Ajouter les fichiers source spécifiques du LIDAR
+set(LIDAR_SOURCES
+    src/Struct.cpp
+    src/lidar.cpp
+)
+
+# Ajouter les fichiers d'en-tête spécifiques du LIDAR
+set(LIDAR_HEADERS
+    include/struct.h
+    include/lidar.h
+)
+
+# Rechercher récursivement tous les fichiers .cpp dans src
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-# Add executable
-add_executable(exeRobotProgram ${SOURCES})
+# Ajouter l'exécutable
+add_executable(exeRobotProgram ${SOURCES} ${LIDAR_HEADERS})
 
-# Find the WiringPi library
+# Trouver la bibliothèque WiringPi
 find_library(WIRINGPI_LIBRARY wiringPi)
 
-# Check if WiringPi was found
+# Vérifier si WiringPi a été trouvé
 if (NOT WIRINGPI_LIBRARY)
-    message(FATAL_ERROR "WiringPi library not found!")
+    message(FATAL_ERROR "Bibliothèque WiringPi non trouvée!")
 endif()
 
-# Link the WiringPi library to your executable
-target_link_libraries(exeRobotProgram ${WIRINGPI_LIBRARY})
+# Lier les bibliothèques WiringPi et RPLIDAR à votre exécutable
+target_link_libraries(exeRobotProgram
+    ${WIRINGPI_LIBRARY}
+    ${CMAKE_SOURCE_DIR}/lib/rplidar_sdk/output/Linux/Release/libsl_lidar_sdk.a
+    pthread
+)
+
+# Afficher les messages d'état
+message(STATUS "Projet Robot avec LIDAR configuré avec succès.")
