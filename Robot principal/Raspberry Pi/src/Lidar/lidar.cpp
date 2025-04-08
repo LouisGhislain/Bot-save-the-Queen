@@ -205,9 +205,9 @@ void fetchLidarData(void * sqid_void) {
   size_t count = max_node_count;
 
   sl_result result = lidardriver->grabScanDataHq(nodes, count);
-  squid->queen->cart_pos->x = 170;
-  squid->queen->cart_pos->y = 100;
-  squid->queen->angle = M_PI/2;
+  // squid->queen->cart_pos->x = 170;
+  // squid->queen->cart_pos->y = 100;
+  // squid->queen->angle = M_PI/2;
   
   squid->map->all_map_count = 0;
   squid->map->inside_map_count = 0;

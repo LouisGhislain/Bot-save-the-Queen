@@ -11,6 +11,8 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <softTone.h>
+#include <iostream>
 //I2C
 #include <wiringPiI2C.h>
 #include <wiringPi.h>
@@ -25,12 +27,12 @@ struct MovementParams {
     double vMax;        
     double stop_robot_distance; 
     double acceleration;
-    double wmax;
+    double wMax;
 
     static constexpr double distanceBetweenWheel = 0.25276;
 
     MovementParams()
-        : activated_target_angle(false), d0(0), vMax(0), stop_robot_distance(0), acceleration(0), wmax(0) {}
+        : activated_target_angle(false), d0(0), vMax(0), stop_robot_distance(0), acceleration(0), wMax(0) {}
 
     MovementParams(bool activated_target_angle, double d0, double vMax, double stop_robot_distance)
         : activated_target_angle(activated_target_angle),
@@ -38,7 +40,7 @@ struct MovementParams {
           vMax(vMax),
           stop_robot_distance(stop_robot_distance),
           acceleration((d0 > 0) ? (vMax * vMax / (2 * d0)) : 0.0),
-          wmax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
+          wMax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
 };
 
 // Declare as extern to be used in multiple files
@@ -60,12 +62,23 @@ public:
     void openLoopData();
     void printDistance();
     void lowLevelTest();
-    void buzzBuzzer();
+    void middleLevelTest(double targetX, double targetY, void *game);
+
+    // Odometry
     void updateOdometry(void *game);
     void initCoords(void *game);
+
+    // Buzzer
+    void buzzBuzzer();
+    void playNote(int frequency, int duration);
+    void playMelody();
+
+    // Screen 
     void screen_init();         
     void screen_clear();        
-    void screen_displayText(const std::string &text); 
+    void screen_displayText(const std::string &text);
+
+    // Teensy
     void teensy_init();
     void teensy_send_command(uint8_t command);
     void teensy_separate_stack();
@@ -73,8 +86,12 @@ public:
     void teensy_ready_to_lift();
     void lowLevelForward();
     void lowLevelBackward();
+
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
+    
+    double middle_ref_speed_left = 0.0; // in rad/s (left motor speed)
+    double middle_ref_speed_right = 0.0; // in rad/s (right motor speed)
 
 private:
     void initializeSPI(); 
@@ -117,6 +134,8 @@ private:
     double rho = 0.0; // in m (distance to target)
     double travelled_distance = 0.0; // in m (distance from the starting point)
     double v_ref = 0.0; // in m/s (linear speed)
+    
+    double v_threshold_move = 0.0441; // in m/s (minimum speed to move) (1.5 rad/s a la roue) = 1.5 * wheel_radius = 0.0441 m/s
 
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;

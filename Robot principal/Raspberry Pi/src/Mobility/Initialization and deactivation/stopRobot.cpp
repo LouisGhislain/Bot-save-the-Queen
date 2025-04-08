@@ -8,7 +8,7 @@
 void Robot::stop() {
     leftMotor.brake();
     rightMotor.brake();
-    usleep(10000000);
+    usleep(1000000); // break during 1 second
     leftMotor.stop();
     rightMotor.stop();
 }
