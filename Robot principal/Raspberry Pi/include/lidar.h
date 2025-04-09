@@ -45,14 +45,14 @@ static constexpr double EPS = 0.1;
 static constexpr int MIN_PTS = 1;
 
 
-
-
 // Fonction pour se connecter au LIDAR
 ILidarDriver* init_connectLidar();
 void fetchLidarData(void * sqid_void);
 void clustering_nearest(GAME * squid);
 void Emergency_stop(GAME* squid);
 void clustering_calibrated(GAME * squid);
+void pos_of_stack(GAME* squid);
+void stack_is_taking_by_ennemy(GAME* squid);
 
 
 #endif // LIDAR_H

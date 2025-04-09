@@ -153,10 +153,28 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.s: c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/lowLevelTest.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.s
 
+CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Function\ tests/middle_level_test.cpp
+CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/middle_level_test.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/middle_level_test.cpp" > CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/middle_level_test.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.s
+
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Function\ tests/openLoopData.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/openLoopData.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.i: cmake_force
@@ -170,7 +188,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.s: c
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Function\ tests/printDistance.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Function tests/printDistance.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.i: cmake_force
@@ -184,7 +206,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.s: 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Initialization\ and\ deactivation/startRobot.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Initialization and deactivation/startRobot.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.i: cmake_force
@@ -198,7 +224,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/star
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Initialization\ and\ deactivation/stopRobot.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Initialization and deactivation/stopRobot.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.i: cmake_force
@@ -212,7 +242,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stop
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Localization/odometry.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Localization/odometry.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.i: cmake_force
@@ -226,7 +260,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.s: cmake_f
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Mobility/Motors/Motor.cpp
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Mobility/Motors/Motor.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.i: cmake_force
@@ -240,7 +278,11 @@ CMakeFiles/exeRobotProgram.dir/src/Mobility/Motors/Motor.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Multimedia/Buzzer.cpp
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Multimedia/Buzzer.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.i: cmake_force
@@ -254,7 +296,11 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Multimedia/Screen.cpp
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Multimedia/Screen.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.i: cmake_force
@@ -268,7 +314,11 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Robot.cpp
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/Robot.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.i: cmake_force
@@ -282,7 +332,11 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s: cmake_force
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/main.cpp
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/main.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/main.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/main.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/main.cpp.i: cmake_force
@@ -293,10 +347,28 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/main.cpp" -o CMakeFiles/exeRobotProgram.dir/src/main.cpp.s
 
+CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/main1.cpp
+CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/main1.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/main1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/main1.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/main1.cpp" > CMakeFiles/exeRobotProgram.dir/src/main1.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/main1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/main1.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/main1.cpp" -o CMakeFiles/exeRobotProgram.dir/src/main1.cpp.s
+
 CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/struct.cpp
 CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o"
+>>>>>>> Stashed changes
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o -c "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/src/struct.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/struct.cpp.i: cmake_force
@@ -315,6 +387,7 @@ exeRobotProgram_OBJECTS = \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o" \
@@ -325,6 +398,7 @@ exeRobotProgram_OBJECTS = \
 "CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o"
 
 # External object files for target exeRobotProgram
@@ -336,6 +410,7 @@ exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/middle_level_test.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/openLoopData.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/printDistance.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/startRobot.cpp.o
@@ -346,12 +421,17 @@ exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/struct.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/build.make
 exeRobotProgram: /usr/local/lib/libwiringPi.so
 exeRobotProgram: /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/lib/rplidar_sdk/output/Linux/Release/libsl_lidar_sdk.a
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/link.txt
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable exeRobotProgram"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable exeRobotProgram"
+>>>>>>> Stashed changes
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exeRobotProgram.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

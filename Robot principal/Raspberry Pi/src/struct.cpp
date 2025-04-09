@@ -70,6 +70,7 @@ MAP * init_map(){
 Stack * init_stack() {
     Stack *stack = (Stack *)malloc(sizeof(Stack));
     stack->Stack_cart = init_cartesian();
+    stack->angle = 0.0;
     stack->Free = true;
     return stack;
 }

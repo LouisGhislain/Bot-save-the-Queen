@@ -81,12 +81,20 @@ clean: CMakeFiles/exeRobotProgram.dir/clean
 CMakeFiles/exeRobotProgram.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/build
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Built target exeRobotProgram"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target exeRobotProgram"
+>>>>>>> Stashed changes
 .PHONY : CMakeFiles/exeRobotProgram.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/exeRobotProgram.dir/rule: cmake_check_build_system
+<<<<<<< Updated upstream
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" 18
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" 20
+>>>>>>> Stashed changes
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/exeRobotProgram.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/BotsavetheLidar/Robot principal/Raspberry Pi/build/CMakeFiles" 0
 .PHONY : CMakeFiles/exeRobotProgram.dir/rule

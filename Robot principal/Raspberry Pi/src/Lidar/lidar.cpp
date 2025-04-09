@@ -27,12 +27,17 @@ void Find_Point_Map(void * sqid_void) {
   for (size_t i = 0; i < squid->map->all_map_count; i++) {
     // printf("Point %zu: X: %f, Y: %f\n", i, squid->map->all_map_cart[i]->x, squid->map->all_map_cart[i]->y);
     if (squid->map->all_map_cart[i]->x > 50 && squid->map->all_map_cart[i]->x < 2950 && squid->map->all_map_cart[i]->y > 50 && squid->map->all_map_cart[i]->y < 1950) {
+      if (squid->map->inside_map_count < Pt_lidar) {
       squid->map->inside_map_cart[squid->map->inside_map_count]->x = squid->map->all_map_cart[i]->x;
       squid->map->inside_map_cart[squid->map->inside_map_count]->y = squid->map->all_map_cart[i]->y;
       squid->map->inside_map_pol[squid->map->inside_map_count]->angle = squid->map->all_map_pol[i]->angle;
       squid->map->inside_map_pol[squid->map->inside_map_count]->distance = squid->map->all_map_pol[i]->distance;
       squid->map->inside_map_count++;
       // printf("Point inside map: (%f, %f)\n", squid->map->inside_map_cart[squid->map->inside_map_count - 1]->x, squid->map->inside_map_cart[squid->map->inside_map_count - 1]->y);
+    }
+    else {
+      printf("Warning: inside_map_count reached limit\n");
+  }
     }
     else {
       // printf("Point outside map: (%f, %f)\n", squid->map->all_map_cart[i]->x, squid->map->all_map_cart[i]->y);
@@ -205,9 +210,9 @@ void fetchLidarData(void * sqid_void) {
   size_t count = max_node_count;
 
   sl_result result = lidardriver->grabScanDataHq(nodes, count);
-  squid->queen->cart_pos->x = 170;
-  squid->queen->cart_pos->y = 100;
-  squid->queen->angle = M_PI/2;
+  squid->queen->cart_pos->x = 100;
+  squid->queen->cart_pos->y = 300;
+  squid->queen->angle = 0; // M_PI/2;
   
   squid->map->all_map_count = 0;
   squid->map->inside_map_count = 0;
@@ -225,14 +230,19 @@ void fetchLidarData(void * sqid_void) {
     double distance = nodes[i].dist_mm_q2 / 4.0f;          // Distance en mm
 
     if (distance > 0 && distance < 3900) { // 3900
+      if (squid->map->all_map_count < Pt_lidar) {
       squid->map->all_map_pol[squid->map->all_map_count]->angle = angle; // Convertir en radians
       squid->map->all_map_pol[squid->map->all_map_count]->distance = distance; // Distance en mm
       squid->map->all_map_cart[squid->map->all_map_count]->x = squid->queen->cart_pos->x + distance * cos(-angle + squid->queen->angle); // Convertir en coordonnées cartésiennes
       squid->map->all_map_cart[squid->map->all_map_count]->y = squid->queen->cart_pos->y + distance * sin(-angle + squid->queen->angle); // Convertir en coordonnées cartésiennes
+ 
       
       squid->map->all_map_count++;
       // printf("Point %zu: Angle: %f, Distance: %f, X: %f, Y: %f\n", i, angle, distance, squid->map->all_map_cart[0]->x, squid->map->all_map_cart[0]->y);
-
+    }
+    else {
+      printf("Warning: all_map_count reached limit\n");
+    }
     }
   }
   
@@ -251,9 +261,6 @@ void fetchLidarData(void * sqid_void) {
   }
 }
 
-  
-
-
 void Emergency_stop(GAME* squid) {
   // if Sauron is too cloose
   if (fabs(squid->Sauron->pol_pos->distance) < 500 ) {
@@ -262,4 +269,90 @@ void Emergency_stop(GAME* squid) {
     squid->Sauron->too_close = true;
   }
 }
+
+void pos_of_stack(GAME* squid) {
+  // Start from index 0 instead of 1 or check if you really want to skip index 0
+  for (int i = 0; i < squid->target->stack_count; i++) {
+    // Fix comparison operators (use == instead of =)
+    if (i == 0) {
+      squid->target->stack[i]->Stack_cart->x = 775;
+      squid->target->stack[i]->Stack_cart->y = 250;
+      squid->target->stack[i]->angle = M_PI/2;
+      // (626.21, 359.324)
+    }
+    else if (i == 1) {
+      squid->target->stack[i]->Stack_cart->x = 75;
+      squid->target->stack[i]->Stack_cart->y = 400;
+      squid->target->stack[i]->angle = 0;
+    }
+    else if (i == 2) {
+      squid->target->stack[i]->Stack_cart->x = 1100;
+      squid->target->stack[i]->Stack_cart->y = 950;
+      squid->target->stack[i]->angle = M_PI/2;
+    }
+    else if (i == 3) {
+      squid->target->stack[i]->Stack_cart->x = 75;
+      squid->target->stack[i]->Stack_cart->y = 1325;
+      squid->target->stack[i]->angle = 0;
+    }
+    else if (i == 4) {
+      squid->target->stack[i]->Stack_cart->x = 825;
+      squid->target->stack[i]->Stack_cart->y = 1725;
+      squid->target->stack[i]->angle = M_PI/2;
+    }
+    else if (i == 5) {
+      squid->target->stack[i]->Stack_cart->x = 2225;
+      squid->target->stack[i]->Stack_cart->y = 250;
+      squid->target->stack[i]->angle = M_PI/2;
+    }
+    else if (i == 6) {
+      squid->target->stack[i]->Stack_cart->x = 2925;
+      squid->target->stack[i]->Stack_cart->y = 400;
+      squid->target->stack[i]->angle = 0;
+    }
+    else if (i == 7) {
+      squid->target->stack[i]->Stack_cart->x = 1900;
+      squid->target->stack[i]->Stack_cart->y = 950;
+      squid->target->stack[i]->angle = M_PI/2;
+    }
+    else if (i == 8) {
+      squid->target->stack[i]->Stack_cart->x = 2925;
+      squid->target->stack[i]->Stack_cart->y = 1325;
+      squid->target->stack[i]->angle = 0;
+    }
+    else if (i == 9) {
+      squid->target->stack[i]->Stack_cart->x = 2175;
+      squid->target->stack[i]->Stack_cart->y = 1725;
+      squid->target->stack[i]->angle = M_PI/2;
+    }
+    else {
+      printf("Error in stack position: index %d out of range\n", i);
+    }
+  }
+}
+
+void stack_is_taking_by_ennemy(GAME* squid) {
+  for (int i = 0; i < squid->target->stack_count; i++) {
+    // Only check stacks that are currently free
+    if (squid->target->stack[i]->Free) {
+      // Store starting time outside the loop
+      // unsigned start_time = squid->time;
+      
+      // Check proximity between stack and enemy
+      double dx = squid->target->stack[i]->Stack_cart->x - squid->Sauron->cart_pos->x;
+      double dy = squid->target->stack[i]->Stack_cart->y - squid->Sauron->cart_pos->y;
+      
+      // If enemy is close to the stack
+      if (fabs(dx) < 150 && fabs(dy) < 150) {
+        // Check if enemy has been close for more than 5000 time units
+        // if ((squid->time - start_time) > 5000) {
+          squid->target->stack[i]->Free = false;
+          printf("Stack %d is taken by enemy\n", i);
+        }
+      } else {
+        // Reset timer if enemy moves away
+        // start_time = squid->time;
+      }
+    }
+  }
 

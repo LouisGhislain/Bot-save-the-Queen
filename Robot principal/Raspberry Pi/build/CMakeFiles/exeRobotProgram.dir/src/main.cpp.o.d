@@ -193,9 +193,15 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/sigthread.h \
  /usr/include/aarch64-linux-gnu/bits/signal_ext.h \
  /usr/include/c++/12/limits \
+<<<<<<< Updated upstream
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/Robot.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/Motor.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/struct.h \
+=======
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/Robot.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/Motor.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/struct.h \
+>>>>>>> Stashed changes
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
@@ -223,9 +229,9 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/tr1/poly_laguerre.tcc \
  /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/c++/12/utility \
  /usr/include/c++/12/bits/stl_relops.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/rptypes.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_driver.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rptypes.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/sl_lidar.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/sl_lidar_driver.h \
  /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
  /usr/include/c++/12/ext/aligned_buffer.h \
  /usr/include/c++/12/bits/node_handle.h \
@@ -233,9 +239,9 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/uses_allocator.h \
  /usr/include/c++/12/bits/stl_multimap.h \
  /usr/include/c++/12/bits/erase_if.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_cmd.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_protocol.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_types.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/sl_lidar_cmd.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/sl_lidar_protocol.h \
+ /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/sl_types.h \
  /usr/include/c++/12/optional \
  /usr/include/c++/12/bits/enable_special_members.h \
  /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
@@ -268,11 +274,14 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/stl_tempbuf.h \
  /usr/include/c++/12/bits/uniform_int_dist.h \
  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
+<<<<<<< Updated upstream
  /usr/include/c++/12/pstl/execution_defs.h \
+=======
+ /usr/include/c++/12/pstl/execution_defs.h /usr/local/include/softTone.h \
+>>>>>>> Stashed changes
  /usr/local/include/wiringPiI2C.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/struct.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/lidar.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/struct.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_cmd.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_protocol.h \
  /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_driver.h \

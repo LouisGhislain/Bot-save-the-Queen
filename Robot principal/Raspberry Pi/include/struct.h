@@ -54,6 +54,7 @@ typedef struct Ennemy{
 
 typedef struct Stack{
     Cartesian *Stack_cart; // Position cartésienne de la cible
+    double angle; // Angle de la cible
     bool Free; // Indique si la cible est libre
 } Stack;
 
@@ -87,7 +88,7 @@ typedef struct GAME{
     Queen *queen; // Robot du jeu
     Ennemy *Sauron; // Ennemi du jeu
     Target *target; // Cible du jeu
-    
+    unsigned long time;
 } GAME;
 
 

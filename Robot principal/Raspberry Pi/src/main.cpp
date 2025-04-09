@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <limits>
-#include "Robot.h"
+#include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
 
@@ -115,6 +115,7 @@ int main() {
                 pthread_mutex_unlock(&data_mutex);
                 
                 looptime = micros() - startloop;
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
                 if (looptime > robot.SAMPLING_TIME*1e6) {
                     std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
                 }
@@ -207,6 +208,7 @@ int main() {
         }
         case 's': {
             // Afficher en continu les données du LIDAR
+            pos_of_stack(game);
             while (running) {
                 // Verrouiller le mutex avant d'accéder aux données
                 pthread_mutex_lock(&data_mutex);
@@ -214,7 +216,9 @@ int main() {
                 if (game->map->cluster_count > 0) {
                     std::cout << "Position Sauron: (" << game->Sauron->cart_pos->x << ", " 
                               << game->Sauron->cart_pos->y << ")" << std::endl;
-                    // Emergency_stop(game);
+
+                    Emergency_stop(game);
+                    stack_is_taking_by_ennemy(game);
                 }
                 
                 // Déverrouiller le mutex après utilisation des données
