@@ -10,9 +10,9 @@ const MovementParams manoeuvre {
 
 const MovementParams deplacement {
     false,  // activated_target_angle
-    0.010,  // d0
-    0.5,    // vMax
-    0.005   // stop_robot_distance
+    0.15,  // d0
+    0.4,    // vMax
+    0.05   // stop_robot_distance
 };
 
 const MovementParams orientation {
@@ -45,8 +45,9 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
 
     fprintf(stderr, "rho: %f, travelled distance %f\n", rho, travelled_distance);
-    fprintf(stderr, "last distl: %f, last_distr: %f\n", last_distl_middle, last_distr_middle);
-    fprintf(stderr, "distl: %f, distr: %f\n", distl, distr);
+    //fprintf(stderr, "delta_x_target: %f, delta_y_target: %f\n", delta_x_target, delta_y_target);
+    // print position
+    //fprintf(stderr, "X: %f, Y: %f, Theta: %f\n", queen->cart_pos->x, queen->cart_pos->y, queen->angle *180/(M_PI));
 
     last_distl_middle = distl;
     last_distr_middle = distr;
@@ -54,14 +55,20 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
         if(params.activated_target_angle == 1){
-            lowLevelController(0, 0);
+            // as if lowLevelController(0, 0);
+            middle_ref_speed_left = 0;
+            middle_ref_speed_right = 0;
+
             travelled_distance = 0;           // Move feature to high level controller when ready
             std::cout << "Point reached (maybe not orientation) " << std::endl;
 
             //continue; // if the target is reached but the angle is not, continue to rotate 
         }
         else{
-            lowLevelController(0, 0);
+            // as if lowLevelController(0, 0);
+            middle_ref_speed_left = 0;
+            middle_ref_speed_right = 0;
+
             travelled_distance = 0;           // Move feature to high level controller when ready
             std::cout << "Point reached" << std::endl;
             return;
@@ -76,7 +83,7 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     while (alpha <= -M_PI) {
         alpha += 2 * M_PI;
     }
-    double w_ref = KpAlpha * alpha;
+    double w_ref = KpAlpha * alpha;  // attention sinus pourrait apporter de la stabilité
 
     if(params.activated_target_angle == 1){
         // Convert target angle from degrees to radians and normalize it to range [-π, π]
@@ -90,30 +97,38 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
         }
         w_ref += KpBeta * beta;
     }
-    w_ref = std::clamp(w_ref, -params.wmax, params.wmax); // Limit the angular speed
+    w_ref = std::clamp(w_ref, -params.wMax, params.wMax); // Limit the angular speed
 
+    //fprintf(stderr, "w_ref: %f\n", w_ref);
+
+    //fprintf(stderr, "v_ref before: %f\n", v_ref);
 
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
     // Falling edge of the trapzoidal speed profile
     if (rho < params.d0) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
+        fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
     }
     
     // Rising edge of the trapzoidal speed profile
     else if ((travelled_distance < (params.d0)) && (v_ref < params.vMax - rot_part)){ 
-        v_ref = sqrt(2 * (travelled_distance + 0.01) * params.acceleration) - rot_part;
+        v_ref = sqrt(2 * (travelled_distance + 0.0001) * params.acceleration) - rot_part;
+        v_ref = std::max(v_ref, v_threshold_move);
+        fprintf(stderr, "RISING EDGE vref =%f\n", v_ref);
     }
 
     // Constant speed phase of the trapzoidal speed profile
     else {
         v_ref = (params.vMax) - rot_part;
+        fprintf(stderr, "CONSTANT SPEED =%f\n", v_ref);
     }
 
     // print v_ref
-    
+    //fprintf(stderr, "v_ref after: %f\n", v_ref);  
 
-    double ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
-    double ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    middle_ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    middle_ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
 
-    lowLevelController(ref_speed_left, ref_speed_right);
+    //fprintf(stderr, "ref_speed_left: %f, ref_speed_right: %f\n", middle_ref_speed_left, middle_ref_speed_right);
+    //fprintf(stderr, "-----------------------------------\n");
 }

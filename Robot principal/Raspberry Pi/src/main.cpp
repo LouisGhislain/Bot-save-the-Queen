@@ -7,144 +7,95 @@
 #include "../include/struct.h"
 #include "../include/lidar.h"
 
-// Variables globales pour le multithreading
-volatile bool running = true;
-pthread_mutex_t data_mutex;
-pthread_t lidar_thread;
-
-// Gestionnaire de signal pour terminer proprement le programme
-void sigint_handler(int sig) {
-    running = false;
-    printf("Arrêt en cours...\n");
-}
-
-// Fonction thread pour la récupération des données LIDAR
-void* lidar_thread_func(void* game_void) {
-    GAME* game = (GAME*)game_void;
-    
-    while (running) {
-        // Verrouiller le mutex avant d'accéder aux données partagées
-        pthread_mutex_lock(&data_mutex);
-        
-        // Appeler la fonction de récupération des données LIDAR
-        fetchLidarData(game);
-        
-        // Déverrouiller le mutex après la mise à jour des données partagées
-        pthread_mutex_unlock(&data_mutex);
-        
-        // Court délai pour éviter une utilisation excessive du CPU
-        usleep(10000); // 10ms de délai
-    }
-    
-    return NULL;
-}
-
 int main() {
-    // Initialiser le gestionnaire de signal
-    signal(SIGINT, sigint_handler);
-    
-    // Initialiser le mutex
-    if (pthread_mutex_init(&data_mutex, NULL) != 0) {
-        std::cerr << "Échec de l'initialisation du mutex" << std::endl;
-        return 1;
-    }
-
-    // Initialiser le robot et le jeu
     Robot robot;
-    GAME *game = init_game();
 
-    // Initialiser et démarrer le LIDAR
-    init_connectLidar();
-    
-    // Créer le thread LIDAR
-    if (pthread_create(&lidar_thread, NULL, lidar_thread_func, game) != 0) {
-        std::cerr << "Échec de la création du thread" << std::endl;
-        free_game(game);
-        pthread_mutex_destroy(&data_mutex);
-        return 1;
-    }
-    
-    std::cout << "LIDAR démarré avec succès en arrière-plan (multithreading)" << std::endl;
+    GAME *game = init_game(); 
+    //Screen screen;
 
     char choice;
 
-    std::cout << "Sélectionnez une option:" << std::endl;
-    std::cout << "  b: Odométrie (x,y,theta)" << std::endl;
-    std::cout << "  c: Afficher la vitesse du robot (moteur gauche)" << std::endl;
-    std::cout << "  t: Test en boucle ouverte" << std::endl;
-    std::cout << "  d: Test de distance (mètres)" << std::endl;
-    std::cout << "  l: Test de bas niveau" << std::endl;
-    std::cout << "  f: Test de freinage" << std::endl;
+    std::cout << "Select an option:" << std::endl;
+    std::cout << "  b: Odometry (x,y,theta)" << std::endl;
+    std::cout << "  c: Print robot speed (left motor)" << std::endl;
+    std::cout << "  t: Open Loop test" << std::endl;
+    std::cout << "  d: Distance test (meters)" << std::endl;
+    std::cout << "  l: Lowlevel test" << std::endl;
+    std::cout << "  f: Braking test" << std::endl;
     std::cout << "  u: BZZZ BZZZZ" << std::endl;
+    std::cout << "  x: Teensy - cans" << std::endl;
+    std::cout << "  y: Teensy - lift" << std::endl;
+    std::cout << "  z: Teensy - lift+cans" << std::endl;
     std::cout << "  o: Test OLED" << std::endl;
-    std::cout << "  m: Niveau moyen" << std::endl;
-    std::cout << "  p: RESET teensy" << std::endl;
-    std::cout << "  q: SEPARATE1 teensy" << std::endl;
-    std::cout << "  s: Afficher la position Sauron du LIDAR" << std::endl;
-    std::cout << "Entrez votre choix: ";
+    std::cout << "  m: Middle level" << std::endl;
+    std::cout << "  w: Middle level test" << std::endl;
+    std::cout << "  a: low level" << std::endl;
+    std::cout << "Enter your choice: ";
     std::cin >> choice;
 
     try {
-        robot.start();  // Initialiser SPI et effectuer d'autres tâches de configuration
-        robot.initCoords(game); // Initialiser les coordonnées
+        robot.start();  // This will initialize SPI and perform other setup tasks.
+        robot.initCoords(game); // Initialize coordinates
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
-        running = false;
-        pthread_join(lidar_thread, NULL);
-        pthread_mutex_destroy(&data_mutex);
-        free_game(game);
         return 1;
     }
 
     switch(choice) {
         case 'b': {
+            /*
+            while (true) {
+                robot.updateOdometry();
+                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *360/(2*M_PI)<< std::endl;
+                usleep(100000); // Sleep for 0.1 seconds
+            }
+            */
             unsigned long startloop;
             unsigned long looptime;
         
-            while (running) {
+            while (true) {
                 startloop = micros();
-                
-                // Verrouiller le mutex avant d'accéder aux données
-                pthread_mutex_lock(&data_mutex);
-                
+        
                 robot.updateOdometry(game);
-                std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y 
-                          << ", Theta: " << game->queen->angle *180/(M_PI) << std::endl;
-                
-                // Déverrouiller le mutex après utilisation des données
-                pthread_mutex_unlock(&data_mutex);
+                std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y << ", Theta: " << game->queen->angle *180/(M_PI)<< std::endl;
                 
                 looptime = micros() - startloop;
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
                 if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
                 }
                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
-            }
+                }
+
             break;
         }
         case 'c': {
-            std::cout << "Récupération de la vitesse du moteur gauche..." << std::endl;
-            std::cout << "La fonctionnalité de vitesse du robot n'est pas encore implémentée." << std::endl;
+            // NOTE: Since Robot does not provide a direct getSpeed() function,
+            // one option is to use one motor’s speed as a proxy.
+            // Alternatively, you might add a public method to Robot to get speed.
+            std::cout << "Retrieving left motor speed..." << std::endl;
+            // Assuming we would like to access the left motor's speed, we could add a public method to Robot:
+            // double speed = robot.getLeftMotorSpeed();
+            // For now, we will print a message.
+            std::cout << "Robot speed functionality is not yet implemented." << std::endl;
             break;
         }
         case 't':{
-            std::cout << "Acquisition des données en boucle ouverte..." << std::endl;
+            std::cout << "Acquiring open loop data..." << std::endl;
             robot.openLoopData();
             break;
         }
         case 'd':{
-            std::cout << "Affichage de la distance..." << std::endl;
+            std::cout << "Printing distance..." << std::endl;
             robot.printDistance();
             break;
         }
         case 'l':{
-            std::cout << "Test de bas niveau..." << std::endl;
+            std::cout << "Testing low level..." << std::endl;
             robot.lowLevelTest();
             break;
         }
         case 'f':{
-            std::cout << "Test de freinage..." << std::endl;
+            std::cout << "Braking test..." << std::endl;
             robot.stop();
             break;
         }
@@ -153,26 +104,41 @@ int main() {
             robot.buzzBuzzer();
             break;
         }
-        case 'm': {
-            std::cout << "Test de niveau moyen..." << std::endl;
+        
+        case 'w': {
+            std::cout << "Middle level test..." << std::endl;
             
-            // Obtenir les coordonnées cibles de l'utilisateur
-            float targetX, targetY;
-            std::cout << "Entrez la coordonnée X cible (mètres): ";
+            // Get target coordinates from user
+            double targetX, targetY;
+            std::cout << "Enter target X coordinate (meters): ";
             std::cin >> targetX;
-            std::cout << "Entrez la coordonnée Y cible (mètres): ";
+            std::cout << "Enter target Y coordinate (meters): ";
+            std::cin >> targetY;
+
+            robot.middleLevelTest(targetX, targetY, game);
+            break;
+        }
+
+        case 'm': {
+            std::cout << "Middle level test..." << std::endl;
+            
+            // Get target coordinates from user
+            double targetX, targetY;
+            std::cout << "Enter target X coordinate (meters): ";
+            std::cin >> targetX;
+            std::cout << "Enter target Y coordinate (meters): ";
             std::cin >> targetY;
 
             unsigned long startloop;
             unsigned long looptime;
             int counter = 0;
-            while (running) {
+            while (true) {
                 startloop = micros();
-                
-                // Verrouiller le mutex avant d'accéder aux données
-                pthread_mutex_lock(&data_mutex);
-                
+        
                 robot.updateOdometry(game);
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
                 
                 if(counter == 10){
                     robot.middleLevelController(targetX, targetY, 0, deplacement, game);
@@ -180,62 +146,45 @@ int main() {
                 }
                 counter++;
                 
-                // Déverrouiller le mutex après utilisation des données
-                pthread_mutex_unlock(&data_mutex);
+                robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
 
                 looptime = micros() - startloop;
                 if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
                 }
                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
-            }
-            break;
-        }
-        case 'p': {
-            std::cout << "Envoi d'informations à teensy" << std::endl;
-            robot.teensy_init();
-            std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x06);
-            std::cout << "C'est envoyé" << std::endl;
-            break;
-        }
-        case 'q': {
-            std::cout << "Envoi d'informations à teensy" << std::endl;
-            robot.teensy_init();
-            std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_separate_stack();
-            break;
-        }
-        case 's': {
-            // Afficher en continu les données du LIDAR
-            while (running) {
-                // Verrouiller le mutex avant d'accéder aux données
-                pthread_mutex_lock(&data_mutex);
-                
-                if (game->map->cluster_count > 0) {
-                    std::cout << "Position Sauron: (" << game->Sauron->cart_pos->x << ", " 
-                              << game->Sauron->cart_pos->y << ")" << std::endl;
-                    // Emergency_stop(game);
                 }
-                
-                // Déverrouiller le mutex après utilisation des données
-                pthread_mutex_unlock(&data_mutex);
-                
-                usleep(100000); // 100ms de délai
+            break;
+        }
+
+        case 'a': {
+            double speed;
+            std::cout << "Enter speed : ";
+            std::cin >> speed;
+
+            std::cout << "Low level ..." << std::endl;
+            while (true) {
+                robot.lowLevelController(speed, speed);
+                usleep(1000); // Sleep for 0.001 seconds
             }
             break;
         }
+
+        /*case 'o': {
+            screen.init();
+            std::string message;
+            std::cout << "Entrez le message à afficher : ";
+            std::cin.ignore(); // Évite un problème de buffer
+            std::getline(std::cin, message);
+            screen.clear();
+            screen.displayText(message);
+            break;
+        }*/
+        
         default:
-            std::cout << "Option invalide." << std::endl;
+            std::cout << "Invalid option." << std::endl;
             break;
     }
 
-    // Arrêter le thread et nettoyer les ressources
-    // running = false;
-    pthread_join(lidar_thread, NULL);
-    pthread_mutex_destroy(&data_mutex);
-    free_game(game);
-    
-    std::cout << "Programme terminé avec succès" << std::endl;
     return 0;
 }

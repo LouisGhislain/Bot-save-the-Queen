@@ -32,13 +32,6 @@ void Robot::resetValues() {
     static unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
     wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));    
 
-    // Reset coordinates and distance values
-    //xCoord = 0; //necessary ?
-    //yCoord = 0;
-    last_distl = last_distr = 0;
-    intEPosLeft = intEPosRight = 0.0;
-    intESpeedLeft = intESpeedRight = 0.0;
-
     // Print confirmation message
     std::cout << "Encoder values and coordinates reset." << std::endl;
 }
