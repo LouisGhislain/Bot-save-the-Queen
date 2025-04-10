@@ -60,8 +60,8 @@ int main() {
     std::cout << "  a: boucles threads" << std::endl;
     std::cout << "  b: main thread" << std::endl;
     std::cout << "  c: path planning test" << std::endl;
-    std::cout << "  d: N/A" << std::endl;
-    std::cout << "  e: N/A" << std::endl;
+    std::cout << "  d: Middle level test" << std::endl;
+    std::cout << "  e: High level test" << std::endl;
     std::cout << "  f: N/A" << std::endl;
     std::cout << "  g: N/A" << std::endl;
     std::cout << "  h: N/A" << std::endl;
@@ -119,8 +119,67 @@ int main() {
         }
         
         case 'c': {
-            robot.aStar(1, 19, game);
+            robot.aStar(0, 12, game);
             robot.printPath();
+            break;
+        }
+
+        case 'd': {
+            std::cout << "Middle level test..." << std::endl;
+
+            robot.params = deplacement;
+            
+            // Get target coordinates from user
+            std::cout << "Enter target X coordinate (meters): ";
+            std::cin >> robot.x_coord_target;
+            std::cout << "Enter target Y coordinate (meters): ";
+            std::cin >> robot.y_coord_target;
+            
+
+            robot.middleLevelTest(game);
+            break;
+        }
+
+        case 'e': {
+            std::cout << "High level test..." << std::endl;
+            
+            // Get target coordinates from user
+            double goal;
+            std::cout << "Enter goal node number: ";
+            std::cin >> goal;
+
+            unsigned long startloop;
+            unsigned long looptime;
+            int counterMid = 0;
+            int counterHigh = 100;
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry(game);
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
+                if(counterHigh == 100){
+                    robot.highLevelController(goal, game);
+                    counterHigh = 0;
+                }
+                counterHigh++;
+
+                if(counterMid == 10){
+                    robot.middleLevelController(game);
+                    counterMid = 0;
+                }
+                counterMid++;
+                
+                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+                robot.lowLevelController();
+
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
             break;
         }
 

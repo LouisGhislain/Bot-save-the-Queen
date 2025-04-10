@@ -3,9 +3,11 @@
 
 
 
-void Robot::middleLevelTest(double targetX, double targetY, void *sqid) {
-    GAME * game = (GAME *)sqid;
-    Queen * queen = game->queen;
+void Robot::middleLevelTest(void *game) {
+    GAME * mygame = (GAME *)game;
+    Queen * myqueen = mygame->queen;
+
+    
 
     // Open file
     std::ofstream file;
@@ -15,10 +17,10 @@ void Robot::middleLevelTest(double targetX, double targetY, void *sqid) {
         std::cout << "Erreur ouverture fichier" << std::endl;
         return;
     }
-    file << "0, " << middle_ref_speed_left << ", "<< middle_ref_speed_right << ", "<< leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << queen->cart_pos->x << ", " << queen->cart_pos->y << "\n";
+    file << "0, " << ref_speed_left << ", "<< ref_speed_right << ", "<< leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << myqueen->cart_pos->x << ", " << myqueen->cart_pos->y << "\n";
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 20*1000000; // To seconds;
+    unsigned long duration = 10*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;
@@ -32,25 +34,25 @@ void Robot::middleLevelTest(double targetX, double targetY, void *sqid) {
 
         currentTime = micros() - startTime;
         
-        updateOdometry(game);
+        updateOdometry(mygame);
         
         //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
         // print speed
         
         if(counter == 10){
-            middleLevelController(targetX, targetY, 0, manoeuvre, game);
+            middleLevelController(mygame);
             counter = 0;
 
         }
         counter++;
         
-        lowLevelController(middle_ref_speed_left, middle_ref_speed_right);
+        lowLevelController();
 
-        file << currentTime << ", " << middle_ref_speed_left << ", "<< middle_ref_speed_right << ", "
+        file << currentTime << ", " << ref_speed_left << ", "<< ref_speed_right << ", "
                 << leftMotor.getSpeed() << ", " 
                 << rightMotor.getSpeed() << ", "
-                << queen->cart_pos->x << ", " 
-                << queen->cart_pos->y << "\n";
+                << myqueen->cart_pos->x << ", " 
+                << myqueen->cart_pos->y << "\n";
         
         looptime = micros() - startloop;
         if (looptime > SAMPLING_TIME*1e6) {

@@ -31,16 +31,16 @@ const MovementParams orientation {
  * @param y Y-coordinate of the target position
  * @param goal_angle Angle to the target position (if not important, put anything)
  * @param params Movement parameters
- * @param sqid Pointer to the game structure
+ * @param game Pointer to the game structure
  */
-void Robot::middleLevelController(double x_coord_target, double y_coord_target, double goal_angle, const MovementParams& params, void *sqid) {
-    GAME * squid = (GAME *)sqid;
-    Queen * queen = squid->queen;
+void Robot::middleLevelController(void *game) {
+    GAME * mygame = (GAME *)game;
+    Queen * myqueen = mygame->queen;
     bool backwards = false;
     
     // delta to the target
-    delta_x_target = x_coord_target - queen->cart_pos->x; // in m
-    delta_y_target = y_coord_target - queen->cart_pos->y; // in m
+    delta_x_target = x_coord_target - myqueen->cart_pos->x; // in m
+    delta_y_target = y_coord_target - myqueen->cart_pos->y; // in m
 
     travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
     rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
@@ -53,26 +53,26 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
         if(params.activated_target_angle == 1){
             
             // as if lowLevelController(0, 0);
-            middle_ref_speed_left = 0;
-            middle_ref_speed_right = 0;
+            ref_speed_left = 0;
+            ref_speed_right = 0;
 
             travelled_distance = 0;           // Move feature to high level controller when ready
-            std::cout << "Point reached (maybe not orientation) " << std::endl;
+            //std::cout << "Point reached (maybe not orientation) " << std::endl;
             return;
             //continue; // if the target is reached but the angle is not, continue to rotate 
         }
         else{
             // as if lowLevelController(0, 0);
-            middle_ref_speed_left = 0;
-            middle_ref_speed_right = 0;
+            ref_speed_left = 0;
+            ref_speed_right = 0;
 
             travelled_distance = 0;           // Move feature to high level controller when ready
-            std::cout << "Point reached" << std::endl;
+            //std::cout << "Point reached" << std::endl;
             return;
         }
     }
 
-    double alpha =  atan2(delta_y_target, delta_x_target) - queen->angle;
+    double alpha =  atan2(delta_y_target, delta_x_target) - myqueen->angle;
     // Normalize alpha to range [-π, π]
     while (alpha > M_PI) {
         alpha -= 2 * M_PI;
@@ -122,6 +122,6 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
         v_ref = -v_ref;
     }
 
-    middle_ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
-    middle_ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
 }

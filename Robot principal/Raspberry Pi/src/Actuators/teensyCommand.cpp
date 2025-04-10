@@ -56,8 +56,8 @@ void Robot::teensy_separate_stack(){
 }
 
 void Robot::lowLevelBackward(){
-    double ref_speed_left = -2;
-    double ref_speed_right = -2;
+    ref_speed_left = -2; // changement de la variable globale ref_speed_left (qui sera effective quand on appellera lowLevelController sans argument)
+    ref_speed_right = -2;
 
     unsigned long startTime = micros(); // Current time in µs
     unsigned long duration = 2.5*1000000; // To seconds;
@@ -69,7 +69,7 @@ void Robot::lowLevelBackward(){
         startloop = micros();
 
         currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
+        lowLevelController();
         looptime = micros() - startloop;
         usleep(SAMPLING_TIME*1e6 - looptime);
     }
@@ -77,8 +77,8 @@ void Robot::lowLevelBackward(){
 }
 
 void Robot::lowLevelForward(){
-    double ref_speed_left = 2;
-    double ref_speed_right = 2;
+    ref_speed_left = 2; // changement de la variable globale ref_speed_left (qui sera effective quand on appellera lowLevelController sans argument)
+    ref_speed_right = 2;
 
     unsigned long startTime = micros(); // Current time in µs
     unsigned long duration = 2.5*1000000; // To seconds;
@@ -90,7 +90,7 @@ void Robot::lowLevelForward(){
         startloop = micros();
 
         currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
+        lowLevelController();
         looptime = micros() - startloop;
         usleep(SAMPLING_TIME*1e6 - looptime);
     }

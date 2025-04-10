@@ -26,6 +26,11 @@ void Robot::loadNodes(const std::string& filename, void *game) {
     }
     fprintf(stderr, "Nodes loaded\n");
 
+    // print the nodes :
+    for (int i = 0; i < 19; i++){
+        fprintf(stderr, "node %d : x: %f, y: %f\n", i, mymap->nodes[i].x, mymap->nodes[i].y);
+    }
+
     file.close();
 }
 

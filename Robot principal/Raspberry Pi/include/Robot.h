@@ -70,13 +70,13 @@ public:
     Robot();
     void start();
     void stop();
-    void lowLevelController(double ref_speed_left, double ref_speed_right);
-    void middleLevelController(double x_coord_target, double y_coord_target, double goal_angle, const MovementParams& params, void *game);
-    void highLevelController(int goal, std::vector<int> *path, void *game);
+    void lowLevelController();
+    void middleLevelController(void *game);
+    void highLevelController(int goal, void *game);
     void openLoopData();
     void printDistance();
     void lowLevelTest();
-    void middleLevelTest(double targetX, double targetY, void *game);
+    void middleLevelTest(void *game);
 
     // Path planning
     void loadNodes(const std::string& filename, void *game);
@@ -112,8 +112,14 @@ public:
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
     
-    double middle_ref_speed_left = 0.0; // in rad/s (left motor speed)
-    double middle_ref_speed_right = 0.0; // in rad/s (right motor speed)
+    double ref_speed_left = 0.0; // in rad/s (left motor speed)
+    double ref_speed_right = 0.0; // in rad/s (right motor speed)
+
+    double x_coord_target;
+    double y_coord_target; 
+    double goal_angle;
+    MovementParams params;
+
 
 private:
     void initializeSPI(); 
@@ -154,11 +160,10 @@ private:
     double v_threshold_move = 0.0441; // in m/s (minimum speed to move) (1.5 rad/s a la roue) = 1.5 * wheel_radius = 0.0441 m/s
 
     // High level controller variables
-    int current_destination = 0;
+    int current_destination = 1914; // la guerre est déclarée
     bool end_of_travel = true;
     int current_step = 0;
-    double x_coord_target; // in m (target x-coordinate)
-    double y_coord_target; // in m (target y-coordinate)
+    const double d1_change_target = 0.3; // in m (distance from when we follow the next node on the path)
 
     // Path planning variables
     std::vector<int> path; // Path to follow

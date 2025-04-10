@@ -118,54 +118,53 @@
 //             std::cout << "Middle level test..." << std::endl;
             
 //             // Get target coordinates from user
-//             double targetX, targetY;
 //             std::cout << "Enter target X coordinate (meters): ";
-//             std::cin >> targetX;
+//             std::cin >> x_coord_target;
 //             std::cout << "Enter target Y coordinate (meters): ";
-//             std::cin >> targetY;
+//             std::cin >> y_coord_target;
             
 
 //             robot.middleLevelTest(targetX, targetY, game);
 //             break;
 //         }
 
-//         case 'm': {
-//             std::cout << "Middle level test..." << std::endl;
+        // case 'm': {
+        //     std::cout << "Middle level test..." << std::endl;
             
-//             // Get target coordinates from user
-//             double targetX, targetY;
-//             std::cout << "Enter target X coordinate (meters): ";
-//             std::cin >> targetX;
-//             std::cout << "Enter target Y coordinate (meters): ";
-//             std::cin >> targetY;
+        //     // Get target coordinates from user
+        //     double targetX, targetY;
+        //     std::cout << "Enter target X coordinate (meters): ";
+        //     std::cin >> targetX;
+        //     std::cout << "Enter target Y coordinate (meters): ";
+        //     std::cin >> targetY;
 
-//             unsigned long startloop;
-//             unsigned long looptime;
-//             int counter = 0;
-//             while (true) {
-//                 startloop = micros();
+        //     unsigned long startloop;
+        //     unsigned long looptime;
+        //     int counter = 0;
+        //     while (true) {
+        //         startloop = micros();
         
-//                 robot.updateOdometry(game);
+        //         robot.updateOdometry(game);
                 
-//                 //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-//                 // print speed
+        //         //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+        //         // print speed
                 
-//                 if(counter == 10){
-//                     robot.middleLevelController(targetX, targetY, 0, deplacement, game);
-//                     counter = 0;
-//                 }
-//                 counter++;
+        //         if(counter == 10){
+        //             robot.middleLevelController(targetX, targetY, 0, deplacement, game);
+        //             counter = 0;
+        //         }
+        //         counter++;
                 
-//                 //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-//                 robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+        //         //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+        //         robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
 
-//                 looptime = micros() - startloop;
-//                 if (looptime > robot.SAMPLING_TIME*1e6) {
-//                     std::cout << "Loop time exceeded: " << looptime << std::endl;
-//                 }
-//                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
-//                 }
-//             break;
+        //         looptime = micros() - startloop;
+        //         if (looptime > robot.SAMPLING_TIME*1e6) {
+        //             std::cout << "Loop time exceeded: " << looptime << std::endl;
+        //         }
+        //         usleep(robot.SAMPLING_TIME*1e6 - looptime);
+        //         }
+        //     break;
 //         }
 
 //         case 'a': {
