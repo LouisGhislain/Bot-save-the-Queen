@@ -3,11 +3,50 @@
 #include <unistd.h>
 #include <signal.h>
 #include <limits>
-#include "Robot.h"
+#include <stdio.h>
+#include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
 
+// Variables globales pour le multithreading
+volatile bool running = true;
+pthread_mutex_t data_mutex;
+pthread_t lidar_thread;
+
+// Shared resource
+int shared_counter = 0;
+
+void* worker_function(void* arg) {
+    int thread_id = *(int*)arg;
+    
+    // Simulate some work
+    for (int i = 0; i < 5; i++) {
+        // Lock the mutex before accessing shared resource
+        pthread_mutex_lock(&mutex);
+        
+        // Critical section
+        shared_counter++;
+        printf("Thread %d: counter = %d\n", thread_id, shared_counter);
+        
+        // Unlock the mutex
+        pthread_mutex_unlock(&mutex);
+        
+        // Sleep to simulate work (not necessary in real applications)
+        usleep(500000); // 500ms
+    }
+    
+    printf("Thread %d completed\n", thread_id);
+    return NULL;
+}
+
 int main() {
+
+    // Initialiser le mutex
+    if (pthread_mutex_init(&data_mutex, NULL) != 0) {
+        std::cerr << "Échec de l'initialisation du mutex" << std::endl;
+        return 1;
+    }
+
     Robot robot;
 
     GAME *game = init_game(); 
@@ -16,20 +55,17 @@ int main() {
     char choice;
 
     std::cout << "Select an option:" << std::endl;
-    std::cout << "  b: Odometry (x,y,theta)" << std::endl;
-    std::cout << "  c: Print robot speed (left motor)" << std::endl;
-    std::cout << "  t: Open Loop test" << std::endl;
-    std::cout << "  d: Distance test (meters)" << std::endl;
-    std::cout << "  l: Lowlevel test" << std::endl;
-    std::cout << "  f: Braking test" << std::endl;
-    std::cout << "  u: BZZZ BZZZZ" << std::endl;
-    std::cout << "  x: Teensy - cans" << std::endl;
-    std::cout << "  y: Teensy - lift" << std::endl;
-    std::cout << "  z: Teensy - lift+cans" << std::endl;
-    std::cout << "  o: Test OLED" << std::endl;
-    std::cout << "  m: Middle level" << std::endl;
-    std::cout << "  w: Middle level test" << std::endl;
-    std::cout << "  a: low level" << std::endl;
+    std::cout << "  a: boucles threads" << std::endl;
+    std::cout << "  b: main thread" << std::endl;
+    std::cout << "  d: N/A" << std::endl;
+    std::cout << "  e: N/A" << std::endl;
+    std::cout << "  f: N/A" << std::endl;
+    std::cout << "  g: N/A" << std::endl;
+    std::cout << "  h: N/A" << std::endl;
+    std::cout << "  i: N/A" << std::endl;
+    std::cout << "  j: N/A" << std::endl;
+    std::cout << "  k: N/A" << std::endl;
+    std::cout << "  l: N/A" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -42,151 +78,55 @@ int main() {
     }
 
     switch(choice) {
-        case 'b': {
-            /*
-            while (true) {
-                robot.updateOdometry();
-                std::cout << "X: " << robot.xCoord << ", Y: " << robot.yCoord << ", Theta: " << robot.theta *360/(2*M_PI)<< std::endl;
-                usleep(100000); // Sleep for 0.1 seconds
-            }
-            */
-            unsigned long startloop;
-            unsigned long looptime;
-        
-            while (true) {
-                startloop = micros();
-        
-                robot.updateOdometry(game);
-                std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y << ", Theta: " << game->queen->angle *180/(M_PI)<< std::endl;
-                
-                looptime = micros() - startloop;
-                if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Loop time exceeded: " << looptime << std::endl;
-                }
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
-                }
-
-            break;
-        }
-        case 'c': {
-            // NOTE: Since Robot does not provide a direct getSpeed() function,
-            // one option is to use one motor’s speed as a proxy.
-            // Alternatively, you might add a public method to Robot to get speed.
-            std::cout << "Retrieving left motor speed..." << std::endl;
-            // Assuming we would like to access the left motor's speed, we could add a public method to Robot:
-            // double speed = robot.getLeftMotorSpeed();
-            // For now, we will print a message.
-            std::cout << "Robot speed functionality is not yet implemented." << std::endl;
-            break;
-        }
-        case 't':{
-            std::cout << "Acquiring open loop data..." << std::endl;
-            robot.openLoopData();
-            break;
-        }
-        case 'd':{
-            std::cout << "Printing distance..." << std::endl;
-            robot.printDistance();
-            break;
-        }
-        case 'l':{
-            std::cout << "Testing low level..." << std::endl;
-            robot.lowLevelTest();
-            break;
-        }
-        case 'f':{
-            std::cout << "Braking test..." << std::endl;
-            robot.stop();
-            break;
-        }
-        case 'u':{
-            std::cout << "BZZZ BZZZZZ" << std::endl;
-            robot.buzzBuzzer();
-            break;
-        }
-        
-        case 'w': {
-            std::cout << "Middle level test..." << std::endl;
-            
-            // Get target coordinates from user
-            double targetX, targetY;
-            std::cout << "Enter target X coordinate (meters): ";
-            std::cin >> targetX;
-            std::cout << "Enter target Y coordinate (meters): ";
-            std::cin >> targetY;
-            
-
-            robot.middleLevelTest(targetX, targetY, game);
-            break;
-        }
-
-        case 'm': {
-            std::cout << "Middle level test..." << std::endl;
-            
-            // Get target coordinates from user
-            double targetX, targetY;
-            std::cout << "Enter target X coordinate (meters): ";
-            std::cin >> targetX;
-            std::cout << "Enter target Y coordinate (meters): ";
-            std::cin >> targetY;
-
-            unsigned long startloop;
-            unsigned long looptime;
-            int counter = 0;
-            while (true) {
-                startloop = micros();
-        
-                robot.updateOdometry(game);
-                
-                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-                // print speed
-                
-                if(counter == 10){
-                    robot.middleLevelController(targetX, targetY, 0, deplacement, game);
-                    counter = 0;
-                }
-                counter++;
-                
-                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-                robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-
-                looptime = micros() - startloop;
-                if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Loop time exceeded: " << looptime << std::endl;
-                }
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
-                }
-            break;
-        }
-
         case 'a': {
-            double speed;
-            std::cout << "Enter speed : ";
-            std::cin >> speed;
-
-            std::cout << "Low level ..." << std::endl;
-            while (true) {
-                robot.lowLevelController(speed, speed);
-                usleep(1000); // Sleep for 0.001 seconds
+            std::cout << "Starting threads..." << std::endl;
+            // Start the threads here
+            const int num_threads = 4;
+            pthread_t threads[num_threads];
+            int thread_ids[num_threads];
+            
+            printf("Starting threads on Raspberry Pi\n");
+            
+            // Create threads
+            for (int i = 0; i < num_threads; i++) {
+                thread_ids[i] = i;
+                pthread_create(&threads[i], NULL, worker_function, &thread_ids[i]);
+                printf("Created thread %d\n", i);
             }
+            
+            // Join threads
+            for (int i = 0; i < num_threads; i++) {
+                pthread_join(threads[i], NULL);
+            }
+            
+            // Destroy the mutex
+            pthread_mutex_destroy(&mutex);
+            
+            printf("All threads completed. Final counter value: %d\n", shared_counter);
+            return 0;
+
+
             break;
         }
 
-        /*case 'o': {
-            screen.init();
-            std::string message;
-            std::cout << "Entrez le message à afficher : ";
-            std::cin.ignore(); // Évite un problème de buffer
-            std::getline(std::cin, message);
-            screen.clear();
-            screen.displayText(message);
+        case 'b': {
+            std::cout << "Running main thread..." << std::endl;
+            // Run the main thread logic here
             break;
-        }*/
+        }
         
         default:
             std::cout << "Invalid option." << std::endl;
             break;
     }
+
+    // Arrêter le thread et nettoyer les ressources
+    // running = false;
+    // pthread_join(lidar_thread, NULL);
+    pthread_mutex_destroy(&data_mutex);
+    //free_game(game);
+    
+    std::cout << "Programme terminé avec succès" << std::endl;
 
     return 0;
 }
