@@ -3,16 +3,16 @@
 // Define global movement parameters (must be defined in one .cpp file)
 const MovementParams manoeuvre {
     true,   // activated_target_angle
-    0.005,  // d0
-    0.2,    // vMax
-    0.001   // stop_robot_distance
+    0.30,  // d0
+    0.6,    // vMax
+    0.04   // stop_robot_distance
 };
 
 const MovementParams deplacement {
     false,  // activated_target_angle
-    0.15,  // d0
-    0.4,    // vMax
-    0.05   // stop_robot_distance
+    0.30,  // d0
+    0.6,    // vMax
+    0.04   // stop_robot_distance
 };
 
 const MovementParams orientation {
@@ -36,6 +36,7 @@ const MovementParams orientation {
 void Robot::middleLevelController(double x_coord_target, double y_coord_target, double goal_angle, const MovementParams& params, void *sqid) {
     GAME * squid = (GAME *)sqid;
     Queen * queen = squid->queen;
+    bool backwards = false;
     
     // delta to the target
     delta_x_target = x_coord_target - queen->cart_pos->x; // in m
@@ -44,24 +45,20 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
     rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
 
-    fprintf(stderr, "rho: %f, travelled distance %f\n", rho, travelled_distance);
-    //fprintf(stderr, "delta_x_target: %f, delta_y_target: %f\n", delta_x_target, delta_y_target);
-    // print position
-    //fprintf(stderr, "X: %f, Y: %f, Theta: %f\n", queen->cart_pos->x, queen->cart_pos->y, queen->angle *180/(M_PI));
-
     last_distl_middle = distl;
     last_distr_middle = distr;
 
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
         if(params.activated_target_angle == 1){
+            
             // as if lowLevelController(0, 0);
             middle_ref_speed_left = 0;
             middle_ref_speed_right = 0;
 
             travelled_distance = 0;           // Move feature to high level controller when ready
             std::cout << "Point reached (maybe not orientation) " << std::endl;
-
+            return;
             //continue; // if the target is reached but the angle is not, continue to rotate 
         }
         else{
@@ -83,52 +80,48 @@ void Robot::middleLevelController(double x_coord_target, double y_coord_target, 
     while (alpha <= -M_PI) {
         alpha += 2 * M_PI;
     }
+
+    // If backwards
+    if(params == manoeuvre){
+        if (alpha > M_PI/2){
+            alpha = alpha - M_PI;
+            backwards = true;
+
+        }
+        if(alpha < -M_PI/2){
+            alpha = alpha + M_PI;
+            backwards = true;
+        }
+    }
+
     double w_ref = KpAlpha * alpha;  // attention sinus pourrait apporter de la stabilité
 
-    if(params.activated_target_angle == 1){
-        // Convert target angle from degrees to radians and normalize it to range [-π, π]
-        double rad_target_angle = goal_angle * M_PI/180; // goal angle * 2 * M_PI/360;
-        double beta = rad_target_angle - queen->angle - alpha; //Uncomment this line to use target angle
-        while (beta > M_PI) {
-            beta -= 2 * M_PI;
-        }
-        while (beta <= -M_PI) {
-            beta += 2 * M_PI;
-        }
-        w_ref += KpBeta * beta;
-    }
-    w_ref = std::clamp(w_ref, -params.wMax, params.wMax); // Limit the angular speed
-
-    //fprintf(stderr, "w_ref: %f\n", w_ref);
-
-    //fprintf(stderr, "v_ref before: %f\n", v_ref);
-
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
+
     // Falling edge of the trapzoidal speed profile
     if (rho < params.d0) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
-        fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
+        //fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
     }
     
     // Rising edge of the trapzoidal speed profile
-    else if ((travelled_distance < (params.d0)) && (v_ref < params.vMax - rot_part)){ 
-        v_ref = sqrt(2 * (travelled_distance + 0.0001) * params.acceleration) - rot_part;
+    else if (travelled_distance < (params.d0)){ 
+        v_ref = sqrt(2 * (travelled_distance + 0.001) * params.acceleration) - rot_part;
         v_ref = std::max(v_ref, v_threshold_move);
-        fprintf(stderr, "RISING EDGE vref =%f\n", v_ref);
+        //fprintf(stderr, "RISING EDGE vref =%f\n", v_ref);
     }
 
     // Constant speed phase of the trapzoidal speed profile
     else {
         v_ref = (params.vMax) - rot_part;
-        fprintf(stderr, "CONSTANT SPEED =%f\n", v_ref);
+        //fprintf(stderr, "CONSTANT SPEED =%f\n", v_ref);
     }
 
-    // print v_ref
-    //fprintf(stderr, "v_ref after: %f\n", v_ref);  
+    // If backwards
+    if(params == manoeuvre && backwards){
+        v_ref = -v_ref;
+    }
 
     middle_ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
     middle_ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
-
-    //fprintf(stderr, "ref_speed_left: %f, ref_speed_right: %f\n", middle_ref_speed_left, middle_ref_speed_right);
-    //fprintf(stderr, "-----------------------------------\n");
 }

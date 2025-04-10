@@ -41,6 +41,13 @@ struct MovementParams {
           stop_robot_distance(stop_robot_distance),
           acceleration((d0 > 0) ? (vMax * vMax / (2 * d0)) : 0.0),
           wMax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
+
+    bool operator==(const MovementParams& other) const {
+        return (activated_target_angle == other.activated_target_angle &&
+                d0 == other.d0 &&
+                vMax == other.vMax &&
+                stop_robot_distance == other.stop_robot_distance);
+        }
 };
 
 // Declare as extern to be used in multiple files
@@ -121,8 +128,7 @@ private:
     static constexpr double KiSpeed = 2.6222100340415317;
 
     // Middle level controller gains
-    static constexpr double KpAlpha = 0.0;
-    static constexpr double KpBeta = -0.0;
+    static constexpr double KpAlpha = 3;
 
     // Middle level controller variables
     double delta_x_target;

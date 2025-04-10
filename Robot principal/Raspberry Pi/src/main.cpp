@@ -114,6 +114,7 @@ int main() {
             std::cin >> targetX;
             std::cout << "Enter target Y coordinate (meters): ";
             std::cin >> targetY;
+            
 
             robot.middleLevelTest(targetX, targetY, game);
             break;
@@ -146,6 +147,7 @@ int main() {
                 }
                 counter++;
                 
+                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
                 robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
 
                 looptime = micros() - startloop;
