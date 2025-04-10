@@ -18,31 +18,33 @@ module EncoderSpeed (
             tick_count <= 0;
             timer <= 0;
             speed <= 0;
+            actual_A <= encoder_a;
+            actual_B <= encoder_b;
+            previous_A <= encoder_a;
+            previous_B <= encoder_b;
         end else begin
-            // Increment timer and count encoder ticks
+            // Increment timer
             timer <= timer + 1;
 
-            // Update previous states
+            // Detect transitions based on previous and current states
+            case ({previous_A, previous_B, actual_A, actual_B})
+                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count - 1; // Backward
+                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count + 1; // Forward
+                default: tick_count <= tick_count;
+            endcase
+            
+            // Update previous states for next clock cycle
             previous_A <= actual_A;
             previous_B <= actual_B;
             actual_A <= encoder_a;
             actual_B <= encoder_b;
-
-            case ({previous_A, previous_B, actual_A, actual_B})
-                4'b00_01, 4'b01_11, 4'b11_10, 4'b10_00: tick_count <= tick_count + 1; // Forward
-                4'b00_10, 4'b10_11, 4'b11_01, 4'b01_00: tick_count <= tick_count - 1; // Backward
-                default: tick_count <= tick_count;
-            endcase
-
+            
             // Calculate speed every TIMER_MAX cycles
             if (timer >= TIMER_MAX) begin
-                speed <= tick_count; // Assuming tick_count per TIMER_MAX = speed
+                speed <= tick_count;
                 tick_count <= 0;
                 timer <= 0;
             end
-
-            
-
         end
     end
 endmodule
