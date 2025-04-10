@@ -70,4 +70,6 @@ void Robot::initCoords(void *sqid) {
         queen->angle     = 0.0;
         break;
     }
+    x_coord_target = queen->cart_pos->x;
+    y_coord_target = queen->cart_pos->y;
 }

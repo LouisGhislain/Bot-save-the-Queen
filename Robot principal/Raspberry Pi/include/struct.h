@@ -26,6 +26,17 @@
 #define Nb_Cluster 10 // Nombre de clusters
 #define Nb_target 10 // Nombre de cibles
 
+// Node and edge structures (for path planning)
+typedef struct Node {
+    double x;
+	double y;
+} Node;
+
+typedef struct Edge {
+    int node1;
+	int node2;
+    double cost;
+} Edge;
 
 typedef struct Cartesian{
     double x; // Coordonnée x
@@ -75,6 +86,10 @@ typedef struct MAP{
 
     Cluster ** clusters; // Liste des clusters
     size_t cluster_count; // Nombre de clusters
+
+    // Graph and nodes for path planning
+	Node nodes[19];
+	Edge edges[36];
 } MAP;
 
 typedef struct Queen{
@@ -89,6 +104,8 @@ typedef struct GAME{
     Target *target; // Cible du jeu
     
 } GAME;
+
+
 
 
 Cartesian * init_cartesian();

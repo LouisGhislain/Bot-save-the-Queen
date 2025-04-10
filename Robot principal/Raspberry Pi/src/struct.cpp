@@ -113,7 +113,6 @@ GAME * init_game() {
 
 // Freeing functions
 
-
 void free_cluster(Cluster *cluster) {
     for (size_t i = 0; i < Pt_cluster; i++) {
         free(cluster->cart_points[i]);
