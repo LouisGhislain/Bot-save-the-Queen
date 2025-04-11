@@ -8,16 +8,17 @@ private:
     int dir1; // Pin de direction 1
     int dir2; // Pin de direction 2
     int PWM_max = 255;
-    int tension_max = 12;
-    float speed;
-    float targetSpeed; // Vitesse cible du moteur
+    int tension_max = 9;
+    double speed;
+    double distance; // Distance parcourue par le moteur
+    double targetSpeed; // Vitesse cible du moteur
     int TICKS_PER_REV = 13;
 
     Encoder* encoder; // Lien vers l'encodeur associé
 
     // Time interval in seconds
-    float lastTime;
-    float currentTime;
+    double lastTime;
+    double currentTime;
 
     int lastTicks;
     int currentTicks;
@@ -34,7 +35,9 @@ public:
     void brake();
     void stop_motor();
     void set_motor(float tension);
-    float getSpeed();
+    double getSpeed();
+    void updateDistance();
+    double getDistance();
 
 
 };

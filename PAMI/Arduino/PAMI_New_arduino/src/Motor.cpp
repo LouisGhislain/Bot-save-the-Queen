@@ -9,7 +9,7 @@
 Motor* Motor::leftInstance = nullptr;
 Motor* Motor::rightInstance = nullptr;
 
-Motor::Motor(int pwmPin, int DIR1, int DIR2, Encoder* encoder, bool isLeft) : PWM_PIN(pwmPin), dir1(DIR1), dir2(DIR2), speed(0), targetSpeed(0), encoder(encoder), lastTime(0), currentTime(0), lastTicks(0), currentTicks(0) {
+Motor::Motor(int pwmPin, int DIR1, int DIR2, Encoder* encoder, bool isLeft) : PWM_PIN(pwmPin), dir1(DIR1), dir2(DIR2), speed(0), distance(0), encoder(encoder), lastTime(0), currentTime(0), lastTicks(0), currentTicks(0) {
     pinMode(PWM_PIN, OUTPUT);
     if (isLeft) {
         leftInstance = this;
@@ -31,17 +31,28 @@ void Motor::updateSpeed() {
     if (deltaTime > 0) {
         speed = (currentTicks - lastTicks) / deltaTime; // Vitesse en ticks/s
         // Speed in rad/s
-        speed = ((currentTicks - lastTicks) * 2.0 * PI) / (TICKS_PER_REV * deltaTime);
-        speed = speed*PI*WheelDiameter / (TICKS_PER_REV * gearRatio); // Vitesse en m/s
+        speed = (currentTicks - lastTicks) / (2*PI*TICKS_PER_REV * deltaTime*gearRatio);
     } else {
         speed = 0;
     }
 
     lastTime = currentTime;
     lastTicks = currentTicks;
+
+    updateDistance();
 }
 
-float Motor::getSpeed() {
+void Motor::updateDistance() {
+    // Calculer la distance parcourue par le moteur
+    distance = encoder->getTicks() * (PI * WheelDiameter) / (TICKS_PER_REV*gearRatio); // Distance en mètres
+    
+}
+
+double Motor::getDistance() {
+    return distance; // Distance parcourue en mètres
+}
+
+double Motor::getSpeed() {
     return speed; // Vitesse en ticks/s
 }
 

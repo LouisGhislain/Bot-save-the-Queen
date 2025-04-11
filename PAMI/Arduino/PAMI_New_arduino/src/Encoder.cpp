@@ -41,7 +41,7 @@ int Encoder::getTicks() {
     return ticks;
 }
 
-float Encoder::getRadians() {
+double Encoder::getRadians() {
     int totalPPR = PPR * gearRatio;
     return (ticks * 2.0 * PI) / totalPPR;
 }

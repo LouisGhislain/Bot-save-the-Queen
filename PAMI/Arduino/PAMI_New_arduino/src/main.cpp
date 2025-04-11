@@ -38,7 +38,7 @@
 
 //Initialisation de PAMI
 PAMI pami;
-
+float startTime = 0;
 
 
 
@@ -52,13 +52,16 @@ void setup() {
 
     delay(5000);  // Attendre que le moniteur série soit prêt
 
+    startTime = millis();
+
     // En-tête CSV
     // Serial.println("time_ms,left_ticks,left_speed,right_ticks,right_speed");
 }
 
 void loop(){
-    pami.lowlevelcontrol(0.1, 0.1); // Exemple de vitesse cible
-    
+
+    pami.middlecontrol(1.5, -0.1, 0, false); // Met à jour la position du robot
+
 }
 
 // void loop() {

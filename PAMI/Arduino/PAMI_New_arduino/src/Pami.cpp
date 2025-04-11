@@ -2,6 +2,11 @@
 #include "Motor.h"
 #include "Encoder.h"
 
+#define WheelDiameter 0.060325 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.09 // Distance entre les roues en mètres
+#define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
+#define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
+#define Kp_alpha 0.05 // Coefficient proportionnel pour l'angle
 
 PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false) {
     // Initialisation des moteurs et encodeurs
@@ -23,8 +28,7 @@ PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5
 void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
 
     // Update the speed of the motors
-    leftMotor.updateSpeed();
-    rightMotor.updateSpeed();
+    update_position();
 
     if (last_time_ctrl == 0) {
         last_time_ctrl = millis() / 1000.0; // Convertir en secondes
@@ -32,7 +36,7 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     }
     // Update the current time
     current_time_ctrl = millis() / 1000.0; // Convertir en secondes
-    float SAMPLING_TIME = current_time_ctrl - last_time_ctrl;
+    double SAMPLING_TIME = current_time_ctrl - last_time_ctrl;
 
     // Update the last time
     last_time_ctrl = current_time_ctrl;
@@ -43,18 +47,18 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     double e_speed_right = ref_speed_right - rightMotor.getSpeed();
 
     // Print the time
-    // Serial.print("Time: ");
-    Serial.print(current_time_ctrl);
-    Serial.print(",");
+    // // Serial.print("Time: ");
+    // Serial.print(current_time_ctrl);
+    // Serial.print(",");
 
     
 //    // Print the error
-    // Serial.print("e_speed_left: ");
-    Serial.print(e_speed_left);
-    Serial.print(",");
-    // Serial.print(" e_speed_right: ");
-    Serial.print(e_speed_right);
-    Serial.print(",");
+    // // Serial.print("e_speed_left: ");
+    // Serial.print(e_speed_left);
+    // Serial.print(",");
+    // // Serial.print(" e_speed_right: ");
+    // Serial.print(e_speed_right);
+    // Serial.print(",");
 
 
     // Integrate error
@@ -71,10 +75,10 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     left_voltage = Kp_left * e_speed_left + Ki_left * left_speed;
     right_voltage = Kp_right * e_speed_right + Ki_right * right_speed;
 
-    Serial.print(Kp_left*e_speed_left);
-    Serial.print(",");
-    Serial.print(Ki_left*left_speed);
-    Serial.print(",");
+    // Serial.print(Kp_left*e_speed_left);
+    // Serial.print(",");
+    // Serial.print(Ki_left*left_speed);
+    // Serial.print(",");
 
 
     if (left_voltage > 9) {
@@ -93,10 +97,10 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
 
         // Set motor speeds
     // Serial.print("Left voltage: ");
-    Serial.print(left_voltage);
-    Serial.print(",");
-    // Serial.print(" Right voltage: ");
-    Serial.println(right_voltage);
+    // Serial.print(left_voltage);
+    // Serial.print(",");
+    // // Serial.print(" Right voltage: ");
+    // Serial.println(right_voltage);
 
     //Print the speed and the target speed
     // Serial.print("Left speed: ");
@@ -109,3 +113,131 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     // Serial.println(ref_speed_right);
 }
 
+
+
+void PAMI::update_position() {
+    // Update the distance of the motors
+    leftMotor.updateSpeed();
+    rightMotor.updateSpeed();
+
+    dist_left = leftMotor.getDistance();
+    dist_right = rightMotor.getDistance();
+
+    // Serial.print("Distance left: ");
+    // Serial.print(dist_left);
+    // Serial.print(" Distance right: ");
+    // Serial.println(dist_right);
+
+    angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
+    // Serial.print("Angle: ");
+    // Serial.println(angle);
+
+    // Update the position of the robot
+    x_position = (dist_left + dist_right) / 2.0 * cos(angle * PI / 180.0) + x_start; // Position en x
+    y_position = (dist_left + dist_right) / 2.0 * sin(angle * PI / 180.0) + y_start; // Position en y
+
+
+    
+}
+
+double PAMI::getX_position() {
+    return x_position;
+}
+double PAMI::getY_position() {
+    return y_position;
+}
+double PAMI::getAngle() {
+    return angle;
+}
+
+void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target) {
+
+
+    update_position(); // Met à jour la position du robot
+
+    double rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+
+    if (!target_reached) {
+        while (rho > 0.2) {
+            double theta = angle * PI / 180.0; // Convertir l'angle en radians
+            rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+            double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+            double v = 0.14; // Vitesse linéaire
+            double w = Kp_alpha * alpha; // Vitesse angulai
+
+            // Serial.print("Atan: ");
+            // Serial.print(atan2(y_ref - y_position, x_ref - x_position));
+
+            // Serial.print("Angle: ");
+            // Serial.print(theta);
+
+            // Serial.print("Alpha: ");
+            // Serial.println(alpha);
+            // Serial.print(" Distance: ");
+            // Serial.print(rho);
+
+            // Serial.print("v: ");
+            // Serial.print(v);
+            // Serial.print(" w: ");
+            // Serial.println(w);
+
+
+            if (!start_angle) {
+                if (abs(alpha) > 0.1) {
+                    // Serial.println("Calibration");
+                    v = 0;
+                    w = alpha*0.05;
+                } else {
+                    start_angle = true;
+                    // Serial.println("Start angle");
+                }
+            }
+
+            double ref_speed_left = (v - w);
+            double ref_speed_right = (v + w);
+
+
+            // Limit the speed
+            if (ref_speed_left > MAX_LINEAR_SPEED) {
+                ref_speed_left = MAX_LINEAR_SPEED;
+            } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
+                ref_speed_left = -MAX_LINEAR_SPEED;
+            }
+            if (ref_speed_right > MAX_LINEAR_SPEED) {
+                ref_speed_right = MAX_LINEAR_SPEED;
+            } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
+                ref_speed_right = -MAX_LINEAR_SPEED;
+            }
+
+            lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+            // Print the reference speed
+            // Serial.print("Ref speed left: ");
+            // Serial.print(ref_speed_left);
+            // Serial.print(" Ref speed right: ");
+            // Serial.println(ref_speed_right);
+            // Serial.print(" Angle: ");
+            // Serial.print(angle);
+            // Serial.print(" X: ");
+            // Serial.print(x_position);
+            // Serial.print(" Y: ");
+            // Serial.println(y_position);
+
+            delay(100); // Attendre un peu avant de mettre à jour la position
+
+            // Serial.print("Distance: ");
+            // Serial.println(rho);
+        }
+        // Stop the motors
+        leftMotor.set_motor(0);
+        rightMotor.set_motor(0);
+        target_reached = true;
+        Serial.println("Target reached");
+    }
+
+}
+
+void PAMI::stop() {
+    leftMotor.set_motor(0);
+    rightMotor.set_motor(0);
+}

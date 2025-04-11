@@ -23,7 +23,7 @@ public:
 
     void reset();
     int getTicks();
-    float getRadians();
+    double getRadians();
 
     static void handleLeftInterrupt();
     static void handleRightInterrupt();
