@@ -77,6 +77,7 @@ public:
     void printDistance();
     void lowLevelTest();
     void middleLevelTest(void *game);
+    void maneuver(double dist, void *game);
 
     // Path planning
     void loadNodes(const std::string& filename, void *game);
@@ -120,6 +121,9 @@ public:
     double goal_angle;
     MovementParams params;
 
+    // Low level
+    double u_volt_left = 0;
+    double u_volt_right = 0;
 
 private:
     void initializeSPI(); 
@@ -133,8 +137,6 @@ private:
     double intESpeedRight = 0.0;
     double intEPosLeft = 0.0;
     double intEPosRight = 0.0;
-    double u_volt_left = 0;
-    double u_volt_right = 0;
 
     // Robot parameters
 	static constexpr double distanceBetweenWheels = 0.25276; // in m
@@ -163,7 +165,8 @@ private:
     int current_destination = 1914; // la guerre est déclarée
     bool end_of_travel = true;
     int current_step = 0;
-    const double d1_change_target = 0.3; // in m (distance from when we follow the next node on the path)
+    const double d1_change_target = 0.1; // in m (distance from when we follow the next node on the path)
+    bool last_step = true;
 
     // Path planning variables
     std::vector<int> path; // Path to follow

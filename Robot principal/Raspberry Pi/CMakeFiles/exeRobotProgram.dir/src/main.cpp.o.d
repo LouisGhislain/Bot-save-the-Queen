@@ -279,4 +279,5 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o: \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/lidar.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_cmd.h \
  /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_protocol.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_driver.h
+ /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/../include/../lib/rplidar_sdk/sdk/include/rplidar_driver.h \
+ /usr/include/c++/12/csignal

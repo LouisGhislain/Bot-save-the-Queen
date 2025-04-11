@@ -5735,6 +5735,7 @@ CMakeFiles/exeRobotProgram.dir/src/main.cpp.o
  /home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/lib/rplidar_sdk/sdk/include/rplidar_cmd.h
  /home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/lib/rplidar_sdk/sdk/include/rplidar_protocol.h
  /home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/lib/rplidar_sdk/sdk/include/rplidar_driver.h
+ /usr/include/c++/12/csignal
 
 CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o
  /home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/src/main hugo et rom.cpp
