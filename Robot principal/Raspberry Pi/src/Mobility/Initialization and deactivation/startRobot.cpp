@@ -33,5 +33,5 @@ void Robot::resetValues() {
     wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));    
 
     // Print confirmation message
-    std::cout << "Encoder values and coordinates reset." << std::endl;
+    //std::cout << "Encoder values and coordinates reset." << std::endl;
 }

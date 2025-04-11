@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Robot.h"
+#include <thread>
 
 int main() {
     Robot robot;

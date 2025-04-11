@@ -6,10 +6,8 @@
  * This function implements a PI controller for the motors by modifying directly the speed of the motors.
  * Feeds into the setVoltage function of the Motor class.
  * 
- * @param ref_speed_left Reference speed for the left motor
- * @param ref_speed_right Reference speed for the right motor
  */
-void Robot::lowLevelController(double ref_speed_left, double ref_speed_right) {
+void Robot::lowLevelController() {
     double current_speed_left = leftMotor.getSpeed();
     double current_speed_right =  rightMotor.getSpeed();
 

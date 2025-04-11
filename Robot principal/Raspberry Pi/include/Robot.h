@@ -12,10 +12,17 @@
 #include <vector>
 #include <tuple>
 #include <softTone.h>
-#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <unordered_map>
+#include <queue>
+#include <limits>
+#include <algorithm>
+#include <cstdio>
+#include <stdio.h>
+#include <map>
 //I2C
 #include <wiringPiI2C.h>
-#include <wiringPi.h>
 #include <string>
 #define OLED_ADDR 0x3C 
 #define OLED_CMD  0x00  
@@ -41,6 +48,13 @@ struct MovementParams {
           stop_robot_distance(stop_robot_distance),
           acceleration((d0 > 0) ? (vMax * vMax / (2 * d0)) : 0.0),
           wMax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
+
+    bool operator==(const MovementParams& other) const {
+        return (activated_target_angle == other.activated_target_angle &&
+                d0 == other.d0 &&
+                vMax == other.vMax &&
+                stop_robot_distance == other.stop_robot_distance);
+        }
 };
 
 // Declare as extern to be used in multiple files
@@ -56,13 +70,21 @@ public:
     Robot();
     void start();
     void stop();
-    void lowLevelController(double ref_speed_left, double ref_speed_right);
-    void middleLevelController(double x_coord_target, double y_coord_target, double goal_angle, const MovementParams& params, void *game);
-    void highLevelController(void *game);
+    void lowLevelController();
+    void middleLevelController(void *game);
+    void highLevelController(int goal, void *game);
     void openLoopData();
     void printDistance();
     void lowLevelTest();
-    void middleLevelTest(double targetX, double targetY, void *game);
+    void middleLevelTest(void *game);
+
+    // Path planning
+    void loadNodes(const std::string& filename, void *game);
+    void loadEdges(const std::string& filename, void *game);
+    void aStar(int start, int goal, void *game);
+    double heuristic(const Node& a, const Node& b);
+    void printPath();
+
 
     // Odometry
     void updateOdometry(void *game);
@@ -90,8 +112,14 @@ public:
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
     
-    double middle_ref_speed_left = 0.0; // in rad/s (left motor speed)
-    double middle_ref_speed_right = 0.0; // in rad/s (right motor speed)
+    double ref_speed_left = 0.0; // in rad/s (left motor speed)
+    double ref_speed_right = 0.0; // in rad/s (right motor speed)
+
+    double x_coord_target;
+    double y_coord_target; 
+    double goal_angle;
+    MovementParams params;
+
 
 private:
     void initializeSPI(); 
@@ -114,28 +142,31 @@ private:
     // Back EMF Constant
     static constexpr double K_phi = 0.02859; // in V/(rad/s) (Back EMF constant for the motors)
 
-    // PI gains
-    static constexpr double KpPos = 0.01;
-    static constexpr double KiPos = 0.0;
+    // Low level controller variables
+    // static constexpr double KpPos = 0.01;
+    // static constexpr double KiPos = 0.0;
     static constexpr double KpSpeed = 1.4048464035277164;
     static constexpr double KiSpeed = 2.6222100340415317;
 
-    // Middle level controller gains
-    static constexpr double KpAlpha = 0.0;
-    static constexpr double KpBeta = -0.0;
-
     // Middle level controller variables
+    static constexpr double KpAlpha = 3;
     double delta_x_target;
     double delta_y_target;
     double last_distl_middle = 0;
     double last_distr_middle = 0;
-
-    // High level controller variables (used in middle)
     double rho = 0.0; // in m (distance to target)
     double travelled_distance = 0.0; // in m (distance from the starting point)
     double v_ref = 0.0; // in m/s (linear speed)
-    
     double v_threshold_move = 0.0441; // in m/s (minimum speed to move) (1.5 rad/s a la roue) = 1.5 * wheel_radius = 0.0441 m/s
+
+    // High level controller variables
+    int current_destination = 1914; // la guerre est déclarée
+    bool end_of_travel = true;
+    int current_step = 0;
+    const double d1_change_target = 0.3; // in m (distance from when we follow the next node on the path)
+
+    // Path planning variables
+    std::vector<int> path; // Path to follow
 
     // SPI Constants
     static constexpr int SPI_CHANNEL = 0;
@@ -147,7 +178,7 @@ private:
     double distl = 0.0;
     double distr = 0.0;
     double distanceBetweenOdometers = 0.28806; // in m (distance between the two wheels)
-    double wheel_radius = 0.0295;         // in m (radius of the wheels)
+    double wheel_radius = 0.0295;              // in m (radius of the wheels)
 
     int starting_pos = 0;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
     double starting_angle = 0.0;         // in radians (initial angle of the robot, 0 = x-axis)

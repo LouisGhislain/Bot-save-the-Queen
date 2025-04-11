@@ -201,6 +201,30 @@ src/Lidar/lidar.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.s
 .PHONY : src/Lidar/lidar.cpp.s
 
+src/Mobility/Controller/highLevelController.o: src/Mobility/Controller/highLevelController.cpp.o
+.PHONY : src/Mobility/Controller/highLevelController.o
+
+# target to build an object file
+src/Mobility/Controller/highLevelController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.o
+.PHONY : src/Mobility/Controller/highLevelController.cpp.o
+
+src/Mobility/Controller/highLevelController.i: src/Mobility/Controller/highLevelController.cpp.i
+.PHONY : src/Mobility/Controller/highLevelController.i
+
+# target to preprocess a source file
+src/Mobility/Controller/highLevelController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.i
+.PHONY : src/Mobility/Controller/highLevelController.cpp.i
+
+src/Mobility/Controller/highLevelController.s: src/Mobility/Controller/highLevelController.cpp.s
+.PHONY : src/Mobility/Controller/highLevelController.s
+
+# target to generate assembly for a file
+src/Mobility/Controller/highLevelController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.s
+.PHONY : src/Mobility/Controller/highLevelController.cpp.s
+
 src/Mobility/Controller/lowLevelController.o: src/Mobility/Controller/lowLevelController.cpp.o
 .PHONY : src/Mobility/Controller/lowLevelController.o
 
@@ -417,6 +441,30 @@ src/Mobility/Localization/odometry.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/odometry.cpp.s
 .PHONY : src/Mobility/Localization/odometry.cpp.s
 
+src/Mobility/Localization/pathPlanning.o: src/Mobility/Localization/pathPlanning.cpp.o
+.PHONY : src/Mobility/Localization/pathPlanning.o
+
+# target to build an object file
+src/Mobility/Localization/pathPlanning.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/pathPlanning.cpp.o
+.PHONY : src/Mobility/Localization/pathPlanning.cpp.o
+
+src/Mobility/Localization/pathPlanning.i: src/Mobility/Localization/pathPlanning.cpp.i
+.PHONY : src/Mobility/Localization/pathPlanning.i
+
+# target to preprocess a source file
+src/Mobility/Localization/pathPlanning.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/pathPlanning.cpp.i
+.PHONY : src/Mobility/Localization/pathPlanning.cpp.i
+
+src/Mobility/Localization/pathPlanning.s: src/Mobility/Localization/pathPlanning.cpp.s
+.PHONY : src/Mobility/Localization/pathPlanning.s
+
+# target to generate assembly for a file
+src/Mobility/Localization/pathPlanning.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/pathPlanning.cpp.s
+.PHONY : src/Mobility/Localization/pathPlanning.cpp.s
+
 src/Mobility/Motors/Motor.o: src/Mobility/Motors/Motor.cpp.o
 .PHONY : src/Mobility/Motors/Motor.o
 
@@ -537,29 +585,53 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/main1.o: src/main1.cpp.o
-.PHONY : src/main1.o
+src/main_hugo_et_rom.o: src/main_hugo_et_rom.cpp.o
+.PHONY : src/main_hugo_et_rom.o
 
 # target to build an object file
-src/main1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main1.cpp.o
-.PHONY : src/main1.cpp.o
+src/main_hugo_et_rom.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o
+.PHONY : src/main_hugo_et_rom.cpp.o
 
-src/main1.i: src/main1.cpp.i
-.PHONY : src/main1.i
+src/main_hugo_et_rom.i: src/main_hugo_et_rom.cpp.i
+.PHONY : src/main_hugo_et_rom.i
 
 # target to preprocess a source file
-src/main1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main1.cpp.i
-.PHONY : src/main1.cpp.i
+src/main_hugo_et_rom.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.i
+.PHONY : src/main_hugo_et_rom.cpp.i
 
-src/main1.s: src/main1.cpp.s
-.PHONY : src/main1.s
+src/main_hugo_et_rom.s: src/main_hugo_et_rom.cpp.s
+.PHONY : src/main_hugo_et_rom.s
 
 # target to generate assembly for a file
-src/main1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main1.cpp.s
-.PHONY : src/main1.cpp.s
+src/main_hugo_et_rom.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.s
+.PHONY : src/main_hugo_et_rom.cpp.s
+
+src/main_test.o: src/main_test.cpp.o
+.PHONY : src/main_test.o
+
+# target to build an object file
+src/main_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.o
+.PHONY : src/main_test.cpp.o
+
+src/main_test.i: src/main_test.cpp.i
+.PHONY : src/main_test.i
+
+# target to preprocess a source file
+src/main_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.i
+.PHONY : src/main_test.cpp.i
+
+src/main_test.s: src/main_test.cpp.s
+.PHONY : src/main_test.s
+
+# target to generate assembly for a file
+src/main_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.s
+.PHONY : src/main_test.cpp.s
 
 src/struct.o: src/struct.cpp.o
 .PHONY : src/struct.o
@@ -603,6 +675,9 @@ help:
 	@echo "... src/Lidar/lidar.o"
 	@echo "... src/Lidar/lidar.i"
 	@echo "... src/Lidar/lidar.s"
+	@echo "... src/Mobility/Controller/highLevelController.o"
+	@echo "... src/Mobility/Controller/highLevelController.i"
+	@echo "... src/Mobility/Controller/highLevelController.s"
 	@echo "... src/Mobility/Controller/lowLevelController.o"
 	@echo "... src/Mobility/Controller/lowLevelController.i"
 	@echo "... src/Mobility/Controller/lowLevelController.s"
@@ -630,6 +705,9 @@ help:
 	@echo "... src/Mobility/Localization/odometry.o"
 	@echo "... src/Mobility/Localization/odometry.i"
 	@echo "... src/Mobility/Localization/odometry.s"
+	@echo "... src/Mobility/Localization/pathPlanning.o"
+	@echo "... src/Mobility/Localization/pathPlanning.i"
+	@echo "... src/Mobility/Localization/pathPlanning.s"
 	@echo "... src/Mobility/Motors/Motor.o"
 	@echo "... src/Mobility/Motors/Motor.i"
 	@echo "... src/Mobility/Motors/Motor.s"
@@ -645,9 +723,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/main1.o"
-	@echo "... src/main1.i"
-	@echo "... src/main1.s"
+	@echo "... src/main_hugo_et_rom.o"
+	@echo "... src/main_hugo_et_rom.i"
+	@echo "... src/main_hugo_et_rom.s"
+	@echo "... src/main_test.o"
+	@echo "... src/main_test.i"
+	@echo "... src/main_test.s"
 	@echo "... src/struct.o"
 	@echo "... src/struct.i"
 	@echo "... src/struct.s"
