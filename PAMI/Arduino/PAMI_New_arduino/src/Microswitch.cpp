@@ -1,18 +1,20 @@
 #include <Arduino.h>
 #include "Microswitch.h"
 
-const int switchPin = 13;  // Pin où le switch est connecté
-int switchState = 0;       // Variable pour stocker l'état du switch
 
-// Fonction de configuration des broches
-void Pin_Microswitch_Initialization(){
-    pinMode(switchPin, INPUT);
+Microswitch* Microswitch::starting_switch = nullptr;
+Microswitch* Microswitch::left_switch = nullptr;
+Microswitch* Microswitch::right_switch = nullptr;
+
+Microswitch::Microswitch(int pin) : PIN(pin){
+    pinMode(PIN, INPUT);
 }
 
 // Fonction pour lire l'état du switch
-void Check_press() {
+void Microswitch::Check_press() {
     // If switch is pressed (High state) print switch is pressed
-    switchState = digitalRead(switchPin);
+    int switchState = 0 ; 
+    switchState = digitalRead(PIN);
     if (switchState == HIGH) {
         Serial.println("Switch is pressed.");
     }
@@ -21,8 +23,9 @@ void Check_press() {
     }
 }
 
-int Microswitch_state () {
+int Microswitch::switch_state() {
     // If switch is pressed (High state) print switch is pressed
-    switchState = digitalRead(switchPin);
+    int switchState = 0 ; 
+    switchState = digitalRead(PIN);
     return switchState;
 }

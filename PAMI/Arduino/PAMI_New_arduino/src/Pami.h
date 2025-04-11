@@ -5,6 +5,13 @@
 #include "Microswitch.h"
 #include "Sonar.h"
 
+
+typedef enum {
+    waiting_start,
+    moving,
+    dancing
+} State_t;
+
 class PAMI {
 public:
     PAMI();
@@ -16,16 +23,28 @@ public:
     double getAngle();
     void stop();
     bool target_reached = false; // Indicateur de cible atteinte
-    bool start_angle = false; // Indicateur de début d'angle
+    bool start_angle = false; // Indicateur de début d'angle    void pami_brake();
+
+    State_t getState();
+    void setState(State_t new_state);
+    bool isStartPressed();
+    bool isLeftPressed();
+    double getSonarDistance();
+    void turnTail();
+
 
 private:
     Encoder leftEncoder;
     Encoder rightEncoder;
     Motor leftMotor;
     Motor rightMotor;
-    // Tail tail;
-    // Microswitch microswitch;
-    // Sonar sonar;
+    Microswitch starting_switch;
+    Microswitch left_switch;
+    Microswitch right_switch;
+    Tail tail;
+    Sonar sonar;
+    State_t PAMI_state ; 
+
     double last_time_ctrl = 0;
     double current_time_ctrl = 0;
 
