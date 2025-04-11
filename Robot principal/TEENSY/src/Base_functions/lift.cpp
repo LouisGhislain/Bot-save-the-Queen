@@ -1,4 +1,4 @@
-#include "lift.h"
+#include "../../include/lift.h"
 
 
 // Constructor: Initialize stepper object
@@ -14,10 +14,11 @@ void lift::begin() {
     digitalWrite(EN_PIN_LIFT, LOW);  // Enable TMC2209 (LOW to enable)
 
     // Configure stepper motor
-    stepper.setMaxSpeed(2000);
-    stepper.setAcceleration(2000);
+    stepper.setMaxSpeed(8000);
+    stepper.setAcceleration(4000);
 
-    //calibration();
+    lift_calibration();
+    up_and_down(100);
 }
 
 void lift::moveToHome() {
@@ -28,6 +29,7 @@ void lift::moveToHome() {
 }
 
 void lift::up_and_down(int height_in_mm) {   //height defined as the top of the hold cans
+    stepper.setSpeed(8000); //200
     //Serial.println(digitalRead(MICROSWTICH_LIFT_PIN));
 
     stepper.moveTo((-height_in_mm + zero_level_offset) * 23.15);  // Move to desired height -> 1rev = 1600 steps -> 1rev = 2pi*r = 2pi*11mm = 69.115 mm => 1mm = 1600/69.115 = 23.15 steps 
@@ -45,22 +47,22 @@ void lift::up_and_down(int height_in_mm) {   //height defined as the top of the 
     delay(2000);  // Wait*/
 }
 
-void lift::calibration() {
+void lift::lift_calibration() {
   stepper.setMaxSpeed(500);
-  stepper.setAcceleration(300);
-  stepper.setSpeed(200);
+  stepper.setAcceleration(500); //300
+  stepper.setSpeed(400); //200
 
-  stepper.move(500);
+  stepper.move(-500);
   while (stepper.distanceToGo() != 0) {
       stepper.run();
   }
 
   while (digitalRead(MICROSWTICH_LIFT_PIN) == HIGH) {
-      stepper.move(-10);
+      stepper.move(10);
       stepper.run();
   }
 
-  stepper.move(-10);
+  stepper.move(-20); //-10 
   while (stepper.distanceToGo() != 0) {
       stepper.run();
   }

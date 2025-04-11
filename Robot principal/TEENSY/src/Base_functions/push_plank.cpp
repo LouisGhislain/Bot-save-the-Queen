@@ -1,13 +1,15 @@
-#include "push_plank.h"
+#include "../../include/push_plank.h"
 
 
 #define distance_extension 110 // mm 
 
-#define servo_right_grab_angle 21
-#define servo_left_grab_angle 22
+#define servo_right_grab_angle 18
+#define servo_left_grab_angle 20
 #define servo_right_release_angle 114
 #define servo_left_release_angle 116
 
+#define servo_right_separate_angle 14
+#define servo_left_separate_angle 16
 // engrenage à 13 dents
 // crémaillère entre 13 dents : 56.55 mm
 // => 56.55mm / revolution 
@@ -29,11 +31,10 @@ void push_plank::begin() {
     // Configure stepper motor
     stepper.setMaxSpeed(1500);
     stepper.setAcceleration(1000);
-
-    calibration();
+    push_calibration();
 }
 
-void push_plank::calibration() {
+void push_plank::push_calibration() {
     const int seuil = 25.00;
     stepper.setMaxSpeed(500);
     stepper.setAcceleration(300);
@@ -59,9 +60,9 @@ void push_plank::calibration() {
 }
 
 void push_plank::move_to_mm(int distance_mm) {
-    stepper.setMaxSpeed(1500);
-    stepper.setAcceleration(1000);
-    stepper.setSpeed(500);
+    stepper.setMaxSpeed(3000);
+    stepper.setAcceleration(3000);
+    stepper.setSpeed(3000);
     stepper.moveTo(distance_mm * 28.3); // get distance in steps
     while (stepper.distanceToGo() != 0) {
         stepper.run();
@@ -83,6 +84,11 @@ void push_plank::pull_plank_grab() {
     servo_motor_left(servo_left_grab_angle);
 }
 
+void push_plank::pull_plank_separate() {
+    //Only a few degree downward because the fings are already down
+    servo_motor_right(servo_left_separate_angle);
+    servo_motor_left(servo_left_separate_angle);
+}
 void push_plank::pull_plank_release() {
     servo_motor_right(servo_right_release_angle);
     servo_motor_left(servo_left_release_angle);
