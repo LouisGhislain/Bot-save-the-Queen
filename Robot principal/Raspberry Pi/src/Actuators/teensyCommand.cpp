@@ -33,34 +33,28 @@ void Robot::teensy_send_command(uint8_t command){
 
 
 
-void Robot::teensy_separate_stack(){
-    std::cout << "Entring in separate stack" << std::endl;
-    teensy_send_command(0x02);//RELEASE EXT CANS
-    usleep(500000);
-    int grab_done = 0;
-    unsigned long start_wait = micros();
-    do {
-        usleep(100000); 
-        grab_done = wiringPiI2CRead(fd_teensy);
-    } while (grab_done != 0x03 && (micros() - start_wait) < 2e6);
-    usleep(500000);
-    teensy_send_command(0x04); //canettes ext  
-    usleep(5000000);
-    teensy_send_command(0x05); //crem
-    usleep(500000);
+void Robot::teensy_build(){
+    int rasp_backward = 0;
+    int rasp_forward = 0 ;
+    int sequence_finished = 0 ;
+
+    teensy_send_command(0x04);//CMD_GRAB
+    usleep(800000);
     lowLevelBackward();
-    teensy_send_command(0x06);//second stage
     usleep(10000000);
     lowLevelForward();
-    teensy_send_command(0x08);//drop
+    teensy_send_command(0x07); //CMD_FORWARD_DONE
+    usleep(1000000);
+    lowLevelBackward();
+    
 }
 
 void Robot::lowLevelBackward(){
-    double ref_speed_left = -2;
-    double ref_speed_right = -2;
+    double ref_speed_left = -4;
+    double ref_speed_right = -4;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 2.5*1000000; // To seconds;
+    unsigned long duration = 2*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;
@@ -77,11 +71,11 @@ void Robot::lowLevelBackward(){
 }
 
 void Robot::lowLevelForward(){
-    double ref_speed_left = 2;
-    double ref_speed_right = 2;
+    double ref_speed_left = 4;
+    double ref_speed_right = 4;
 
     unsigned long startTime = micros(); // Current time in µs
-    unsigned long duration = 2.5*1000000; // To seconds;
+    unsigned long duration = 3*1000000; // To seconds;
     unsigned long currentTime;
     unsigned long startloop;
     unsigned long looptime;

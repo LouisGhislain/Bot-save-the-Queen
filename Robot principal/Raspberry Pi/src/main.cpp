@@ -152,7 +152,7 @@ int main() {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x06);
+            robot.teensy_send_command(0x02);
             std::cout << "C'est envoyé" << std::endl;
             break ; 
             
@@ -161,7 +161,7 @@ int main() {
             std::cout << "Seending information to teensy" << std::endl;
             robot.teensy_init();
             std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_separate_stack();
+            robot.teensy_build();
             break ; 
         }
         default:
