@@ -104,9 +104,9 @@ public:
     // Teensy
     void teensy_init();
     void teensy_send_command(uint8_t command);
-    void teensy_separate_stack();
+    void teensy_build();
     int teensy_check_IR();
-    void teensy_ready_to_lift();
+    void teensy_grab();
     void lowLevelForward();
     void lowLevelBackward();
 

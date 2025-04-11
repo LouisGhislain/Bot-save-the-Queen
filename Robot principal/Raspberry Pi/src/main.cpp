@@ -243,6 +243,79 @@ int main() {
             break;
         }
 
+        case 'f': {
+            std::cout << "maneuvre test..." << std::endl;
+            
+            double distance_manoeuvre;
+            // Get target coordinates from user
+            std::cout << "Enter manoeuvre distance (meters): ";
+            std::cin >> distance_manoeuvre;
+            
+            robot.maneuver(distance_manoeuvre, game);
+            unsigned long startloop;
+            unsigned long looptime;
+            int counter = 0;
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry(game);
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
+                
+                if(counter == 10){
+                    robot.middleLevelController(game);
+                    counter = 0;
+                }
+                counter++;
+                
+                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+                robot.lowLevelController();
+    
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
+            break;
+        }
+
+        /*case 'o': {
+            screen.init();
+            std::string message;
+            std::cout << "Entrez le message à afficher : ";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(std::cin, message);
+            
+            std::cout << "Message reçu : " << message << std::endl;
+            
+            robot.screen_clear();
+            std::cout << "Écran nettoyé." << std::endl;
+        
+            robot.screen_displayText(message);
+            std::cout << "Message affiché." << std::endl;
+            
+            break;
+        }
+        */
+        case 'p': {
+            
+            std::cout << "Seending information to teensy" << std::endl;
+            robot.teensy_init();
+            std::cout << "Initialisation OK" << std::endl;
+            robot.teensy_send_command(0x02);
+            std::cout << "C'est envoyé" << std::endl;
+            break ; 
+            
+        }
+        case 'q': {
+            std::cout << "Seending information to teensy" << std::endl;
+            robot.teensy_init();
+            std::cout << "Initialisation OK" << std::endl;
+            robot.teensy_build();
+            break ; 
+        }
         default:
             std::cout << "Invalid option." << std::endl;
             break;
