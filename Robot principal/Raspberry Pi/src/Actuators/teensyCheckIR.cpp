@@ -1,4 +1,3 @@
-#pragma once
 #include "../../include/Robot.h"
 
 int Robot::teensy_check_IR(){

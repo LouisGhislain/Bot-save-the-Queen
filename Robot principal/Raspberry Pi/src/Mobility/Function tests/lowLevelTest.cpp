@@ -22,8 +22,8 @@ void Robot::lowLevelTest(){
     }
     file << "0, " << leftMotor.getSpeed() << ", " << rightMotor.getSpeed() << ", " << u_volt_left << ", " << u_volt_right << "\n";
 
-    double ref_speed_left = 5;
-    double ref_speed_right = 5;
+    ref_speed_left = 4;
+    ref_speed_right = 4;
 
     unsigned long startTime = micros(); // Current time in µs
     unsigned long duration = 2.5*1000000; // To seconds;
@@ -35,7 +35,7 @@ void Robot::lowLevelTest(){
         startloop = micros();
 
         currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
+        lowLevelController();
         
         file << currentTime << ", " 
                 << leftMotor.getSpeed() << ", " 

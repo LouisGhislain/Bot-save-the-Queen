@@ -1,8 +1,4 @@
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/cmake_install.cmake
-# Install script for directory: /home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi
-=======
 # Install script for directory: /home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi
->>>>>>> dev_1:Robot principal/Raspberry Pi/cmake_install.cmake
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -54,9 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD:Robot principal/Raspberry Pi/build/cmake_install.cmake
-file(WRITE "/home/TheQueen/BotSaveHugo/Robot principal/Raspberry Pi/build/${CMAKE_INSTALL_MANIFEST}"
-=======
 file(WRITE "/home/TheQueen/Bot-save-the-queen Github/Robot principal/Raspberry Pi/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> dev_1:Robot principal/Raspberry Pi/cmake_install.cmake
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

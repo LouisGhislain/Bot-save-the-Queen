@@ -63,7 +63,7 @@ void Robot::lowLevelBackward(){
         startloop = micros();
 
         currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
+        lowLevelController();
         looptime = micros() - startloop;
         usleep(SAMPLING_TIME*1e6 - looptime);
     }
@@ -84,7 +84,7 @@ void Robot::lowLevelForward(){
         startloop = micros();
 
         currentTime = micros() - startTime;
-        lowLevelController(ref_speed_left, ref_speed_right);
+        lowLevelController();
         looptime = micros() - startloop;
         usleep(SAMPLING_TIME*1e6 - looptime);
     }
