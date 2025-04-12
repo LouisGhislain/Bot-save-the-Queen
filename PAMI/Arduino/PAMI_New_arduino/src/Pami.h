@@ -18,6 +18,7 @@ public:
     void lowlevelcontrol(double ref_speed_left, double ref_speed_right);
     double getX_position();
     double getY_position();
+    void pami_brake();
     void middlecontrol(double x_ref, double y_ref, double angle_ref, bool target);
     void update_position();
     double getAngle();
@@ -78,10 +79,10 @@ private:
     // double Kp_angular = 5; // Coefficient proportionnel pour la vitesse angulaire
 
 
-    static constexpr float Kp_left = 30; // Coefficient proportionnel pour le moteur gauche
-    static constexpr float Ki_left = 300; // Coefficient intégral pour le moteur gauche
-    static constexpr float Kp_right = 30; // Coefficient proportionnel pour le moteur droit
-    static constexpr float Ki_right = 300; // Coefficient intégral pour le moteur droit
+    static constexpr float Kp_left = 22.66; // Coefficient proportionnel pour le moteur gauche
+    static constexpr float Ki_left = 83.64; // Coefficient intégral pour le moteur gauche
+    static constexpr float Kp_right = 22.66; // Coefficient proportionnel pour le moteur droit
+    static constexpr float Ki_right = 83.64; // Coefficient intégral pour le moteur droit
 
     
 };

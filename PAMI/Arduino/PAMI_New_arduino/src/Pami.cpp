@@ -2,18 +2,19 @@
 #include "Motor.h"
 #include "Encoder.h"
 
-#define WheelDiameter 0.060325 // Diamètre de la roue en mètres
-#define DistanceBetweenWheels 0.09 // Distance entre les roues en mètres
+
+#define WheelDiameter 0.05895 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.0985 // Distance entre les roues en mètres
 #define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
 #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
-#define Kp_alpha 0.05 // Coefficient proportionnel pour l'angle
+#define Kp_alpha 0.08 // Coefficient proportionnel pour l'angle
 
 
 PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false), starting_switch(A5), left_switch(1),right_switch(15), tail(9),sonar(A3,4) {
     // Initialisation des moteurs et encodeurs
     leftMotor.set_motor(0);
     rightMotor.set_motor(0);
-    PAMI_state = moving ; 
+    // PAMI_state = moving ; 
 }
 
 // void PAMI::getAngle() {
@@ -48,19 +49,31 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     double e_speed_left = ref_speed_left - leftMotor.getSpeed();
     double e_speed_right = ref_speed_right - rightMotor.getSpeed();
 
+
+    // Serial.print("e_speed_left: ");
+    // Serial.print(e_speed_left);
+    // Serial.print(", ");
+    // Serial.print("e_speed_right: ");
+    // Serial.print(e_speed_right);
+    // Serial.print(", ");
+
     // Print the time
-    // // Serial.print("Time: ");
-    // Serial.print(current_time_ctrl);
-    // Serial.print(",");
+    // Serial.print("Time: ");
+    Serial.print(current_time_ctrl);
+    Serial.print(", ");
 
     
 //    // Print the error
-    // // Serial.print("e_speed_left: ");
-    // Serial.print(e_speed_left);
-    // Serial.print(",");
-    // // Serial.print(" e_speed_right: ");
-    // Serial.print(e_speed_right);
-    // Serial.print(",");
+    Serial.print(last_time_ctrl = millis() / 1000.0);
+
+    Serial.print(", ");
+
+    // Serial.print(leftMotor.getSpeed());
+    // // Serial.print(e_speed_left);
+    // Serial.print(", ");
+    // // // Serial.print(" e_speed_right: ");
+    // Serial.print(rightMotor.getSpeed());
+    // Serial.print(", ");
 
 
     // Integrate error
@@ -76,6 +89,13 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     // Calculate control signal
     left_voltage = Kp_left * e_speed_left + Ki_left * left_speed;
     right_voltage = Kp_right * e_speed_right + Ki_right * right_speed;
+
+    // Serial.print("left_voltage: ");
+    // Serial.print(left_voltage);
+    // Serial.print(",");
+    // Serial.print(" right_voltage: ");
+    // Serial.print(right_voltage);
+    // Serial.print(",");
 
     // Serial.print(Kp_left*e_speed_left);
     // Serial.print(",");
@@ -94,10 +114,22 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
         right_voltage = -9;
     }
 
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(", ");
+    // Serial.print(rightMotor.getSpeed());
+    // Serial.print(", ");
+
+
+    // Serial.print(left_voltage-leftMotor.getSpeed()*18);
+    // Serial.print(", ");
+    // Serial.println(right_voltage-rightMotor.getSpeed()*18);
+
+
+
+        // Set motor speeds
     leftMotor.set_motor(left_voltage);
     rightMotor.set_motor(right_voltage);
 
-        // Set motor speeds
     // Serial.print("Left voltage: ");
     // Serial.print(left_voltage);
     // Serial.print(",");
@@ -107,12 +139,13 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     //Print the speed and the target speed
     // Serial.print("Left speed: ");
     // Serial.print(leftMotor.getSpeed());
-    // Serial.print(" Target speed: ");
-    // Serial.print(ref_speed_left);
-    // Serial.print(" Right speed: ");
+    // // Serial.print(" Target speed: ");
+    // // Serial.print(ref_speed_left);
+    // // Serial.print(" Right speed: ");
     // Serial.print(rightMotor.getSpeed());
     // Serial.print(" Target speed: ");
     // Serial.println(ref_speed_right);
+
 }
 
 void PAMI::pami_brake(){
@@ -181,6 +214,9 @@ double PAMI::getAngle() {
     return angle;
 }
 
+// void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bool target){
+
+
 void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target) {
 
 
@@ -189,11 +225,11 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
     double rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
 
     if (!target_reached) {
-        while (rho > 0.2) {
+        while (rho > 0.08) {
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            double v = 0.14; // Vitesse linéaire
+            double v = 0.2; // Vitesse linéaire
             double w = Kp_alpha * alpha; // Vitesse angulai
 
             // Serial.print("Atan: ");
@@ -247,12 +283,12 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.print(ref_speed_left);
             // Serial.print(" Ref speed right: ");
             // Serial.println(ref_speed_right);
-            // Serial.print(" Angle: ");
-            // Serial.print(angle);
-            // Serial.print(" X: ");
-            // Serial.print(x_position);
-            // Serial.print(" Y: ");
-            // Serial.println(y_position);
+            Serial.print(" Angle: ");
+            Serial.print(angle);
+            Serial.print(" X: ");
+            Serial.print(x_position);
+            Serial.print(" Y: ");
+            Serial.println(y_position);
 
             delay(100); // Attendre un peu avant de mettre à jour la position
 

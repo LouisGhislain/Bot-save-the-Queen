@@ -4,7 +4,7 @@
 
 #define TICKS_PER_REV 13 // Nombre de ticks par révolution
 #define gearRatio 42 // Rapport de réduction
-#define WheelDiameter 0.060325 // Diamètre de la roue en mètres
+#define WheelDiameter 0.0585 // Diamètre de la roue en mètres
 
 Motor* Motor::leftInstance = nullptr;
 Motor* Motor::rightInstance = nullptr;
@@ -39,6 +39,7 @@ void Motor::updateSpeed() {
     lastTime = currentTime;
     lastTicks = currentTicks;
 
+
     updateDistance();
 }
 
@@ -58,10 +59,24 @@ double Motor::getSpeed() {
 
 
 void Motor::set_motor(float tension) {
-    if (tension > 0) {
+
+    // updateSpeed();
+
+    float EMF = speed *0.18;
+    
+    if (tension > tension_max) {
+        tension = tension_max;
+    } else if (tension < -tension_max) {
+        tension = -tension_max;
+    }
+
+
+    double dutyCycle = (tension - EMF) / (tension_max - EMF);
+
+    if (dutyCycle > 0) {
         digitalWrite(dir1, LOW);
         digitalWrite(dir2, HIGH);
-    } else if (tension < 0) {
+    } else if (dutyCycle < 0) {
         digitalWrite(dir1, HIGH);
         digitalWrite(dir2, LOW);
     } else {
@@ -69,8 +84,23 @@ void Motor::set_motor(float tension) {
         return;
     }
 
-    int pwmValue = abs(tension) * PWM_max / tension_max;
-    analogWrite(PWM_PIN, pwmValue);
+
+
+
+
+    // if (tension > 0) {
+    //     digitalWrite(dir1, LOW);
+    //     digitalWrite(dir2, HIGH);
+    // } else if (tension < 0) {
+    //     digitalWrite(dir1, HIGH);
+    //     digitalWrite(dir2, LOW);
+    // } else {
+    //     stop_motor();
+    //     return;
+    // }
+
+    // int pwmValue = abs(tension) * PWM_max / tension_max;
+    analogWrite(PWM_PIN, abs(dutyCycle * PWM_max)); // Appliquer la tension au moteur
 }
 
 
