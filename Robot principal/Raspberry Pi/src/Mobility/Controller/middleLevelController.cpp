@@ -3,9 +3,9 @@
 // Define global movement parameters (must be defined in one .cpp file)
 const MovementParams manoeuvre {
     true,   // activated_target_angle
-    0.30,  // d0
-    0.6,    // vMax
-    0.04   // stop_robot_distance
+    0.03,  // d0
+    0.1,    // vMax
+    0.02   // stop_robot_distance
 };
 
 const MovementParams deplacement {
@@ -27,11 +27,6 @@ const MovementParams orientation {
  * 
  * This function implements a middle-level controller that creates a trajectory to a target position.
  * 
- * @param x X-coordinate of the target position
- * @param y Y-coordinate of the target position
- * @param goal_angle Angle to the target position (if not important, put anything)
- * @param params Movement parameters
- * @param game Pointer to the game structure
  */
 void Robot::middleLevelController(void *game) {
     GAME * mygame = (GAME *)game;
@@ -41,12 +36,8 @@ void Robot::middleLevelController(void *game) {
     // delta to the target
     delta_x_target = x_coord_target - myqueen->cart_pos->x; // in m
     delta_y_target = y_coord_target - myqueen->cart_pos->y; // in m
-
-    travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
+  
     rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
-
-    last_distl_middle = distl;
-    last_distr_middle = distr;
 
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
@@ -98,8 +89,13 @@ void Robot::middleLevelController(void *game) {
 
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
 
+    // travelled distance useful for rising edge
+    travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
+    last_distl_middle = distl;
+    last_distr_middle = distr;
+
     // Falling edge of the trapzoidal speed profile
-    if (rho < params.d0) {
+    if ((rho < params.d0) && (last_step ==  true)) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
         //fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
     }

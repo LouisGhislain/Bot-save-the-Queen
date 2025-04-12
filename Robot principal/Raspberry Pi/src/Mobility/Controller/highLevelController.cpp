@@ -20,6 +20,7 @@ void Robot::highLevelController(int goal, void *game) {
         // If the goal has changed, update the current destination
         current_destination = goal;
         end_of_travel = false;
+        last_step = false;
 
         // Find the closest node to the current position and set it as the start node
         int start_node;
@@ -38,16 +39,27 @@ void Robot::highLevelController(int goal, void *game) {
         aStar(start_node, goal, game);
 
         // Aim for the second node in the path, the first beeing where we are (the closest node)
-        current_step = 1;
+        current_step = 0;
 
     }
 
     fprintf(stderr, "path size : %d \n", path.size());
     printPath();
     fprintf(stderr, "rho : %f \n", rho);
-    
+    //rho = sqrt(pow((x_coord_target - queen->cart_pos->x),2) + pow((y_coord_target - queen->cart_pos->y),2)); // Quentin veut trouver plus élégant
+    // If the robot has reached the target node, update the current step
+    if(rho < d1_change_target){
+        current_step++;
+        fprintf(stderr, "Current step: %d\n", current_step);
+    }
+
     // If the robot has not reached the destination, call the middle level controller
     if (current_step < path.size()){
+
+        // If last step of the travel 
+        if (current_step == path.size()-1){
+            last_step = true;
+        }
         
         // Get the target node
         int target_node = path[current_step];
@@ -64,13 +76,6 @@ void Robot::highLevelController(int goal, void *game) {
     else{
         end_of_travel = true;
         fprintf(stderr, "End of travel\n");
-    }
-
-    rho = sqrt(pow((x_coord_target - queen->cart_pos->x),2) + pow((y_coord_target - queen->cart_pos->y),2)); // Quentin veut trouver plus élégant
-    // If the robot has reached the target node, update the current step
-    if(rho < d1_change_target){
-        current_step++;
-        fprintf(stderr, "Current step: %d\n", current_step);
     }
 
 }

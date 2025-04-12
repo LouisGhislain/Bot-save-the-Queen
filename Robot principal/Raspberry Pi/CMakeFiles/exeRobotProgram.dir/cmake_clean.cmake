@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuver.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuver.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/middleLevelController.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Function_tests/lowLevelTest.cpp.o"

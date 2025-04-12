@@ -7,6 +7,7 @@
 #include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
+#include <csignal>
 
 // // Variables globales pour le multithreading
 // volatile bool running = true;
@@ -39,6 +40,22 @@
 //     return NULL;
 // }
 
+bool running;
+Robot robot;
+
+// Function to handle SIGINT (Ctrl+C)
+void signalHandler(int signum) {
+    std::cout << "Interrupt signal (" << signum << ") received.\n";
+
+    // cleanup and close up stuff here  
+    // terminate program
+
+    running = false;
+    robot.stop();
+
+    exit(signum);
+}
+
 int main() {
 
     // // Initialiser le mutex
@@ -47,9 +64,13 @@ int main() {
     //     return 1;
     // }
 
-    Robot robot;
+    // Signal handler initialization
+    signal(SIGINT, signalHandler);
 
-    GAME *game = init_game(); 
+    GAME *game = init_game();
+    
+    running = true;
+
     //Screen screen;
 
     robot.loadNodes("src/Mobility/Localization/nodes.txt", game);
@@ -154,7 +175,8 @@ int main() {
             unsigned long looptime;
             int counterMid = 0;
             int counterHigh = 100;
-            while (true) {
+
+            while (running) {
                 startloop = micros();
         
                 robot.updateOdometry(game);
@@ -184,6 +206,46 @@ int main() {
                 }
             break;
         }
+
+        case 'f': {
+            std::cout << "maneuvre test..." << std::endl;
+            
+            double distance_manoeuvre;
+            // Get target coordinates from user
+            std::cout << "Enter manoeuvre distance (meters): ";
+            std::cin >> distance_manoeuvre;
+            
+            robot.maneuver(distance_manoeuvre, game);
+            unsigned long startloop;
+            unsigned long looptime;
+            int counter = 0;
+            while (true) {
+                startloop = micros();
+        
+                robot.updateOdometry(game);
+                
+                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+                // print speed
+                
+                if(counter == 10){
+                    robot.middleLevelController(game);
+                    counter = 0;
+                }
+                counter++;
+                
+                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+                robot.lowLevelController();
+    
+                looptime = micros() - startloop;
+                if (looptime > robot.SAMPLING_TIME*1e6) {
+                    std::cout << "Loop time exceeded: " << looptime << std::endl;
+                }
+                usleep(robot.SAMPLING_TIME*1e6 - looptime);
+                }
+            break;
+        }
+
+        
 
         /*case 'o': {
             screen.init();
