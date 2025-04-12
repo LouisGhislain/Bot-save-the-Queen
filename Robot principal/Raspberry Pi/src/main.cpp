@@ -69,6 +69,8 @@ int main() {
     std::cout << "  j: N/A" << std::endl;
     std::cout << "  k: N/A" << std::endl;
     std::cout << "  l: N/A" << std::endl;
+    std::cout << "  p: Teensy CLEAR" << std::endl;
+    std::cout << "  q: Teensy BUILD" << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
