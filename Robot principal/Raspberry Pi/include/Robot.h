@@ -72,6 +72,8 @@ enum State {
     MOVING_FIRST_STACK,
     FIRST_MANEUVER,
     GRABBING,
+    WAITING,
+    SEPARATING, 
     STOPPED
 };
 
@@ -116,11 +118,9 @@ public:
     // Teensy
     void teensy_init();
     void teensy_send_command(uint8_t command);
-    void teensy_build();
+    void teensy_build(void *game);
     int teensy_check_IR();
     void teensy_grab();
-    void lowLevelForward();
-    void lowLevelBackward();
 
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
@@ -151,7 +151,7 @@ public:
     bool arrived_first_stack = false;
     bool grab_command_sent = false;
 
-    State STATE = MOVING_FIRST_STACK;
+    State STATE = GRABBING;
 
 private:
     void initializeSPI(); 
@@ -218,12 +218,8 @@ private:
     
     // File descriptor for I2C
     int fd_OLED;
-    int fd_teensy;
+    int fd_teensy;        
 
-    // FSM
-
-        
-    
 };
 
 #endif // ROBOT_H

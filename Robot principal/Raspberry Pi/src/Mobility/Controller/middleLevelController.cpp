@@ -4,8 +4,8 @@
 const MovementParams manoeuvre {
     false,   // activated_target_angle
     0.02,  // d0
-    0.1,    // vMax
-    0.005   // stop_robot_distance
+    0.175,    // vMax
+    0.01   // stop_robot_distance
 };
 
 const MovementParams deplacement {
@@ -18,7 +18,7 @@ const MovementParams deplacement {
 const MovementParams orientation {
     true,   // activated_target_angle
     0.005,  // d0
-    0.0,    // vMax
+    0.3,    // vMax
     0.001   // stop_robot_distance
 };
 
@@ -67,6 +67,13 @@ void Robot::middleLevelController(void *game) {
                 ref_speed_left = 0;
                 ref_speed_right = 0;
                 end_of_manoeuvre = true;
+
+                // POUR LE ANGLE CONTROLLER :
+                // Il faudrait calculer le Kp alpha et le w_ref avant ce if
+                // Et n'imposer que ca sur les roues avec (v_ref = 0)
+                // ref_speed_left = w_ref blablabla
+                // ref_speed_right = w_ref blablabla
+                // Puis return et mettre un flag angle_reached à true quand alpha < qu'une certaine valeur (pour la FSM)
             }
 
             travelled_distance = 0;           // Move feature to high level controller when ready
@@ -77,7 +84,6 @@ void Robot::middleLevelController(void *game) {
         else{
             {   
                 std::lock_guard<std::mutex> lock(ref_speed_mutex);
-                // as if lowLevelController(0, 0);
                 ref_speed_left = 0;
                 ref_speed_right = 0;
                 end_of_manoeuvre = true;

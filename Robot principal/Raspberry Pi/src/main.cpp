@@ -97,12 +97,23 @@ void loop_100ms(GAME *game){
     // Print robot state
     std::cout << "Robot state: " << robot.STATE << std::endl;
 
-    // Print queens target
-    std::cout << "Queen target: " << robot.GLOBAL_x_coord_target << ", " << robot.GLOBAL_y_coord_target << std::endl;
-
 
     switch (robot.STATE)
     {
+    /*
+    case GRABBING : 
+        robot.teensy_send_command(0x02); // Grab
+        robot.STATE = WAITING ; 
+        break ; 
+    case WAITING : 
+        usleep(3000000);
+        robot.STATE = SEPARATING ;
+        break ;
+    case SEPARATING : 
+        robot.teensy_build(game);
+        robot.STATE = STOPPED ; 
+        break; 
+    */
     case MOVING_FIRST_STACK:
         robot.highLevelController(0, game);
         if (robot.end_of_travel){
@@ -123,7 +134,9 @@ void loop_100ms(GAME *game){
         }
         break;
 
+    
     case STOPPED:
+        usleep(30000);
         break;
 
     default:
