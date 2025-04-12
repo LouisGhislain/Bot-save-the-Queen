@@ -77,119 +77,120 @@
 
 //             break;
 //         }
-//         case 'c': {
-//             // NOTE: Since Robot does not provide a direct getSpeed() function,
-//             // one option is to use one motor’s speed as a proxy.
-//             // Alternatively, you might add a public method to Robot to get speed.
-//             std::cout << "Retrieving left motor speed..." << std::endl;
-//             // Assuming we would like to access the left motor's speed, we could add a public method to Robot:
-//             // double speed = robot.getLeftMotorSpeed();
-//             // For now, we will print a message.
-//             std::cout << "Robot speed functionality is not yet implemented." << std::endl;
-//             break;
-//         }
-//         case 't':{
-//             std::cout << "Acquiring open loop data..." << std::endl;
-//             robot.openLoopData();
-//             break;
-//         }
-//         case 'd':{
-//             std::cout << "Printing distance..." << std::endl;
-//             robot.printDistance();
-//             break;
-//         }
-//         case 'l':{
-//             std::cout << "Testing low level..." << std::endl;
-//             robot.lowLevelTest();
-//             break;
-//         }
-//         case 'f':{
-//             std::cout << "Braking test..." << std::endl;
-//             robot.stop();
-//             break;
-//         }
-//         case 'u':{
-//             std::cout << "BZZZ BZZZZZ" << std::endl;
-//             robot.buzzBuzzer();
-//             break;
-//         }
+
+//         // case 'c': {
+//         //     // NOTE: Since Robot does not provide a direct getSpeed() function,
+//         //     // one option is to use one motor’s speed as a proxy.
+//         //     // Alternatively, you might add a public method to Robot to get speed.
+//         //     std::cout << "Retrieving left motor speed..." << std::endl;
+//         //     // Assuming we would like to access the left motor's speed, we could add a public method to Robot:
+//         //     // double speed = robot.getLeftMotorSpeed();
+//         //     // For now, we will print a message.
+//         //     std::cout << "Robot speed functionality is not yet implemented." << std::endl;
+//         //     break;
+//         // }
+//         // case 't':{
+//         //     std::cout << "Acquiring open loop data..." << std::endl;
+//         //     robot.openLoopData();
+//         //     break;
+//         // }
+//         // case 'd':{
+//         //     std::cout << "Printing distance..." << std::endl;
+//         //     robot.printDistance();
+//         //     break;
+//         // }
+//         // case 'l':{
+//         //     std::cout << "Testing low level..." << std::endl;
+//         //     robot.lowLevelTest();
+//         //     break;
+//         // }
+//         // case 'f':{
+//         //     std::cout << "Braking test..." << std::endl;
+//         //     robot.stop();
+//         //     break;
+//         // }
+//         // case 'u':{
+//         //     std::cout << "BZZZ BZZZZZ" << std::endl;
+//         //     robot.buzzBuzzer();
+//         //     break;
+//         // }
         
-//         case 'w': {
-//             std::cout << "Middle level test..." << std::endl;
+//         // case 'w': {
+//         //     std::cout << "Middle level test..." << std::endl;
             
-//             // Get target coordinates from user
-//             std::cout << "Enter target X coordinate (meters): ";
-//             std::cin >> x_coord_target;
-//             std::cout << "Enter target Y coordinate (meters): ";
-//             std::cin >> y_coord_target;
+//         //     // Get target coordinates from user
+//         //     std::cout << "Enter target X coordinate (meters): ";
+//         //     std::cin >> x_coord_target;
+//         //     std::cout << "Enter target Y coordinate (meters): ";
+//         //     std::cin >> y_coord_target;
             
 
-//             robot.middleLevelTest(targetX, targetY, game);
-//             break;
-//         }
+//         //     robot.middleLevelTest(targetX, targetY, game);
+//         //     break;
+//         // }
 
-        // case 'm': {
-        //     std::cout << "Middle level test..." << std::endl;
+//         // case 'm': {
+//         //     std::cout << "Middle level test..." << std::endl;
             
-        //     // Get target coordinates from user
-        //     double targetX, targetY;
-        //     std::cout << "Enter target X coordinate (meters): ";
-        //     std::cin >> targetX;
-        //     std::cout << "Enter target Y coordinate (meters): ";
-        //     std::cin >> targetY;
+//         //     // Get target coordinates from user
+//         //     double targetX, targetY;
+//         //     std::cout << "Enter target X coordinate (meters): ";
+//         //     std::cin >> targetX;
+//         //     std::cout << "Enter target Y coordinate (meters): ";
+//         //     std::cin >> targetY;
 
-        //     unsigned long startloop;
-        //     unsigned long looptime;
-        //     int counter = 0;
-        //     while (true) {
-        //         startloop = micros();
+//         //     unsigned long startloop;
+//         //     unsigned long looptime;
+//         //     int counter = 0;
+//         //     while (true) {
+//         //         startloop = micros();
         
-        //         robot.updateOdometry(game);
+//         //         robot.updateOdometry(game);
                 
-        //         //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-        //         // print speed
+//         //         //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
+//         //         // print speed
                 
-        //         if(counter == 10){
-        //             robot.middleLevelController(targetX, targetY, 0, deplacement, game);
-        //             counter = 0;
-        //         }
-        //         counter++;
+//         //         if(counter == 10){
+//         //             robot.middleLevelController(targetX, targetY, 0, deplacement, game);
+//         //             counter = 0;
+//         //         }
+//         //         counter++;
                 
-        //         //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-        //         robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+//         //         //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
+//         //         robot.lowLevelController(robot.middle_ref_speed_left, robot.middle_ref_speed_right);
 
-        //         looptime = micros() - startloop;
-        //         if (looptime > robot.SAMPLING_TIME*1e6) {
-        //             std::cout << "Loop time exceeded: " << looptime << std::endl;
-        //         }
-        //         usleep(robot.SAMPLING_TIME*1e6 - looptime);
-        //         }
-        //     break;
-//         }
+//         //         looptime = micros() - startloop;
+//         //         if (looptime > robot.SAMPLING_TIME*1e6) {
+//         //             std::cout << "Loop time exceeded: " << looptime << std::endl;
+//         //         }
+//         //         usleep(robot.SAMPLING_TIME*1e6 - looptime);
+//         //         }
+//         //     break;
+//         // }
 
-//         case 'a': {
-//             double speed;
-//             std::cout << "Enter speed : ";
-//             std::cin >> speed;
+//         // case 'a': {
+//         //     double speed;
+//         //     std::cout << "Enter speed : ";
+//         //     std::cin >> speed;
 
-//             std::cout << "Low level ..." << std::endl;
-//             while (true) {
-//                 robot.lowLevelController(speed, speed);
-//                 usleep(1000); // Sleep for 0.001 seconds
-//             }
-//             break;
-//         }
+//         //     std::cout << "Low level ..." << std::endl;
+//         //     while (true) {
+//         //         robot.lowLevelController(speed, speed);
+//         //         usleep(1000); // Sleep for 0.001 seconds
+//         //     }
+//         //     break;
+//         // }
 
-//         /*case 'o': {
-//             screen.init();
-//             std::string message;
-//             std::cout << "Entrez le message à afficher : ";
-//             std::cin.ignore(); // Évite un problème de buffer
-//             std::getline(std::cin, message);
-//             screen.clear();
-//             screen.displayText(message);
-//             break;
-//         }*/
+//         // /*case 'o': {
+//         //     screen.init();
+//         //     std::string message;
+//         //     std::cout << "Entrez le message à afficher : ";
+//         //     std::cin.ignore(); // Évite un problème de buffer
+//         //     std::getline(std::cin, message);
+//         //     screen.clear();
+//         //     screen.displayText(message);
+//         //     break;
+//         // }*/
         
 //         default:
 //             std::cout << "Invalid option." << std::endl;

@@ -12,11 +12,11 @@
 // pthread_mutex_t data_mutex;
 // pthread_t lidar_thread;
 
-// // // Gestionnaire de signal pour terminer proprement le programme
-// // void sigint_handler(int sig) {
-// //     running = false;
-// //     printf("Arrêt en cours...\n");
-// // }
+// // Gestionnaire de signal pour terminer proprement le programme
+// void sigint_handler(int sig) {
+//     running = false;
+//     printf("Arrêt en cours...\n");
+// }
 
 // // // Fonction thread pour la récupération des données LIDAR
 // // void* lidar_thread_func(void* game_void) {
@@ -39,9 +39,9 @@
 // //     return NULL;
 // // }
 
-// // int main() {
-// //     // Initialiser le gestionnaire de signal
-// //     signal(SIGINT, sigint_handler);
+// int main() {
+//     // Initialiser le gestionnaire de signal
+//     signal(SIGINT, sigint_handler);
     
 //     // Initialiser le mutex
 //     if (pthread_mutex_init(&data_mutex, NULL) != 0) {
@@ -84,110 +84,110 @@
 //     std::cout << "Entrez votre choix: ";
 //     std::cin >> choice;
 
-// //     try {
-// //         robot.start();  // Initialiser SPI et effectuer d'autres tâches de configuration
-// //         robot.initCoords(game); // Initialiser les coordonnées
-// //     } catch (const std::exception& e) {
-// //         std::cerr << e.what() << std::endl;
-// //         running = false;
-// //         pthread_join(lidar_thread, NULL);
-// //         pthread_mutex_destroy(&data_mutex);
-// //         free_game(game);
-// //         return 1;
-// //     }
+//     try {
+//         robot.start();  // Initialiser SPI et effectuer d'autres tâches de configuration
+//         robot.initCoords(game); // Initialiser les coordonnées
+//     } catch (const std::exception& e) {
+//         std::cerr << e.what() << std::endl;
+//         running = false;
+//         pthread_join(lidar_thread, NULL);
+//         pthread_mutex_destroy(&data_mutex);
+//         free_game(game);
+//         return 1;
+//     }
 
-// //     switch(choice) {
-// //         case 'b': {
-// //             unsigned long startloop;
-// //             unsigned long looptime;
+//     switch(choice) {
+//         case 'b': {
+//             unsigned long startloop;
+//             unsigned long looptime;
         
-// //             while (running) {
-// //                 startloop = micros();
+//             while (running) {
+//                 startloop = micros();
                 
-// //                 // Verrouiller le mutex avant d'accéder aux données
-// //                 pthread_mutex_lock(&data_mutex);
+//                 // Verrouiller le mutex avant d'accéder aux données
+//                 pthread_mutex_lock(&data_mutex);
                 
-// //                 robot.updateOdometry(game);
-// //                 std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y 
-// //                           << ", Theta: " << game->queen->angle *180/(M_PI) << std::endl;
+//                 robot.updateOdometry(game);
+//                 std::cout << "X: " << game->queen->cart_pos->x << ", Y: " << game->queen->cart_pos->y 
+//                           << ", Theta: " << game->queen->angle *180/(M_PI) << std::endl;
                 
-// //                 // Déverrouiller le mutex après utilisation des données
-// //                 pthread_mutex_unlock(&data_mutex);
+//                 // Déverrouiller le mutex après utilisation des données
+//                 pthread_mutex_unlock(&data_mutex);
                 
-// //                 looptime = micros() - startloop;
-// //                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
-// //                 if (looptime > robot.SAMPLING_TIME*1e6) {
-// //                     std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
-// //                 }
-// //                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
-// //             }
-// //             break;
-// //         }
-// //         case 'c': {
-// //             std::cout << "Récupération de la vitesse du moteur gauche..." << std::endl;
-// //             std::cout << "La fonctionnalité de vitesse du robot n'est pas encore implémentée." << std::endl;
-// //             break;
-// //         }
-// //         case 't':{
-// //             std::cout << "Acquisition des données en boucle ouverte..." << std::endl;
-// //             robot.openLoopData();
-// //             break;
-// //         }
-// //         case 'd':{
-// //             std::cout << "Affichage de la distance..." << std::endl;
-// //             robot.printDistance();
-// //             break;
-// //         }
-// //         case 'l':{
-// //             std::cout << "Test de bas niveau..." << std::endl;
-// //             robot.lowLevelTest();
-// //             break;
-// //         }
-// //         case 'f':{
-// //             std::cout << "Test de freinage..." << std::endl;
-// //             robot.stop();
-// //             break;
-// //         }
-// //         case 'u':{
-// //             std::cout << "BZZZ BZZZZZ" << std::endl;
-// //             robot.buzzBuzzer();
-// //             break;
-// //         }
-// //         case 'm': {
-// //             std::cout << "Test de niveau moyen..." << std::endl;
+//                 looptime = micros() - startloop;
+//                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
+//                 if (looptime > robot.SAMPLING_TIME*1e6) {
+//                     std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
+//                 }
+//                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
+//             }
+//             break;
+//         }
+//         case 'c': {
+//             std::cout << "Récupération de la vitesse du moteur gauche..." << std::endl;
+//             std::cout << "La fonctionnalité de vitesse du robot n'est pas encore implémentée." << std::endl;
+//             break;
+//         }
+//         case 't':{
+//             std::cout << "Acquisition des données en boucle ouverte..." << std::endl;
+//             robot.openLoopData();
+//             break;
+//         }
+//         case 'd':{
+//             std::cout << "Affichage de la distance..." << std::endl;
+//             robot.printDistance();
+//             break;
+//         }
+//         case 'l':{
+//             std::cout << "Test de bas niveau..." << std::endl;
+//             robot.lowLevelTest();
+//             break;
+//         }
+//         case 'f':{
+//             std::cout << "Test de freinage..." << std::endl;
+//             robot.stop();
+//             break;
+//         }
+//         case 'u':{
+//             std::cout << "BZZZ BZZZZZ" << std::endl;
+//             robot.buzzBuzzer();
+//             break;
+//         }
+//         case 'm': {
+//             std::cout << "Test de niveau moyen..." << std::endl;
             
-// //             // Obtenir les coordonnées cibles de l'utilisateur
-// //             float targetX, targetY;
-// //             std::cout << "Entrez la coordonnée X cible (mètres): ";
-// //             std::cin >> targetX;
-// //             std::cout << "Entrez la coordonnée Y cible (mètres): ";
-// //             std::cin >> targetY;
+//             // Obtenir les coordonnées cibles de l'utilisateur
+//             float targetX, targetY;
+//             std::cout << "Entrez la coordonnée X cible (mètres): ";
+//             std::cin >> targetX;
+//             std::cout << "Entrez la coordonnée Y cible (mètres): ";
+//             std::cin >> targetY;
 
-// //             unsigned long startloop;
-// //             unsigned long looptime;
-// //             int counter = 0;
-// //             while (running) {
-// //                 startloop = micros();
+//             unsigned long startloop;
+//             unsigned long looptime;
+//             int counter = 0;
+//             while (running) {
+//                 startloop = micros();
                 
-// //                 // Verrouiller le mutex avant d'accéder aux données
-// //                 pthread_mutex_lock(&data_mutex);
+//                 // Verrouiller le mutex avant d'accéder aux données
+//                 pthread_mutex_lock(&data_mutex);
                 
-// //                 robot.updateOdometry(game);
+//                 robot.updateOdometry(game);
                 
-// //                 if(counter == 10){
-// //                     robot.middleLevelController(targetX, targetY, 0, deplacement, game);
-// //                     counter = 0;
-// //                 }
-// //                 counter++;
+//                 if(counter == 10){
+//                     robot.middleLevelController(targetX, targetY, 0, deplacement, game);
+//                     counter = 0;
+//                 }
+//                 counter++;
                 
-// //                 // Déverrouiller le mutex après utilisation des données
-// //                 pthread_mutex_unlock(&data_mutex);
+//                 // Déverrouiller le mutex après utilisation des données
+//                 pthread_mutex_unlock(&data_mutex);
 
-// //                 looptime = micros() - startloop;
-// //                 if (looptime > robot.SAMPLING_TIME*1e6) {
-// //                     std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
-// //                 }
-// //                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
+//                 looptime = micros() - startloop;
+//                 if (looptime > robot.SAMPLING_TIME*1e6) {
+//                     std::cout << "Temps de boucle dépassé: " << looptime << std::endl;
+//                 }
+//                 usleep(robot.SAMPLING_TIME*1e6 - looptime);
 //             }
 //             break;
 //         }

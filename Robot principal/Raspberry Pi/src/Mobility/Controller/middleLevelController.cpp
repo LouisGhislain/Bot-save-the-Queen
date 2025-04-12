@@ -33,19 +33,40 @@ void Robot::middleLevelController(void *game) {
     Queen * myqueen = mygame->queen;
     bool backwards = false;
     
-    // delta to the target
-    delta_x_target = x_coord_target - myqueen->cart_pos->x; // in m
-    delta_y_target = y_coord_target - myqueen->cart_pos->y; // in m
-  
-    rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2)); 
+    double rho, x_coord_target, y_coord_target, goal_angle;
+    double my_x, my_y, my_angle;
+
+    {
+        std::lock_guard<std::mutex> lock(myqueen->position_mutex);
+        my_x = myqueen->cart_pos->x;
+        my_y = myqueen->cart_pos->y;
+        my_angle = myqueen->angle;
+    }
+
+    MovementParams params;
+    {
+        std::lock_guard<std::mutex> lock(coord_mutex);
+        x_coord_target = GLOBAL_x_coord_target;
+        y_coord_target = GLOBAL_y_coord_target; 
+        goal_angle = GLOBAL_goal_angle;
+        delta_x_target = x_coord_target - my_x; // in m
+        delta_y_target = y_coord_target - my_y; // in m
+        //fprintf(stderr, "my x, my y, target x, target y: %f %f %f %f\n", my_x, my_y, x_coord_target, y_coord_target);
+        GLOBAL_rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2));
+        rho = GLOBAL_rho; // Update the class member if needed elsewhere
+        //fprintf(stderr, "global rho = %f\n", GLOBAL_rho);
+        params = GLOBAL_params;
+    }
 
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
         if(params.activated_target_angle == 1){
-            
-            // as if lowLevelController(0, 0);
-            ref_speed_left = 0;
-            ref_speed_right = 0;
+            {
+                std::lock_guard<std::mutex> lock(ref_speed_mutex);
+                // as if lowLevelController(0, 0);
+                ref_speed_left = 0;
+                ref_speed_right = 0;
+            }
 
             travelled_distance = 0;           // Move feature to high level controller when ready
             //std::cout << "Point reached (maybe not orientation) " << std::endl;
@@ -53,9 +74,12 @@ void Robot::middleLevelController(void *game) {
             //continue; // if the target is reached but the angle is not, continue to rotate 
         }
         else{
-            // as if lowLevelController(0, 0);
-            ref_speed_left = 0;
-            ref_speed_right = 0;
+            {
+                std::lock_guard<std::mutex> lock(ref_speed_mutex);
+                // as if lowLevelController(0, 0);
+                ref_speed_left = 0;
+                ref_speed_right = 0;
+            }
 
             travelled_distance = 0;           // Move feature to high level controller when ready
             //std::cout << "Point reached" << std::endl;
@@ -63,7 +87,7 @@ void Robot::middleLevelController(void *game) {
         }
     }
 
-    double alpha =  atan2(delta_y_target, delta_x_target) - myqueen->angle;
+    double alpha =  atan2(delta_y_target, delta_x_target) - my_angle;
     // Normalize alpha to range [-π, π]
     while (alpha > M_PI) {
         alpha -= 2 * M_PI;
@@ -94,8 +118,13 @@ void Robot::middleLevelController(void *game) {
     last_distl_middle = distl;
     last_distr_middle = distr;
 
+    bool mylast_step;
+    {
+        std::lock_guard<std::mutex> lock(flags);
+        mylast_step = last_step;
+    }
     // Falling edge of the trapzoidal speed profile
-    if ((rho < params.d0) && (last_step ==  true)) {
+    if ((rho < params.d0) && (mylast_step ==  true)) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
         //fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
     }
@@ -118,6 +147,9 @@ void Robot::middleLevelController(void *game) {
         v_ref = -v_ref;
     }
 
-    ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
-    ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    {
+        std::lock_guard<std::mutex> lock(ref_speed_mutex);
+        ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
+        ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
+    }
 }

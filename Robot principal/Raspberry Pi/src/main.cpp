@@ -1,46 +1,22 @@
 #include <iostream>
-#include <pthread.h>
+#include <thread>
 #include <unistd.h>
 #include <signal.h>
 #include <limits>
 #include <stdio.h>
+#include <mutex>
+#include <atomic>
+#include <chrono>
+#include <csignal>
+#include <condition_variable>
+
 #include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
-#include <csignal>
 
-// // Variables globales pour le multithreading
-// volatile bool running = true;
-// pthread_mutex_t data_mutex;
-// pthread_t lidar_thread;
+// Variables globales pour le multithreading
+std::atomic<bool> running{true};
 
-// // Shared resource
-// int shared_counter = 0;
-
-// void* worker_function(void* arg) {
-//     int thread_id = *(int*)arg;
-    
-//     // Simulate some work
-//     for (int i = 0; i < 5; i++) {
-//         // Lock the mutex before accessing shared resource
-//         pthread_mutex_lock(&mutex);
-        
-//         // Critical section
-//         shared_counter++;
-//         printf("Thread %d: counter = %d\n", thread_id, shared_counter);
-        
-//         // Unlock the mutex
-//         pthread_mutex_unlock(&mutex);
-        
-//         // Sleep to simulate work (not necessary in real applications)
-//         usleep(500000); // 500ms
-//     }
-    
-//     printf("Thread %d completed\n", thread_id);
-//     return NULL;
-// }
-
-bool running;
 Robot robot;
 
 // Function to handle SIGINT (Ctrl+C)
@@ -50,49 +26,104 @@ void signalHandler(int signum) {
     // cleanup and close up stuff here  
     // terminate program
 
-    running = false;
+    running.store(false);
     robot.stop();
 
     exit(signum);
+}   
+
+// Controller thread function that runs at specified interval
+void loop_1ms(GAME *game){
+    using namespace std::chrono;
+    
+    std::cout << "1ms loop started" << std::endl;
+    
+    while (running) {
+        auto start_time = steady_clock::now();
+        // functions to be executed at the same iteration
+        robot.updateOdometry(game);
+        robot.lowLevelController();
+
+        // Calculate how long to sleep to maintain desired frequency
+        auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
+        auto sleep_time = milliseconds(1) - elapsed;
+        
+        if (sleep_time > milliseconds(0)) {
+            std::this_thread::sleep_for(sleep_time);
+        } else {
+            // Controller took longer than interval - log warning
+            std::cout << "Warning: 1ms loop exceeded time budget by "
+                      << -sleep_time.count() << "ms" << std::endl;
+        }
+    }
 }
 
-int main() {
+void loop_10ms(GAME *game){
+    using namespace std::chrono;
+    
+    std::cout << "10ms loop started" << std::endl;
 
-    // // Initialiser le mutex
-    // if (pthread_mutex_init(&data_mutex, NULL) != 0) {
-    //     std::cerr << "Échec de l'initialisation du mutex" << std::endl;
-    //     return 1;
-    // }
+    while (running) {
+        auto start_time = steady_clock::now();
+        // functions to be executed at the same iteration
+        robot.middleLevelController(game);
+
+        // Calculate how long to sleep to maintain desired frequency
+        auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
+        auto sleep_time = milliseconds(10) - elapsed;
+        
+        if (sleep_time > milliseconds(0)) {
+            std::this_thread::sleep_for(sleep_time);
+        } else {
+            // Controller took longer than interval - log warning
+            std::cout << "Warning: 10ms loop exceeded time budget by "
+                      << -sleep_time.count() << "ms" << std::endl;
+        }
+    }
+}
+
+void loop_100ms(GAME *game){
+    using namespace std::chrono;
+    
+    std::cout << "100ms loop started" << std::endl;
+    
+    while (running) {
+        auto start_time = steady_clock::now();
+        
+        // functions to be executed at the same iteration
+        //FSM();
+        robot.highLevelController(12, game);
+
+        // Calculate how long to sleep to maintain desired frequency
+        auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
+        auto sleep_time = milliseconds(100) - elapsed;
+        
+        if (sleep_time > milliseconds(0)) {
+            std::this_thread::sleep_for(sleep_time);
+        } else {
+            // Controller took longer than interval - log warning
+            std::cout << "Warning: 100ms loop exceeded time budget by "
+                      << -sleep_time.count() << "ms" << std::endl;
+        }
+    }
+}
+
+
+
+int main() {
 
     // Signal handler initialization
     signal(SIGINT, signalHandler);
 
     GAME *game = init_game();
     
-    running = true;
+    running.store(true);
 
     //Screen screen;
 
     robot.loadNodes("src/Mobility/Localization/nodes.txt", game);
     robot.loadEdges("src/Mobility/Localization/links.txt", game);
-    char choice;
-
-    std::cout << "Select an option:" << std::endl;
-    std::cout << "  a: boucles threads" << std::endl;
-    std::cout << "  b: main thread" << std::endl;
-    std::cout << "  c: path planning test" << std::endl;
-    std::cout << "  d: Middle level test" << std::endl;
-    std::cout << "  e: High level test" << std::endl;
-    std::cout << "  f: N/A" << std::endl;
-    std::cout << "  g: N/A" << std::endl;
-    std::cout << "  h: N/A" << std::endl;
-    std::cout << "  i: N/A" << std::endl;
-    std::cout << "  j: N/A" << std::endl;
-    std::cout << "  k: N/A" << std::endl;
-    std::cout << "  l: N/A" << std::endl;
-    std::cout << "Enter your choice: ";
-    std::cin >> choice;
-
+    
     try {
         robot.start();  // This will initialize SPI and perform other setup tasks.
         robot.initCoords(game); // Initialize coordinates
@@ -100,196 +131,25 @@ int main() {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
-    switch(choice) {
-        case 'a': {
-            // std::cout << "Starting threads..." << std::endl;
-            // // Start the threads here
-            // const int num_threads = 4;
-            // pthread_t threads[num_threads];
-            // int thread_ids[num_threads];
-            
-            // printf("Starting threads on Raspberry Pi\n");
-            
-            // // Create threads
-            // for (int i = 0; i < num_threads; i++) {
-            //     thread_ids[i] = i;
-            //     pthread_create(&threads[i], NULL, worker_function, &thread_ids[i]);
-            //     printf("Created thread %d\n", i);
-            // }
-            
-            // // Join threads
-            // for (int i = 0; i < num_threads; i++) {
-            //     pthread_join(threads[i], NULL);
-            // }
-            
-            // // Destroy the mutex
-            // pthread_mutex_destroy(&mutex);
-            
-            // printf("All threads completed. Final counter value: %d\n", shared_counter);
-            // return 0;
-
-
-            break;
-        }
-
-        case 'b': {
-            std::cout << "Running main thread..." << std::endl;
-            // Run the main thread logic here
-            break;
-        }
-        
-        case 'c': {
-            robot.aStar(0, 12, game);
-            robot.printPath();
-            break;
-        }
-
-        case 'd': {
-            std::cout << "Middle level test..." << std::endl;
-
-            robot.params = deplacement;
-            
-            // Get target coordinates from user
-            std::cout << "Enter target X coordinate (meters): ";
-            std::cin >> robot.x_coord_target;
-            std::cout << "Enter target Y coordinate (meters): ";
-            std::cin >> robot.y_coord_target;
-            
-
-            robot.middleLevelTest(game);
-            break;
-        }
-
-        case 'e': {
-            std::cout << "High level test..." << std::endl;
-            
-            // Get target coordinates from user
-            double goal;
-            std::cout << "Enter goal node number: ";
-            std::cin >> goal;
-
-            unsigned long startloop;
-            unsigned long looptime;
-            int counterMid = 0;
-            int counterHigh = 100;
-
-            while (running) {
-                startloop = micros();
-        
-                robot.updateOdometry(game);
-                
-                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-                // print speed
-                if(counterHigh == 100){
-                    robot.highLevelController(goal, game);
-                    counterHigh = 0;
-                }
-                counterHigh++;
-
-                if(counterMid == 10){
-                    robot.middleLevelController(game);
-                    counterMid = 0;
-                }
-                counterMid++;
-                
-                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-                robot.lowLevelController();
-
-                looptime = micros() - startloop;
-                if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Loop time exceeded: " << looptime << std::endl;
-                }
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
-                }
-            break;
-        }
-
-        case 'f': {
-            std::cout << "maneuvre test..." << std::endl;
-            
-            double distance_manoeuvre;
-            // Get target coordinates from user
-            std::cout << "Enter manoeuvre distance (meters): ";
-            std::cin >> distance_manoeuvre;
-            
-            robot.maneuver(distance_manoeuvre, game);
-            unsigned long startloop;
-            unsigned long looptime;
-            int counter = 0;
-            while (true) {
-                startloop = micros();
-        
-                robot.updateOdometry(game);
-                
-                //std::cout << "X: " << sv.xCoord << ", Y: " << sv.yCoord << ", Theta: " << sv.theta *180/(M_PI)<< std::endl;
-                // print speed
-                
-                if(counter == 10){
-                    robot.middleLevelController(game);
-                    counter = 0;
-                }
-                counter++;
-                
-                //fprintf(stderr, "middle ref speed left: %f, right: %f\n", robot.middle_ref_speed_left, robot.middle_ref_speed_right);
-                robot.lowLevelController();
     
-                looptime = micros() - startloop;
-                if (looptime > robot.SAMPLING_TIME*1e6) {
-                    std::cout << "Loop time exceeded: " << looptime << std::endl;
-                }
-                usleep(robot.SAMPLING_TIME*1e6 - looptime);
-                }
-            break;
-        }
+    // Create controller threads with different frequencies
+    // truc de margoulin pour appeler low level controller via fonction lambda
+    std::thread thread_1ms(loop_1ms, game);
+    std::thread thread_10ms(loop_10ms, game);
+    std::thread thread_100ms(loop_100ms, game);
 
-        
 
-        /*case 'o': {
-            screen.init();
-            std::string message;
-            std::cout << "Entrez le message à afficher : ";
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::getline(std::cin, message);
-            
-            std::cout << "Message reçu : " << message << std::endl;
-            
-            robot.screen_clear();
-            std::cout << "Écran nettoyé." << std::endl;
-        
-            robot.screen_displayText(message);
-            std::cout << "Message affiché." << std::endl;
-            
-            break;
-        }
-        */
-        case 'p': {
-            
-            std::cout << "Seending information to teensy" << std::endl;
-            robot.teensy_init();
-            std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_send_command(0x02);
-            std::cout << "C'est envoyé" << std::endl;
-            break ; 
-            
-        }
-        case 'q': {
-            std::cout << "Seending information to teensy" << std::endl;
-            robot.teensy_init();
-            std::cout << "Initialisation OK" << std::endl;
-            robot.teensy_build();
-            break ; 
-        }
-        default:
-            std::cout << "Invalid option." << std::endl;
-            break;
-    }
+    // Let the system run for a specified time (e.g., 10 seconds)
+    std::cout << "Controllers running. Press Enter to stop..." << std::endl;
+    std::cin.get();
 
-    // Arrêter le thread et nettoyer les ressources
-    // running = false;
-    // pthread_join(lidar_thread, NULL);
-    //pthread_mutex_destroy(&data_mutex);
-    //free_game(game);
+    running.store(false);
+    // Arrêter les threads et nettoyer les ressources
+    thread_1ms.join();
+    thread_10ms.join();
+    thread_100ms.join();
+
+    free_game(game);
     
     std::cout << "Programme terminé avec succès" << std::endl;
 

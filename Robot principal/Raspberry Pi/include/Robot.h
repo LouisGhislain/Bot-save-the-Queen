@@ -21,12 +21,14 @@
 #include <cstdio>
 #include <stdio.h>
 #include <map>
+#include <mutex>
 //I2C
 #include <wiringPiI2C.h>
 #include <string>
 #define OLED_ADDR 0x3C 
 #define OLED_CMD  0x00  
 #define OLED_DATA 0x40  
+
 
 struct MovementParams {
     bool activated_target_angle;
@@ -112,14 +114,18 @@ public:
 
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
-    
+
     double ref_speed_left = 0.0; // in rad/s (left motor speed)
     double ref_speed_right = 0.0; // in rad/s (right motor speed)
+    std::mutex ref_speed_mutex;
 
-    double x_coord_target;
-    double y_coord_target; 
-    double goal_angle;
-    MovementParams params;
+    double GLOBAL_x_coord_target;
+    double GLOBAL_y_coord_target; 
+    double GLOBAL_goal_angle;
+    MovementParams GLOBAL_params;
+    double GLOBAL_rho = 0.0; // in m (distance to target)
+    std::mutex coord_mutex;
+    std::mutex flags;
 
     // Low level
     double u_volt_left = 0;
@@ -156,7 +162,6 @@ private:
     double delta_y_target;
     double last_distl_middle = 0;
     double last_distr_middle = 0;
-    double rho = 0.0; // in m (distance to target)
     double travelled_distance = 0.0; // in m (distance from the starting point)
     double v_ref = 0.0; // in m/s (linear speed)
     double v_threshold_move = 0.0441; // in m/s (minimum speed to move) (1.5 rad/s a la roue) = 1.5 * wheel_radius = 0.0441 m/s

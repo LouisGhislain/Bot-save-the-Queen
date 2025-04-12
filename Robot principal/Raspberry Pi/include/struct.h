@@ -19,6 +19,7 @@
 #include <filesystem>
 #include <limits>
 #include <thread>
+#include <mutex>
 
 #define ennemy_count 3  // Nombre d'ennemis
 #define Pt_cluster 1500 // Nombre de points par cluster
@@ -93,6 +94,7 @@ typedef struct MAP{
 } MAP;
 
 typedef struct Queen{
+    std::mutex position_mutex;
     Cartesian *cart_pos; // Position cartésienne du robot
     double angle; // Angle du robot
 } Queen;
@@ -106,8 +108,6 @@ typedef struct GAME{
 } GAME;
 
 
-
-
 Cartesian * init_cartesian();
 Polar * init_polar();
 Cluster * init_cluster();
@@ -118,7 +118,6 @@ Ennemy * init_ennemy();
 Stack * init_stack();
 Target * init_target();
 
-
 void free_game(GAME *game);
 void free_Stack(Stack *stack);
 void free_Target(Target *target);
@@ -126,6 +125,5 @@ void free_robot(Queen *queen);
 void free_Ennemy(Ennemy *ennemy);
 void free_cluster(Cluster *cluster);
 void free_map(MAP *map);
-
 
 #endif // STRUCT_H

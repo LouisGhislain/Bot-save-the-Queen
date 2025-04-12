@@ -8,12 +8,19 @@
  * 
  */
 void Robot::lowLevelController() {
+    
     double current_speed_left = leftMotor.getSpeed();
     double current_speed_right =  rightMotor.getSpeed();
 
     // Speed error
-    double e_speed_left = ref_speed_left - current_speed_left;
-    double e_speed_right = ref_speed_right - current_speed_right;
+    double e_speed_left;
+    double e_speed_right;
+    
+    {
+        std::lock_guard<std::mutex> lock(ref_speed_mutex);
+        e_speed_left = ref_speed_left - current_speed_left;
+        e_speed_right = ref_speed_right - current_speed_right;
+    }
 
     // Integrate error
     intESpeedLeft += e_speed_left * SAMPLING_TIME;

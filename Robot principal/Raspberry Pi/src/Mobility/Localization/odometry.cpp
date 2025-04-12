@@ -14,21 +14,23 @@ void Robot::updateOdometry(void *sqid){
     distl = leftMotor.getDistance(); // in m
     distr = rightMotor.getDistance(); // 
 
-    // Compute the angle of the robot
-    queen->angle = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
-    // Normalize angle to range [-π, π]
-    while (queen->angle > M_PI) {    
-        queen->angle -= 2 * M_PI;
-    }
-    while (queen->angle <= -M_PI) {
-        queen->angle += 2 * M_PI;
-    }
+    {
+        std::lock_guard<std::mutex> lock(queen->position_mutex);
+        // Compute the angle of the robot
+        queen->angle = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
+        // Normalize angle to range [-π, π]
+        while (queen->angle > M_PI) {    
+            queen->angle -= 2 * M_PI;
+        }
+        while (queen->angle <= -M_PI) {
+            queen->angle += 2 * M_PI;
+        }
 
-    // Compute the position of the robot
-    double displacement = (distl - last_distl + distr - last_distr) / 2;
-    queen->cart_pos->x = queen->cart_pos->x + displacement * cosl(queen->angle);
-    queen->cart_pos->y = queen->cart_pos->y + displacement * sinl(queen->angle);
-
+        // Compute the position of the robot
+        double displacement = (distl - last_distl + distr - last_distr) / 2;
+        queen->cart_pos->x = queen->cart_pos->x + displacement * cosl(queen->angle);
+        queen->cart_pos->y = queen->cart_pos->y + displacement * sinl(queen->angle);
+    }
     // Update last distances
     last_distl = distl; 
     last_distr = distr;
@@ -41,6 +43,7 @@ void Robot::updateOdometry(void *sqid){
 void Robot::initCoords(void *sqid) {
     GAME *squid = (GAME *)sqid;
     Queen * queen = squid->queen;
+    // pas besoin de mutex ici car initCoords est appelé une seule fois au début avant que le thread ne soit créé
 
     switch (starting_pos)
     {
@@ -70,6 +73,7 @@ void Robot::initCoords(void *sqid) {
         queen->angle     = 0.0;
         break;
     }
-    x_coord_target = queen->cart_pos->x;
-    y_coord_target = queen->cart_pos->y;
+    GLOBAL_x_coord_target = queen->cart_pos->x;
+    GLOBAL_y_coord_target = queen->cart_pos->y;
+
 }

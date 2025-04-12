@@ -201,6 +201,30 @@ src/Lidar/lidar.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.s
 .PHONY : src/Lidar/lidar.cpp.s
 
+src/Loops/loops.o: src/Loops/loops.cpp.o
+.PHONY : src/Loops/loops.o
+
+# target to build an object file
+src/Loops/loops.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.o
+.PHONY : src/Loops/loops.cpp.o
+
+src/Loops/loops.i: src/Loops/loops.cpp.i
+.PHONY : src/Loops/loops.i
+
+# target to preprocess a source file
+src/Loops/loops.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.i
+.PHONY : src/Loops/loops.cpp.i
+
+src/Loops/loops.s: src/Loops/loops.cpp.s
+.PHONY : src/Loops/loops.s
+
+# target to generate assembly for a file
+src/Loops/loops.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.s
+.PHONY : src/Loops/loops.cpp.s
+
 src/Mobility/Controller/highLevelController.o: src/Mobility/Controller/highLevelController.cpp.o
 .PHONY : src/Mobility/Controller/highLevelController.o
 
@@ -657,6 +681,30 @@ src/main_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.s
 .PHONY : src/main_test.cpp.s
 
+src/main_test_2.o: src/main_test_2.cpp.o
+.PHONY : src/main_test_2.o
+
+# target to build an object file
+src/main_test_2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.o
+.PHONY : src/main_test_2.cpp.o
+
+src/main_test_2.i: src/main_test_2.cpp.i
+.PHONY : src/main_test_2.i
+
+# target to preprocess a source file
+src/main_test_2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.i
+.PHONY : src/main_test_2.cpp.i
+
+src/main_test_2.s: src/main_test_2.cpp.s
+.PHONY : src/main_test_2.s
+
+# target to generate assembly for a file
+src/main_test_2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.s
+.PHONY : src/main_test_2.cpp.s
+
 src/struct.o: src/struct.cpp.o
 .PHONY : src/struct.o
 
@@ -699,6 +747,9 @@ help:
 	@echo "... src/Lidar/lidar.o"
 	@echo "... src/Lidar/lidar.i"
 	@echo "... src/Lidar/lidar.s"
+	@echo "... src/Loops/loops.o"
+	@echo "... src/Loops/loops.i"
+	@echo "... src/Loops/loops.s"
 	@echo "... src/Mobility/Controller/highLevelController.o"
 	@echo "... src/Mobility/Controller/highLevelController.i"
 	@echo "... src/Mobility/Controller/highLevelController.s"
@@ -756,6 +807,9 @@ help:
 	@echo "... src/main_test.o"
 	@echo "... src/main_test.i"
 	@echo "... src/main_test.s"
+	@echo "... src/main_test_2.o"
+	@echo "... src/main_test_2.i"
+	@echo "... src/main_test_2.s"
 	@echo "... src/struct.o"
 	@echo "... src/struct.i"
 	@echo "... src/struct.s"
