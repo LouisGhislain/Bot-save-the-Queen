@@ -2,17 +2,17 @@
 
 // Define global movement parameters (must be defined in one .cpp file)
 const MovementParams manoeuvre {
-    true,   // activated_target_angle
-    0.03,  // d0
+    false,   // activated_target_angle
+    0.02,  // d0
     0.1,    // vMax
-    0.02   // stop_robot_distance
+    0.005   // stop_robot_distance
 };
 
 const MovementParams deplacement {
     false,  // activated_target_angle
     0.30,  // d0
     0.6,    // vMax
-    0.04   // stop_robot_distance
+    0.03   // stop_robot_distance
 };
 
 const MovementParams orientation {
@@ -66,6 +66,7 @@ void Robot::middleLevelController(void *game) {
                 // as if lowLevelController(0, 0);
                 ref_speed_left = 0;
                 ref_speed_right = 0;
+                end_of_manoeuvre = true;
             }
 
             travelled_distance = 0;           // Move feature to high level controller when ready
@@ -74,17 +75,20 @@ void Robot::middleLevelController(void *game) {
             //continue; // if the target is reached but the angle is not, continue to rotate 
         }
         else{
-            {
+            {   
                 std::lock_guard<std::mutex> lock(ref_speed_mutex);
                 // as if lowLevelController(0, 0);
                 ref_speed_left = 0;
                 ref_speed_right = 0;
+                end_of_manoeuvre = true;
             }
 
             travelled_distance = 0;           // Move feature to high level controller when ready
             //std::cout << "Point reached" << std::endl;
             return;
         }
+    }else{
+        end_of_manoeuvre = false;
     }
 
     double alpha =  atan2(delta_y_target, delta_x_target) - my_angle;

@@ -66,6 +66,7 @@ void loop_10ms(GAME *game){
     while (running) {
         auto start_time = steady_clock::now();
         // functions to be executed at the same iteration
+
         robot.middleLevelController(game);
 
         // Calculate how long to sleep to maintain desired frequency
@@ -92,8 +93,42 @@ void loop_100ms(GAME *game){
         
         // functions to be executed at the same iteration
         //FSM();
-        robot.highLevelController(12, game);
 
+    // Print robot state
+    std::cout << "Robot state: " << robot.STATE << std::endl;
+
+    // Print queens target
+    std::cout << "Queen target: " << robot.GLOBAL_x_coord_target << ", " << robot.GLOBAL_y_coord_target << std::endl;
+
+
+    switch (robot.STATE)
+    {
+    case MOVING_FIRST_STACK:
+        robot.highLevelController(0, game);
+        if (robot.end_of_travel){
+            robot.STATE = FIRST_MANEUVER;
+        }
+        break;
+
+    case FIRST_MANEUVER:
+        robot.maneuver(0.10, game);
+        robot.STATE = GRABBING;
+        break;
+
+    case GRABBING:
+        std::cout << "End of manoeuvre: " << robot.end_of_manoeuvre << std::endl;
+        if (robot.end_of_manoeuvre){
+            robot.teensy_send_command(0x02); // Grab
+            robot.STATE = STOPPED;
+        }
+        break;
+
+    case STOPPED:
+        break;
+
+    default:
+        break;
+    }
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
         auto sleep_time = milliseconds(100) - elapsed;
@@ -122,7 +157,11 @@ int main() {
     //Screen screen;
 
     robot.loadNodes("src/Mobility/Localization/nodes.txt", game);
-    robot.loadEdges("src/Mobility/Localization/links.txt", game);
+    robot.loadEdges("src/Mobility/Localization/links.txt", game);   
+
+    // Specify the starting position of the robot
+    // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
+    robot.starting_pos = 2;
     
     try {
         robot.start();  // This will initialize SPI and perform other setup tasks.

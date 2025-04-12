@@ -65,12 +65,10 @@ void Robot::highLevelController(int goal, void *game) {
         std::lock_guard<std::mutex> lock(coord_mutex);
         myrho = GLOBAL_rho;
     }
-    fprintf(stderr, "myrho : %f \n", myrho);
     
     // If the robot has reached the target node, update the current step
-    if(myrho < d1_change_target){
+    if((myrho < d1_change_target) && (current_step < path.size())){
         current_step++;
-        fprintf(stderr, "Current step: %d\n", current_step);
     }
 
     // If the robot has not reached the destination, call the middle level controller
@@ -94,7 +92,7 @@ void Robot::highLevelController(int goal, void *game) {
             GLOBAL_x_coord_target = mymap->nodes[target_node].x;
             GLOBAL_y_coord_target = mymap->nodes[target_node].y;
         }
-        fprintf(stderr, "Target node: %d\n", target_node);
+
     }
 
     // If the robot has reached the destination, stop the robot and set the end_of_travel flag to true

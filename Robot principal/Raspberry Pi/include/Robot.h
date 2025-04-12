@@ -67,6 +67,15 @@ extern const MovementParams orientation;
 // Declare the function
 void controlRobot(const MovementParams& params);
 
+// State enumdef
+enum State {
+    MOVING_FIRST_STACK,
+    FIRST_MANEUVER,
+    GRABBING,
+    STOPPED
+};
+
+
 class Robot {
 public:
     Robot();
@@ -92,6 +101,7 @@ public:
     // Odometry
     void updateOdometry(void *game);
     void initCoords(void *game);
+    int starting_pos = 2;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
 
     // Buzzer
     void buzzBuzzer();
@@ -131,6 +141,18 @@ public:
     double u_volt_left = 0;
     double u_volt_right = 0;
 
+    // Middle level
+    bool end_of_manoeuvre = false; // true if the robot has reached the target position
+
+    // High level
+    bool end_of_travel = true;
+
+    // FSM
+    bool arrived_first_stack = false;
+    bool grab_command_sent = false;
+
+    State STATE = MOVING_FIRST_STACK;
+
 private:
     void initializeSPI(); 
     void resetValues();
@@ -168,7 +190,6 @@ private:
 
     // High level controller variables
     int current_destination = 1914; // la guerre est déclarée
-    bool end_of_travel = true;
     int current_step = 0;
     const double d1_change_target = 0.1; // in m (distance from when we follow the next node on the path)
     bool last_step = true;
@@ -188,7 +209,6 @@ private:
     double distanceBetweenOdometers = 0.28806; // in m (distance between the two wheels)
     double wheel_radius = 0.0295;              // in m (radius of the wheels)
 
-    int starting_pos = 0;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
     double starting_angle = 0.0;         // in radians (initial angle of the robot, 0 = x-axis)
 
     //State pin teensy
@@ -199,6 +219,9 @@ private:
     // File descriptor for I2C
     int fd_OLED;
     int fd_teensy;
+
+    // FSM
+
         
     
 };
