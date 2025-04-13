@@ -70,6 +70,9 @@ void Robot::aStar(int start, int goal, void *game) {
     Queen * queen = mygame->queen;
     MAP * mymap = mygame->map;
 
+    // reset path to empty list
+    path.clear();
+
     std::unordered_map<int, double> gCost, fCost;
     std::unordered_map<int, int> cameFrom;
     auto cmp = [&](int left, int right) { return fCost[left] > fCost[right]; };

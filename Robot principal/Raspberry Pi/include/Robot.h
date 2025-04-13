@@ -25,10 +25,8 @@
 //I2C
 #include <wiringPiI2C.h>
 #include <string>
-#define OLED_ADDR 0x3C 
-#define OLED_CMD  0x00  
-#define OLED_DATA 0x40  
-
+#include <cstring>
+#define SCREEN_ADDR 0x27
 
 struct MovementParams {
     bool activated_target_angle;
@@ -80,6 +78,7 @@ public:
     void lowLevelTest();
     void middleLevelTest(void *game);
     void maneuver(double dist, void *game);
+    void orientate(double angle, void *game);
 
     // Path planning
     void loadNodes(const std::string& filename, void *game);
@@ -101,8 +100,12 @@ public:
 
     // Screen 
     void screen_init();         
-    void screen_clear();        
-    void screen_displayText(const std::string &text);
+    void screen_clear();
+    void screen_send_command(int comm);
+    void screen_write(int x, int y, const char data[]);
+    void screen_write_word(int data);
+    void screen_send_data(int data);
+    void screen_end_game();
 
     // Teensy
     void teensy_init();
@@ -110,6 +113,7 @@ public:
     void teensy_build(void *game);
     int teensy_check_IR();
     void teensy_grab();
+    bool build_finished = false;
 
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
@@ -120,7 +124,7 @@ public:
 
     double GLOBAL_x_coord_target;
     double GLOBAL_y_coord_target; 
-    double GLOBAL_goal_angle;
+    double GLOBAL_angle_target; // in rad (angle of the robot with respect to the x-axis)
     MovementParams GLOBAL_params;
     double GLOBAL_rho = 0.0; // in m (distance to target)
     std::mutex coord_mutex;
@@ -132,6 +136,7 @@ public:
 
     // Middle level
     bool end_of_manoeuvre = false; // true if the robot has reached the target position
+    bool end_of_angle = false; // true if the robot has reached the target angle
 
     // High level
     bool end_of_travel = true;
@@ -139,6 +144,9 @@ public:
     // FSM
     bool arrived_first_stack = false;
     bool grab_command_sent = false;
+
+    //Number of points (count for screen)
+    int points_scored = 0 ;
 
 private:
     void initializeSPI(); 
@@ -198,13 +206,13 @@ private:
 
     double starting_angle = 0.0;         // in radians (initial angle of the robot, 0 = x-axis)
 
-    //State pin teensy
+    //State pin teensy (not use anymore)
     static constexpr int STATE0_PIN = 35;
     static constexpr int STATE1_PIN = 31;
     static constexpr int STATE2_PIN = 29;
     
     // File descriptor for I2C
-    int fd_OLED;
+    int fd_screen;
     int fd_teensy;        
 
 };

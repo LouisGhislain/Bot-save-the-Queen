@@ -1,7 +1,5 @@
 #include "../../include/FSM.h"
-
-State STATE = MOVING_FIRST_STACK;
-
+int STATE = 0;
 
 void start_from_blue_bottom(Robot *robot, GAME *game){
     return;
@@ -14,7 +12,6 @@ void start_from_blue_side(Robot *robot, GAME *game){
 void start_from_yellow_bottom(Robot *robot, GAME *game){
     // Print robot state
     std::cout << "Robot state: " << STATE << std::endl;
-
 
     switch (STATE)
     {
@@ -32,29 +29,70 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         STATE = STOPPED ; 
         break; 
     */
-    case MOVING_FIRST_STACK:
+    case 0: // MOVING TO FIRST STACK 
         robot->highLevelController(1, game);
         if (robot->end_of_travel){
-            STATE = FIRST_MANEUVER;
+            STATE++;
         }
         break;
 
-    case FIRST_MANEUVER:
-        usleep(4000000);
+    case 1: // DEFINE ORIENTATION TO FIRST STACK
+        robot->orientate(90, game);
+        STATE++;
+        break;
+
+    case 2: // ORIENTATING
+        if (robot->end_of_angle){
+            STATE++;
+        }
+        break;
+
+    case 3: // FORWARD MANEUVER TO FIRST STACK
         robot->maneuver(0.14, game);
-        STATE = GRABBING;
+        STATE++;
         break;
 
-    case GRABBING:
-        std::cout << "End of manoeuvre: " << robot->end_of_manoeuvre << std::endl;
+    case 4: // MANEUVERING
         if (robot->end_of_manoeuvre){
-            robot->teensy_send_command(0x02); // Grab and lift to be able to travel after
-            STATE = STOPPED;
+            STATE++;
         }
         break;
 
+    case 5: // GRABBING FIRST STACK
+            robot->teensy_grab();
+            STATE++;
+        break;
+
+    case 6: // MOVING TO BUILD ZONE
+        robot->highLevelController(3, game);
+        if (robot->end_of_travel){
+            STATE++;
+        }
     
-    case STOPPED:
+        break;
+
+    case 7: // DEFINE ORIENTATION TO BUILD ZONE
+        robot->orientate(-90, game);
+        STATE++;
+        break;
+
+    case 8: // ORIENTATING
+        if (robot->end_of_angle){
+            STATE++;
+        }
+        break;
+
+    case 9: // BUILD FIRST STACK
+        robot->teensy_build(game);
+        STATE++;
+        break;
+
+    case 10: // BUILDING
+        if (robot->build_finished){
+            STATE++;
+        }
+    
+    case 11: // SHUTTING DOWN
         usleep(30000);
         break;
 

@@ -201,6 +201,30 @@ src/Actuators/teensy_build.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.s
 .PHONY : src/Actuators/teensy_build.cpp.s
 
+src/Actuators/teensy_grab.o: src/Actuators/teensy_grab.cpp.o
+.PHONY : src/Actuators/teensy_grab.o
+
+# target to build an object file
+src/Actuators/teensy_grab.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.o
+.PHONY : src/Actuators/teensy_grab.cpp.o
+
+src/Actuators/teensy_grab.i: src/Actuators/teensy_grab.cpp.i
+.PHONY : src/Actuators/teensy_grab.i
+
+# target to preprocess a source file
+src/Actuators/teensy_grab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.i
+.PHONY : src/Actuators/teensy_grab.cpp.i
+
+src/Actuators/teensy_grab.s: src/Actuators/teensy_grab.cpp.s
+.PHONY : src/Actuators/teensy_grab.s
+
+# target to generate assembly for a file
+src/Actuators/teensy_grab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.s
+.PHONY : src/Actuators/teensy_grab.cpp.s
+
 src/Lidar/lidar.o: src/Lidar/lidar.cpp.o
 .PHONY : src/Lidar/lidar.o
 
@@ -273,29 +297,29 @@ src/Mobility/Controller/lowLevelController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/lowLevelController.cpp.s
 .PHONY : src/Mobility/Controller/lowLevelController.cpp.s
 
-src/Mobility/Controller/maneuver.o: src/Mobility/Controller/maneuver.cpp.o
-.PHONY : src/Mobility/Controller/maneuver.o
+src/Mobility/Controller/maneuvers_and_orientation.o: src/Mobility/Controller/maneuvers_and_orientation.cpp.o
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.o
 
 # target to build an object file
-src/Mobility/Controller/maneuver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuver.cpp.o
-.PHONY : src/Mobility/Controller/maneuver.cpp.o
+src/Mobility/Controller/maneuvers_and_orientation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuvers_and_orientation.cpp.o
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.cpp.o
 
-src/Mobility/Controller/maneuver.i: src/Mobility/Controller/maneuver.cpp.i
-.PHONY : src/Mobility/Controller/maneuver.i
+src/Mobility/Controller/maneuvers_and_orientation.i: src/Mobility/Controller/maneuvers_and_orientation.cpp.i
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.i
 
 # target to preprocess a source file
-src/Mobility/Controller/maneuver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuver.cpp.i
-.PHONY : src/Mobility/Controller/maneuver.cpp.i
+src/Mobility/Controller/maneuvers_and_orientation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuvers_and_orientation.cpp.i
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.cpp.i
 
-src/Mobility/Controller/maneuver.s: src/Mobility/Controller/maneuver.cpp.s
-.PHONY : src/Mobility/Controller/maneuver.s
+src/Mobility/Controller/maneuvers_and_orientation.s: src/Mobility/Controller/maneuvers_and_orientation.cpp.s
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.s
 
 # target to generate assembly for a file
-src/Mobility/Controller/maneuver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuver.cpp.s
-.PHONY : src/Mobility/Controller/maneuver.cpp.s
+src/Mobility/Controller/maneuvers_and_orientation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/maneuvers_and_orientation.cpp.s
+.PHONY : src/Mobility/Controller/maneuvers_and_orientation.cpp.s
 
 src/Mobility/Controller/middleLevelController.o: src/Mobility/Controller/middleLevelController.cpp.o
 .PHONY : src/Mobility/Controller/middleLevelController.o
@@ -609,6 +633,30 @@ src/Robot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.s
 .PHONY : src/Robot.cpp.s
 
+src/Strategy/FSM.o: src/Strategy/FSM.cpp.o
+.PHONY : src/Strategy/FSM.o
+
+# target to build an object file
+src/Strategy/FSM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.o
+.PHONY : src/Strategy/FSM.cpp.o
+
+src/Strategy/FSM.i: src/Strategy/FSM.cpp.i
+.PHONY : src/Strategy/FSM.i
+
+# target to preprocess a source file
+src/Strategy/FSM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.i
+.PHONY : src/Strategy/FSM.cpp.i
+
+src/Strategy/FSM.s: src/Strategy/FSM.cpp.s
+.PHONY : src/Strategy/FSM.s
+
+# target to generate assembly for a file
+src/Strategy/FSM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s
+.PHONY : src/Strategy/FSM.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -705,30 +753,6 @@ src/main_test_2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.s
 .PHONY : src/main_test_2.cpp.s
 
-src/strategy/FSM.o: src/strategy/FSM.cpp.o
-.PHONY : src/strategy/FSM.o
-
-# target to build an object file
-src/strategy/FSM.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.o
-.PHONY : src/strategy/FSM.cpp.o
-
-src/strategy/FSM.i: src/strategy/FSM.cpp.i
-.PHONY : src/strategy/FSM.i
-
-# target to preprocess a source file
-src/strategy/FSM.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.i
-.PHONY : src/strategy/FSM.cpp.i
-
-src/strategy/FSM.s: src/strategy/FSM.cpp.s
-.PHONY : src/strategy/FSM.s
-
-# target to generate assembly for a file
-src/strategy/FSM.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.s
-.PHONY : src/strategy/FSM.cpp.s
-
 src/struct.o: src/struct.cpp.o
 .PHONY : src/struct.o
 
@@ -771,6 +795,9 @@ help:
 	@echo "... src/Actuators/teensy_build.o"
 	@echo "... src/Actuators/teensy_build.i"
 	@echo "... src/Actuators/teensy_build.s"
+	@echo "... src/Actuators/teensy_grab.o"
+	@echo "... src/Actuators/teensy_grab.i"
+	@echo "... src/Actuators/teensy_grab.s"
 	@echo "... src/Lidar/lidar.o"
 	@echo "... src/Lidar/lidar.i"
 	@echo "... src/Lidar/lidar.s"
@@ -780,9 +807,9 @@ help:
 	@echo "... src/Mobility/Controller/lowLevelController.o"
 	@echo "... src/Mobility/Controller/lowLevelController.i"
 	@echo "... src/Mobility/Controller/lowLevelController.s"
-	@echo "... src/Mobility/Controller/maneuver.o"
-	@echo "... src/Mobility/Controller/maneuver.i"
-	@echo "... src/Mobility/Controller/maneuver.s"
+	@echo "... src/Mobility/Controller/maneuvers_and_orientation.o"
+	@echo "... src/Mobility/Controller/maneuvers_and_orientation.i"
+	@echo "... src/Mobility/Controller/maneuvers_and_orientation.s"
 	@echo "... src/Mobility/Controller/middleLevelController.o"
 	@echo "... src/Mobility/Controller/middleLevelController.i"
 	@echo "... src/Mobility/Controller/middleLevelController.s"
@@ -822,6 +849,9 @@ help:
 	@echo "... src/Robot.o"
 	@echo "... src/Robot.i"
 	@echo "... src/Robot.s"
+	@echo "... src/Strategy/FSM.o"
+	@echo "... src/Strategy/FSM.i"
+	@echo "... src/Strategy/FSM.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -834,9 +864,6 @@ help:
 	@echo "... src/main_test_2.o"
 	@echo "... src/main_test_2.i"
 	@echo "... src/main_test_2.s"
-	@echo "... src/strategy/FSM.o"
-	@echo "... src/strategy/FSM.i"
-	@echo "... src/strategy/FSM.s"
 	@echo "... src/struct.o"
 	@echo "... src/struct.i"
 	@echo "... src/struct.s"

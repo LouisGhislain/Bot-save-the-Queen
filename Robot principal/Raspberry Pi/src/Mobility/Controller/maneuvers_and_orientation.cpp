@@ -25,9 +25,18 @@ void Robot::maneuver(double dist, void *game) {
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
     }
-    // Print dist * cos(my_angle) and dist * sin(my_angle)
-    std::cout << "Dist" << dist << std::endl;
-    std::cout << "Angle: " << my_angle << std::endl;
-    std::cout << "Displacement: " << dist * cos(my_angle) << ", " << dist * sin(my_angle) << std::endl;
 }
 
+/*! \brief Orientate
+* This function implements a rotation behavior for the robot.
+*
+* @param angle Angle to rotate in degrees, can be negative
+*/
+void Robot::orientate(double angle, void *game) {
+    GAME * mygame = (GAME *)game;
+    {
+        std::lock_guard<std::mutex> lock(coord_mutex);
+        GLOBAL_params = orientation;
+        GLOBAL_angle_target = (angle/180) * M_PI; // Convert to radians
+    }
+}

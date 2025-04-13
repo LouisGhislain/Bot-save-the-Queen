@@ -241,4 +241,5 @@ CMakeFiles/exeRobotProgram.dir/src/Multimedia/Buzzer.cpp.o: \
  /usr/include/c++/12/bits/unordered_map.h /usr/include/c++/12/queue \
  /usr/include/c++/12/deque /usr/include/c++/12/bits/stl_deque.h \
  /usr/include/c++/12/bits/deque.tcc /usr/include/c++/12/bits/stl_queue.h \
- /usr/local/include/wiringPiI2C.h
+ /usr/local/include/wiringPiI2C.h /usr/include/c++/12/cstring \
+ /usr/include/string.h /usr/include/strings.h

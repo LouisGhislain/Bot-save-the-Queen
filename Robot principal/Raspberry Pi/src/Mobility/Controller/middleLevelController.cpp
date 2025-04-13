@@ -2,24 +2,24 @@
 
 // Define global movement parameters (must be defined in one .cpp file)
 const MovementParams manoeuvre {
-    false,   // activated_target_angle
-    0.02,  // d0
-    0.08, //0.175,    // vMax
-    0.01   // stop_robot_distance
+    false,  // activated_target_angle
+    0.02,   // d0
+    0.175,   //0.175,    // vMax
+    0.01    // stop_robot_distance
 };
 
 const MovementParams deplacement {
     false,  // activated_target_angle
-    0.30,  // d0
+    0.30,   // d0
     0.6,    // vMax
-    0.03   // stop_robot_distance
+    0.03    // stop_robot_distance
 };
 
 const MovementParams orientation {
     true,   // activated_target_angle
     0.005,  // d0
     0.3,    // vMax
-    0.001   // stop_robot_distance
+    3.0 * M_PI / 180   // robot stop angle limit in rad
 };
 
 /**
@@ -33,7 +33,7 @@ void Robot::middleLevelController(void *game) {
     Queen * myqueen = mygame->queen;
     bool backwards = false;
     
-    double rho, x_coord_target, y_coord_target, goal_angle;
+    double rho, x_coord_target, y_coord_target, angle_target;
     double my_x, my_y, my_angle;
 
     {
@@ -48,7 +48,7 @@ void Robot::middleLevelController(void *game) {
         std::lock_guard<std::mutex> lock(coord_mutex);
         x_coord_target = GLOBAL_x_coord_target;
         y_coord_target = GLOBAL_y_coord_target; 
-        goal_angle = GLOBAL_goal_angle;
+        angle_target = GLOBAL_angle_target;
         delta_x_target = x_coord_target - my_x; // in m
         delta_y_target = y_coord_target - my_y; // in m
         //fprintf(stderr, "my x, my y, target x, target y: %f %f %f %f\n", my_x, my_y, x_coord_target, y_coord_target);
@@ -58,42 +58,35 @@ void Robot::middleLevelController(void *game) {
         params = GLOBAL_params;
     }
 
+    if(params.activated_target_angle){ // only applicable in the orientation mode
+        double error_angle = angle_target - my_angle;
+        {
+            std::lock_guard<std::mutex> lock(ref_speed_mutex);
+            double w_ref = KpAlpha * error_angle;
+            ref_speed_left = (-distanceBetweenWheels * w_ref / 2) / wheel_radius;
+            ref_speed_right = (distanceBetweenWheels * w_ref / 2) / wheel_radius;
+        }
+        if (abs(error_angle) < params.stop_robot_distance){
+            end_of_angle = true;
+        }else{
+            end_of_angle = false;
+        }
+        return;
+    }
+
     // Stop the robot when it reaches the target
     if (rho < params.stop_robot_distance){
-        if(params.activated_target_angle == 1){
-            {
-                std::lock_guard<std::mutex> lock(ref_speed_mutex);
-                // as if lowLevelController(0, 0);
-                ref_speed_left = 0;
-                ref_speed_right = 0;
-                end_of_manoeuvre = true;
-
-                // POUR LE ANGLE CONTROLLER :
-                // Il faudrait calculer le Kp alpha et le w_ref avant ce if
-                // Et n'imposer que ca sur les roues avec (v_ref = 0)
-                // ref_speed_left = w_ref blablabla
-                // ref_speed_right = w_ref blablabla
-                // Puis return et mettre un flag angle_reached à true quand alpha < qu'une certaine valeur (pour la FSM)
-            }
-
-            travelled_distance = 0;           // Move feature to high level controller when ready
-            //std::cout << "Point reached (maybe not orientation) " << std::endl;
-            return;
-            //continue; // if the target is reached but the angle is not, continue to rotate 
+        {   
+            std::lock_guard<std::mutex> lock(ref_speed_mutex);
+            ref_speed_left = 0;
+            ref_speed_right = 0;
+            end_of_manoeuvre = true;
         }
-        else{
-            {   
-                std::lock_guard<std::mutex> lock(ref_speed_mutex);
-                ref_speed_left = 0;
-                ref_speed_right = 0;
-                end_of_manoeuvre = true;
-            }
-
-            travelled_distance = 0;           // Move feature to high level controller when ready
-            //std::cout << "Point reached" << std::endl;
-            return;
+        travelled_distance = 0;
+        //std::cout << "Point reached" << std::endl;
+        return;
         }
-    }else{
+    else{
         end_of_manoeuvre = false;
     }
 
