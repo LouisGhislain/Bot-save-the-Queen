@@ -10,22 +10,12 @@
 #define Kp_alpha 0.08 // Coefficient proportionnel pour l'angle
 
 
-PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false), starting_switch(A5), left_switch(1),right_switch(15), tail(9),sonar(A3,4) {
+PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false), tail(9),sonar(A3,4) {
     // Initialisation des moteurs et encodeurs
     leftMotor.set_motor(0);
     rightMotor.set_motor(0);
     // PAMI_state = moving ; 
 }
-
-// void PAMI::getAngle() {
-//     // Récupérer l'angle du robot
-//     // Utiliser les encodeurs pour calculer l'angle
-//     float leftTicks = leftEncoder.getTicks();
-//     float rightTicks = rightEncoder.getTicks();
-//     float angle = (leftTicks - rightTicks) / 2.0; // Exemple de calcul d'angle
-//     Serial.print("Angle: ");
-//     Serial.println(angle);
-// }
 
 
 void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
@@ -50,57 +40,14 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     double e_speed_right = ref_speed_right - rightMotor.getSpeed();
 
 
-    // Serial.print("e_speed_left: ");
-    // Serial.print(e_speed_left);
-    // Serial.print(", ");
-    // Serial.print("e_speed_right: ");
-    // Serial.print(e_speed_right);
-    // Serial.print(", ");
-
-    // Print the time
-    // Serial.print("Time: ");
-//     Serial.print(current_time_ctrl);
-//     Serial.print(", ");
-
-    
-// //    // Print the error
-//     Serial.print(last_time_ctrl = millis() / 1000.0);
-
-//     Serial.print(", ");
-
-    // Serial.print(leftMotor.getSpeed());
-    // // Serial.print(e_speed_left);
-    // Serial.print(", ");
-    // // // Serial.print(" e_speed_right: ");
-    // Serial.print(rightMotor.getSpeed());
-    // Serial.print(", ");
-
-
     // Integrate error
     left_speed += e_speed_left * SAMPLING_TIME;
     right_speed += e_speed_right * SAMPLING_TIME;
-
-    // Serial.print(left_speed);
-    // Serial.print(",");
-    // Serial.print(right_speed);
-    // Serial.print(",");
 
 
     // Calculate control signal
     left_voltage = Kp_left * e_speed_left + Ki_left * left_speed;
     right_voltage = Kp_right * e_speed_right + Ki_right * right_speed;
-
-    // Serial.print("left_voltage: ");
-    // Serial.print(left_voltage);
-    // Serial.print(",");
-    // Serial.print(" right_voltage: ");
-    // Serial.print(right_voltage);
-    // Serial.print(",");
-
-    // Serial.print(Kp_left*e_speed_left);
-    // Serial.print(",");
-    // Serial.print(Ki_left*left_speed);
-    // Serial.print(",");
 
 
     if (left_voltage > 9) {
@@ -114,37 +61,10 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
         right_voltage = -9;
     }
 
-    // Serial.print(leftMotor.getSpeed());
-    // Serial.print(", ");
-    // Serial.print(rightMotor.getSpeed());
-    // Serial.print(", ");
 
-
-    // Serial.print(left_voltage-leftMotor.getSpeed()*18);
-    // Serial.print(", ");
-    // Serial.println(right_voltage-rightMotor.getSpeed()*18);
-
-
-
-        // Set motor speeds
+    // Set motor speeds
     leftMotor.set_motor(left_voltage);
     rightMotor.set_motor(right_voltage);
-
-    // Serial.print("Left voltage: ");
-    // Serial.print(left_voltage);
-    // Serial.print(",");
-    // // Serial.print(" Right voltage: ");
-    // Serial.println(right_voltage);
-
-    //Print the speed and the target speed
-    // Serial.print("Left speed: ");
-    // Serial.print(leftMotor.getSpeed());
-    // // Serial.print(" Target speed: ");
-    // // Serial.print(ref_speed_left);
-    // // Serial.print(" Right speed: ");
-    // Serial.print(rightMotor.getSpeed());
-    // Serial.print(" Target speed: ");
-    // Serial.println(ref_speed_right);
 
 }
 
@@ -162,13 +82,6 @@ void PAMI::setState(State_t new_state) {
     PAMI_state = new_state;
 }
 
-bool PAMI::isStartPressed() {
-    return starting_switch.switch_state();
-}
-
-bool PAMI::isLeftPressed() {
-    return left_switch.switch_state();
-}
 
 double PAMI::getSonarDistance() {
     return sonar.Sonar_Get_Distance();
@@ -184,18 +97,9 @@ void PAMI::update_position() {
     leftMotor.updateSpeed();
     rightMotor.updateSpeed();
 
-    Serial.print("Distance left: ");
-    Serial.print(dist_left);
-    Serial.print(" Distance right: ");
-    Serial.println(dist_right);
-
     dist_left = leftMotor.getDistance();
     dist_right = rightMotor.getDistance();
 
-    Serial.print("Distance left: ");
-    Serial.print(dist_left);
-    Serial.print(" Distance right: ");
-    Serial.println(dist_right);
 
     angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
     // Serial.print("Angle: ");
@@ -232,8 +136,10 @@ void PAMI::Turn(double angle_ref) {
         Serial.println(millis());
         lowlevelcontrol(0.1, -0.1); // Tourner à gauche
     }
-    leftMotor.set_motor(0);
-    rightMotor.set_motor(0);
+    pami_brake(); // Freiner le robot
+    delay(2000); // Attendre 1 seconde avant de continuer
+    leftMotor.set_motor(0); // Arrêter le robot
+    rightMotor.set_motor(0); // Arrêter le robot
     delay(1000); // Attendre 1 seconde avant de continuer
 }
 
@@ -396,4 +302,28 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
 void PAMI::stop() {
     leftMotor.set_motor(0);
     rightMotor.set_motor(0);
+}
+
+
+void PAMI::Rotate(double angle_desired){
+
+    while (abs(angle_desired - angle) > 2){
+        double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
+        double angle_error = angle_desired - angle;
+
+        double ref_speed_left = -angle_error * Kp_turn;
+        double ref_speed_right = angle_error * Kp_turn;
+
+        lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+        Serial.print("Angle desired: ");
+        Serial.print(angle_desired);
+        Serial.print(" Angle current: ");
+        Serial.print(angle);
+        Serial.print(" Angle error: ");
+        Serial.println(angle_error);
+    }
+    pami_brake(); // Freiner le robot
+    Serial.println("Rotation terminée");
+    Serial.print(angle);
 }

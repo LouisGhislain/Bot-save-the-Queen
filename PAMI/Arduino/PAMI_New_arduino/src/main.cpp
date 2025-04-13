@@ -3,10 +3,8 @@
 #include "Motor.h"
 #include "Encoder.h"
 #include "Tail.h"
-#include "Microswitch.h"
 #include "Sonar.h"
 #include "Pami.h"
-#include "FSM.h"
 #include "Struct.h"
 
 // // Pin definitions
@@ -41,15 +39,11 @@ float startTime = 0;
 
 Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
 
+int role;
+
+
 void setup() {
     Serial.begin(9600);
-
-    // // Initialisation des moteurs
-    // leftMotor.set_motor(0);
-    // rightMotor.set_motor(0);
-    // // Initialisation des encodeurs
-    // leftEncoder.reset();
-    // rightEncoder.reset();
 
     //Initialisation du PAMI
     pami = PAMI();
@@ -60,45 +54,13 @@ void setup() {
 
     startTime = millis();
 
-    // En-tête CSV
-    // Serial.println("time_ms,left_ticks,left_speed,right_ticks,right_speed");
+    role = 1; // 0 pour le robot, 1 pour la superstar
+
+
 }
 
-void loop(){
 
-    // rightMotor.updateSpeed();
-    // rightMotor.set_motor(7);
-    // leftMotor.set_motor(7);
-    // Serial.print(millis() - startTime);
-    // Serial.print(", ");
-    // Serial.print(leftMotor.getSpeed());
-    // Serial.print(", ");
-    // Serial.println(rightMotor.getSpeed());
-
-    // pami.lowlevelcontrol(0.3, 0.3); // Met à jour la vitesse des moteurs
-    // pami.middlecontrol(1, 0.8, 0, false); // Met à jour la position du robot
-    
-
-
-    // double distance = pami.getSonarDistance();
-    // Serial.print("Distance: ");
-    // Serial.println(distance);
-    // // delay(60);
-    // if (distance < 8.0) {
-    //     pami.pami_brake();
-    //     Serial.print("JE FREINE");
-    //     isStopped = true;
-    //     return;  // On ne fait rien d'autre si obstacle
-    // } else {
-    //    isStopped = false;
-    // }
-          
-
-    // if (!isStopped && distance!=0) {
-    //     pami.middlecontrol(1.5, -0.1, 0, false); // Met à jour la position du robot
-
-    // }
-    // pami.middlecontrol(1, -1, 0, false); // Met à jour la position du robot
+void Superstar(){
 
     switch (SuperStar.state) {
         case WAIT:
@@ -126,10 +88,9 @@ void loop(){
 
         case TURN:
             pami.target_reached = false;
-            Serial.println(pami.isLeftPressed());
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
-            pami.Turn(-45);  // Tourner de 90° à droite
+            pami.Rotate(-93);  // Tourner de 90° à droite
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
             SuperStar.turnDone = true;
@@ -140,9 +101,18 @@ void loop(){
 
         case STRAIGHT2:
             pami = PAMI();
-            // while(digitalRead(12) == HIGH){
-            pami.middlecontrol_switch(1, 0.0, 0.0, false);  // Avancer vers x = 1.0
-            // }
+            Serial.println(digitalRead(12));
+            while(digitalRead(12) == HIGH){
+                Serial.println(digitalRead(12));
+                pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
+            }
+            // Pendant 0.5s faire encore lowlevelcontrol
+            double t_start = millis();
+            while (millis() - t_start < 150) {
+                pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
+            }
+            Serial.println(digitalRead(12));
+
             Serial.println("End STRAIGHT2");
             pami.pami_brake(); // Freiner le robot
             SuperStar.secondPathDone = true;
@@ -159,6 +129,22 @@ void loop(){
             break;
     }
 
-    delay(100);
+
+}
+
+
+void loop(){
+
+    switch(role){
+        case 0:
+            pami.Rotate(0); // Tourner de 0° (ne pas tourner)
+            delay(1000); // Attendre 1 seconde avant de continuer
+            break;
+
+        case 1:
+            Superstar();
+            break;
+
+    }
 
 }

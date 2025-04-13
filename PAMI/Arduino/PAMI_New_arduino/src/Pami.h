@@ -2,7 +2,6 @@
 #include "Motor.h"
 #include "Encoder.h"
 #include "Tail.h"
-#include "Microswitch.h"
 #include "Sonar.h"
 
 
@@ -36,15 +35,14 @@ public:
     void Turn(double angle_ref);
     void reset_last_time_ctrl();
     void reset_position();
+    void Rotate(double angle_ref);
 
 private:
     Encoder leftEncoder;
     Encoder rightEncoder;
     Motor leftMotor;
     Motor rightMotor;
-    Microswitch starting_switch;
-    Microswitch left_switch;
-    Microswitch right_switch;
+
     Tail tail;
     Sonar sonar;
     State_t PAMI_state ; 

@@ -67,7 +67,7 @@ void Motor::set_motor(float tension) {
 
     // updateSpeed();
 
-    float EMF = speed *0.18;
+    float EMF = speed *15;
     
     if (tension > tension_max) {
         tension = tension_max;
@@ -119,14 +119,4 @@ void Motor::brake(){
     analogWrite(PWM_PIN,8);
     digitalWrite(dir1,HIGH);
     digitalWrite(dir2,HIGH);
-}
-
-void Motor::reset() {
-    speed = 0; // Réinitialiser la vitesse
-    distance = 0; // Réinitialiser la distance parcourue
-    targetSpeed = 0; // Réinitialiser la vitesse cible
-    lastTime = 0; // Réinitialiser le temps
-    currentTime = 0; // Réinitialiser le temps
-    lastTicks = 0; // Réinitialiser les ticks
-    currentTicks = 0; // Réinitialiser les ticks
 }
