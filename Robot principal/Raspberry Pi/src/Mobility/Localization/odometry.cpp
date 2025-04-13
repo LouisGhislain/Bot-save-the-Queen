@@ -47,31 +47,31 @@ void Robot::initCoords(void *sqid) {
 
     switch (starting_pos)
     {
-    case 0: // Blue bottom
-        queen->cart_pos->x = 0.0;  // in m (origin at the bottom left, angle 0 = x-axis)
-        queen->cart_pos->y = 0.0;  // in m
-        starting_angle     = 0.0;   // in radians
-        break;
-    case 1: // Blue side
-        queen->cart_pos->x = 2.85;
-        queen->cart_pos->y = 0.7;
-        starting_angle    = 0.0;
-        break;
-    case 2: // Yellow bottom
-        queen->cart_pos->x = 1.195;
-        queen->cart_pos->y = 0.155;
-        starting_angle     = M_PI/2;
-        break;
-    case 3: // Yellow side
-        queen->cart_pos->x = 0.15;
-        queen->cart_pos->y = 0.7;
-        starting_angle     = M_PI;
-        break;
-    default: // Default starting position
-        queen->cart_pos->x = 0.0;
-        queen->cart_pos->y = 0.0;
-        starting_angle     = 0.0;
-        break;
+        case 0: // Blue bottom
+            queen->cart_pos->x = 1.805;  // in m (origin at the bottom left, angle 0 = x-axis)
+            queen->cart_pos->y = 0.155;  // in m
+            starting_angle     = M_PI/2;   // in radians
+            break;
+        case 1: // Blue side
+            queen->cart_pos->x = 2.85;
+            queen->cart_pos->y = 0.7;
+            starting_angle    = 0.0;
+            break;
+        case 2: // Yellow bottom
+            queen->cart_pos->x = 1.195;
+            queen->cart_pos->y = 0.155;
+            starting_angle     = M_PI/2;
+            break;
+        case 3: // Yellow side
+            queen->cart_pos->x = 0.15;
+            queen->cart_pos->y = 0.7;
+            starting_angle     = M_PI;
+            break;
+        default: // Default starting position
+            queen->cart_pos->x = 0.0;
+            queen->cart_pos->y = 0.0;
+            starting_angle     = 0.0;
+            break;
     }
     GLOBAL_x_coord_target = queen->cart_pos->x;
     GLOBAL_y_coord_target = queen->cart_pos->y;

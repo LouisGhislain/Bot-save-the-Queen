@@ -13,11 +13,12 @@
 #include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
+#include "../include/FSM.h"
 
 // Variables globales pour le multithreading
 std::atomic<bool> running{true};
 
-Robot robot;
+Robot *robot = new Robot();
 
 // Function to handle SIGINT (Ctrl+C)
 void signalHandler(int signum) {
@@ -27,7 +28,7 @@ void signalHandler(int signum) {
     // terminate program
 
     running.store(false);
-    robot.stop();
+    robot->stop();
 
     exit(signum);
 }   
@@ -41,8 +42,8 @@ void loop_1ms(GAME *game){
     while (running) {
         auto start_time = steady_clock::now();
         // functions to be executed at the same iteration
-        robot.updateOdometry(game);
-        robot.lowLevelController();
+        robot->updateOdometry(game);
+        robot->lowLevelController();
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -67,7 +68,7 @@ void loop_10ms(GAME *game){
         auto start_time = steady_clock::now();
         // functions to be executed at the same iteration
 
-        robot.middleLevelController(game);
+        robot->middleLevelController(game);
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -92,56 +93,8 @@ void loop_100ms(GAME *game){
         auto start_time = steady_clock::now();
         
         // functions to be executed at the same iteration
-        //FSM();
+        choose_start(robot, game);
 
-    // Print robot state
-    std::cout << "Robot state: " << robot.STATE << std::endl;
-
-
-    switch (robot.STATE)
-    {
-    /*
-    case GRABBING : 
-        robot.teensy_send_command(0x02); // Grab
-        robot.STATE = WAITING ; 
-        break ; 
-    case WAITING : 
-        usleep(3000000);
-        robot.STATE = SEPARATING ;
-        break ;
-    case SEPARATING : 
-        robot.teensy_build(game);
-        robot.STATE = STOPPED ; 
-        break; 
-    */
-    case MOVING_FIRST_STACK:
-        robot.highLevelController(0, game);
-        if (robot.end_of_travel){
-            robot.STATE = FIRST_MANEUVER;
-        }
-        break;
-
-    case FIRST_MANEUVER:
-        robot.maneuver(0.10, game);
-        robot.STATE = GRABBING;
-        break;
-
-    case GRABBING:
-        std::cout << "End of manoeuvre: " << robot.end_of_manoeuvre << std::endl;
-        if (robot.end_of_manoeuvre){
-            robot.teensy_send_command(0x02); // Grab
-            robot.STATE = STOPPED;
-        }
-        break;
-
-    
-    case STOPPED:
-        usleep(30000);
-        break;
-
-    default:
-        break;
-    }
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
         auto sleep_time = milliseconds(100) - elapsed;
@@ -169,16 +122,16 @@ int main() {
 
     //Screen screen;
 
-    robot.loadNodes("src/Mobility/Localization/nodes.txt", game);
-    robot.loadEdges("src/Mobility/Localization/links.txt", game);   
+    robot->loadNodes("src/Mobility/Localization/nodes.txt", game);
+    robot->loadEdges("src/Mobility/Localization/links.txt", game);   
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot.starting_pos = 2;
+    robot->starting_pos = 2;
     
     try {
-        robot.start();  // This will initialize SPI and perform other setup tasks.
-        robot.initCoords(game); // Initialize coordinates
+        robot->start();  // This will initialize SPI and perform other setup tasks.
+        robot->initCoords(game); // Initialize coordinates
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;

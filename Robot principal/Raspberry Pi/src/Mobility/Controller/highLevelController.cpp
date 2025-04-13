@@ -7,7 +7,7 @@ void Robot::highLevelController(int goal, void *game) {
     Queen * queen = mygame->queen;
     MAP * mymap = mygame->map;
 
-    fprintf(stderr, "High level execution\n");
+    //fprintf(stderr, "High level execution\n");
 
     {
         std::lock_guard<std::mutex> lock(coord_mutex);
@@ -58,8 +58,8 @@ void Robot::highLevelController(int goal, void *game) {
 
     }
 
-    fprintf(stderr, "path size : %d \n", path.size());
-    printPath();
+    //fprintf(stderr, "path size : %d \n", path.size());
+    //printPath();
     double myrho;
     {
         std::lock_guard<std::mutex> lock(coord_mutex);

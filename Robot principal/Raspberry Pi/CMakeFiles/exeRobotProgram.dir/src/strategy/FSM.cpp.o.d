@@ -1,17 +1,10 @@
-CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
-<<<<<<< HEAD:Robot principal/Raspberry Pi/CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/src/Robot.cpp \
+CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.o: \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/FSM.cpp \
  /usr/include/stdc-predef.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Robot.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/Motor.h \
- /home/TheQueen/Bot-save-the-queen\ Github/Robot\ principal/Raspberry\ Pi/include/struct.h \
-=======
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/src/Robot.cpp \
- /usr/include/stdc-predef.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/Robot.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/Motor.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/struct.h \
->>>>>>> 074116f0929af62ce074c8210f6319f7c374cc43:Robot principal/Raspberry Pi/build/CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o.d
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/FSM.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/Robot.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/Motor.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/struct.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
@@ -127,12 +120,12 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
  /usr/include/c++/12/tr1/poly_laguerre.tcc \
  /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/c++/12/utility \
  /usr/include/c++/12/bits/stl_relops.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/rptypes.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/rptypes.h \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/aarch64-linux-gnu/bits/wchar.h \
  /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_driver.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/sl_lidar.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/sl_lidar_driver.h \
  /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
  /usr/include/c++/12/ext/aligned_buffer.h \
  /usr/include/c++/12/bits/node_handle.h \
@@ -162,9 +155,9 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/12/bits/charconv.h \
  /usr/include/c++/12/bits/basic_string.tcc \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_cmd.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_lidar_protocol.h \
- /home/TheQueen/BotsavetheLidar/Robot\ principal/Raspberry\ Pi/include/../lib/rplidar_sdk/sdk/include/sl_types.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/sl_lidar_cmd.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/sl_lidar_protocol.h \
+ /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/strategy/../../include/../lib/rplidar_sdk/sdk/include/sl_types.h \
  /usr/include/c++/12/optional /usr/include/c++/12/exception \
  /usr/include/c++/12/bits/exception_ptr.h \
  /usr/include/c++/12/bits/cxxabi_init_exception.h \
@@ -225,9 +218,11 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
  /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/bits/fs_dir.h \
  /usr/include/c++/12/bits/fs_ops.h /usr/include/c++/12/thread \
  /usr/include/c++/12/bits/std_thread.h \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
- /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h /usr/include/c++/12/mutex \
+ /usr/include/c++/12/bits/std_mutex.h \
+ /usr/include/c++/12/bits/unique_lock.h /usr/local/include/wiringPi.h \
+ /usr/local/include/wiringPiSPI.h /usr/include/c++/12/algorithm \
+ /usr/include/c++/12/bits/stl_algo.h \
  /usr/include/c++/12/bits/algorithmfwd.h \
  /usr/include/c++/12/bits/stl_heap.h \
  /usr/include/c++/12/bits/stl_tempbuf.h \
@@ -241,4 +236,10 @@ CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/c++/12/iostream \
+ /usr/local/include/softTone.h /usr/include/c++/12/unordered_map \
+ /usr/include/c++/12/bits/hashtable.h \
+ /usr/include/c++/12/bits/hashtable_policy.h \
+ /usr/include/c++/12/bits/unordered_map.h /usr/include/c++/12/queue \
+ /usr/include/c++/12/deque /usr/include/c++/12/bits/stl_deque.h \
+ /usr/include/c++/12/bits/deque.tcc /usr/include/c++/12/bits/stl_queue.h \
  /usr/local/include/wiringPiI2C.h

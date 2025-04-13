@@ -4,7 +4,7 @@
 const MovementParams manoeuvre {
     false,   // activated_target_angle
     0.02,  // d0
-    0.175,    // vMax
+    0.08, //0.175,    // vMax
     0.01   // stop_robot_distance
 };
 

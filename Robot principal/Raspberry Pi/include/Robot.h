@@ -67,17 +67,6 @@ extern const MovementParams orientation;
 // Declare the function
 void controlRobot(const MovementParams& params);
 
-// State enumdef
-enum State {
-    MOVING_FIRST_STACK,
-    FIRST_MANEUVER,
-    GRABBING,
-    WAITING,
-    SEPARATING, 
-    STOPPED
-};
-
-
 class Robot {
 public:
     Robot();
@@ -103,7 +92,7 @@ public:
     // Odometry
     void updateOdometry(void *game);
     void initCoords(void *game);
-    int starting_pos = 2;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
+    int starting_pos;                // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
 
     // Buzzer
     void buzzBuzzer();
@@ -150,8 +139,6 @@ public:
     // FSM
     bool arrived_first_stack = false;
     bool grab_command_sent = false;
-
-    State STATE = GRABBING;
 
 private:
     void initializeSPI(); 

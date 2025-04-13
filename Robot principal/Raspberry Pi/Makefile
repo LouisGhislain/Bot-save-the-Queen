@@ -177,6 +177,30 @@ src/Actuators/teensyCommand.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCommand.cpp.s
 .PHONY : src/Actuators/teensyCommand.cpp.s
 
+src/Actuators/teensy_build.o: src/Actuators/teensy_build.cpp.o
+.PHONY : src/Actuators/teensy_build.o
+
+# target to build an object file
+src/Actuators/teensy_build.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.o
+.PHONY : src/Actuators/teensy_build.cpp.o
+
+src/Actuators/teensy_build.i: src/Actuators/teensy_build.cpp.i
+.PHONY : src/Actuators/teensy_build.i
+
+# target to preprocess a source file
+src/Actuators/teensy_build.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.i
+.PHONY : src/Actuators/teensy_build.cpp.i
+
+src/Actuators/teensy_build.s: src/Actuators/teensy_build.cpp.s
+.PHONY : src/Actuators/teensy_build.s
+
+# target to generate assembly for a file
+src/Actuators/teensy_build.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.s
+.PHONY : src/Actuators/teensy_build.cpp.s
+
 src/Lidar/lidar.o: src/Lidar/lidar.cpp.o
 .PHONY : src/Lidar/lidar.o
 
@@ -200,30 +224,6 @@ src/Lidar/lidar.s: src/Lidar/lidar.cpp.s
 src/Lidar/lidar.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.s
 .PHONY : src/Lidar/lidar.cpp.s
-
-src/Loops/loops.o: src/Loops/loops.cpp.o
-.PHONY : src/Loops/loops.o
-
-# target to build an object file
-src/Loops/loops.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.o
-.PHONY : src/Loops/loops.cpp.o
-
-src/Loops/loops.i: src/Loops/loops.cpp.i
-.PHONY : src/Loops/loops.i
-
-# target to preprocess a source file
-src/Loops/loops.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.i
-.PHONY : src/Loops/loops.cpp.i
-
-src/Loops/loops.s: src/Loops/loops.cpp.s
-.PHONY : src/Loops/loops.s
-
-# target to generate assembly for a file
-src/Loops/loops.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Loops/loops.cpp.s
-.PHONY : src/Loops/loops.cpp.s
 
 src/Mobility/Controller/highLevelController.o: src/Mobility/Controller/highLevelController.cpp.o
 .PHONY : src/Mobility/Controller/highLevelController.o
@@ -705,6 +705,30 @@ src/main_test_2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.s
 .PHONY : src/main_test_2.cpp.s
 
+src/strategy/FSM.o: src/strategy/FSM.cpp.o
+.PHONY : src/strategy/FSM.o
+
+# target to build an object file
+src/strategy/FSM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.o
+.PHONY : src/strategy/FSM.cpp.o
+
+src/strategy/FSM.i: src/strategy/FSM.cpp.i
+.PHONY : src/strategy/FSM.i
+
+# target to preprocess a source file
+src/strategy/FSM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.i
+.PHONY : src/strategy/FSM.cpp.i
+
+src/strategy/FSM.s: src/strategy/FSM.cpp.s
+.PHONY : src/strategy/FSM.s
+
+# target to generate assembly for a file
+src/strategy/FSM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/strategy/FSM.cpp.s
+.PHONY : src/strategy/FSM.cpp.s
+
 src/struct.o: src/struct.cpp.o
 .PHONY : src/struct.o
 
@@ -744,12 +768,12 @@ help:
 	@echo "... src/Actuators/teensyCommand.o"
 	@echo "... src/Actuators/teensyCommand.i"
 	@echo "... src/Actuators/teensyCommand.s"
+	@echo "... src/Actuators/teensy_build.o"
+	@echo "... src/Actuators/teensy_build.i"
+	@echo "... src/Actuators/teensy_build.s"
 	@echo "... src/Lidar/lidar.o"
 	@echo "... src/Lidar/lidar.i"
 	@echo "... src/Lidar/lidar.s"
-	@echo "... src/Loops/loops.o"
-	@echo "... src/Loops/loops.i"
-	@echo "... src/Loops/loops.s"
 	@echo "... src/Mobility/Controller/highLevelController.o"
 	@echo "... src/Mobility/Controller/highLevelController.i"
 	@echo "... src/Mobility/Controller/highLevelController.s"
@@ -810,6 +834,9 @@ help:
 	@echo "... src/main_test_2.o"
 	@echo "... src/main_test_2.i"
 	@echo "... src/main_test_2.s"
+	@echo "... src/strategy/FSM.o"
+	@echo "... src/strategy/FSM.i"
+	@echo "... src/strategy/FSM.s"
 	@echo "... src/struct.o"
 	@echo "... src/struct.i"
 	@echo "... src/struct.s"
