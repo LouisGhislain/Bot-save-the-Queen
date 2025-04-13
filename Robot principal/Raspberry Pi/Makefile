@@ -225,6 +225,30 @@ src/Actuators/teensy_grab.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.s
 .PHONY : src/Actuators/teensy_grab.cpp.s
 
+src/Actuators/teensy_third_stage.o: src/Actuators/teensy_third_stage.cpp.o
+.PHONY : src/Actuators/teensy_third_stage.o
+
+# target to build an object file
+src/Actuators/teensy_third_stage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.o
+.PHONY : src/Actuators/teensy_third_stage.cpp.o
+
+src/Actuators/teensy_third_stage.i: src/Actuators/teensy_third_stage.cpp.i
+.PHONY : src/Actuators/teensy_third_stage.i
+
+# target to preprocess a source file
+src/Actuators/teensy_third_stage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.i
+.PHONY : src/Actuators/teensy_third_stage.cpp.i
+
+src/Actuators/teensy_third_stage.s: src/Actuators/teensy_third_stage.cpp.s
+.PHONY : src/Actuators/teensy_third_stage.s
+
+# target to generate assembly for a file
+src/Actuators/teensy_third_stage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.s
+.PHONY : src/Actuators/teensy_third_stage.cpp.s
+
 src/Lidar/lidar.o: src/Lidar/lidar.cpp.o
 .PHONY : src/Lidar/lidar.o
 
@@ -798,6 +822,9 @@ help:
 	@echo "... src/Actuators/teensy_grab.o"
 	@echo "... src/Actuators/teensy_grab.i"
 	@echo "... src/Actuators/teensy_grab.s"
+	@echo "... src/Actuators/teensy_third_stage.o"
+	@echo "... src/Actuators/teensy_third_stage.i"
+	@echo "... src/Actuators/teensy_third_stage.s"
 	@echo "... src/Lidar/lidar.o"
 	@echo "... src/Lidar/lidar.i"
 	@echo "... src/Lidar/lidar.s"

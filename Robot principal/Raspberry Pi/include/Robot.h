@@ -113,6 +113,7 @@ public:
     void teensy_build(void *game);
     int teensy_check_IR();
     void teensy_grab();
+    void teensy_americain_third_stage(void *game);
     bool build_finished = false;
 
     // Sampling time

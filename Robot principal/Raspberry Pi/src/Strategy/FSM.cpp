@@ -30,7 +30,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break; 
     */
     case 0: // MOVING TO FIRST STACK 
-        robot->highLevelController(1, game);
+        robot->highLevelController(0, game);
         if (robot->end_of_travel){
             STATE++;
         }
@@ -48,7 +48,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 3: // FORWARD MANEUVER TO FIRST STACK
-        robot->maneuver(0.14, game);
+        robot->maneuver(0.18, game);
         STATE++;
         break;
 
@@ -68,7 +68,6 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         if (robot->end_of_travel){
             STATE++;
         }
-    
         break;
 
     case 7: // DEFINE ORIENTATION TO BUILD ZONE
@@ -82,17 +81,113 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         }
         break;
 
-    case 9: // BUILD FIRST STACK
+    case 9: // FORWARD MANEUVER TO BUILD ZONE
+        robot->maneuver(0.13, game);
+        STATE++;
+        break;
+
+    case 10: // MANEUVERING
+        if (robot->end_of_manoeuvre){
+            STATE++;
+        }
+        break;
+
+    case 11: // BUILD FIRST STACK
         robot->teensy_build(game);
         STATE++;
         break;
 
-    case 10: // BUILDING
+    case 12: // BUILDING
         if (robot->build_finished){
             STATE++;
         }
+
+    case 13: // BACKWARD MANEUVER AFTER BUILDING
+        robot->maneuver(-0.15, game);
+        STATE++;
+        break;
     
-    case 11: // SHUTTING DOWN
+    case 14: // MANEUVERING
+        if (robot->end_of_manoeuvre){
+            STATE++;
+        }
+        break;
+
+    case 15: // MOVING TO SECOND STACK
+        robot->highLevelController(5, game);
+        if (robot->end_of_travel){
+            STATE++;
+        }
+        break;
+
+    case 16: // DEFINE ORIENTATION TO SECOND STACK
+        robot->orientate(-90, game);
+        STATE++;
+        break;
+
+    case 17: // ORIENTATING
+        if (robot->end_of_angle){
+            STATE++;
+        }
+        break;
+
+    case 18: // FORWARD MANEUVER TO SECOND STACK
+        robot->maneuver(0.17, game);
+        STATE++;
+        break;
+
+    case 19: // MANEUVERING
+        if (robot->end_of_manoeuvre){
+            STATE++;
+        }
+        break;
+
+    case 20: // GRABBING SECOND STACK
+        robot->teensy_grab();
+        STATE++;
+        break;
+
+    case 21: // MOVING TO BUILD ZONE
+        robot->highLevelController(3, game);
+        if (robot->end_of_travel){
+            STATE++;
+        }
+        break;
+
+    case 22: // DEFINE ORIENTATION TO BUILD ZONE
+        robot->orientate(-90, game);
+        STATE++;
+        break;
+
+    case 23: // ORIENTATING
+        if (robot->end_of_angle){
+            STATE++;
+        }
+        break;
+    
+    case 24: // BUILD SECOND STACK
+        robot->teensy_americain_third_stage(game);
+        STATE++;
+        break;
+
+    case 25: // BUILDING
+        if (robot->build_finished){
+            STATE++;
+        }
+        break;
+
+    case 26: // BACKWARD MANEUVER AFTER BUILDING
+        robot->maneuver(-0.15, game);
+        STATE++;
+        break;
+
+    case 27: // MANEUVERING
+        if (robot->end_of_manoeuvre){
+            STATE++;
+        }
+        break;
+
+    case 28: // SHUTTING DOWN
         usleep(30000);
         break;
 

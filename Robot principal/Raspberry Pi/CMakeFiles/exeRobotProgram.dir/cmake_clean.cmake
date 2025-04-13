@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_grab.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.o"
