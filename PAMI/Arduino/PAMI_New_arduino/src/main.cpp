@@ -7,7 +7,7 @@
 #include "Sonar.h"
 #include "Pami.h"
 #include "FSM.h"
-// #include "Struct.h"
+#include "Struct.h"
 
 // // Pin definitions
 #define ENA 5
@@ -39,7 +39,7 @@ PAMI pami;
 bool isStopped = false ; 
 float startTime = 0;
 
-// Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
+Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
 
 void setup() {
     Serial.begin(9600);
@@ -98,63 +98,67 @@ void loop(){
     //     pami.middlecontrol(1.5, -0.1, 0, false); // Met à jour la position du robot
 
     // }
-    pami.middlecontrol(1, -1, 0, false); // Met à jour la position du robot
+    // pami.middlecontrol(1, -1, 0, false); // Met à jour la position du robot
 
-    // switch (SuperStar.state) {
-    //     case WAIT:
-    //         if (SuperStar.startTime == 0) {
-    //             SuperStar.startTime = millis();
-    //             Serial.println("Start wait");
-    //         }
-    //         if (millis() - SuperStar.startTime >= 85000) {
-    //             SuperStar.waitDone = true;
-    //             SuperStar.state = STRAIGHT1;
-    //             pami.setState(moving);
-    //             Serial.println("End wait");
-    //         }
-    //         break;
+    switch (SuperStar.state) {
+        case WAIT:
+            if (SuperStar.startTime == 0) {
+                SuperStar.startTime = millis();
+                Serial.println("Start wait");
+            }
+            if (millis() - SuperStar.startTime >= 85000) {
+                SuperStar.waitDone = true;
+                SuperStar.state = STRAIGHT1;
+                pami.setState(moving);
+                Serial.println("End wait");
+            }
+            break;
 
-    //     case STRAIGHT1:
+        case STRAIGHT1:
             
-    //         Serial.println("Start STRAIGHT1");
-    //         pami.middlecontrol(1.3, 0.0, 0.0, false);  // Avancer vers x = 1.0
-    //         SuperStar.firstPathDone = true;
-    //         SuperStar.state = TURN;
-    //         Serial.println("End STRAIGHT1");
+            Serial.println("Start STRAIGHT1");
+            pami.middlecontrol(1.15, -0.05, 0.0, false);  // Avancer vers x = 1.0
+            SuperStar.firstPathDone = true;
+            SuperStar.state = TURN;
+            Serial.println("End STRAIGHT1");
             
-    //         break;
+            break;
 
-    //     case TURN:
-    //         pami.target_reached = false;
-    //         Serial.println("Start TURN");
-    //         // Exemple : tourner de 90° à droite
-    //         // pami.Turn(90.0);  // Tourner de 90° à droite
-    //         pami.middlecontrol(1.3, 1.0, 90.0, false);  // Tourner de 90° à droite
+        case TURN:
+            pami.target_reached = false;
+            Serial.println(pami.isLeftPressed());
+            Serial.println("Start TURN");
+            // Exemple : tourner de 90° à droite
+            pami.Turn(-45);  // Tourner de 90° à droite
+            // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
-    //         SuperStar.turnDone = true;
-    //         SuperStar.state = STRAIGHT2;
-    //         Serial.println("End TURN");
+            SuperStar.turnDone = true;
+            SuperStar.state = STRAIGHT2;
+            Serial.println("End TURN");
             
-    //         break;
+            break;
 
-    //     case STRAIGHT2:
-    //         pami.middlecontrol(0.0, 2.0, 90.0, false);  // Avancer vers x = 2.0
-    //         SuperStar.secondPathDone = true;
-    //         SuperStar.state = SWITCH;
-    //         Serial.println("End STRAIGHT2");
-    //         break;
-            
+        case STRAIGHT2:
+            pami = PAMI();
+            // while(digitalRead(12) == HIGH){
+            pami.middlecontrol_switch(1, 0.0, 0.0, false);  // Avancer vers x = 1.0
+            // }
+            Serial.println("End STRAIGHT2");
+            pami.pami_brake(); // Freiner le robot
+            SuperStar.secondPathDone = true;
+            SuperStar.state = SWITCH;
+            break;
 
+        case SWITCH:
+            pami.turnTail();  // Agite un microswitch
+            SuperStar.switchActivated = true;
+            Serial.println("Microswitch activé");
+            while (true){ 
+                // pour qu'il ne bouge plus 
+            }
+            break;
+    }
 
-    //     case SWITCH:
-    //         pami.turnTail();  // Agite un microswitch
-    //         SuperStar.switchActivated = true;
-    //         Serial.println("Microswitch activé");
-    //         while (true){ 
-    //         }
-    //         break;
-    // }
-
-    // delay(100);
+    delay(100);
 
 }

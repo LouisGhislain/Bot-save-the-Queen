@@ -38,6 +38,8 @@ public:
     double getSpeed();
     void updateDistance();
     double getDistance();
+    void resetDistance();
+    void reset();
 
 
 };

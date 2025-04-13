@@ -57,3 +57,4 @@ void Encoder::handleRightInterrupt() {
         rightInstance->handleInterruptRight();
     }
 }
+

@@ -49,6 +49,11 @@ void Motor::updateDistance() {
     
 }
 
+
+void Motor::resetDistance() {
+    distance = 0; // Réinitialiser la distance parcourue
+}
+
 double Motor::getDistance() {
     return distance; // Distance parcourue en mètres
 }
@@ -114,4 +119,14 @@ void Motor::brake(){
     analogWrite(PWM_PIN,8);
     digitalWrite(dir1,HIGH);
     digitalWrite(dir2,HIGH);
+}
+
+void Motor::reset() {
+    speed = 0; // Réinitialiser la vitesse
+    distance = 0; // Réinitialiser la distance parcourue
+    targetSpeed = 0; // Réinitialiser la vitesse cible
+    lastTime = 0; // Réinitialiser le temps
+    currentTime = 0; // Réinitialiser le temps
+    lastTicks = 0; // Réinitialiser les ticks
+    currentTicks = 0; // Réinitialiser les ticks
 }

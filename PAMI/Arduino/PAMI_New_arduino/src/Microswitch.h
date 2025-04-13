@@ -12,7 +12,7 @@ public :
 
     int switch_state();
 private : 
-    int PIN ; 
+    int PIN ;
     static Microswitch* starting_switch;
     static Microswitch* left_switch;
     static Microswitch* right_switch; 
