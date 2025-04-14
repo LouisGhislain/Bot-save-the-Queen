@@ -1,4 +1,4 @@
-#include "../../include/struct.h"
+#include "../../include/lidar.h"
 
 using namespace sl;
 
@@ -20,6 +20,19 @@ void init_connectLidar(){
       printf("Connection failed\n");
     }
 }
+
+void print_Sauron_position(GAME *game){
+  // get position of the adversory
+  if (game->map->cluster_count > 0) {
+    std::cout << "Position Sauron: (" << game->Sauron->cart_pos->x << ", " 
+              << game->Sauron->cart_pos->y << ")" << std::endl;
+    // Emergency_stop(game);
+  }
+  else{
+    fprintf(stderr, "No oppponent detected !\n");
+  }
+}
+
 
 void Find_Point_Map(void * sqid_void) {
   GAME * squid = (GAME *)sqid_void; // Cast du paramètre en GAME
@@ -205,9 +218,6 @@ void fetchLidarData(void * sqid_void) {
   size_t count = max_node_count;
 
   sl_result result = lidardriver->grabScanDataHq(nodes, count);
-  // squid->queen->cart_pos->x = 170;
-  // squid->queen->cart_pos->y = 100;
-  // squid->queen->angle = M_PI/2;
   
   squid->map->all_map_count = 0;
   squid->map->inside_map_count = 0;
@@ -225,10 +235,18 @@ void fetchLidarData(void * sqid_void) {
     double distance = nodes[i].dist_mm_q2 / 4.0f;          // Distance en mm
 
     if (distance > 0 && distance < 3900) { // 3900
+      double local_cart_pos_x, local_cart_pos_y, local_robot_angle;
+      {
+        std::lock_guard<std::mutex> lock(squid->queen->position_mutex);
+        local_cart_pos_x = squid->queen->cart_pos->x*1000;
+        local_cart_pos_y = squid->queen->cart_pos->y*1000;
+        local_robot_angle = squid->queen->angle;
+      }
+      //fprintf(stderr, "robot x: %f , y: %f, angle: %f\n", local_cart_pos_x, local_cart_pos_y, local_robot_angle);
       squid->map->all_map_pol[squid->map->all_map_count]->angle = angle; // Convertir en radians
       squid->map->all_map_pol[squid->map->all_map_count]->distance = distance; // Distance en mm
-      squid->map->all_map_cart[squid->map->all_map_count]->x = squid->queen->cart_pos->x + distance * cos(-angle + squid->queen->angle); // Convertir en coordonnées cartésiennes
-      squid->map->all_map_cart[squid->map->all_map_count]->y = squid->queen->cart_pos->y + distance * sin(-angle + squid->queen->angle); // Convertir en coordonnées cartésiennes
+      squid->map->all_map_cart[squid->map->all_map_count]->x = local_cart_pos_x + distance * cos(-angle + local_robot_angle); // Convertir en coordonnées cartésiennes
+      squid->map->all_map_cart[squid->map->all_map_count]->y = local_cart_pos_y + distance * sin(-angle + local_robot_angle); // Convertir en coordonnées cartésiennes
       
       squid->map->all_map_count++;
       // printf("Point %zu: Angle: %f, Distance: %f, X: %f, Y: %f\n", i, angle, distance, squid->map->all_map_cart[0]->x, squid->map->all_map_cart[0]->y);

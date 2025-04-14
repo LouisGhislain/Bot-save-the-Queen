@@ -18,26 +18,26 @@
 //     printf("Arrêt en cours...\n");
 // }
 
-// // // Fonction thread pour la récupération des données LIDAR
-// // void* lidar_thread_func(void* game_void) {
-// //     GAME* game = (GAME*)game_void;
+// // Fonction thread pour la récupération des données LIDAR
+// void* lidar_thread_func(void* game_void) {
+//     GAME* game = (GAME*)game_void;
     
-// //     while (running) {
-// //         // Verrouiller le mutex avant d'accéder aux données partagées
-// //         pthread_mutex_lock(&data_mutex);
+//     while (running) {
+//         // Verrouiller le mutex avant d'accéder aux données partagées
+//         pthread_mutex_lock(&data_mutex);
         
-// //         // Appeler la fonction de récupération des données LIDAR
-// //         fetchLidarData(game);
+//         // Appeler la fonction de récupération des données LIDAR
+//         fetchLidarData(game);
         
-// //         // Déverrouiller le mutex après la mise à jour des données partagées
-// //         pthread_mutex_unlock(&data_mutex);
+//         // Déverrouiller le mutex après la mise à jour des données partagées
+//         pthread_mutex_unlock(&data_mutex);
         
-// //         // Court délai pour éviter une utilisation excessive du CPU
-// //         usleep(10000); // 10ms de délai
-// //     }
+//         // Court délai pour éviter une utilisation excessive du CPU
+//         usleep(10000); // 10ms de délai
+//     }
     
-// //     return NULL;
-// // }
+//     return NULL;
+// }
 
 // int main() {
 //     // Initialiser le gestionnaire de signal
@@ -53,18 +53,18 @@
 //     Robot robot;
 //     GAME *game = init_game();
 
-// //     // Initialiser et démarrer le LIDAR
-// //     init_connectLidar();
+//     // Initialiser et démarrer le LIDAR
+//     init_connectLidar();
     
-// //     // Créer le thread LIDAR
-// //     if (pthread_create(&lidar_thread, NULL, lidar_thread_func, game) != 0) {
-// //         std::cerr << "Échec de la création du thread" << std::endl;
-// //         free_game(game);
-// //         pthread_mutex_destroy(&data_mutex);
-// //         return 1;
-// //     }
+//     // Créer le thread LIDAR
+//     if (pthread_create(&lidar_thread, NULL, lidar_thread_func, game) != 0) {
+//         std::cerr << "Échec de la création du thread" << std::endl;
+//         free_game(game);
+//         pthread_mutex_destroy(&data_mutex);
+//         return 1;
+//     }
     
-// //     std::cout << "LIDAR démarré avec succès en arrière-plan (multithreading)" << std::endl;
+//     std::cout << "LIDAR démarré avec succès en arrière-plan (multithreading)" << std::endl;
 
 //     char choice;
 

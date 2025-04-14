@@ -1538,6 +1538,7 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_third_stage.cpp.o: src/Actua
 
 CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o: src/Lidar/lidar.cpp \
   /usr/include/stdc-predef.h \
+  include/lidar.h \
   include/struct.h \
   /usr/include/c++/12/vector \
   /usr/include/c++/12/bits/stl_algobase.h \
@@ -1806,7 +1807,17 @@ CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o: src/Lidar/lidar.cpp \
   /usr/include/c++/12/bits/this_thread_sleep.h \
   /usr/include/c++/12/mutex \
   /usr/include/c++/12/bits/std_mutex.h \
-  /usr/include/c++/12/bits/unique_lock.h
+  /usr/include/c++/12/bits/unique_lock.h \
+  lib/rplidar_sdk/sdk/include/rplidar_cmd.h \
+  lib/rplidar_sdk/sdk/include/rplidar_protocol.h \
+  lib/rplidar_sdk/sdk/include/rplidar_driver.h \
+  /usr/include/c++/12/iostream \
+  /usr/include/c++/12/queue \
+  /usr/include/c++/12/deque \
+  /usr/include/c++/12/bits/stl_deque.h \
+  /usr/include/c++/12/bits/deque.tcc \
+  /usr/include/c++/12/bits/stl_heap.h \
+  /usr/include/c++/12/bits/stl_queue.h
 
 CMakeFiles/exeRobotProgram.dir/src/Mobility/Controller/highLevelController.cpp.o: src/Mobility/Controller/highLevelController.cpp \
   /usr/include/stdc-predef.h \
@@ -7657,10 +7668,6 @@ src/main\ test\ 2.cpp:
 
 src/main\ test.cpp:
 
-lib/rplidar_sdk/sdk/include/rplidar_protocol.h:
-
-lib/rplidar_sdk/sdk/include/rplidar_cmd.h:
-
 /usr/include/c++/12/csignal:
 
 /usr/include/c++/12/chrono:
@@ -7672,10 +7679,6 @@ lib/rplidar_sdk/sdk/include/rplidar_cmd.h:
 /usr/include/aarch64-linux-gnu/bits/sigthread.h:
 
 /usr/include/aarch64-linux-gnu/bits/ss_flags.h:
-
-lib/rplidar_sdk/sdk/include/rplidar_driver.h:
-
-/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
 
 /usr/include/aarch64-linux-gnu/bits/procfs-prregset.h:
 
@@ -7742,6 +7745,14 @@ src/Mobility/Function\ tests/lowLevelTest.cpp:
 src/Mobility/Controller/middleLevelController.cpp:
 
 src/Mobility/Controller/highLevelController.cpp:
+
+/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+
+lib/rplidar_sdk/sdk/include/rplidar_driver.h:
+
+lib/rplidar_sdk/sdk/include/rplidar_protocol.h:
+
+lib/rplidar_sdk/sdk/include/rplidar_cmd.h:
 
 src/Lidar/lidar.cpp:
 

@@ -64,7 +64,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 6: // MOVING TO BUILD ZONE
-        robot->highLevelController(3, game);
+        robot->highLevelController(2, game);
         if (robot->end_of_travel){
             STATE++;
         }
@@ -114,7 +114,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 15: // MOVING TO SECOND STACK
-        robot->highLevelController(5, game);
+        robot->highLevelController(4, game);
         if (robot->end_of_travel){
             STATE++;
         }
@@ -132,7 +132,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 18: // FORWARD MANEUVER TO SECOND STACK
-        robot->maneuver(0.17, game);
+        robot->maneuver(0.12, game);
         STATE++;
         break;
 
@@ -148,7 +148,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 21: // MOVING TO BUILD ZONE
-        robot->highLevelController(3, game);
+        robot->highLevelController(2, game);
         if (robot->end_of_travel){
             STATE++;
         }
@@ -188,9 +188,13 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 28: // SHUTTING DOWN
+        robot->buzzBuzzer();
+        usleep(500);
+        STATE++;
+    case 29:
         usleep(30000);
         break;
-
+        
     default:
         break;
     }

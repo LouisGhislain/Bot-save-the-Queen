@@ -95,8 +95,6 @@ public:
 
     // Buzzer
     void buzzBuzzer();
-    void playNote(int frequency, int duration);
-    void playMelody();
 
     // Screen 
     void screen_init();         

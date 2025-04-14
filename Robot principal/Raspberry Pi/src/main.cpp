@@ -109,6 +109,30 @@ void loop_100ms(GAME *game){
     }
 }
 
+// Fonction thread pour la récupération des données LIDAR
+void lidar_thread_func(void* game_void) {
+    using namespace std::chrono;
+    GAME* game = (GAME*)game_void;
+    
+    
+    std::cout << "lidar thread started" << std::endl;
+
+    while (running) {
+        auto start_time = steady_clock::now();
+        // Appeler la fonction de récupération des données LIDAR
+        fetchLidarData(game);
+        print_Sauron_position(game);
+
+        
+        // Calculate how long to sleep to maintain desired frequency
+        auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
+        fprintf(stderr, "computation time lidar = %d\n", elapsed);
+
+        // Court délai pour éviter une utilisation excessive du CPU
+        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 10ms de délai
+    }
+}
+
 
 
 int main() {
@@ -128,20 +152,23 @@ int main() {
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
     robot->starting_pos = 2;
-    
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
+        init_connectLidar(); // Initialiser et démarrer le LIDAR
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
+
+
     
     // Create controller threads with different frequencies
     // truc de margoulin pour appeler low level controller via fonction lambda
     std::thread thread_1ms(loop_1ms, game);
     std::thread thread_10ms(loop_10ms, game);
     std::thread thread_100ms(loop_100ms, game);
+    std::thread thread_lidar(lidar_thread_func, game);
 
 
     // Let the system run for a specified time (e.g., 10 seconds)
@@ -153,6 +180,7 @@ int main() {
     thread_1ms.join();
     thread_10ms.join();
     thread_100ms.join();
+    thread_lidar.join();
 
     free_game(game);
     

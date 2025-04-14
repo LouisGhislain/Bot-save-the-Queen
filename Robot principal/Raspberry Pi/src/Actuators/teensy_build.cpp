@@ -11,7 +11,7 @@ void Robot::teensy_build(void *game){
     maneuver(-0.15,game);//recule avec cremaillère
     usleep(4500000);
     maneuver(0.13,game);//avance avec stack haut
-    usleep(4000000);
+    usleep(3000000);
     maneuver(-0.1,game);
     build_finished = true;
 

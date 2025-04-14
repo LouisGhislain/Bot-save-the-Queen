@@ -13,6 +13,7 @@
 #include <queue>
 #include <cmath> // pour M_PI
 
+
 using namespace sl;
 
 // Structure représentant un objet avec ses coordonnées
@@ -48,7 +49,8 @@ static constexpr int MIN_PTS = 1;
 
 
 // Fonction pour se connecter au LIDAR
-ILidarDriver* init_connectLidar();
+void init_connectLidar();
+void print_Sauron_position(GAME *game);
 void fetchLidarData(void * sqid_void);
 void clustering_nearest(GAME * squid);
 void Emergency_stop(GAME* squid);
