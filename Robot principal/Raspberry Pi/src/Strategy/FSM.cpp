@@ -16,7 +16,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     switch (STATE){
     /*TEST BANNER
     case 0 : 
-        robot->maneuver(-0.045, game);
+        robot->straightMotion(-0.045, game);
         STATE++;
         break;
     case 1 : 
@@ -75,12 +75,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         }
         break;
 
-    case 3: // FORWARD MANEUVER TO FIRST STACK
-        robot->maneuver(0.18, game);
+    case 3: // FORWARD straightMotion TO FIRST STACK
+        robot->straightMotion(0.18, game);
         STATE++;
         break;
 
-    case 4: // MANEUVERING
+    case 4: // straightMotionING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
@@ -109,12 +109,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         }
         break;
 
-    case 9: // FORWARD MANEUVER TO BUILD ZONE
-        robot->maneuver(0.13, game);
+    case 9: // FORWARD straightMotion TO BUILD ZONE
+        robot->straightMotion(0.13, game);
         STATE++;
         break;
 
-    case 10: // MANEUVERING
+    case 10: // straightMotionING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
@@ -130,12 +130,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             STATE++;
         }
 
-    case 13: // BACKWARD MANEUVER AFTER BUILDING
-        robot->maneuver(-0.15, game);
+    case 13: // BACKWARD straightMotion AFTER BUILDING
+        robot->straightMotion(-0.15, game);
         STATE++;
         break;
     
-    case 14: // MANEUVERING
+    case 14: // straightMotionING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
@@ -159,12 +159,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         }
         break;
 
-    case 18: // FORWARD MANEUVER TO SECOND STACK
-        robot->maneuver(0.18, game);
+    case 18: // FORWARD straightMotion TO SECOND STACK
+        robot->straightMotion(0.18, game);
         STATE++;
         break;
 
-    case 19: // MANEUVERING
+    case 19: // straightMotionING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
@@ -204,12 +204,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         }
         break;
 
-    case 26: // BACKWARD MANEUVER AFTER BUILDING
-        robot->maneuver(-0.15, game);
+    case 26: // BACKWARD straightMotion AFTER BUILDING
+        robot->straightMotion(-0.15, game);
         STATE++;
         break;
 
-    case 27: // MANEUVERING
+    case 27: // straightMotionING
         if (robot->end_of_manoeuvre){
             STATE++;
         }

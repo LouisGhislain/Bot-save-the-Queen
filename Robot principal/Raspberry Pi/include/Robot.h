@@ -77,7 +77,8 @@ public:
     void printDistance();
     void lowLevelTest();
     void middleLevelTest(void *game);
-    void maneuver(double dist, void *game);
+    void maneuver(int nodeIndex, void *game);
+    void straightMotion(double dist, void *game);
     void orientate(double angle, void *game);
 
     // Path planning
