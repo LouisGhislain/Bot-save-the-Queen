@@ -5,25 +5,17 @@
 * This function implements a maneuvering behavior for the robot.
 * 
 *
-* @param node Node to move to with maneuver settings
+* @param nodeIndex Index of the node to move to with maneuver settings
 */
-void Robot::maneuver(double dist, void *game) {
+void Robot::maneuver(int node, void *game) {
     GAME * mygame = (GAME *)game;
-    Queen * myqueen = mygame->queen;
+    MAP * mymap = mygame->map;
     
-    double my_x, my_y, my_angle;
-
-    {
-        std::lock_guard<std::mutex> lock(myqueen->position_mutex);
-        my_x = myqueen->cart_pos->x;
-        my_y = myqueen->cart_pos->y;
-        my_angle = myqueen->angle;
-    }
     {
         std::lock_guard<std::mutex> lock(coord_mutex);
         GLOBAL_params = manoeuvre;
-        GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
-        GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
+        GLOBAL_x_coord_target = mymap->nodes[node].x; // x coordinate of the target node
+        GLOBAL_y_coord_target = mymap->nodes[node].y; // y coordinate of the target node
     }
 }
 
@@ -61,7 +53,7 @@ void Robot::straightMotion(double dist, void *game) {
     }
     {
         std::lock_guard<std::mutex> lock(coord_mutex);
-        GLOBAL_params = manoeuvre;
+        GLOBAL_params = straightMotion;
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
     }

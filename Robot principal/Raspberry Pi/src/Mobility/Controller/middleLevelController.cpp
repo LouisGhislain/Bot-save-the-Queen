@@ -1,7 +1,14 @@
 #include "../../../include/Robot.h"
 
-// Define global movement parameters (must be defined in one .cpp file)
+// Global movement parameters
 const MovementParams manoeuvre {
+    false,  // activated_target_angle
+    0.02,   // d0
+    0.2,    // vMax
+    0.03    // stop_robot_distance
+};
+
+const MovementParams straightMotion {    // FLORINAX C'EST POUR TOI (fonction pour séparer les stacks)
     false,  // activated_target_angle
     0.02,   // d0
     0.175,   //0.175,    // vMax
