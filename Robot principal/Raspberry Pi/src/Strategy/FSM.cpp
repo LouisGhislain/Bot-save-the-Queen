@@ -56,7 +56,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     */
 
     //3stages
-    /*
+    
     case 0: // MOVING TO FIRST STACK 
         robot->highLevelController(0, game);
         if (robot->end_of_travel){
@@ -225,7 +225,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         
     default:
         break;
-    */
+    
     }
 }
 

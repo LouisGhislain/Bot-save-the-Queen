@@ -2,7 +2,6 @@
 #include <iostream>
 #include <unistd.h> // Pour sleep()
 
-
 void Robot::screen_init() {
     fd_screen= wiringPiI2CSetup(SCREEN_ADDR);
     if (fd_screen < 0) {
@@ -19,6 +18,7 @@ void Robot::screen_init() {
     screen_send_command(0x01);  // Clear display
     delay(5);
     wiringPiI2CWrite(fd_screen, 0x08);  // Backlight
+
 }
 
 void Robot::screen_clear(){
@@ -99,5 +99,102 @@ void Robot::screen_end_game(){
     screen_write(0, 0, "Je suis Bot Save The Queen");
     screen_write(0, 1, "et j'ai marqué ");
     screen_write(0, 3, buffer);
+
+}
+
+void Robot::screen_create_custom_chars() {
+    uint8_t chars[6][8] = {
+        // char 0 : haut gauche
+        {
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00110,
+            0b01001,
+            0b10010
+        },
+        // char 1 : haut milieu
+        {
+            0b00000,
+            0b00000,
+            0b01000,
+            0b11100,
+            0b01000,
+            0b10101,
+            0b01010,
+            0b01001
+        },
+        // char 2 : haut droit
+        {
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00000,
+            0b00000,
+            0b10000,
+            0b01000,
+            0b00100
+        },
+        // char 3 : bas gauche
+        {
+            0b10010,
+            0b10010,
+            0b01001,
+            0b00110,
+            0b00000,
+            0b00111,
+            0b00000,
+            0b00111
+        },
+        // char 4 : bas milieu
+        {
+            0b01001,
+            0b01001,
+            0b01010,
+            0b11101,
+            0b00000,
+            0b11111,
+            0b00000,
+            0b11111
+        },
+        // char 5 : bas droit
+        {
+            0b00100,
+            0b00100,
+            0b01000,
+            0b10000,
+            0b00000,
+            0b10000,
+            0b00000,
+            0b10000
+        }
+    };
+
+    for (int c = 0; c < 6; ++c) {
+        screen_send_command(0x40 + (c * 8));  // Adresse CGRAM pour chaque caractère
+        delay(2);
+        for (int i = 0; i < 8; ++i) {
+            screen_send_data(chars[c][i]);
+            delay(2);  // délai entre chaque ligne pour fiabilité
+        }
+    }
+}
+
+
+void Robot::screen_display_intro(){
+    screen_write(0, 0, "Je suis");
+    screen_write(0, 1, "Bot save the Queen");
+
+    screen_create_custom_chars();
+    delay(20);
+    screen_write(7, 2, "\x00");
+    screen_write(8, 2, "\x01");
+    screen_write(9, 2, "\x02");
+    screen_write(7, 3, "\x03");
+    screen_write(8, 3, "\x04");
+    screen_write(9, 3, "\x05");
+    return;
 
 }

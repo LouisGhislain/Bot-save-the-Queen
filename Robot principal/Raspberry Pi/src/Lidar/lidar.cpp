@@ -29,7 +29,7 @@ void print_Sauron_position(GAME *game){
     // Emergency_stop(game);
   }
   else{
-    fprintf(stderr, "No oppponent detected !\n");
+    //fprintf(stderr, "No oppponent detected !\n");
   }
 }
 

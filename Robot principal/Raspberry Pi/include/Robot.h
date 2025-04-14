@@ -41,19 +41,20 @@ struct MovementParams {
     MovementParams()
         : activated_target_angle(false), d0(0), vMax(0), stop_robot_distance(0), acceleration(0), wMax(0) {}
 
-    MovementParams(bool activated_target_angle, double d0, double vMax, double stop_robot_distance)
+    MovementParams(bool activated_target_angle, double d0, double vMax, double wMax, double stop_robot_distance)
         : activated_target_angle(activated_target_angle),
           d0(d0),
           vMax(vMax),
           stop_robot_distance(stop_robot_distance),
           acceleration((d0 > 0) ? (vMax * vMax / (2 * d0)) : 0.0),
-          wMax((distanceBetweenWheel > 0) ? (2 * vMax / distanceBetweenWheel) : 0.0) {}
+          wMax(wMax) {}
 
     bool operator==(const MovementParams& other) const {
         return (activated_target_angle == other.activated_target_angle &&
                 d0 == other.d0 &&
                 vMax == other.vMax &&
-                stop_robot_distance == other.stop_robot_distance);
+                stop_robot_distance == other.stop_robot_distance &&
+                wMax == other.wMax);
         }
 };
 
@@ -79,6 +80,7 @@ public:
     void middleLevelTest(void *game);
     void maneuver(double dist, void *game);
     void orientate(double angle, void *game);
+    void straightMotion(double dist, void *game); //je l'ai rajouté (Flo) pour compiler
 
     // Path planning
     void loadNodes(const std::string& filename, void *game);
@@ -103,6 +105,9 @@ public:
     void screen_write(int x, int y, const char data[]);
     void screen_write_word(int data);
     void screen_send_data(int data);
+    void screen_create_custom_chars();
+    void screen_write_custom_char(int x, int y, int custom_char);
+    void screen_display_intro();
     void screen_end_game();
 
     // Teensy
@@ -174,6 +179,8 @@ private:
 
     // Middle level controller variables
     static constexpr double KpAlpha = 3;
+    static constexpr double Kp_orientation = 7; // in rad/s/rad (proportional gain for the orientation controller)    
+
     double delta_x_target;
     double delta_y_target;
     double last_distl_middle = 0;

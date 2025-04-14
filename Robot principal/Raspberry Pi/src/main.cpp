@@ -121,7 +121,7 @@ void lidar_thread_func(void* game_void) {
         auto start_time = steady_clock::now();
         // Appeler la fonction de récupération des données LIDAR
         fetchLidarData(game);
-        print_Sauron_position(game);
+        //print_Sauron_position(game);
 
         
         // Calculate how long to sleep to maintain desired frequency
@@ -144,8 +144,6 @@ int main() {
     
     running.store(true);
 
-    //Screen screen;
-
     robot->loadNodes("src/Mobility/Localization/nodes.txt", game);
     robot->loadEdges("src/Mobility/Localization/links.txt", game);   
 
@@ -156,12 +154,12 @@ int main() {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
+        robot->screen_display_intro();
+
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
-
     
     // Create controller threads with different frequencies
     // truc de margoulin pour appeler low level controller via fonction lambda

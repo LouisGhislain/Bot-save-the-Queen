@@ -5,13 +5,15 @@ const MovementParams manoeuvre {
     false,  // activated_target_angle
     0.02,   // d0
     0.175,   //0.175,    // vMax
+    9.5,     // wMax      // dans la premiere démo triple étage -> wMax subi = 9.5
     0.01    // stop_robot_distance
 };
 
 const MovementParams deplacement {
     false,  // activated_target_angle
     0.30,   // d0
-    0.6,    // vMax
+    0.7,    // vMax
+    9.5,     // wMax
     0.03    // stop_robot_distance
 };
 
@@ -19,6 +21,7 @@ const MovementParams orientation {
     true,   // activated_target_angle
     0.005,  // d0
     0.3,    // vMax
+    4,     // wMax
     1.0 * M_PI / 180   // robot stop angle limit in rad
 };
 
@@ -62,7 +65,8 @@ void Robot::middleLevelController(void *game) {
         double error_angle = angle_target - my_angle;
         {
             std::lock_guard<std::mutex> lock(ref_speed_mutex);
-            double w_ref = KpAlpha * error_angle;
+            double w_ref = Kp_orientation * error_angle;
+            w_ref = std::clamp(w_ref, -params.wMax, params.wMax);
             ref_speed_left = (-distanceBetweenWheels * w_ref / 2) / wheel_radius;
             ref_speed_right = (distanceBetweenWheels * w_ref / 2) / wheel_radius;
         }
@@ -113,7 +117,8 @@ void Robot::middleLevelController(void *game) {
     }
 
     double w_ref = KpAlpha * alpha;  // attention sinus pourrait apporter de la stabilité
-
+    w_ref = std::clamp(w_ref, -params.wMax, params.wMax);
+    fprintf(stderr, "wref = %f\n", w_ref);
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
 
     // travelled distance useful for rising edge

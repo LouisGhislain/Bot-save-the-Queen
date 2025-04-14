@@ -13,7 +13,7 @@ void Robot::start() {
     intESpeedLeft = intESpeedRight = 0.0;
     teensy_init(); //init I2C teensy
     digitalWrite(22, LOW);
-    //screen_init(); //init I2C screen
+    screen_init(); //init I2C screen
 }
 
 /**
