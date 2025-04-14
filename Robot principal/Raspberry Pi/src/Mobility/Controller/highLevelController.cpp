@@ -94,9 +94,8 @@ void Robot::highLevelController(int goal, void *game) {
         }
 
     }
-
     // If the robot has reached the destination, stop the robot and set the end_of_travel flag to true
-    else{
+    else if(myrho < GLOBAL_params.stop_robot_distance) {
         {
             std::lock_guard<std::mutex> lock(flags);
             end_of_travel = true;

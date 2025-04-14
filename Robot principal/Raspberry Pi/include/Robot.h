@@ -62,6 +62,7 @@ struct MovementParams {
 extern const MovementParams manoeuvre;
 extern const MovementParams deplacement;
 extern const MovementParams orientation;
+extern const MovementParams straight;
 
 // Declare the function
 void controlRobot(const MovementParams& params);
@@ -81,7 +82,6 @@ public:
     void maneuver(int nodeIndex, void *game);
     void straightMotion(double dist, void *game);
     void orientate(double angle, void *game);
-    void straightMotion(double dist, void *game); //je l'ai rajouté (Flo) pour compiler
 
     // Path planning
     void loadNodes(const std::string& filename, void *game);
@@ -117,7 +117,7 @@ public:
     void teensy_build(void *game);
     int teensy_check_IR();
     void teensy_grab();
-    void teensy_americain_third_stage(void *game);
+    void teensy_americain_third_stage(int nodeNumber, void *game);
     bool build_finished = false;
 
     // Sampling time

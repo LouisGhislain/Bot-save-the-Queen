@@ -5,14 +5,15 @@ const MovementParams manoeuvre {
     false,  // activated_target_angle
     0.02,   // d0
     0.2,    // vMax
+    8,     // wMax
     0.03    // stop_robot_distance
 };
 
-const MovementParams straightMotion {    // FLORINAX C'EST POUR TOI (fonction pour séparer les stacks)
+const MovementParams straight {
     false,  // activated_target_angle
     0.02,   // d0
     0.175,   //0.175,    // vMax
-    9.5,     // wMax      // dans la premiere démo triple étage -> wMax subi = 9.5
+    8,     // wMax      // dans la premiere démo triple étage -> wMax subi = 9.5
     0.01    // stop_robot_distance
 };
 
@@ -20,7 +21,7 @@ const MovementParams deplacement {
     false,  // activated_target_angle
     0.30,   // d0
     0.7,    // vMax
-    9.5,     // wMax
+    8,     // wMax
     0.03    // stop_robot_distance
 };
 
@@ -111,7 +112,7 @@ void Robot::middleLevelController(void *game) {
     }
 
     // If backwards
-    if(params == manoeuvre){
+    if((params == manoeuvre) || (params == straight)){
         if (alpha > M_PI/2){
             alpha = alpha - M_PI;
             backwards = true;
@@ -125,7 +126,6 @@ void Robot::middleLevelController(void *game) {
 
     double w_ref = KpAlpha * alpha;  // attention sinus pourrait apporter de la stabilité
     w_ref = std::clamp(w_ref, -params.wMax, params.wMax);
-    fprintf(stderr, "wref = %f\n", w_ref);
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
 
     // travelled distance useful for rising edge
@@ -158,7 +158,7 @@ void Robot::middleLevelController(void *game) {
     }
 
     // If backwards
-    if(params == manoeuvre && backwards){
+    if(((params == manoeuvre) || (params==straight)) && backwards){
         v_ref = -v_ref;
     }
 

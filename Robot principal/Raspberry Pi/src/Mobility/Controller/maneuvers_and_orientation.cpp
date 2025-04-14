@@ -16,6 +16,7 @@ void Robot::maneuver(int node, void *game) {
         GLOBAL_params = manoeuvre;
         GLOBAL_x_coord_target = mymap->nodes[node].x; // x coordinate of the target node
         GLOBAL_y_coord_target = mymap->nodes[node].y; // y coordinate of the target node
+        end_of_manoeuvre = false;
     }
 }
 
@@ -53,7 +54,7 @@ void Robot::straightMotion(double dist, void *game) {
     }
     {
         std::lock_guard<std::mutex> lock(coord_mutex);
-        GLOBAL_params = straightMotion;
+        GLOBAL_params = straight;
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
     }

@@ -49,7 +49,7 @@ void Robot::initCoords(void *sqid) {
     {
         case 0: // Blue bottom
             queen->cart_pos->x = 1.805;  // in m (origin at the bottom left, angle 0 = x-axis)
-            queen->cart_pos->y = 0.155;  // in m
+            queen->cart_pos->y = 0.191138;  // in m
             starting_angle     = M_PI/2;   // in radians
             break;
         case 1: // Blue side

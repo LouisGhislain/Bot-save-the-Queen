@@ -58,168 +58,132 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     //3stages
     
     case 0: // MOVING TO FIRST STACK 
-        robot->highLevelController(0, game);
+        robot->highLevelController(PRE_NODE_STACK_4, game);
         if (robot->end_of_travel){
             STATE++;
         }
         break;
 
-    case 1: // DEFINE ORIENTATION TO FIRST STACK
-        robot->orientate(90, game);
+    case 1: // MANEUVER TO FIRST STACK
+        robot->maneuver(NODE_STACK_4, game);            // SPECIFY NODE
         STATE++;
         break;
 
-    case 2: // ORIENTATING
-        if (robot->end_of_angle){
-            STATE++;
-        }
-        break;
-
-    case 3: // FORWARD straightMotion TO FIRST STACK
-        robot->straightMotion(0.18, game);
-        STATE++;
-        break;
-
-    case 4: // straightMotionING
+    case 2: // MANEUVERING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
         break;
 
-    case 5: // GRABBING FIRST STACK
+    case 3: // GRABBING FIRST STACK
             robot->teensy_grab();
             STATE++;
         break;
 
-    case 6: // MOVING TO BUILD ZONE
-        robot->highLevelController(2, game);
+    case 4: // MOVING TO BUILD ZONE
+        robot->highLevelController(PRE_CONSTRUCTION_YELLOW_1, game);
         if (robot->end_of_travel){
             STATE++;
         }
         break;
 
-    case 7: // DEFINE ORIENTATION TO BUILD ZONE
-        robot->orientate(-90, game);
+    case 5: // MANEUVER TO BUILD ZONE
+        robot->maneuver(CONSTRUCTION_YELLOW_1, game);            // SPECIFY NODE
         STATE++;
         break;
 
-    case 8: // ORIENTATING
-        if (robot->end_of_angle){
-            STATE++;
-        }
-        break;
-
-    case 9: // FORWARD straightMotion TO BUILD ZONE
-        robot->straightMotion(0.13, game);
-        STATE++;
-        break;
-
-    case 10: // straightMotionING
+    case 6: // MANEUVERING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
         break;
 
-    case 11: // BUILD FIRST STACK
+    case 7: // BUILD FIRST STACK
         robot->teensy_build(game);
         STATE++;
         break;
 
-    case 12: // BUILDING
+    case 8: // BUILDING
         if (robot->build_finished){
             STATE++;
         }
 
-    case 13: // BACKWARD straightMotion AFTER BUILDING
-        robot->straightMotion(-0.15, game);
+    case 9: // BACKWARD MANEUVER AFTER BUILDING
+        robot->maneuver(PRE_CONSTRUCTION_YELLOW_1, game);            // SPECIFY NODE
         STATE++;
         break;
     
-    case 14: // straightMotionING
+    case 10: // MANEUVERING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
         break;
 
-    case 15: // MOVING TO SECOND STACK
-        robot->highLevelController(4, game);
+    case 11: // MOVING TO SECOND STACK
+        robot->highLevelController(PRE_NODE_STACK_0, game);
         if (robot->end_of_travel){
             STATE++;
         }
         break;
 
-    case 16: // DEFINE ORIENTATION TO SECOND STACK
-        robot->orientate(-90, game);
+    case 12: // FORWARD MANEUVER TO SECOND STACK
+        robot->maneuver(NODE_STACK_0, game);            // SPECIFY NODE
         STATE++;
         break;
 
-    case 17: // ORIENTATING
-        if (robot->end_of_angle){
-            STATE++;
-        }
-        break;
-
-    case 18: // FORWARD straightMotion TO SECOND STACK
-        robot->straightMotion(0.18, game);
-        STATE++;
-        break;
-
-    case 19: // straightMotionING
+    case 13: // MANEUVERING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
         break;
 
-    case 20: // GRABBING SECOND STACK
+    case 14: // GRABBING SECOND STACK
         robot->teensy_grab();
         STATE++;
         break;
 
-    case 21: // MOVING TO BUILD ZONE
-        robot->highLevelController(2, game);
+    case 15: // MOVING TO BUILD ZONE
+        robot->highLevelController(PRE_CONSTRUCTION_YELLOW_1, game);
         if (robot->end_of_travel){
             STATE++;
         }
         break;
 
-    case 22: // DEFINE ORIENTATION TO BUILD ZONE
+    case 16: // ORIENTING TO BUILD ZONE
         robot->orientate(-90, game);
-        STATE++;
-        break;
-
-    case 23: // ORIENTATING
         if (robot->end_of_angle){
             STATE++;
         }
         break;
     
-    case 24: // BUILD SECOND STACK
-        robot->teensy_americain_third_stage(game);
+    case 17: // BUILD SECOND STACK
+        robot->teensy_americain_third_stage(5, game);
         STATE++;
         break;
 
-    case 25: // BUILDING
+    case 18: // BUILDING
         if (robot->build_finished){
             STATE++;
         }
         break;
 
-    case 26: // BACKWARD straightMotion AFTER BUILDING
-        robot->straightMotion(-0.15, game);
+    case 19: // BACKWARD MANEUVER AFTER BUILDING
+        robot->maneuver(PRE_CONSTRUCTION_YELLOW_1, game);            // SPECIFY NODE
         STATE++;
         break;
 
-    case 27: // straightMotionING
+    case 20: // MANEUVERING
         if (robot->end_of_manoeuvre){
             STATE++;
         }
         break;
 
-    case 28: // SHUTTING DOWN
+    case 21: // SHUTTING DOWN
         robot->buzzBuzzer();
         usleep(500);
         STATE++;
-    case 29:
+
+    case 22: // SHUTTING DOWN
         usleep(30000);
         break;
         
