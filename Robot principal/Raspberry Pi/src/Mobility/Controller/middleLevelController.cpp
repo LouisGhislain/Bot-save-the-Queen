@@ -19,7 +19,7 @@ const MovementParams orientation {
     true,   // activated_target_angle
     0.005,  // d0
     0.3,    // vMax
-    3.0 * M_PI / 180   // robot stop angle limit in rad
+    1.0 * M_PI / 180   // robot stop angle limit in rad
 };
 
 /**

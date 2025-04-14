@@ -13,9 +13,34 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     // Print robot state
     std::cout << "Robot state: " << STATE << std::endl;
 
-    switch (STATE)
-    {
+    switch (STATE){
+    /*TEST BANNER
+    case 0 : 
+        robot->maneuver(-0.045, game);
+        STATE++;
+        break;
+    case 1 : 
+        if (robot->end_of_manoeuvre){
+            usleep(100000);
+            STATE++;
+        }
+        break;
+    
+    case 2 : 
+        robot->highLevelController(0, game);
+        if (robot->end_of_travel){
+            STATE++;
+        }
+        break;
+    
+    case 3:
+        usleep(30000);
+        break;
+        
+    default:
+        break;
     /*
+    /* TEST SEPARATING
     case GRABBING : 
         robot->teensy_send_command(0x02); // Grab
         STATE = WAITING ; 
@@ -29,6 +54,9 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         STATE = STOPPED ; 
         break; 
     */
+
+    //3stages
+    /*
     case 0: // MOVING TO FIRST STACK 
         robot->highLevelController(0, game);
         if (robot->end_of_travel){
@@ -132,7 +160,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         break;
 
     case 18: // FORWARD MANEUVER TO SECOND STACK
-        robot->maneuver(0.12, game);
+        robot->maneuver(0.18, game);
         STATE++;
         break;
 
@@ -197,6 +225,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         
     default:
         break;
+    */
     }
 }
 

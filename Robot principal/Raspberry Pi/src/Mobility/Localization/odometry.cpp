@@ -59,7 +59,7 @@ void Robot::initCoords(void *sqid) {
             break;
         case 2: // Yellow bottom
             queen->cart_pos->x = 1.195;
-            queen->cart_pos->y = 0.155;
+            queen->cart_pos->y = 0.195; // 155+4cm avec calibration
             starting_angle     = M_PI/2;
             break;
         case 3: // Yellow side
