@@ -32,12 +32,14 @@
 typedef struct Node {
     double x;
 	double y;
+    bool erased;
 } Node;
 
 typedef struct Edge {
     int node1;
 	int node2;
     double cost;
+    bool erased;
 } Edge;
 
 typedef struct Cartesian{
@@ -69,6 +71,8 @@ typedef struct Ennemy{
 typedef struct Stack{
     Cartesian *Stack_cart; // Position cartésienne de la cible
     bool Free; // Indique si la cible est libre
+    double angle; // Angle de la cible
+    std::chrono::steady_clock::time_point last_seen; // Temps de la cible
 } Stack;
 
 typedef struct Target{

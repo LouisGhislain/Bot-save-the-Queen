@@ -56,6 +56,9 @@ void fetchLidarData(void * sqid_void);
 void clustering_nearest(GAME * squid);
 void Emergency_stop(GAME* squid);
 void clustering_calibrated(GAME * squid);
-
+void pos_of_stack(GAME * squid);
+void stack_is_taking_by_ennemy(GAME* squid);
+void Path_updating(GAME* squid);
+void print_free_nodes(GAME* squid);
 
 #endif // LIDAR_H

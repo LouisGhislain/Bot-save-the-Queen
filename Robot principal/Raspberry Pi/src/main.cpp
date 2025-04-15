@@ -81,8 +81,9 @@ void loop_10ms(GAME *game){
         auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game);
         if (distance_ennemy < STOP_DISTANCE_ENNEMY && angle_ennemy < STOP_ANGLE_ENNEMY){  // stop distance parameter in the lidar.h file
             robot->stop_if_ennemy();
-            print_Sauron_position(game);
+            // print_Sauron_position(game);
             fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT, (bitch)\n");
+            robot->buzzBuzzer();
         }
         else{
             robot->middleLevelController(game);
@@ -119,7 +120,7 @@ void loop_100ms(GAME *game){
         //===========================================================================
 
         choose_start(robot, game);
-        //print_match_time(game);
+        // print_match_time(game);
 
         //===========================================================================
         // 100ms loop - END
@@ -156,7 +157,7 @@ void lidar_thread_func(void* game_void) {
         //===========================================================================
 
         fetchLidarData(game);
-        print_Sauron_position(game);
+        // print_Sauron_position(game);
 
         //===========================================================================
         // lidar loop - END - (undifined period)
@@ -179,6 +180,8 @@ int main() {
     signal(SIGINT, signalHandler);
 
     GAME *game = init_game();
+
+    pos_of_stack(game);
     
     running.store(true);
 
@@ -203,7 +206,7 @@ int main() {
 
 
     // must be the last thing to do before starting the game
-    robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
+    // robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     // Create controller threads with different frequencies
     // truc de margoulin pour appeler low level controller via fonction lambda
     std::thread thread_1ms(loop_1ms, game);

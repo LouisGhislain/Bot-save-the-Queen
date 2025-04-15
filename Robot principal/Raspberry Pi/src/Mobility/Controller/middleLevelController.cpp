@@ -67,7 +67,8 @@ void Robot::middleLevelController(void *game) {
         params = GLOBAL_params;
     }
 
-    if(params.activated_target_angle){ // only applicable in the orientation mode
+    // ORIENTATE FUNCTION
+    if(params.activated_target_angle){
         double error_angle = angle_target - my_angle;
         {
             std::lock_guard<std::mutex> lock(ref_speed_mutex);
@@ -84,7 +85,7 @@ void Robot::middleLevelController(void *game) {
         return;
     }
 
-    // Stop the robot when it reaches the target
+    // STOP THE ROBOT IF THE TARGET IS REACHED
     if (rho < params.stop_robot_distance){
         {   
             std::lock_guard<std::mutex> lock(ref_speed_mutex);
@@ -100,8 +101,9 @@ void Robot::middleLevelController(void *game) {
         end_of_manoeuvre = false;
     }
 
+    // COMPUTE THE ANGLE ERROR
     double alpha =  atan2(delta_y_target, delta_x_target) - my_angle;
-    // Normalize alpha to range [-π, π]
+        // Normalize alpha to range [-π, π]
     while (alpha > M_PI) {
         alpha -= 2 * M_PI;
     }
@@ -109,7 +111,8 @@ void Robot::middleLevelController(void *game) {
         alpha += 2 * M_PI;
     }
 
-    // If backwards
+    // CHECK IF WE NEED TO GO BACKWARDS
+    // If the robot is in a manoeuvre or going straight, we go backwards when target angle is > 90° or < -90°
     if((params == manoeuvre) || (params == straight)){
         if (alpha > M_PI/2){
             alpha = alpha - M_PI;
@@ -122,11 +125,14 @@ void Robot::middleLevelController(void *game) {
         }
     }
 
-    double w_ref = KpAlpha * alpha;  // attention sinus pourrait apporter de la stabilité
-    w_ref = std::clamp(w_ref, -params.wMax, params.wMax);
-    double rot_part = abs(distanceBetweenWheels * w_ref / 2); // avoid to compute multiple times
 
-    // travelled distance useful for rising edge
+    // COMPUTING THE OMEGA REF
+    double w_ref = KpAlpha * alpha; 
+    w_ref = std::clamp(w_ref, -params.wMax, params.wMax);
+    double rot_part = abs(distanceBetweenWheels * w_ref / 2); // To avoid multiple calculations
+
+
+    // COMPUTING THE TRAVELLED DISTANCE 
     travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
     last_distl_middle = distl;
     last_distr_middle = distr;
@@ -136,27 +142,30 @@ void Robot::middleLevelController(void *game) {
         std::lock_guard<std::mutex> lock(flags);
         mylast_step = last_step;
     }
-    // Falling edge of the trapzoidal speed profile
+    // COMPUTING V_REF DEPENDING ON THE TRAPEZOIDAL SPEED PROFILE :
+    //   ->  FALLING EDGE
     if ((rho < params.d0) && (mylast_step ==  true)) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
     }
     
-    // Rising edge of the trapzoidal speed profile
+    //   ->  RISING EDGE
     else if (travelled_distance < (params.d0)){ 
         v_ref = sqrt(2 * (travelled_distance + 0.001) * params.acceleration) - rot_part;
         v_ref = std::max(v_ref, v_threshold_move);
     }
 
-    // Constant speed phase of the trapzoidal speed profile
+    //   ->  CONSTANT SPEED PHASE
     else {
         v_ref = (params.vMax) - rot_part;
     }
 
-    // If backwards
+
+    // IF WE GO BACKWARDS, WE INVERT THE V_REF
     if(((params == manoeuvre) || (params==straight)) && backwards){
         v_ref = -v_ref;
     }
 
+    // APPLY THE COMPUTED ref_speed TO THE WHEELS
     {
         std::lock_guard<std::mutex> lock(ref_speed_mutex);
         ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;

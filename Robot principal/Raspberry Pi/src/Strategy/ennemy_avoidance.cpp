@@ -43,7 +43,7 @@ std::pair<double, double> Robot::get_distance_to_ennemy(GAME *game){
         angle_to_ennemy -= 180;
     }
     //fprintf(stderr, "ennemy position: x : %f, y : %f\n", sauron_x, sauron_y);
-    fprintf(stderr, "distance to ennemy: %f, angle to ennemy: %f\n", distance_to_ennemy, angle_to_ennemy);
+    // fprintf(stderr, "distance to ennemy: %f, angle to ennemy: %f\n", distance_to_ennemy, angle_to_ennemy);
     
     return {distance_to_ennemy, angle_to_ennemy};
 } 
