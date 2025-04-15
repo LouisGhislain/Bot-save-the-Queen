@@ -41,9 +41,17 @@ void loop_1ms(GAME *game){
     
     while (running) {
         auto start_time = steady_clock::now();
-        // functions to be executed at the same iteration
+        
+        //===========================================================================
+        // 1ms loop - START
+        //===========================================================================
+
         robot->updateOdometry(game);
         robot->lowLevelController();
+
+        //===========================================================================
+        // 1ms loop - END
+        //===========================================================================
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -66,9 +74,21 @@ void loop_10ms(GAME *game){
 
     while (running) {
         auto start_time = steady_clock::now();
-        // functions to be executed at the same iteration
 
-        robot->middleLevelController(game);
+        //===========================================================================
+        // 10ms loop - START
+        //===========================================================================
+
+        if (get_distance_to_ennemy(game); < STOP_DISTANCE_ENNEMY){  // stop distance parameter in the lidar.h file
+            robot->stop_if_ennemy(game);
+        }
+        else{
+            robot->middleLevelController(game);
+        }
+
+        //============================================================================
+        // 10ms loop - END
+        //============================================================================
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -92,9 +112,16 @@ void loop_100ms(GAME *game){
     while (running) {
         auto start_time = steady_clock::now();
         
-        // functions to be executed at the same iteration
+        //===========================================================================
+        // 100ms loop - START
+        //===========================================================================
+
         choose_start(robot, game);
         //print_match_time(game);
+
+        //===========================================================================
+        // 100ms loop - END
+        //===========================================================================
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -121,10 +148,17 @@ void lidar_thread_func(void* game_void) {
     while (running) {
         auto start_time = steady_clock::now();
         // Appeler la fonction de récupération des données LIDAR
+
+        //===========================================================================
+        // lidar loop - START - (undifined period)
+        //===========================================================================
+
         fetchLidarData(game);
         //print_Sauron_position(game);
 
-
+        //===========================================================================
+        // lidar loop - END - (undifined period)
+        //===========================================================================
         
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -152,6 +186,7 @@ int main() {
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
     robot->starting_pos = 2;
+    
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates

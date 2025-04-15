@@ -107,11 +107,13 @@ void clustering_nearest(GAME * squid) {
       if (mean_distance < min_distance) {
         min_distance = mean_distance;
         closest_cluster_index = c;
-
-        squid->Sauron->cart_pos->x = mean_x;
-        squid->Sauron->cart_pos->y = mean_y;
-        squid->Sauron->pol_pos->angle = mean_angle;
-        squid->Sauron->pol_pos->distance = mean_distance;
+        {
+          std::lock_guard<std::mutex> lock(squid->Sauron->sauron_mutex);
+          squid->Sauron->cart_pos->x = mean_x;
+          squid->Sauron->cart_pos->y = mean_y;
+          squid->Sauron->pol_pos->angle = mean_angle;
+          squid->Sauron->pol_pos->distance = mean_distance;
+        }
       }
 
       // double error_x = mean_x - squid->Sauron->cart_pos->x;
@@ -190,19 +192,21 @@ void clustering_calibrated(GAME * squid) {
       mean_y /= squid->map->clusters[c]->point_count;
       mean_angle /= squid->map->clusters[c]->point_count;
       mean_distance /= squid->map->clusters[c]->point_count;
-
-      double error_x = mean_x - squid->Sauron->cart_pos->x;
-      double error_y = mean_y - squid->Sauron->cart_pos->y;
-
-      double pos_error = sqrt(error_x * error_x + error_y * error_y);
-
-      if (pos_error < 100) {
-        squid->Sauron->cart_pos->x = mean_x;
-        squid->Sauron->cart_pos->y = mean_y;
-        squid->Sauron->pol_pos->angle = mean_angle;
-        squid->Sauron->pol_pos->distance = mean_distance;
+      {
+        std::lock_guard<std::mutex> lock(squid->Sauron->sauron_mutex);
+        double error_x = mean_x - squid->Sauron->cart_pos->x;
+        double error_y = mean_y - squid->Sauron->cart_pos->y;
+  
+        double pos_error = sqrt(error_x * error_x + error_y * error_y);
+  
+        if (pos_error < 100) {
+          squid->Sauron->cart_pos->x = mean_x;
+          squid->Sauron->cart_pos->y = mean_y;
+          squid->Sauron->pol_pos->angle = mean_angle;
+          squid->Sauron->pol_pos->distance = mean_distance;
+        }
       }
-
+      
       }
     }
   }
@@ -274,7 +278,7 @@ void fetchLidarData(void * sqid_void) {
 
 void Emergency_stop(GAME* squid) {
   // if Sauron is too cloose
-  if (fabs(squid->Sauron->pol_pos->distance) < 500 ) {
+  if (fabs(squid->Sauron->pol_pos->distance) < STOP_DISTANCE_ENNEMY) {
     printf("Emergency stop\n");
     // Stop the robot
     squid->Sauron->too_close = true;

@@ -44,7 +44,7 @@ struct PolarCoord {
 
 static constexpr double EPS = 0.1;
 static constexpr int MIN_PTS = 1;
-
+static constexpr double STOP_DISTANCE_ENNEMY = 500; // Distance d'arrêt en mm
 
 
 

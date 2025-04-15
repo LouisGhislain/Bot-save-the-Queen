@@ -20,7 +20,7 @@ const MovementParams straight {
 const MovementParams deplacement {
     false,  // activated_target_angle
     0.30,   // d0
-    0.7,    // vMax
+    0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
     8,     // wMax
     0.03    // stop_robot_distance
 };

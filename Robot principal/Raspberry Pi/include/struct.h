@@ -59,6 +59,7 @@ typedef struct Cluster{
 
 
 typedef struct Ennemy{
+    std::mutex sauron_mutex; // Mutex pour la position de l'ennemi
     Cartesian *cart_pos; // Position cartésienne de l'ennemi
     Polar *pol_pos; // Position polaire de l'ennemi
     bool too_close; // Indique si l'ennemi est trop proche

@@ -93,6 +93,9 @@ public:
     double heuristic(const Node& a, const Node& b);
     void printPath();
 
+    // ennemy avoidance
+    void stop_if_ennemy(void *game);
+    double get_distance_to_ennemy(void *game);
 
     // Odometry
     void updateOdometry(void *game);
