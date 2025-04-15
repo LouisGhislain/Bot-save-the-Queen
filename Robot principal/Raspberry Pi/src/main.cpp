@@ -94,6 +94,7 @@ void loop_100ms(GAME *game){
         
         // functions to be executed at the same iteration
         choose_start(robot, game);
+        //print_match_time(game);
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -122,6 +123,7 @@ void lidar_thread_func(void* game_void) {
         // Appeler la fonction de récupération des données LIDAR
         fetchLidarData(game);
         //print_Sauron_position(game);
+
 
         
         // Calculate how long to sleep to maintain desired frequency
@@ -160,7 +162,11 @@ int main() {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-    
+
+
+
+    // must be the last thing to do before starting the game
+    robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     // Create controller threads with different frequencies
     // truc de margoulin pour appeler low level controller via fonction lambda
     std::thread thread_1ms(loop_1ms, game);

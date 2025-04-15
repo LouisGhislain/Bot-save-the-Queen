@@ -20,6 +20,7 @@
 #include <limits>
 #include <thread>
 #include <mutex>
+#include <iostream>
 
 #define ennemy_count 3  // Nombre d'ennemis
 #define Pt_cluster 1500 // Nombre de points par cluster
@@ -104,7 +105,7 @@ typedef struct GAME{
     Queen *queen; // Robot du jeu
     Ennemy *Sauron; // Ennemi du jeu
     Target *target; // Cible du jeu
-    
+    std::chrono::steady_clock::time_point starting_MATCH_TIME; // Temps de départ du match
 } GAME;
 
 
@@ -125,5 +126,8 @@ void free_robot(Queen *queen);
 void free_Ennemy(Ennemy *ennemy);
 void free_cluster(Cluster *cluster);
 void free_map(MAP *map);
+
+double get_match_time(GAME *game);
+void print_match_time(GAME *game);
 
 #endif // STRUCT_H

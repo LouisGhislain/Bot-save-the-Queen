@@ -58,7 +58,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     //3stages
     
     case 0: // MOVING TO FIRST STACK 
-        robot->highLevelController(PRE_NODE_STACK_4, game);
+        robot->highLevelController(PRE_NODE_BOTTOM_STACK_4, game);
         if (robot->end_of_travel){
             STATE++;
         }
@@ -198,6 +198,7 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 }
 
 void choose_start(Robot *robot, GAME *game){
+
     switch (robot->starting_pos)
     {
         case 0: // Blue bottom
@@ -216,4 +217,5 @@ void choose_start(Robot *robot, GAME *game){
             fprintf(stderr, "No starting position precised, do it !");
             break;
     }
+    
 }

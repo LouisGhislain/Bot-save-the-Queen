@@ -27,6 +27,7 @@
 #include <string>
 #include <cstring>
 #define SCREEN_ADDR 0x27
+#define STARTING_CORD_PIN 20 // starting cord on gpio 20
 
 struct MovementParams {
     bool activated_target_angle;
@@ -111,6 +112,10 @@ public:
     void screen_display_intro();
     void screen_end_game();
 
+    // starting cord
+    void initialize_starting_pin();
+    void wait_starting_cord(GAME *game);
+    
     // Teensy
     void teensy_init();
     void teensy_send_command(uint8_t command);

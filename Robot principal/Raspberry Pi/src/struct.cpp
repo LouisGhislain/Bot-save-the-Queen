@@ -176,3 +176,14 @@ void free_game(GAME *game) {
     free_Target(game->target);
     free(game);
 }
+
+// return the game time since the beginning of the match in seconds
+double get_match_time(GAME *game) {
+    std::chrono::steady_clock::time_point actual_time = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::duration<double>>(actual_time - game->starting_MATCH_TIME);
+    return duration.count(); // returns seconds as a double
+}
+
+void print_match_time(GAME *game) {
+    std::cout << "Match time: " << get_match_time(game) << " seconds" << std::endl;
+}

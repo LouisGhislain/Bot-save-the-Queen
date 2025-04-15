@@ -218,11 +218,10 @@ CMakeFiles/exeRobotProgram.dir/src/Lidar/lidar.cpp.o: \
  /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/bits/this_thread_sleep.h /usr/include/c++/12/mutex \
  /usr/include/c++/12/bits/std_mutex.h \
- /usr/include/c++/12/bits/unique_lock.h \
+ /usr/include/c++/12/bits/unique_lock.h /usr/include/c++/12/iostream \
  /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/Lidar/../../include/../lib/rplidar_sdk/sdk/include/rplidar_cmd.h \
  /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/Lidar/../../include/../lib/rplidar_sdk/sdk/include/rplidar_protocol.h \
  /home/TheQueen/Bot-save-the-Queen_Github/Robot\ principal/Raspberry\ Pi/src/Lidar/../../include/../lib/rplidar_sdk/sdk/include/rplidar_driver.h \
- /usr/include/c++/12/iostream /usr/include/c++/12/queue \
- /usr/include/c++/12/deque /usr/include/c++/12/bits/stl_deque.h \
- /usr/include/c++/12/bits/deque.tcc /usr/include/c++/12/bits/stl_heap.h \
- /usr/include/c++/12/bits/stl_queue.h
+ /usr/include/c++/12/queue /usr/include/c++/12/deque \
+ /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
+ /usr/include/c++/12/bits/stl_heap.h /usr/include/c++/12/bits/stl_queue.h

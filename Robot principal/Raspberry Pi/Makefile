@@ -633,6 +633,30 @@ src/Multimedia/Screen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.s
 .PHONY : src/Multimedia/Screen.cpp.s
 
+src/Multimedia/startingCord.o: src/Multimedia/startingCord.cpp.o
+.PHONY : src/Multimedia/startingCord.o
+
+# target to build an object file
+src/Multimedia/startingCord.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/startingCord.cpp.o
+.PHONY : src/Multimedia/startingCord.cpp.o
+
+src/Multimedia/startingCord.i: src/Multimedia/startingCord.cpp.i
+.PHONY : src/Multimedia/startingCord.i
+
+# target to preprocess a source file
+src/Multimedia/startingCord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/startingCord.cpp.i
+.PHONY : src/Multimedia/startingCord.cpp.i
+
+src/Multimedia/startingCord.s: src/Multimedia/startingCord.cpp.s
+.PHONY : src/Multimedia/startingCord.s
+
+# target to generate assembly for a file
+src/Multimedia/startingCord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Multimedia/startingCord.cpp.s
+.PHONY : src/Multimedia/startingCord.cpp.s
+
 src/Robot.o: src/Robot.cpp.o
 .PHONY : src/Robot.o
 
@@ -680,6 +704,54 @@ src/Strategy/FSM.s: src/Strategy/FSM.cpp.s
 src/Strategy/FSM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s
 .PHONY : src/Strategy/FSM.cpp.s
+
+src/Strategy/drop_banner.o: src/Strategy/drop_banner.cpp.o
+.PHONY : src/Strategy/drop_banner.o
+
+# target to build an object file
+src/Strategy/drop_banner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o
+.PHONY : src/Strategy/drop_banner.cpp.o
+
+src/Strategy/drop_banner.i: src/Strategy/drop_banner.cpp.i
+.PHONY : src/Strategy/drop_banner.i
+
+# target to preprocess a source file
+src/Strategy/drop_banner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.i
+.PHONY : src/Strategy/drop_banner.cpp.i
+
+src/Strategy/drop_banner.s: src/Strategy/drop_banner.cpp.s
+.PHONY : src/Strategy/drop_banner.s
+
+# target to generate assembly for a file
+src/Strategy/drop_banner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s
+.PHONY : src/Strategy/drop_banner.cpp.s
+
+src/Strategy/grab_stack.o: src/Strategy/grab_stack.cpp.o
+.PHONY : src/Strategy/grab_stack.o
+
+# target to build an object file
+src/Strategy/grab_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o
+.PHONY : src/Strategy/grab_stack.cpp.o
+
+src/Strategy/grab_stack.i: src/Strategy/grab_stack.cpp.i
+.PHONY : src/Strategy/grab_stack.i
+
+# target to preprocess a source file
+src/Strategy/grab_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.i
+.PHONY : src/Strategy/grab_stack.cpp.i
+
+src/Strategy/grab_stack.s: src/Strategy/grab_stack.cpp.s
+.PHONY : src/Strategy/grab_stack.s
+
+# target to generate assembly for a file
+src/Strategy/grab_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.s
+.PHONY : src/Strategy/grab_stack.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -873,12 +945,21 @@ help:
 	@echo "... src/Multimedia/Screen.o"
 	@echo "... src/Multimedia/Screen.i"
 	@echo "... src/Multimedia/Screen.s"
+	@echo "... src/Multimedia/startingCord.o"
+	@echo "... src/Multimedia/startingCord.i"
+	@echo "... src/Multimedia/startingCord.s"
 	@echo "... src/Robot.o"
 	@echo "... src/Robot.i"
 	@echo "... src/Robot.s"
 	@echo "... src/Strategy/FSM.o"
 	@echo "... src/Strategy/FSM.i"
 	@echo "... src/Strategy/FSM.s"
+	@echo "... src/Strategy/drop_banner.o"
+	@echo "... src/Strategy/drop_banner.i"
+	@echo "... src/Strategy/drop_banner.s"
+	@echo "... src/Strategy/grab_stack.o"
+	@echo "... src/Strategy/grab_stack.i"
+	@echo "... src/Strategy/grab_stack.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
