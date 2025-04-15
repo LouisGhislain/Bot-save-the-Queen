@@ -88,7 +88,13 @@ double PAMI::getSonarDistance() {
 }
 
 void PAMI::turnTail() {
-    tail.Turn_tail();
+    tail.ActivateServo(); // Activer le servo uniquement quand nécessaire
+    while (digitalRead(12) == LOW) {
+        tail.Turn_tail(); // Agiter la queue
+        Serial.println("Agitation de la queue en cours...");
+        delay(300); // Attendre un peu avant de réagir à la prochaine lecture
+    }
+    // tail.Turn_tail();
 }
 
 
@@ -274,16 +280,16 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             lowlevelcontrol(ref_speed_left, ref_speed_right);
 
             // Print the reference speed
-            Serial.print("Ref speed left: ");
-            Serial.print(ref_speed_left);
-            Serial.print(" Ref speed right: ");
-            Serial.println(ref_speed_right);
-            Serial.print(" Angle: ");
-            Serial.print(angle);
-            Serial.print(" X: ");
-            Serial.print(x_position);
-            Serial.print(" Y: ");
-            Serial.println(y_position);
+            // Serial.print("Ref speed left: ");
+            // Serial.print(ref_speed_left);
+            // Serial.print(" Ref speed right: ");
+            // Serial.println(ref_speed_right);
+            // Serial.print(" Angle: ");
+            // Serial.print(angle);
+            // Serial.print(" X: ");
+            // Serial.print(x_position);
+            // Serial.print(" Y: ");
+            // Serial.println(y_position);
 
             delay(100); // Attendre un peu avant de mettre à jour la position
 
@@ -307,7 +313,7 @@ void PAMI::stop() {
 
 void PAMI::Rotate(double angle_desired){
 
-    while (abs(angle_desired - angle) > 2){
+    while (abs(angle_desired - angle) > 1){
         double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
         double angle_error = angle_desired - angle;
 
@@ -316,12 +322,12 @@ void PAMI::Rotate(double angle_desired){
 
         lowlevelcontrol(ref_speed_left, ref_speed_right);
 
-        Serial.print("Angle desired: ");
-        Serial.print(angle_desired);
-        Serial.print(" Angle current: ");
-        Serial.print(angle);
-        Serial.print(" Angle error: ");
-        Serial.println(angle_error);
+        // Serial.print("Angle desired: ");
+        // Serial.print(angle_desired);
+        // Serial.print(" Angle current: ");
+        // Serial.print(angle);
+        // Serial.print(" Angle error: ");
+        // Serial.println(angle_error);
     }
     pami_brake(); // Freiner le robot
     Serial.println("Rotation terminée");

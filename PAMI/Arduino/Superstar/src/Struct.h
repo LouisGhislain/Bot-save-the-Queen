@@ -7,7 +7,8 @@ typedef enum {
     STRAIGHT1,
     TURN,
     STRAIGHT2,
-    SWITCH
+    QUEUE,
+    END
 } EtatRobot;
 
 // Structure représentant l'état du robot
@@ -19,6 +20,7 @@ typedef struct {
     bool turnDone;
     bool secondPathDone;
     bool switchActivated;
+    bool EndDone;
 } Robot;
 
 
