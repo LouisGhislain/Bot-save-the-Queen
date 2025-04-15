@@ -25,6 +25,7 @@ void Robot::wait_starting_cord(GAME *game) {
         usleep(50000); // Sleep for 0.05 seconds
     }
 
+    resetValues(); // reset the encoder values for not having odometry issues
     // if we go out of the while, starting cord is released
     game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
     fprintf(stderr, "STARTING !\n");
