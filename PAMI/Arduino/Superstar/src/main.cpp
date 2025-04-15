@@ -98,6 +98,9 @@ void Superstar(){
             SuperStar.turnDone = true;
             SuperStar.state = STRAIGHT2;
             Serial.println("End TURN");
+            //Fait un signal buzzer sur la pin 13
+            digitalWrite(13, HIGH); // Activer le buzzer
+
             
             break;
 
@@ -150,10 +153,14 @@ void loop(){
             Serial.println("Agitation de la queue terminée.");
             break;
 
-        case 1:
-            Superstar();
-            break;
+    //     case 1:
+    //         Superstar();
+    //         break;
 
+    // }
+    pami.update_position();
+    leftMotor.set_motor(9);
+    rightMotor.set_motor(9);
     }
 
 }

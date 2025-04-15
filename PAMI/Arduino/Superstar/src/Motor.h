@@ -8,7 +8,7 @@ private:
     int dir1; // Pin de direction 1
     int dir2; // Pin de direction 2
     int PWM_max = 255;
-    int tension_max = 9;
+    int tension_max = 12;
     double speed;
     double distance; // Distance parcourue par le moteur
     double targetSpeed; // Vitesse cible du moteur
