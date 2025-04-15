@@ -78,9 +78,11 @@ void loop_10ms(GAME *game){
         //===========================================================================
         // 10ms loop - START
         //===========================================================================
-
-        if (get_distance_to_ennemy(game); < STOP_DISTANCE_ENNEMY){  // stop distance parameter in the lidar.h file
-            robot->stop_if_ennemy(game);
+        auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game);
+        if (distance_ennemy < STOP_DISTANCE_ENNEMY && angle_ennemy < STOP_ANGLE_ENNEMY){  // stop distance parameter in the lidar.h file
+            robot->stop_if_ennemy();
+            print_Sauron_position(game);
+            fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT, (bitch)\n");
         }
         else{
             robot->middleLevelController(game);
@@ -154,7 +156,7 @@ void lidar_thread_func(void* game_void) {
         //===========================================================================
 
         fetchLidarData(game);
-        //print_Sauron_position(game);
+        print_Sauron_position(game);
 
         //===========================================================================
         // lidar loop - END - (undifined period)
@@ -185,7 +187,7 @@ int main() {
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot->starting_pos = 2;
+    robot->starting_pos = 0;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.

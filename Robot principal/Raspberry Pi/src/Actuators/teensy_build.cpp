@@ -10,6 +10,8 @@ void Robot::teensy_build(void *game){
     usleep(500000);
     straightMotion(-0.15,game);//recule avec cremaillère
     usleep(4500000);
+    // Print "coucou"
+    std::cout << "Coucou" << std::endl;
     straightMotion(0.13,game);//avance avec stack haut
     usleep(3000000);
     straightMotion(-0.1,game);

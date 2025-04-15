@@ -4,7 +4,35 @@ int STATE = 0;
 int STATE_RETURN_TO_BASE = 0;
 
 void start_from_blue_bottom(Robot *robot, GAME *game){
-    return;
+    // pour le moment, on fait circuler le robot autour de la map
+    // c'est uniquement des test, en aucun cas c'est la stratégie 
+    switch (STATE){
+
+        case 0 : // go to node 36 23 37 22
+            robot->highLevelController(36, game);
+            if (robot->end_of_travel){
+                STATE++;
+            }
+            break ;
+        case 1 : // 
+            robot->highLevelController(23, game);
+            if (robot->end_of_travel){
+                STATE++;
+            }
+            break ;
+        case 2 : // 
+            robot->highLevelController(37, game);
+            if (robot->end_of_travel){
+                STATE++;
+            }
+            break ;
+        case 3 : // 
+            robot->highLevelController(22, game);
+            if (robot->end_of_travel){
+                STATE = 0;
+            }
+            break;
+    }
 }
 
 void start_from_blue_side(Robot *robot, GAME *game){
@@ -84,8 +112,8 @@ void choose_start(Robot *robot, GAME *game){
     switch (robot->starting_pos)
     {
         case 0: // Blue bottom
-            //start_from_blue_bottom(robot, game);
-            start_from_yellow_bottom(robot, game);
+            start_from_blue_bottom(robot, game);
+            //start_from_yellow_bottom(robot, game);
             break;
         case 1: // Blue side
             //start_from_blue_side(robot, game);

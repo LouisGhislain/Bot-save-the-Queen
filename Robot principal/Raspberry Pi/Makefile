@@ -777,6 +777,30 @@ src/Strategy/drop_banner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s
 .PHONY : src/Strategy/drop_banner.cpp.s
 
+src/Strategy/ennemy_avoidance.o: src/Strategy/ennemy_avoidance.cpp.o
+.PHONY : src/Strategy/ennemy_avoidance.o
+
+# target to build an object file
+src/Strategy/ennemy_avoidance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o
+.PHONY : src/Strategy/ennemy_avoidance.cpp.o
+
+src/Strategy/ennemy_avoidance.i: src/Strategy/ennemy_avoidance.cpp.i
+.PHONY : src/Strategy/ennemy_avoidance.i
+
+# target to preprocess a source file
+src/Strategy/ennemy_avoidance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.i
+.PHONY : src/Strategy/ennemy_avoidance.cpp.i
+
+src/Strategy/ennemy_avoidance.s: src/Strategy/ennemy_avoidance.cpp.s
+.PHONY : src/Strategy/ennemy_avoidance.s
+
+# target to generate assembly for a file
+src/Strategy/ennemy_avoidance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.s
+.PHONY : src/Strategy/ennemy_avoidance.cpp.s
+
 src/Strategy/grab_stack.o: src/Strategy/grab_stack.cpp.o
 .PHONY : src/Strategy/grab_stack.o
 
@@ -1011,6 +1035,9 @@ help:
 	@echo "... src/Strategy/drop_banner.o"
 	@echo "... src/Strategy/drop_banner.i"
 	@echo "... src/Strategy/drop_banner.s"
+	@echo "... src/Strategy/ennemy_avoidance.o"
+	@echo "... src/Strategy/ennemy_avoidance.i"
+	@echo "... src/Strategy/ennemy_avoidance.s"
 	@echo "... src/Strategy/grab_stack.o"
 	@echo "... src/Strategy/grab_stack.i"
 	@echo "... src/Strategy/grab_stack.s"

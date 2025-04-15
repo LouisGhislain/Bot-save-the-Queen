@@ -94,8 +94,8 @@ public:
     void printPath();
 
     // ennemy avoidance
-    void stop_if_ennemy(void *game);
-    double get_distance_to_ennemy(void *game);
+    void stop_if_ennemy();
+    std::pair<double, double> get_distance_to_ennemy(GAME *game);
 
     // Odometry
     void updateOdometry(void *game);
@@ -207,7 +207,7 @@ private:
     // High level controller variables
     int current_destination = 1914; // la guerre est déclarée
     int current_step = 0;
-    const double d1_change_target = 0.1; // in m (distance from when we follow the next node on the path)
+    const double d1_change_target = 0.08; // in m (distance from when we follow the next node on the path)
     bool last_step = true;
 
     // Path planning variables

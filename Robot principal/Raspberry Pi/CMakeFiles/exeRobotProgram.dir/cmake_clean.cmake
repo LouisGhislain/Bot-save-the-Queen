@@ -53,6 +53,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
