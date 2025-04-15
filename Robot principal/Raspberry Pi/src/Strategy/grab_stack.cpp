@@ -1,9 +1,8 @@
 #include "../../include/FSM.h"
 int STATE_GRABBING = 0;
-bool stack_grabbed = false; 
 
 void fsm_grab_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
-    stack_grabbed = false ; 
+    robot->stack_grabbed = false ; 
     switch(STATE_GRABBING){
         case 0 : //PATH PLANNING TO STACK
             robot->highLevelController(PRE_NODE, game);
@@ -25,7 +24,7 @@ void fsm_grab_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
             STATE_GRABBING++;
             break ; 
         case 4 : 
-            stack_grabbed = true ; 
+            robot->stack_grabbed = true ; 
             STATE_GRABBING = 0;
             break;
     }

@@ -41,7 +41,7 @@ void Robot::highLevelController(int goal, void *game) {
             my_y = queen->cart_pos->y;
         }
 
-        for (int i = 0; i < 19; i++){
+        for (int i = 0; i < 100; i++){
             current_dist = pow((mymap->nodes[i].x - my_x),2) + pow((mymap->nodes[i].y - my_y),2);
             if (current_dist < dist_to_start){
                 start_node = i;
@@ -49,9 +49,9 @@ void Robot::highLevelController(int goal, void *game) {
             }  
         }
         
-        fprintf(stderr, " start and goal nodes: %d %d\n", start_node, goal);
         // Find the shortest path using A* algorithm
         aStar(start_node, goal, game);
+        printPath();
 
         // Aim for the second node in the path, the first beeing where we are (the closest node)
         current_step = 0;
@@ -98,6 +98,8 @@ void Robot::highLevelController(int goal, void *game) {
     else if(myrho < GLOBAL_params.stop_robot_distance) {
         {
             std::lock_guard<std::mutex> lock(flags);
+            // Print myRho
+            fprintf(stderr, "myRho: %f\n", myrho);
             end_of_travel = true;
             fprintf(stderr, "End of travel\n");
         }

@@ -28,6 +28,8 @@
 #include <cstring>
 #define SCREEN_ADDR 0x27
 #define STARTING_CORD_PIN 20 // starting cord on gpio 20
+#define MICROSWITCH_BACK_LEFT 26
+#define MICROSWITCH_BACK_RIGHT 21
 
 struct MovementParams {
     bool activated_target_angle;
@@ -113,8 +115,9 @@ public:
     void screen_end_game();
 
     // starting cord
-    void initialize_starting_pin();
+    void initialize_pins();
     void wait_starting_cord(GAME *game);
+    bool checkIfAgainstWall(GAME *game);
     
     // Teensy
     void teensy_init();
@@ -154,6 +157,9 @@ public:
     // FSM
     bool arrived_first_stack = false;
     bool grab_command_sent = false;
+    bool stack_builded = false ; 
+    bool banner_dropped = false ; 
+    bool stack_grabbed = false ;
 
     //Number of points (count for screen)
     int points_scored = 0 ;

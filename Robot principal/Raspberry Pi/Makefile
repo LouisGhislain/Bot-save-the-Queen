@@ -513,6 +513,30 @@ src/Mobility/Initialization_and_deactivation/stopRobot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Initialization_and_deactivation/stopRobot.cpp.s
 .PHONY : src/Mobility/Initialization_and_deactivation/stopRobot.cpp.s
 
+src/Mobility/Localization/microswitches.o: src/Mobility/Localization/microswitches.cpp.o
+.PHONY : src/Mobility/Localization/microswitches.o
+
+# target to build an object file
+src/Mobility/Localization/microswitches.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/microswitches.cpp.o
+.PHONY : src/Mobility/Localization/microswitches.cpp.o
+
+src/Mobility/Localization/microswitches.i: src/Mobility/Localization/microswitches.cpp.i
+.PHONY : src/Mobility/Localization/microswitches.i
+
+# target to preprocess a source file
+src/Mobility/Localization/microswitches.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/microswitches.cpp.i
+.PHONY : src/Mobility/Localization/microswitches.cpp.i
+
+src/Mobility/Localization/microswitches.s: src/Mobility/Localization/microswitches.cpp.s
+.PHONY : src/Mobility/Localization/microswitches.s
+
+# target to generate assembly for a file
+src/Mobility/Localization/microswitches.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Mobility/Localization/microswitches.cpp.s
+.PHONY : src/Mobility/Localization/microswitches.cpp.s
+
 src/Mobility/Localization/odometry.o: src/Mobility/Localization/odometry.cpp.o
 .PHONY : src/Mobility/Localization/odometry.o
 
@@ -704,6 +728,30 @@ src/Strategy/FSM.s: src/Strategy/FSM.cpp.s
 src/Strategy/FSM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s
 .PHONY : src/Strategy/FSM.cpp.s
+
+src/Strategy/build_stack.o: src/Strategy/build_stack.cpp.o
+.PHONY : src/Strategy/build_stack.o
+
+# target to build an object file
+src/Strategy/build_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o
+.PHONY : src/Strategy/build_stack.cpp.o
+
+src/Strategy/build_stack.i: src/Strategy/build_stack.cpp.i
+.PHONY : src/Strategy/build_stack.i
+
+# target to preprocess a source file
+src/Strategy/build_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.i
+.PHONY : src/Strategy/build_stack.cpp.i
+
+src/Strategy/build_stack.s: src/Strategy/build_stack.cpp.s
+.PHONY : src/Strategy/build_stack.s
+
+# target to generate assembly for a file
+src/Strategy/build_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.s
+.PHONY : src/Strategy/build_stack.cpp.s
 
 src/Strategy/drop_banner.o: src/Strategy/drop_banner.cpp.o
 .PHONY : src/Strategy/drop_banner.o
@@ -930,6 +978,9 @@ help:
 	@echo "... src/Mobility/Initialization_and_deactivation/stopRobot.o"
 	@echo "... src/Mobility/Initialization_and_deactivation/stopRobot.i"
 	@echo "... src/Mobility/Initialization_and_deactivation/stopRobot.s"
+	@echo "... src/Mobility/Localization/microswitches.o"
+	@echo "... src/Mobility/Localization/microswitches.i"
+	@echo "... src/Mobility/Localization/microswitches.s"
 	@echo "... src/Mobility/Localization/odometry.o"
 	@echo "... src/Mobility/Localization/odometry.i"
 	@echo "... src/Mobility/Localization/odometry.s"
@@ -954,6 +1005,9 @@ help:
 	@echo "... src/Strategy/FSM.o"
 	@echo "... src/Strategy/FSM.i"
 	@echo "... src/Strategy/FSM.s"
+	@echo "... src/Strategy/build_stack.o"
+	@echo "... src/Strategy/build_stack.i"
+	@echo "... src/Strategy/build_stack.s"
 	@echo "... src/Strategy/drop_banner.o"
 	@echo "... src/Strategy/drop_banner.i"
 	@echo "... src/Strategy/drop_banner.s"

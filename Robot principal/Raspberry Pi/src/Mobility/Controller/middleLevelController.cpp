@@ -62,10 +62,8 @@ void Robot::middleLevelController(void *game) {
         angle_target = GLOBAL_angle_target;
         delta_x_target = x_coord_target - my_x; // in m
         delta_y_target = y_coord_target - my_y; // in m
-        //fprintf(stderr, "my x, my y, target x, target y: %f %f %f %f\n", my_x, my_y, x_coord_target, y_coord_target);
         GLOBAL_rho = sqrt(pow(delta_x_target, 2) + pow(delta_y_target, 2));
         rho = GLOBAL_rho; // Update the class member if needed elsewhere
-        //fprintf(stderr, "global rho = %f\n", GLOBAL_rho);
         params = GLOBAL_params;
     }
 
@@ -141,20 +139,17 @@ void Robot::middleLevelController(void *game) {
     // Falling edge of the trapzoidal speed profile
     if ((rho < params.d0) && (mylast_step ==  true)) {
         v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
-        //fprintf(stderr, "FALLING EDGE =%f\n", v_ref);
     }
     
     // Rising edge of the trapzoidal speed profile
     else if (travelled_distance < (params.d0)){ 
         v_ref = sqrt(2 * (travelled_distance + 0.001) * params.acceleration) - rot_part;
         v_ref = std::max(v_ref, v_threshold_move);
-        //fprintf(stderr, "RISING EDGE vref =%f\n", v_ref);
     }
 
     // Constant speed phase of the trapzoidal speed profile
     else {
         v_ref = (params.vMax) - rot_part;
-        //fprintf(stderr, "CONSTANT SPEED =%f\n", v_ref);
     }
 
     // If backwards

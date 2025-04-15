@@ -16,8 +16,8 @@
 //
 // préciser ici le positionnement des stacks
 
-#define END_ZONE_YELLOW 
-#define END_ZONE_BLUE
+#define END_ZONE_YELLOW 26
+#define END_ZONE_BLUE 27
 
 #define PRE_NODE_STACK_0 10
 #define PRE_NODE_STACK_1 11
@@ -52,31 +52,38 @@
 //  |                             |
 //  |_B2___Y0__Y1_____B1__B0___Y2_|
 //
-#define CONSTRUCTION_YELLOW_0 
-#define CONSTRUCTION_YELLOW_1 5
-#define CONSTRUCTION_YELLOW_2
-#define CONSTRUCTION_YELLOW_3
-#define PRE_CONSTRUCTION_YELLOW_0
-#define PRE_CONSTRUCTION_YELLOW_1 4
-#define PRE_CONSTRUCTION_YELLOW_2
-#define PRE_CONSTRUCTION_YELLOW_3
+#define CONSTRUCTION_YELLOW_0 29
+#define CONSTRUCTION_YELLOW_1 30
+#define CONSTRUCTION_YELLOW_2 33
+#define CONSTRUCTION_YELLOW_3 35
+#define PRE_CONSTRUCTION_YELLOW_0 42
+#define PRE_CONSTRUCTION_YELLOW_1 43
+#define PRE_CONSTRUCTION_YELLOW_2 55
+#define PRE_CONSTRUCTION_YELLOW_3 47
 
-#define CONSTRUCTION_BLUE_0
-#define CONSTRUCTION_BLUE_1
-#define CONSTRUCTION_BLUE_2
-#define CONSTRUCTION_BLUE_3
-#define PRE_CONSTRUCTION_BLUE_0
-#define PRE_CONSTRUCTION_BLUE_1
-#define PRE_CONSTRUCTION_BLUE_2
-#define PRE_CONSTRUCTION_BLUE_3
+#define CONSTRUCTION_BLUE_0 32
+#define CONSTRUCTION_BLUE_1 31
+#define CONSTRUCTION_BLUE_2 28
+#define CONSTRUCTION_BLUE_3 34
+#define PRE_CONSTRUCTION_BLUE_0 45
+#define PRE_CONSTRUCTION_BLUE_1 44
+#define PRE_CONSTRUCTION_BLUE_2 54
+#define PRE_CONSTRUCTION_BLUE_3 46
 
 // State
 extern int STATE;
+extern int STATE_RETURN_TO_BASE; // State for returning to base
+
+inline constexpr int time_return_to_base = 90; // in seconds, the time at which we stop everything to return to the base
 
 void start_from_yellow_side(Robot *robot, GAME *game);
 void start_from_blue_bottom(Robot *robot, GAME *game);
 void start_from_yellow_bottom(Robot *robot, GAME *game);
 void start_from_yellow_side(Robot *robot, GAME *game);
+
+void return_to_base(Robot *robot, GAME *game);
+void return_to_base_blue(Robot *robot, GAME *game);
+void return_to_base_yellow(Robot *robot, GAME *game);
 
 void choose_start(Robot *robot, GAME *game);
 
@@ -90,6 +97,7 @@ extern int STATE_GRABBING ; //state for grabbing one stack
 
 //----Build stack----
 void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE);
+void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 extern int STATE_BUILDING ; 
 
 #endif // FSM_H

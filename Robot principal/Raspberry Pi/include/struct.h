@@ -90,8 +90,8 @@ typedef struct MAP{
     size_t cluster_count; // Nombre de clusters
 
     // Graph and nodes for path planning
-	Node nodes[19];
-	Edge edges[36];
+	Node nodes[100];
+	Edge edges[100];
 } MAP;
 
 typedef struct Queen{

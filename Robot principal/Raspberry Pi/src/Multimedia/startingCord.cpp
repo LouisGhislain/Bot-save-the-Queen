@@ -1,11 +1,5 @@
 #include "../../include/Robot.h"
 
-
-void Robot::initialize_starting_pin() {
-    wiringPiSetupGpio();  // Use BCM numbering
-    pinMode(STARTING_CORD_PIN, INPUT);
-}
-
 void Robot::wait_starting_cord(GAME *game) {
     // Wait for the starting cord to be inserted
     // starting pin inserted : HIGH

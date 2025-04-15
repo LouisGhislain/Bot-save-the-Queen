@@ -13,8 +13,8 @@ void Robot::start() {
     intESpeedLeft = intESpeedRight = 0.0;
     teensy_init(); //init I2C teensy
     digitalWrite(22, LOW);
-    screen_init(); //init I2C screen
-    initialize_starting_pin();
+    //screen_init(); //init I2C screen
+    initialize_pins();
 }
 
 /**
@@ -38,4 +38,13 @@ void Robot::resetValues() {
 
     // Print confirmation message
     //std::cout << "Encoder values and coordinates reset." << std::endl;
+}
+
+void Robot::initialize_pins() {
+    wiringPiSetupGpio();  // Use BCM numbering
+    pinMode(STARTING_CORD_PIN, INPUT);
+    pinMode(MICROSWITCH_BACK_LEFT, INPUT);
+    //pullUpDnControl(MICROSWITCH_BACK_LEFT, PUD_UP); // Pull-up resistor
+    pinMode(MICROSWITCH_BACK_RIGHT, INPUT);
+    //pullUpDnControl(MICROSWITCH_BACK_RIGHT, PUD_UP); // Pull-up resistor
 }
