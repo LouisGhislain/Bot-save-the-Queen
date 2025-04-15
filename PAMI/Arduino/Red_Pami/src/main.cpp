@@ -53,9 +53,9 @@ void setup() {
     delay(5000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
+    pinMode(14, OUTPUT);
 
     role = 1; // 0 pour le robot, 1 pour la superstar
-
 
 }
 
@@ -137,9 +137,11 @@ void loop(){
 
     switch(role){
         case 0:
-            pami.Rotate(0); // Tourner de 0° (ne pas tourner)
-            delay(1000); // Attendre 1 seconde avant de continuer
-            break;
+            while(true){
+                //Buzzer pin 13 ON
+                digitalWrite(13, HIGH);
+            
+            }
 
         case 1:
             Superstar();

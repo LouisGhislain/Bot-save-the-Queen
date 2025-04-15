@@ -79,11 +79,17 @@ private:
     // double Kp_linear = 5; // Coefficient proportionnel pour la vitesse linéaire
     // double Kp_angular = 5; // Coefficient proportionnel pour la vitesse angulaire
 
+    // White PAMI
+    // static constexpr float Kp_left = 22.66; // Coefficient proportionnel pour le moteur gauche
+    // static constexpr float Ki_left = 83.64; // Coefficient intégral pour le moteur gauche
+    // static constexpr float Kp_right = 22.66; // Coefficient proportionnel pour le moteur droit
+    // static constexpr float Ki_right = 83.64; // Coefficient intégral pour le moteur droit
 
-    static constexpr float Kp_left = 22.66; // Coefficient proportionnel pour le moteur gauche
-    static constexpr float Ki_left = 83.64; // Coefficient intégral pour le moteur gauche
-    static constexpr float Kp_right = 22.66; // Coefficient proportionnel pour le moteur droit
-    static constexpr float Ki_right = 83.64; // Coefficient intégral pour le moteur droit
+    // Black PAMI
+    static constexpr float Kp_left = 11.66; // Coefficient proportionnel pour le moteur gauche
+    static constexpr float Ki_left = 43.64; // Coefficient intégral pour le moteur gauche
+    static constexpr float Kp_right = 11.66; // Coefficient proportionnel pour le moteur droit
+    static constexpr float Ki_right = 43.64; // Coefficient intégral pour le moteur droit
 
     
 };

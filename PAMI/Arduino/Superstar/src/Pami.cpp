@@ -3,9 +3,9 @@
 #include "Encoder.h"
 
 
-#define WheelDiameter 0.05895 // Diamètre de la roue en mètres
-#define DistanceBetweenWheels 0.0985 // Distance entre les roues en mètres
-#define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
+#define WheelDiameter 0.06 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.095 // Distance entre les roues en mètres
+#define MAX_LINEAR_SPEED 0.4 // Vitesse linéaire maximale en m/s
 #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
 #define Kp_alpha 0.08 // Coefficient proportionnel pour l'angle
 
@@ -62,6 +62,22 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     }
 
 
+    Serial.print("X: ");
+    Serial.print(x_position);
+    Serial.print(" Y: ");
+    Serial.print(y_position);
+    Serial.print(" Angle: ");
+    Serial.print(angle);
+    Serial.print(" Left speed: ");
+    Serial.print(leftMotor.getSpeed());
+    Serial.print(" Right speed: ");
+    Serial.print(rightMotor.getSpeed());
+    Serial.print(" Left voltage: ");
+    Serial.print(left_voltage);
+    Serial.print(" Right voltage: ");
+    Serial.println(right_voltage);
+
+
     // Set motor speeds
     leftMotor.set_motor(left_voltage);
     rightMotor.set_motor(right_voltage);
@@ -99,6 +115,13 @@ void PAMI::update_position() {
 
     dist_left = leftMotor.getDistance();
     dist_right = rightMotor.getDistance();
+
+    // Print vitess
+    Serial.print("Left speed: ");
+    Serial.print(leftMotor.getSpeed());
+    Serial.print(" Right speed: ");
+    Serial.println(rightMotor.getSpeed());
+
 
 
     angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés

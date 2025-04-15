@@ -54,7 +54,7 @@ void setup() {
 
     startTime = millis();
 
-    role = 1; // 0 pour le robot, 1 pour la superstar
+    role = 0; // 0 pour le robot, 1 pour la superstar
 
 
 }
@@ -90,12 +90,15 @@ void Superstar(){
             pami.target_reached = false;
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
-            pami.Rotate(-93);  // Tourner de 90° à droite
+            pami.Rotate(-180);  // Tourner de 90° à droite
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
             SuperStar.turnDone = true;
             SuperStar.state = STRAIGHT2;
             Serial.println("End TURN");
+            //Fait un signal buzzer sur la pin 13
+            digitalWrite(13, HIGH); // Activer le buzzer
+
             
             break;
 
@@ -135,16 +138,19 @@ void Superstar(){
 
 void loop(){
 
-    switch(role){
-        case 0:
-            pami.Rotate(0); // Tourner de 0° (ne pas tourner)
-            delay(1000); // Attendre 1 seconde avant de continuer
-            break;
+    // switch(role){
+    //     case 0:
+    //         leftMotor.set_motor(4);
+    //         rightMotor.set_motor(4);
 
-        case 1:
-            Superstar();
-            break;
+    //     case 1:
+    //         Superstar();
+    //         break;
 
-    }
+    // }
+    pami.update_position();
+    leftMotor.set_motor(9);
+    rightMotor.set_motor(9);
+
 
 }

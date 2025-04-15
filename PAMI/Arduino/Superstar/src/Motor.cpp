@@ -4,7 +4,7 @@
 
 #define TICKS_PER_REV 13 // Nombre de ticks par révolution
 #define gearRatio 42 // Rapport de réduction
-#define WheelDiameter 0.0585 // Diamètre de la roue en mètres
+#define WheelDiameter 0.06 // Diamètre de la roue en mètres
 
 Motor* Motor::leftInstance = nullptr;
 Motor* Motor::rightInstance = nullptr;
@@ -67,7 +67,8 @@ void Motor::set_motor(float tension) {
 
     // updateSpeed();
 
-    float EMF = speed *15;
+    // float EMF = speed *15; White PAMI
+    float EMF = 0; // Black PAMI
     
     if (tension > tension_max) {
         tension = tension_max;
