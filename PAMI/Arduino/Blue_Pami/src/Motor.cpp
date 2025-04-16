@@ -4,7 +4,7 @@
 
 #define TICKS_PER_REV 13 // Nombre de ticks par révolution
 #define gearRatio 42 // Rapport de réduction
-#define WheelDiameter 0.0585 // Diamètre de la roue en mètres
+#define WheelDiameter 0.052 // Diamètre de la roue en mètres
 
 Motor* Motor::leftInstance = nullptr;
 Motor* Motor::rightInstance = nullptr;

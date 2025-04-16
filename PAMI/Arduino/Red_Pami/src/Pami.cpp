@@ -3,8 +3,8 @@
 #include "Encoder.h"
 
 
-#define WheelDiameter 0.05895 // Diamètre de la roue en mètres
-#define DistanceBetweenWheels 0.0985 // Distance entre les roues en mètres
+#define WheelDiameter 0.062 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.0996 // Distance entre les roues en mètres
 #define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
 #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
 #define Kp_alpha 0.08 // Coefficient proportionnel pour l'angle
