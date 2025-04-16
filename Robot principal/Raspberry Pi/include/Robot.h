@@ -213,7 +213,7 @@ private:
     // High level controller variables
     int current_destination = 1914; // la guerre est déclarée
     int current_step = 0;
-    const double d1_change_target = 0.08; // in m (distance from when we follow the next node on the path)
+    const double d1_change_target = 0.04; // in m (distance from when we follow the next node on the path)
     bool last_step = true;
 
     // Path planning variables
