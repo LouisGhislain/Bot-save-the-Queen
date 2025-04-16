@@ -10,16 +10,18 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     switch(STATE_BUILDING){
 
         case 0 : //PATH PLANNING TO PRE_NODE BUILDING ZONE
-            double dist_to_prenode;
-            {
-                std::lock_guard<std::mutex> lock(myqueen->position_mutex);
-                dist_to_prenode = sqrt(pow((mymap->nodes[PRE_NODE].x - myqueen->cart_pos->x),2) + pow((mymap->nodes[PRE_NODE].y - myqueen->cart_pos->y),2));
-            }
-            // Print dist_to_prenode
-            std::cout << "dist_to_prenode: " << dist_to_prenode << std::endl;
-            if ((dist_to_prenode < 0.15) && ((NODE == CONSTRUCTION_YELLOW_0)||(NODE ==  CONSTRUCTION_YELLOW_2))){
-                STATE++;
-                break;
+            if ((NODE == CONSTRUCTION_YELLOW_0)||(NODE ==  CONSTRUCTION_YELLOW_2)){
+                double dist_to_prenode;
+                {
+                    std::lock_guard<std::mutex> lock(myqueen->position_mutex);
+                    dist_to_prenode = sqrt(pow((mymap->nodes[PRE_NODE].x - myqueen->cart_pos->x),2) + pow((mymap->nodes[PRE_NODE].y - myqueen->cart_pos->y),2));
+                }
+                // Print dist_to_prenode
+                std::cout << "dist_to_prenode: " << dist_to_prenode << std::endl;
+                if (dist_to_prenode < 0.15){
+                    STATE_BUILDING++;
+                    break;
+                }
             }
             robot->highLevelController(PRE_NODE, game);
             if (robot->end_of_travel){
