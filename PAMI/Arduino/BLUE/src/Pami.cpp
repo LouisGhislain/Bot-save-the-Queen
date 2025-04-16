@@ -3,9 +3,9 @@
 #include "Encoder.h"
 
 
-#define WheelDiameter 0.058 // Diamètre de la roue en mètres
-#define DistanceBetweenWheels 0.0905 // Distance entre les roues en mètres
-#define MAX_LINEAR_SPEED 0.25 // Vitesse linéaire maximale en m/s
+#define WheelDiameter 0.052 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.0996 // Distance entre les roues en mètres
+#define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
 #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
 #define Kp_alpha 0.03 // Coefficient proportionnel pour l'angle
 
@@ -62,6 +62,22 @@ void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
     }
 
 
+    // Serial.print("X: ");
+    // Serial.print(x_position);
+    // Serial.print(" Y: ");
+    // Serial.print(y_position);
+    // Serial.print(" Angle: ");
+    // Serial.print(angle);
+    // Serial.print(" Left speed: ");
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(" Right speed: ");
+    // Serial.print(rightMotor.getSpeed());
+    // Serial.print(" Left voltage: ");
+    // Serial.print(left_voltage);
+    // Serial.print(" Right voltage: ");
+    // Serial.println(right_voltage);
+
+
     // Set motor speeds
     leftMotor.set_motor(left_voltage);
     rightMotor.set_motor(right_voltage);
@@ -88,7 +104,13 @@ double PAMI::getSonarDistance() {
 }
 
 void PAMI::turnTail() {
-    tail.Turn_tail();
+    tail.ActivateServo(); // Activer le servo uniquement quand nécessaire
+    while (digitalRead(12) == LOW) {
+        tail.Turn_tail(); // Agiter la queue
+        Serial.println("Agitation de la queue en cours...");
+        delay(300); // Attendre un peu avant de réagir à la prochaine lecture
+    }
+    // tail.Turn_tail();
 }
 
 
@@ -99,6 +121,14 @@ void PAMI::update_position() {
 
     dist_left = leftMotor.getDistance();
     dist_right = rightMotor.getDistance();
+
+    // Print vitesse
+    Serial.print(millis() - 5000);
+    Serial.print(" , ");
+    Serial.print(leftMotor.getSpeed());
+    Serial.print(" , ");
+    Serial.println(rightMotor.getSpeed());
+
 
 
     angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
@@ -166,7 +196,6 @@ void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bo
             double v = 0.1; // Vitesse linéaire
             double w = Kp_alpha * alpha; // Vitesse angulaire
 
-
             double ref_speed_left = (v - w);
             double ref_speed_right = (v + w);
 
@@ -224,6 +253,17 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+            Serial.print("alpha: ");
+            Serial.print(alpha);
+            Serial.println("");
+
+            while(alpha > M_PI){
+                alpha -= 2*M_PI;
+            }
+            while(alpha < -M_PI){
+                alpha += 2*M_PI;
+            }
+            
             double v = 0.15; // Vitesse linéaire
             double w = Kp_alpha * alpha; // Vitesse angulai
 
@@ -244,6 +284,17 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.println(w);
 
 
+            // if (!start_angle) {
+            //     if (abs(alpha) > 0.1) {
+            //         // Serial.println("Calibration");
+            //         v = 0;
+            //         w = alpha*0.05;
+            //     } else {
+            //         start_angle = true;
+            //         // Serial.println("Start angle");
+            //     }
+            // }
+
             double ref_speed_left = (v - w);
             double ref_speed_right = (v + w);
 
@@ -263,16 +314,16 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             lowlevelcontrol(ref_speed_left, ref_speed_right);
 
             // Print the reference speed
-            Serial.print("Ref speed left: ");
-            Serial.print(ref_speed_left);
-            Serial.print(" Ref speed right: ");
-            Serial.println(ref_speed_right);
-            Serial.print(" Angle: ");
-            Serial.print(angle);
-            Serial.print(" X: ");
-            Serial.print(x_position);
-            Serial.print(" Y: ");
-            Serial.println(y_position);
+            // Serial.print("Ref speed left: ");
+            // Serial.print(ref_speed_left);
+            // Serial.print(" Ref speed right: ");
+            // Serial.println(ref_speed_right);
+            // Serial.print(" Angle: ");
+            // Serial.print(angle);
+            // Serial.print(" X: ");
+            // Serial.print(x_position);
+            // Serial.print(" Y: ");
+            // Serial.println(y_position);
 
             delay(100); // Attendre un peu avant de mettre à jour la position
 
@@ -296,7 +347,7 @@ void PAMI::stop() {
 
 void PAMI::Rotate(double angle_desired){
 
-    while (abs(angle_desired - angle) > 2){
+    while (abs(angle_desired - angle) > 1){
         double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
         double angle_error = angle_desired - angle;
 
@@ -305,12 +356,12 @@ void PAMI::Rotate(double angle_desired){
 
         lowlevelcontrol(ref_speed_left, ref_speed_right);
 
-        Serial.print("Angle desired: ");
-        Serial.print(angle_desired);
-        Serial.print(" Angle current: ");
-        Serial.print(angle);
-        Serial.print(" Angle error: ");
-        Serial.println(angle_error);
+        // Serial.print("Angle desired: ");
+        // Serial.print(angle_desired);
+        // Serial.print(" Angle current: ");
+        // Serial.print(angle);
+        // Serial.print(" Angle error: ");
+        // Serial.println(angle_error);
     }
     pami_brake(); // Freiner le robot
     Serial.println("Rotation terminée");
