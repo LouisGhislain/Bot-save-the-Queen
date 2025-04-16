@@ -16,7 +16,7 @@ void Robot::teensy_separate_third_stage(void *game){
     usleep(500000); //delay test build
     straightMotion(-0.15, game); //recule avec cremaillère
     usleep(300000); //PAS FIXE mais time de reculer les cremaillères
-    build_finished = true ; 
+    separate_finished = true ; 
 }
 
 void Robot::teensy_build_first_third_stage(int constructNodeNumber, void *game){

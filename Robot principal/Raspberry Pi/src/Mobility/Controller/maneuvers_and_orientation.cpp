@@ -52,6 +52,21 @@ void Robot::straightMotion(double dist, void *game) {
         my_y = myqueen->cart_pos->y;
         my_angle = myqueen->angle;
     }
+
+    // Set the angle to the closest angle between 0, M_PI/2, M_PI, -M_PI/2
+    double angles[4] = {0, M_PI/2, M_PI, -M_PI/2};
+    double min_diff = fabs(my_angle - angles[0]);
+    int closest_idx = 0;
+
+    for (int i = 1; i < 4; i++) {
+        double diff = fabs(my_angle - angles[i]);
+        if (diff < min_diff) {
+            min_diff = diff;
+            closest_idx = i;
+        }
+    }
+    my_angle = angles[closest_idx];
+
     {
         std::lock_guard<std::mutex> lock(coord_mutex);
         GLOBAL_params = straight;

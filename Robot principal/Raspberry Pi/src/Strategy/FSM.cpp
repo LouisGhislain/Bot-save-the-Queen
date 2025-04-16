@@ -86,21 +86,21 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             STATE++;
             break ; 
 
-        case 1 : // GO TO STACK AND GRAB
+        case 1 : // GO TO FIRST STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
             if(robot->stack_grabbed){ // WAIT GRAB
                 STATE++;
             }
             break;
 
-        case 2 : // GO TO CONSTRUCTION ZONE AND BUILD
+        case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
             break;
 
-        case 3 : // GO TO STACK AND GRAB
+        case 3 : // GO TO SECOND STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
             // Print stack_grabbed
             std::cout << "stack_grabbed: " << robot->stack_grabbed << std::endl;
@@ -109,14 +109,14 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             }
             break;
 
-        case 4 : //GO TO CONSTRUCTION ZONE AND BUILD
+        case 4 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_0 , CONSTRUCTION_YELLOW_0);
             if(robot->stack_builded){//WAIT BUILD
                 STATE++;
             }
             break;
 
-        case 5 : //GO TO STACK AND GRAB
+        case 5 : //GO TO THIRD STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
             if(robot->stack_grabbed){
                 STATE++;
