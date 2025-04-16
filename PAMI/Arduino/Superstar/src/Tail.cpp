@@ -26,13 +26,13 @@ void Tail::Turn_tail(){
   //     delay(50);                       // waits 15ms for the servo to reach the position
   //   }
   Servo_Tail.write(55); // Position neutre
-  delay(200); // Attendre un peu avant de changer la position
+  delay(1000); // Attendre un peu avant de changer la position
   Servo_Tail.write(97); // Position de mouvement
-  delay(100); // Attendre un peu avant de changer la position
+  delay(500); // Attendre un peu avant de changer la position
   Servo_Tail.write(140); // Position de mouvement
-  delay(200); // Attendre un peu avant de changer la position
+  delay(1000); // Attendre un peu avant de changer la position
   Servo_Tail.write(97); // Position de mouvement
-  delay(100); // Attendre un peu avant de changer la position
+  delay(500); // Attendre un peu avant de changer la position
   Servo_Tail.write(55); // Position neutre
-  delay(100); // Attendre un peu avant de changer la position
+  delay(1000); // Attendre un peu avant de changer la position
 }

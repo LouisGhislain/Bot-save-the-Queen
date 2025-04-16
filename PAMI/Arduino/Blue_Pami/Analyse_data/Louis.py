@@ -3,7 +3,7 @@ import numpy as np
 from scipy import signal
 
 # Open the file
-f = open("Closed_loop.txt")
+f = open("/Users/hugomaleve/Documents/PlatformIO/Mecatro_git/PAMI/Arduino/PAMI_New_arduino/Analyse_data/Closed_loop.txt")
 
 # Read the file
 data = f.readlines()
@@ -24,7 +24,7 @@ for line in data:
     values = [val.strip() for val in line.split(',')]
     if len(values) == 3:  # Ensure we have all 3 values
         try:
-            times.append(int((float(values[0])-5000)*1000))
+            times.append(int(float(values[0])*1000))
             left_encoder.append(float(values[1]))
             right_encoder.append(float(values[2]))
         except ValueError:

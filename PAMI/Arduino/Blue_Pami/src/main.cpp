@@ -37,10 +37,10 @@ PAMI pami;
 bool isStopped = false ; 
 float startTime = 0;
 
-
+Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
 
 int role;
-Robot SuperStar;
+
 
 void setup() {
     Serial.begin(9600);
@@ -53,17 +53,16 @@ void setup() {
     delay(5000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
+    pinMode(14, OUTPUT);
 
-
-    role = 0; // 0 pour le robot, 1 pour la superstar
-    SuperStar = {STRAIGHT1, 0, false, false, false, false, false, false}; // Initialisation de l'état du robot
+    role = 1; // 0 pour le robot, 1 pour la superstar
 
 }
 
 
 void Superstar(){
 
-    switch(SuperStar.state) {
+    switch (SuperStar.state) {
         case WAIT:
             if (SuperStar.startTime == 0) {
                 SuperStar.startTime = millis();
@@ -91,84 +90,63 @@ void Superstar(){
             pami.target_reached = false;
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
-            pami.Rotate(-60);  // Tourner de 90° à droite
-            Serial.println(pami.getAngle());
+            pami.Rotate(-93);  // Tourner de 90° à droite
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
             SuperStar.turnDone = true;
             SuperStar.state = STRAIGHT2;
             Serial.println("End TURN");
-            //Fait un signal buzzer sur la pin 13
-            digitalWrite(13, HIGH); // Activer le buzzer
-
             
             break;
 
-        case STRAIGHT2: {
+        case STRAIGHT2:
+            pami = PAMI();
+            Serial.println(digitalRead(12));
             while(digitalRead(12) == HIGH){
-                Serial.println(pami.getAngle());
+                Serial.println(digitalRead(12));
                 pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
             }
-        
+            // Pendant 0.5s faire encore lowlevelcontrol
             double t_start = millis();
             while (millis() - t_start < 150) {
                 pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
             }
-        
-            pami.pami_brake();
-            SuperStar.secondPathDone = true;
-            SuperStar.state = QUEUE;
+            Serial.println(digitalRead(12));
+
             Serial.println("End STRAIGHT2");
+            pami.pami_brake(); // Freiner le robot
+            SuperStar.secondPathDone = true;
+            SuperStar.state = SWITCH;
             break;
-        }
 
-        case QUEUE:
-            Serial.println("Start QUEUE");
-        
-            pami.turnTail();  // Agite la queue
-            // Servo Servo_Tail;
-            // Servo_Tail.attach(9);
-            // Servo_Tail.write(60); // Position neutre
-            // delay(1000); // Attendre un peu avant de changer la position
-            // Servo_Tail.write(110); // Position de mouvement
-            // delay(1000); // Attendre un peu avant de changer la position
-            // Servo_Tail.write(60); // Position neutre
-            // delay(1000); // Attendre un peu avant de changer la position
-            // Servo_Tail.detach(); // Détacher le servo après utilisation
+        case SWITCH:
+            pami.turnTail();  // Agite un microswitch
             SuperStar.switchActivated = true;
+            Serial.println("Microswitch activé");
+            while (true){ 
+                // pour qu'il ne bouge plus 
+            }
             break;
-
-
     }
+
+
 }
 
 
 void loop(){
 
-    // switch(role){
-    //     case 0:
-    //         // Agiter la queue
-    //         pami.turnTail();  // Agite la queue
-    //         Serial.println("Agitation de la queue terminée.");
-    //         break;
+    switch(role){
+        case 0:
+            while(true){
+                //Buzzer pin 13 ON
+                digitalWrite(13, HIGH);
+            
+            }
 
-    //     case 1:
-    //         Superstar();
-    //         break;
+        case 1:
+            Superstar();
+            break;
 
-    // }
-
-    // Print time_ms,left_ticks,left_speed,right_ticks,right_speed
-    pami.update_position();
-    // leftMotor.set_motor(9);
-    // rightMotor.set_motor(9);
-    // pami.lowlevelcontrol(0.3, 0.3); // Arrêter le robot
-    if (pami.target_reached == false){
-        pami.middlecontrol(1, -0.5, 0.0, false);  // Avancer vers x = 1.0
-    } else {
-        leftMotor.set_motor(0);
-        rightMotor.set_motor(0);
-        pami.pami_brake(); // Freiner le robot
-    }
     }
 
+}
