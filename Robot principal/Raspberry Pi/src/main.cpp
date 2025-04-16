@@ -197,7 +197,7 @@ int main() {
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot->starting_pos = 0;
+    robot->starting_pos = 2;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
