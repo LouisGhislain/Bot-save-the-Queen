@@ -9,11 +9,6 @@ Tail::Tail(int pin_tail): PIN_TAIL(pin_tail){
   // Servo_Tail.attach(PIN_TAIL);
 }
 
-// Méthode pour activer le servo-moteur
-void Tail::ActivateServo() {
-  Servo_Tail.attach(PIN_TAIL); // Attacher le servo uniquement quand nécessaire
-}
-
 // Fonction pour tourner la queue
 void Tail::Turn_tail(){
   // int tail_pos = 0;   

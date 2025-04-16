@@ -53,9 +53,11 @@ void setup() {
     delay(5000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
-    pinMode(14, OUTPUT);
+    // pinMode(14, OUTPUT);
 
     role = 1; // 0 pour le robot, 1 pour la superstar
+
+
 
 }
 
@@ -135,18 +137,29 @@ void Superstar(){
 
 void loop(){
 
-    switch(role){
-        case 0:
-            while(true){
-                //Buzzer pin 13 ON
-                digitalWrite(13, HIGH);
+    // switch(role){
+    //     case 0:
+    //         while(true){
+    //             //Buzzer pin 13 ON
+    //             digitalWrite(13, HIGH);
             
-            }
+    //         }
 
-        case 1:
-            Superstar();
-            break;
+    //     case 1:
+    //         Superstar();
+    //         break;
 
+    // }
+
+
+    pami.update_position();
+    // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
+    if(!pami.target_reached){
+        pami.middlecontrol(0.97, -0.35, 0.0, false);  // Avancer vers x = 1.0
+    }
+    else{
+        leftMotor.stop_motor();
+        rightMotor.stop_motor();
     }
 
 }

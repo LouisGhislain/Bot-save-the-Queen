@@ -67,8 +67,8 @@ void Motor::set_motor(float tension) {
 
     // updateSpeed();
 
-    float EMF = speed *15; // White PAMI
-    // float EMF = 18*speed; // Black PAMI
+    // float EMF = speed *15; White PAMI
+    float EMF = speed * 15; // Black PAMI
     
     if (tension > tension_max) {
         tension = tension_max;

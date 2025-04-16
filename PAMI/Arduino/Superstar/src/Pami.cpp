@@ -122,13 +122,12 @@ void PAMI::update_position() {
     dist_left = leftMotor.getDistance();
     dist_right = rightMotor.getDistance();
 
-    // Print vitess
-    // Serial.print(millis());
-    // Serial.print(",");
-    // Serial.print(leftMotor.getSpeed());
-    // Serial.print(",");
-    // Serial.print(rightMotor.getSpeed());
-    // Serial.println("");
+    // Print vitesse
+    Serial.print(millis() - 5000);
+    Serial.print(" , ");
+    Serial.print(leftMotor.getSpeed());
+    Serial.print(" , ");
+    Serial.println(rightMotor.getSpeed());
 
 
 

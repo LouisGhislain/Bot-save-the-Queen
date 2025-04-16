@@ -24,7 +24,7 @@ for line in data:
     values = [val.strip() for val in line.split(',')]
     if len(values) == 3:  # Ensure we have all 3 values
         try:
-            times.append(int(float(values[0])*1000))
+            times.append(int((float(values[0])*1000)-4999995))
             left_encoder.append(float(values[1]))
             right_encoder.append(float(values[2]))
         except ValueError:

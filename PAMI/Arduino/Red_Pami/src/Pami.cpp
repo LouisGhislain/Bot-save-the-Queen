@@ -5,8 +5,8 @@
 
 #define WheelDiameter 0.062 // Diamètre de la roue en mètres
 #define DistanceBetweenWheels 0.0996 // Distance entre les roues en mètres
-#define MAX_LINEAR_SPEED 0.2 // Vitesse linéaire maximale en m/s
-#define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
+#define MAX_LINEAR_SPEED 0.38 // Vitesse linéaire maximale en m/s
+// #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
 #define Kp_alpha 0.08 // Coefficient proportionnel pour l'angle
 
 
@@ -100,6 +100,13 @@ void PAMI::update_position() {
     dist_left = leftMotor.getDistance();
     dist_right = rightMotor.getDistance();
 
+    // Serial.print(millis() - 5000);
+    // Serial.print(" , ");
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(" , ");
+    // Serial.println(rightMotor.getSpeed());
+
+
 
     angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
     // Serial.print("Angle: ");
@@ -154,17 +161,17 @@ void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bo
 
     if (!target_reached) {
         while (rho > 0.08 && digitalRead(12) == HIGH) {
-            Serial.print(" Angle: ");
-            Serial.print(angle);
-            Serial.print(" X: ");
-            Serial.print(x_position);
-            Serial.print(" Y: ");
-            Serial.println(y_position);
+            // Serial.print(" Angle: ");
+            // Serial.print(angle);
+            // Serial.print(" X: ");
+            // Serial.print(x_position);
+            // Serial.print(" Y: ");
+            // Serial.println(y_position);
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            double v = 0.1; // Vitesse linéaire
             double w = Kp_alpha * alpha; // Vitesse angulaire
+            double v = 0.35 - w; // Vitesse linéaire
 
 
             double ref_speed_left = (v - w);
@@ -224,8 +231,8 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            double v = 0.2; // Vitesse linéaire
             double w = Kp_alpha * alpha; // Vitesse angulai
+            double v = 0.3-w; // Vitesse linéaire
 
             // Serial.print("Atan: ");
             // Serial.print(atan2(y_ref - y_position, x_ref - x_position));
@@ -244,16 +251,16 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.println(w);
 
 
-            if (!start_angle) {
-                if (abs(alpha) > 0.1) {
-                    // Serial.println("Calibration");
-                    v = 0;
-                    w = alpha*0.05;
-                } else {
-                    start_angle = true;
-                    // Serial.println("Start angle");
-                }
-            }
+            // if (!start_angle) {
+            //     if (abs(alpha) > 0.1) {
+            //         // Serial.println("Calibration");
+            //         v = 0;
+            //         w = alpha*0.05;
+            //     } else {
+            //         start_angle = true;
+            //         // Serial.println("Start angle");
+            //     }
+            // }
 
             double ref_speed_left = (v - w);
             double ref_speed_right = (v + w);
@@ -290,9 +297,6 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.print("Distance: ");
             // Serial.println(rho);
         }
-        // Stop the motors
-        leftMotor.set_motor(0);
-        rightMotor.set_motor(0);
         target_reached = true;
         Serial.println("Target reached");
     }

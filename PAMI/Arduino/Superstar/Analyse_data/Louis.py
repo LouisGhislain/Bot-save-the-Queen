@@ -105,7 +105,7 @@ if times:
     gain = steady_state_value/7
 
     # Computes Kp & Ki
-    imposed_time_response = 0.27
+    imposed_time_response = 0.2
     Kp = 1/gain * (time_response/imposed_time_response)
     Ki = Kp/time_response
 
