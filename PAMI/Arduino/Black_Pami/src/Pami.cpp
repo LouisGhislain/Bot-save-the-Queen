@@ -244,17 +244,6 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.println(w);
 
 
-            if (!start_angle) {
-                if (abs(alpha) > 0.1) {
-                    // Serial.println("Calibration");
-                    v = 0;
-                    w = alpha*0.05;
-                } else {
-                    start_angle = true;
-                    // Serial.println("Start angle");
-                }
-            }
-
             double ref_speed_left = (v - w);
             double ref_speed_right = (v + w);
 

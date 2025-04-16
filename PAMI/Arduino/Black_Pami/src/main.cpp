@@ -135,18 +135,11 @@ void Superstar(){
 
 void loop(){
 
-    switch(role){
-        case 0:
-            while(true){
-                //Buzzer pin 13 ON
-                digitalWrite(13, HIGH);
-            
-            }
-
-        case 1:
-            Superstar();
-            break;
-
+    if (!pami.target_reached){
+        pami.middlecontrol(0.9, -0.37, 0.0, false);  // Avancer vers x = 1.0
+    }
+    else{
+        pami.stop();
     }
 
 }
