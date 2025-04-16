@@ -44,8 +44,8 @@ struct PolarCoord {
 
 static constexpr double EPS = 0.1;
 static constexpr int MIN_PTS = 1;
-static constexpr double STOP_DISTANCE_ENNEMY = 0.500; // Distance d'arrêt en mm
-static constexpr double STOP_ANGLE_ENNEMY = 50; // Angle d'arrêt en radians donc si ennemi dans la fenêtre -30° +30° par rapport au robot
+static constexpr double STOP_DISTANCE_ENNEMY = 0.40; // Distance d'arrêt en m
+static constexpr double STOP_ANGLE_ENNEMY = 70; // Angle d'arrêt en radians donc si ennemi dans la fenêtre -30° +30° par rapport au robot
 
 
 

@@ -38,6 +38,8 @@ set(LIDAR_HEADERS
 # Rechercher récursivement tous les fichiers .cpp dans src
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
+add_compile_options(-Wno-psabi)
+
 # Ajouter l'exécutable
 add_executable(exeRobotProgram ${SOURCES} ${LIDAR_HEADERS})
 

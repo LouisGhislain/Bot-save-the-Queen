@@ -78,15 +78,22 @@ void loop_10ms(GAME *game){
         //===========================================================================
         // 10ms loop - START
         //===========================================================================
-        auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game);
-        if (distance_ennemy < STOP_DISTANCE_ENNEMY && angle_ennemy < STOP_ANGLE_ENNEMY){  // stop distance parameter in the lidar.h file
+        auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game); 
+
+        if (robot->backwards == true){ // if the robot goes backward, we change the interpreted angle
+            angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
+        }
+        //fprintf(stderr, "distance to ennemy: %f, angle to ennemy: %f\n", distance_ennemy, angle_ennemy);
+        // profil d'évitement d'adversaire (voir screenshot desmos)
+        if (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * 0.6 / (70*70) + 1) < STOP_DISTANCE_ENNEMY) {  // stop distance parameter in the lidar.h file
             robot->stop_if_ennemy();
             // print_Sauron_position(game);
             fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT, (bitch)\n");
-            robot->buzzBuzzer();
+            digitalWrite(BUZZER_PIN, HIGH);
         }
         else{
             robot->middleLevelController(game);
+            digitalWrite(BUZZER_PIN, LOW);
         }
 
         //============================================================================
@@ -165,7 +172,7 @@ void lidar_thread_func(void* game_void) {
         
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
-        fprintf(stderr, "computation time lidar = %d\n", elapsed);
+        //fprintf(stderr, "computation time lidar = %d\n", elapsed);
 
         // Court délai pour éviter une utilisation excessive du CPU
         std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 10ms de délai
@@ -190,7 +197,7 @@ int main() {
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot->starting_pos = 0;
+    robot->starting_pos = 2;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
@@ -206,7 +213,7 @@ int main() {
 
 
     // must be the last thing to do before starting the game
-    // robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
+    robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     // Create controller threads with different frequencies
     // truc de margoulin pour appeler low level controller via fonction lambda
     std::thread thread_1ms(loop_1ms, game);

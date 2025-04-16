@@ -729,54 +729,6 @@ src/Strategy/FSM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s
 .PHONY : src/Strategy/FSM.cpp.s
 
-src/Strategy/build_stack.o: src/Strategy/build_stack.cpp.o
-.PHONY : src/Strategy/build_stack.o
-
-# target to build an object file
-src/Strategy/build_stack.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o
-.PHONY : src/Strategy/build_stack.cpp.o
-
-src/Strategy/build_stack.i: src/Strategy/build_stack.cpp.i
-.PHONY : src/Strategy/build_stack.i
-
-# target to preprocess a source file
-src/Strategy/build_stack.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.i
-.PHONY : src/Strategy/build_stack.cpp.i
-
-src/Strategy/build_stack.s: src/Strategy/build_stack.cpp.s
-.PHONY : src/Strategy/build_stack.s
-
-# target to generate assembly for a file
-src/Strategy/build_stack.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.s
-.PHONY : src/Strategy/build_stack.cpp.s
-
-src/Strategy/drop_banner.o: src/Strategy/drop_banner.cpp.o
-.PHONY : src/Strategy/drop_banner.o
-
-# target to build an object file
-src/Strategy/drop_banner.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o
-.PHONY : src/Strategy/drop_banner.cpp.o
-
-src/Strategy/drop_banner.i: src/Strategy/drop_banner.cpp.i
-.PHONY : src/Strategy/drop_banner.i
-
-# target to preprocess a source file
-src/Strategy/drop_banner.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.i
-.PHONY : src/Strategy/drop_banner.cpp.i
-
-src/Strategy/drop_banner.s: src/Strategy/drop_banner.cpp.s
-.PHONY : src/Strategy/drop_banner.s
-
-# target to generate assembly for a file
-src/Strategy/drop_banner.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s
-.PHONY : src/Strategy/drop_banner.cpp.s
-
 src/Strategy/ennemy_avoidance.o: src/Strategy/ennemy_avoidance.cpp.o
 .PHONY : src/Strategy/ennemy_avoidance.o
 
@@ -801,29 +753,77 @@ src/Strategy/ennemy_avoidance.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.s
 .PHONY : src/Strategy/ennemy_avoidance.cpp.s
 
-src/Strategy/grab_stack.o: src/Strategy/grab_stack.cpp.o
-.PHONY : src/Strategy/grab_stack.o
+src/Strategy/fsm_build_stack.o: src/Strategy/fsm_build_stack.cpp.o
+.PHONY : src/Strategy/fsm_build_stack.o
 
 # target to build an object file
-src/Strategy/grab_stack.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o
-.PHONY : src/Strategy/grab_stack.cpp.o
+src/Strategy/fsm_build_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o
+.PHONY : src/Strategy/fsm_build_stack.cpp.o
 
-src/Strategy/grab_stack.i: src/Strategy/grab_stack.cpp.i
-.PHONY : src/Strategy/grab_stack.i
+src/Strategy/fsm_build_stack.i: src/Strategy/fsm_build_stack.cpp.i
+.PHONY : src/Strategy/fsm_build_stack.i
 
 # target to preprocess a source file
-src/Strategy/grab_stack.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.i
-.PHONY : src/Strategy/grab_stack.cpp.i
+src/Strategy/fsm_build_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.i
+.PHONY : src/Strategy/fsm_build_stack.cpp.i
 
-src/Strategy/grab_stack.s: src/Strategy/grab_stack.cpp.s
-.PHONY : src/Strategy/grab_stack.s
+src/Strategy/fsm_build_stack.s: src/Strategy/fsm_build_stack.cpp.s
+.PHONY : src/Strategy/fsm_build_stack.s
 
 # target to generate assembly for a file
-src/Strategy/grab_stack.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.s
-.PHONY : src/Strategy/grab_stack.cpp.s
+src/Strategy/fsm_build_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.s
+.PHONY : src/Strategy/fsm_build_stack.cpp.s
+
+src/Strategy/fsm_drop_banner.o: src/Strategy/fsm_drop_banner.cpp.o
+.PHONY : src/Strategy/fsm_drop_banner.o
+
+# target to build an object file
+src/Strategy/fsm_drop_banner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o
+.PHONY : src/Strategy/fsm_drop_banner.cpp.o
+
+src/Strategy/fsm_drop_banner.i: src/Strategy/fsm_drop_banner.cpp.i
+.PHONY : src/Strategy/fsm_drop_banner.i
+
+# target to preprocess a source file
+src/Strategy/fsm_drop_banner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.i
+.PHONY : src/Strategy/fsm_drop_banner.cpp.i
+
+src/Strategy/fsm_drop_banner.s: src/Strategy/fsm_drop_banner.cpp.s
+.PHONY : src/Strategy/fsm_drop_banner.s
+
+# target to generate assembly for a file
+src/Strategy/fsm_drop_banner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.s
+.PHONY : src/Strategy/fsm_drop_banner.cpp.s
+
+src/Strategy/fsm_grab_stack.o: src/Strategy/fsm_grab_stack.cpp.o
+.PHONY : src/Strategy/fsm_grab_stack.o
+
+# target to build an object file
+src/Strategy/fsm_grab_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o
+.PHONY : src/Strategy/fsm_grab_stack.cpp.o
+
+src/Strategy/fsm_grab_stack.i: src/Strategy/fsm_grab_stack.cpp.i
+.PHONY : src/Strategy/fsm_grab_stack.i
+
+# target to preprocess a source file
+src/Strategy/fsm_grab_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.i
+.PHONY : src/Strategy/fsm_grab_stack.cpp.i
+
+src/Strategy/fsm_grab_stack.s: src/Strategy/fsm_grab_stack.cpp.s
+.PHONY : src/Strategy/fsm_grab_stack.s
+
+# target to generate assembly for a file
+src/Strategy/fsm_grab_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.s
+.PHONY : src/Strategy/fsm_grab_stack.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -1029,18 +1029,18 @@ help:
 	@echo "... src/Strategy/FSM.o"
 	@echo "... src/Strategy/FSM.i"
 	@echo "... src/Strategy/FSM.s"
-	@echo "... src/Strategy/build_stack.o"
-	@echo "... src/Strategy/build_stack.i"
-	@echo "... src/Strategy/build_stack.s"
-	@echo "... src/Strategy/drop_banner.o"
-	@echo "... src/Strategy/drop_banner.i"
-	@echo "... src/Strategy/drop_banner.s"
 	@echo "... src/Strategy/ennemy_avoidance.o"
 	@echo "... src/Strategy/ennemy_avoidance.i"
 	@echo "... src/Strategy/ennemy_avoidance.s"
-	@echo "... src/Strategy/grab_stack.o"
-	@echo "... src/Strategy/grab_stack.i"
-	@echo "... src/Strategy/grab_stack.s"
+	@echo "... src/Strategy/fsm_build_stack.o"
+	@echo "... src/Strategy/fsm_build_stack.i"
+	@echo "... src/Strategy/fsm_build_stack.s"
+	@echo "... src/Strategy/fsm_drop_banner.o"
+	@echo "... src/Strategy/fsm_drop_banner.i"
+	@echo "... src/Strategy/fsm_drop_banner.s"
+	@echo "... src/Strategy/fsm_grab_stack.o"
+	@echo "... src/Strategy/fsm_grab_stack.i"
+	@echo "... src/Strategy/fsm_grab_stack.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

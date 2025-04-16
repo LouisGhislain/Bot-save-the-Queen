@@ -419,38 +419,10 @@ CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/FSM.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.s
 
-CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
-CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o: src/Strategy/build_stack.cpp
-CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/build_stack.cpp"
-
-CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/build_stack.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.i
-
-CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/build_stack.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.s
-
-CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
-CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o: src/Strategy/drop_banner.cpp
-CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/drop_banner.cpp"
-
-CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/drop_banner.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.i
-
-CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/drop_banner.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.s
-
 CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o: src/Strategy/ennemy_avoidance.cpp
 CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/ennemy_avoidance.cpp"
 
 CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.i: cmake_force
@@ -461,19 +433,47 @@ CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/ennemy_avoidance.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.s
 
-CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
-CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o: src/Strategy/grab_stack.cpp
-CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/grab_stack.cpp"
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o: src/Strategy/fsm_build_stack.cpp
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_build_stack.cpp"
 
-CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/grab_stack.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.i
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_build_stack.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.i
 
-CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/grab_stack.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.s
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_build_stack.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o: src/Strategy/fsm_drop_banner.cpp
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_drop_banner.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_drop_banner.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_drop_banner.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.s
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o: src/Strategy/fsm_grab_stack.cpp
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o: CMakeFiles/exeRobotProgram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o -MF CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o.d -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o -c "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_grab_stack.cpp"
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_grab_stack.cpp" > CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.i
+
+CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src/Strategy/fsm_grab_stack.cpp" -o CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.s
 
 CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o: CMakeFiles/exeRobotProgram.dir/flags.make
 CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o: src/main\ hugo\ et\ rom.cpp
@@ -572,10 +572,10 @@ exeRobotProgram_OBJECTS = \
 "CMakeFiles/exeRobotProgram.dir/src/Multimedia/startingCord.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.o" \
-"CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o" \
-"CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o" \
-"CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o" \
+"CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.o" \
 "CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.o" \
@@ -610,10 +610,10 @@ exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/Screen.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Multimedia/startingCord.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Robot.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/FSM.cpp.o
-exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/build_stack.cpp.o
-exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/drop_banner.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/ennemy_avoidance.cpp.o
-exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/grab_stack.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_build_stack.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o
+exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main_test_2.cpp.o
 exeRobotProgram: CMakeFiles/exeRobotProgram.dir/src/main_test.cpp.o

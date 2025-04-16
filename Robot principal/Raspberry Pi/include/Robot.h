@@ -30,6 +30,7 @@
 #define STARTING_CORD_PIN 20 // starting cord on gpio 20
 #define MICROSWITCH_BACK_LEFT 26
 #define MICROSWITCH_BACK_RIGHT 21
+#define BUZZER_PIN 22  // GPIO22 corresponds to WiringPi pin 3
 
 struct MovementParams {
     bool activated_target_angle;
@@ -129,13 +130,18 @@ public:
     int teensy_check_IR();
     void teensy_grab();
     void teensy_americain_third_stage(int nodeNumber, void *game);
+    void teensy_separate_third_stage(void *game);
+    void teensy_build_first_third_stage(int constructNodeNumber, void *game);
+    void teensy_build_second_third_stage(int constructNodeNumber, void *game);
     bool build_finished = false;
+    bool separate_finished = false; 
 
     // Sampling time
     static constexpr double SAMPLING_TIME = 0.001;
 
     double ref_speed_left = 0.0; // in rad/s (left motor speed)
     double ref_speed_right = 0.0; // in rad/s (right motor speed)
+    bool backwards;
     std::mutex ref_speed_mutex;
 
     double GLOBAL_x_coord_target;

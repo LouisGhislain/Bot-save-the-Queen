@@ -44,7 +44,7 @@ void Robot::initialize_pins() {
     wiringPiSetupGpio();  // Use BCM numbering
     pinMode(STARTING_CORD_PIN, INPUT);
     pinMode(MICROSWITCH_BACK_LEFT, INPUT);
-    //pullUpDnControl(MICROSWITCH_BACK_LEFT, PUD_UP); // Pull-up resistor
     pinMode(MICROSWITCH_BACK_RIGHT, INPUT);
-    //pullUpDnControl(MICROSWITCH_BACK_RIGHT, PUD_UP); // Pull-up resistor
+    // Set the buzzer pin as output
+    pinMode(BUZZER_PIN, OUTPUT);
 }

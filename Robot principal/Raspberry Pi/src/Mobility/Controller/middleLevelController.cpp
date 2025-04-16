@@ -20,7 +20,7 @@ const MovementParams straight {
 const MovementParams deplacement {
     false,  // activated_target_angle
     0.30,   // d0
-    0.3,    //0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
+    0.7,    //0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
     8,     // wMax
     0.03    // stop_robot_distance
 };
@@ -42,7 +42,6 @@ const MovementParams orientation {
 void Robot::middleLevelController(void *game) {
     GAME * mygame = (GAME *)game;
     Queen * myqueen = mygame->queen;
-    bool backwards = false;
     
     double rho, x_coord_target, y_coord_target, angle_target;
     double my_x, my_y, my_angle;
@@ -119,10 +118,16 @@ void Robot::middleLevelController(void *game) {
             backwards = true;
 
         }
-        if(alpha < -M_PI/2){
+        else if(alpha < -M_PI/2){
             alpha = alpha + M_PI;
             backwards = true;
         }
+        else{
+            backwards = false;
+        }
+    }
+    else{
+        backwards = false;
     }
 
 

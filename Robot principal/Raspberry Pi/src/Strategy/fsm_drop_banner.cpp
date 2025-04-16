@@ -7,7 +7,7 @@ void drop_banner(Robot *robot, GAME *game){
     robot->banner_dropped = false ;
     switch(BANNER_STATE){
     case 0 : //backward to drop 
-        //robot->straightMotion(-0.10, game);
+        robot->straightMotion(-0.10, game);
         BANNER_STATE++;
         break;
     case 1 :

@@ -43,12 +43,12 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     // Print robot state
     std::cout << "Robot state: " << STATE << std::endl;
 
-    switch (STATE){
+   switch (STATE){
 
         case 0 : // DROP THE BANNER
-            // drop_banner(robot, game);
+            //drop_banner(robot, game);
             // if(robot->banner_dropped){ // WAIT DROP
-            //     STATE++ ; 
+            //      STATE++ ; 
             // }
             STATE++;
             break ; 
@@ -76,20 +76,34 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             }
             break;
 
-        case 4 : //GO BUILD AMERICAIN STAGE
-            fsm_build_american_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
+        case 4 : //GO TO CONSTRUCTION ZONE AND BUILD
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_0 , CONSTRUCTION_YELLOW_0);
             if(robot->stack_builded){//WAIT BUILD
                 STATE++;
             }
             break;
 
-        case 5 : //BUZZ
+        case 5 : //GO TO STACK AND GRAB
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ; 
+
+        case 6 : //BUILD THIRD STAGES
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_CONSTRUCTION_YELLOW_0,CONSTRUCTION_YELLOW_0,CONSTRUCTION_YELLOW_1);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break ; 
+
+        case 7 : //BUZZ
             robot->buzzBuzzer();
             usleep(500);
             STATE++;
             break;
             
-        case 6 : //SHUTTING DOWN
+        case 8 : //SHUTTING DOWN
             usleep(30000);
             break;
         

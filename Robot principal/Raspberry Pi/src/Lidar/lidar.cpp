@@ -171,8 +171,8 @@ void Sauron_finder(GAME *squid){
   }
 
 
-  printf("Nearest point: (%f, %f)\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
-  // printf("Angle: %f, Distance: %f\n", squid->Sauron->pol_pos->angle, squid->Sauron->pol_pos->distance);
+  //printf("Nearest point: (%f, %f)\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
+  //printf("Angle: %f, Distance: %f\n", squid->Sauron->pol_pos->angle, squid->Sauron->pol_pos->distance);
 }
 
 void clustering_calibrated(GAME * squid) {

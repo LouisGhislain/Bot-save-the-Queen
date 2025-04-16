@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I"/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/lib/rplidar_sdk/sdk/include" -I"/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/src" -I"/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/include"
 
-CXX_FLAGS = 
+CXX_FLAGS = -Wno-psabi
 

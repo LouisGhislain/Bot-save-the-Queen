@@ -98,6 +98,7 @@ extern int STATE_GRABBING ; //state for grabbing one stack
 //----Build stack----
 void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE);
+void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2);
 extern int STATE_BUILDING ; 
 
 #endif // FSM_H
