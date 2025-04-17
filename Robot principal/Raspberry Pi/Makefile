@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi"
+CMAKE_SOURCE_DIR = "/home/TheQueen/copy2_Bot-save-the-Queen-gihub/Robot principal/Raspberry Pi"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi"
+CMAKE_BINARY_DIR = "/home/TheQueen/copy2_Bot-save-the-Queen-gihub/Robot principal/Raspberry Pi"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/copy2_Bot-save-the-Queen-gihub/Robot principal/Raspberry Pi/CMakeFiles" "/home/TheQueen/copy2_Bot-save-the-Queen-gihub/Robot principal/Raspberry Pi//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/Bot-save-the-Queen_Github/Robot principal/Raspberry Pi/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/TheQueen/copy2_Bot-save-the-Queen-gihub/Robot principal/Raspberry Pi/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -825,6 +825,30 @@ src/Strategy/fsm_grab_stack.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.s
 .PHONY : src/Strategy/fsm_grab_stack.cpp.s
 
+src/Strategy/infrared_check_stack.o: src/Strategy/infrared_check_stack.cpp.o
+.PHONY : src/Strategy/infrared_check_stack.o
+
+# target to build an object file
+src/Strategy/infrared_check_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/infrared_check_stack.cpp.o
+.PHONY : src/Strategy/infrared_check_stack.cpp.o
+
+src/Strategy/infrared_check_stack.i: src/Strategy/infrared_check_stack.cpp.i
+.PHONY : src/Strategy/infrared_check_stack.i
+
+# target to preprocess a source file
+src/Strategy/infrared_check_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/infrared_check_stack.cpp.i
+.PHONY : src/Strategy/infrared_check_stack.cpp.i
+
+src/Strategy/infrared_check_stack.s: src/Strategy/infrared_check_stack.cpp.s
+.PHONY : src/Strategy/infrared_check_stack.s
+
+# target to generate assembly for a file
+src/Strategy/infrared_check_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exeRobotProgram.dir/build.make CMakeFiles/exeRobotProgram.dir/src/Strategy/infrared_check_stack.cpp.s
+.PHONY : src/Strategy/infrared_check_stack.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -1041,6 +1065,9 @@ help:
 	@echo "... src/Strategy/fsm_grab_stack.o"
 	@echo "... src/Strategy/fsm_grab_stack.i"
 	@echo "... src/Strategy/fsm_grab_stack.s"
+	@echo "... src/Strategy/infrared_check_stack.o"
+	@echo "... src/Strategy/infrared_check_stack.i"
+	@echo "... src/Strategy/infrared_check_stack.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -97,6 +97,12 @@ public:
     // ennemy avoidance
     void stop_if_ennemy();
     std::pair<double, double> get_distance_to_ennemy(GAME *game);
+    void reaction_to_ennemy(GAME *game);    
+    // ennemy avoidance variables
+    int CASE_ennemy_avoidance = 0;
+    bool avoidance_loop_activated = false; // true if the ennemy avoidance is activated
+    std::chrono::steady_clock::time_point starting_ennemy_avoidance_time; // time when the ennemy avoidance started
+
 
     // Odometry
     void updateOdometry(void *game);
@@ -122,6 +128,7 @@ public:
     void initialize_pins();
     void wait_starting_cord(GAME *game);
     bool checkIfAgainstWall(GAME *game);
+    bool is_stack_present();
     
     // -------Teensy------
     void teensy_init();
@@ -214,7 +221,7 @@ private:
     // High level controller variables
     int current_destination = 1914; // la guerre est déclarée
     int current_step = 0;
-    const double d1_change_target = 0.08; // in m (distance from when we follow the next node on the path)
+    const double d1_change_target = 0.04; // in m (distance from when we follow the next node on the path)
     bool last_step = true;
 
     // Path planning variables
@@ -241,8 +248,7 @@ private:
     
     // File descriptor for I2C
     int fd_screen;
-    int fd_teensy;        
-
+    int fd_teensy;      
 };
 
 #endif // ROBOT_H

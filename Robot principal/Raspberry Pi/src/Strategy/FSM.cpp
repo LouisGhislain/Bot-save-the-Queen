@@ -9,30 +9,63 @@ void start_from_blue_bottom(Robot *robot, GAME *game){
     switch (STATE){
         
         case 0 : // go to node 36 23 37 22
-            robot->highLevelController(36, game);
+            robot->highLevelController(53, game);
             if (robot->end_of_travel){
                 STATE++;
             }
             break ;
         case 1 : // 
-            robot->highLevelController(23, game);
+            robot->highLevelController(38, game);
             if (robot->end_of_travel){
                 STATE++;
             }
             break ;
         case 2 : // 
-            robot->highLevelController(37, game);
-            if (robot->end_of_travel){
-                STATE++;
-            }
-            break ;
-        case 3 : // 
-            robot->highLevelController(22, game);
+            robot->highLevelController(39, game);
             if (robot->end_of_travel){
                 STATE = 0;
             }
-            break;
+            break ;
     }
+    // switch (STATE){
+
+    //     case 0 : // go to node 36 23 37 22
+    //         robot->highLevelController(5, game);
+    //         if (robot->end_of_travel){
+    //             STATE++;
+    //         }
+    //         break ;
+    //     case 1 : // 
+    //         robot->highLevelController(31, game);
+    //         if (robot->end_of_travel){
+    //             STATE++;
+    //         }
+    //         break ;
+    //     case 2 : // 
+    //         robot->highLevelController(1, game);
+    //         if (robot->end_of_travel){
+    //             STATE++;
+    //         }
+    //         break ;
+    //     case 3 : // 
+    //         robot->highLevelController(9, game);
+    //         if (robot->end_of_travel){
+    //             STATE++;
+    //         }
+    //         break ;
+    //     case 4 : //
+    //         robot->highLevelController(31, game);
+    //         if (robot->end_of_travel){
+    //             STATE++;
+    //         }
+    //         break ;
+    //     case 5 : //
+    //         robot->highLevelController(32, game);
+    //         if (robot->end_of_travel){
+    //             STATE = 0;
+    //         }
+    //         break ;
+    // }
 }
 
 void start_from_blue_side(Robot *robot, GAME *game){
@@ -162,6 +195,10 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 }
 
 void choose_start(Robot *robot, GAME *game){
+
+    if(robot->avoidance_loop_activated){
+        return; // do nothing is we are avoiding an ennemy
+    }
 
     if(get_match_time(game) > time_return_to_base){
         return_to_base(robot, game);

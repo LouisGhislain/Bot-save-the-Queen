@@ -48,3 +48,32 @@ std::pair<double, double> Robot::get_distance_to_ennemy(GAME *game){
     
     return {distance_to_ennemy, angle_to_ennemy};
 } 
+
+void Robot::reaction_to_ennemy(GAME *game){
+    
+    switch(CASE_ennemy_avoidance){
+        case 0: // record the time when the ennemy is detected
+            stop_if_ennemy(); // already begin to stop
+            starting_ennemy_avoidance_time = std::chrono::steady_clock::now();
+            CASE_ennemy_avoidance++; 
+            break;
+            
+        case 1:
+            stop_if_ennemy(); // continue to stop
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - starting_ennemy_avoidance_time).count() > 2000) {
+                straightMotion(-0.3, game); // go backward by 30 cm
+                avoidance_loop_activated = true; // set the ennemy avoidance case (because when we detect the ennemy we can update this flag in the ennemy detection loop)
+                CASE_ennemy_avoidance++; // go to the next case if ennemy detected during 1 second
+            }
+            break;
+        
+        case 2: // effectuate the backward movement
+            middleLevelController(game);
+            if (end_of_manoeuvre == true) {
+                end_of_manoeuvre = false;
+                CASE_ennemy_avoidance = 0;
+                avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
+            }
+            break;
+    }
+}

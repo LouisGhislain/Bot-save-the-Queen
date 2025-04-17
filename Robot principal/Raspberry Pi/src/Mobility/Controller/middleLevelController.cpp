@@ -85,7 +85,7 @@ void Robot::middleLevelController(void *game) {
     }
 
     // STOP THE ROBOT IF THE TARGET IS REACHED
-    if (rho < params.stop_robot_distance){
+    if (rho < params.stop_robot_distance && (!(params == deplacement) || last_step == true)) {
         {   
             std::lock_guard<std::mutex> lock(ref_speed_mutex);
             ref_speed_left = 0;

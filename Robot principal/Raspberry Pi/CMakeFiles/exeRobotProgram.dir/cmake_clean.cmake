@@ -57,6 +57,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_drop_banner.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/Strategy/fsm_grab_stack.cpp.o.d"
+  "CMakeFiles/exeRobotProgram.dir/src/Strategy/infrared_check_stack.cpp.o"
+  "CMakeFiles/exeRobotProgram.dir/src/Strategy/infrared_check_stack.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o"
   "CMakeFiles/exeRobotProgram.dir/src/main.cpp.o.d"
   "CMakeFiles/exeRobotProgram.dir/src/main_hugo_et_rom.cpp.o"

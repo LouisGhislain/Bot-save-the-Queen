@@ -86,13 +86,16 @@ void loop_10ms(GAME *game){
         }
         //fprintf(stderr, "distance to ennemy: %f, angle to ennemy: %f\n", distance_ennemy, angle_ennemy);
         // profil d'évitement d'adversaire (voir screenshot desmos)
-        if (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * 0.6 / (70*70) + 1) < STOP_DISTANCE_ENNEMY) {  // stop distance parameter in the lidar.h file
-            robot->stop_if_ennemy();
+        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * 0.4 / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY)) {  // stop distance parameter in the lidar.h file
+            //fprintf(stderr, "ennemy avoidance case = %d\n", robot->CASE_ennemy_avoidance);
+            robot->reaction_to_ennemy(game);
             // print_Sauron_position(game);
-            fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT, (bitch)\n");
+            fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT\n");
             digitalWrite(BUZZER_PIN, HIGH);
         }
         else{
+            robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
+            robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
             digitalWrite(BUZZER_PIN, LOW);
         }
@@ -136,7 +139,7 @@ void loop_100ms(GAME *game){
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
-        auto sleep_time = milliseconds(40) - elapsed;
+        auto sleep_time = milliseconds(20) - elapsed;
         
         if (sleep_time > milliseconds(0)) {
             std::this_thread::sleep_for(sleep_time);
@@ -204,7 +207,7 @@ int main() {
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot->starting_pos = 2;
+    robot->starting_pos = 0;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
