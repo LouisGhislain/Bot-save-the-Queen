@@ -151,6 +151,10 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 
 void choose_start(Robot *robot, GAME *game){
 
+    if(robot->avoidance_loop_activated){
+        return; // do nothing is we are avoiding an ennemy
+    }
+
     if(get_match_time(game) > time_return_to_base){
         return_to_base(robot, game);
         return;
