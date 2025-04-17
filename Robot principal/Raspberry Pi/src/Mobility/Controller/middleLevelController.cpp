@@ -3,7 +3,7 @@
 // Global movement parameters
 const MovementParams manoeuvre {
     false,  // activated_target_angle
-    0.02,   // d0
+    0,   // d0
     0.175,    // vMax
     8,     // wMax
     0.01    // stop_robot_distance
@@ -11,7 +11,7 @@ const MovementParams manoeuvre {
 
 const MovementParams straight {
     false,  // activated_target_angle
-    0.02,   // d0
+    0, //0.02,   // d0
     0.175,   //0.175,    // vMax
     8,     // wMax      // dans la premiere démo triple étage -> wMax subi = 9.5
     0.01    // stop_robot_distance
@@ -19,8 +19,8 @@ const MovementParams straight {
 
 const MovementParams deplacement {
     false,  // activated_target_angle
-    0.30,   // d0
-    0.7,    //0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
+    0.15,   // d0
+    0.6,    //0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
     8,     // wMax
     0.03    // stop_robot_distance
 };
@@ -85,15 +85,14 @@ void Robot::middleLevelController(void *game) {
     }
 
     // STOP THE ROBOT IF THE TARGET IS REACHED
-    if (rho < params.stop_robot_distance && (!(params == deplacement) || last_step == true)) {
+    if ((rho < params.stop_robot_distance) && (!(params == deplacement) || last_step == true)) {
         {   
             std::lock_guard<std::mutex> lock(ref_speed_mutex);
             ref_speed_left = 0;
             ref_speed_right = 0;
             end_of_manoeuvre = true;
         }
-        travelled_distance = 0;
-        //std::cout << "Point reached" << std::endl;
+        std::cout << "Point reached" << std::endl;
         return;
         }
     else{
@@ -137,25 +136,33 @@ void Robot::middleLevelController(void *game) {
     double rot_part = abs(distanceBetweenWheels * w_ref / 2); // To avoid multiple calculations
 
 
-    // COMPUTING THE TRAVELLED DISTANCE 
-    travelled_distance += abs(((distl + distr)-(last_distl_middle + last_distr_middle))/2);
-    last_distl_middle = distl;
-    last_distr_middle = distr;
 
     bool mylast_step;
     {
         std::lock_guard<std::mutex> lock(flags);
         mylast_step = last_step;
     }
+    double my_travelled_distance;
+    {
+        std::lock_guard<std::mutex> lock(travelled_distance_mutex);
+        my_travelled_distance = travelled_distance;
+    }
+    double my_rho_to_goal;
+    {
+        std::lock_guard<std::mutex> lock(rho_to_goal_mutex);
+        my_rho_to_goal = rho_to_goal;
+    }
     // COMPUTING V_REF DEPENDING ON THE TRAPEZOIDAL SPEED PROFILE :
     //   ->  FALLING EDGE
-    if ((rho < params.d0) && (mylast_step ==  true)) {
-        v_ref = sqrt(2 * rho * params.acceleration) - rot_part;
+    if ((my_rho_to_goal < params.d0)) {
+        v_ref = sqrt(2 * my_rho_to_goal * params.acceleration) - rot_part;
+        v_ref = std::max(v_ref, 0.0);
+        // Print Rising edge and vref
     }
     
     //   ->  RISING EDGE
-    else if (travelled_distance < (params.d0)){ 
-        v_ref = sqrt(2 * (travelled_distance + 0.001) * params.acceleration) - rot_part;
+    else if (my_travelled_distance < (params.d0)){ 
+        v_ref = sqrt(2 * (my_travelled_distance + 0.001) * params.acceleration) - rot_part;
         v_ref = std::max(v_ref, v_threshold_move);
     }
 

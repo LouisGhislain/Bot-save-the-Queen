@@ -38,3 +38,15 @@ void Robot::teensy_build_second_third_stage(int constructNodeNumber, void *game)
     straightMotion(-0.15,game); //backward down lift
     build_finished = true ; 
 }
+
+/*
+void Robot::teensy_strat2_build_first(int constructNodeNumber, void *game){
+    build_finished = false ; 
+    teensy_send_command(0x06); 
+    usleep(2000000);
+    maneuver(constructNodeNumber, game); //forward
+    usleep(3000000);
+    straightMotion(-0.15,game); //backward down lift
+    build_finished = true ; 
+}
+*/

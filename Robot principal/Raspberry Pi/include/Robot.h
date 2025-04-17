@@ -170,6 +170,8 @@ public:
 
     // High level
     bool end_of_travel = true;
+    double rho_to_goal;
+    std::mutex rho_to_goal_mutex;
 
     // FSM
     bool arrived_first_stack = false;
@@ -212,9 +214,10 @@ private:
 
     double delta_x_target;
     double delta_y_target;
-    double last_distl_middle = 0;
-    double last_distr_middle = 0;
+    double last_distl_high = 0;
+    double last_distr_high = 0;
     double travelled_distance = 0.0; // in m (distance from the starting point)
+    std::mutex travelled_distance_mutex;
     double v_ref = 0.0; // in m/s (linear speed)
     double v_threshold_move = 0.0441; // in m/s (minimum speed to move) (1.5 rad/s a la roue) = 1.5 * wheel_radius = 0.0441 m/s
 
@@ -236,6 +239,7 @@ private:
     double last_distr = 0.0;
     double distl = 0.0;
     double distr = 0.0;
+    std::mutex dist_mutex;
     double distanceBetweenOdometers = 0.28806; // in m (distance between the two wheels)
     double wheel_radius = 0.0295;              // in m (radius of the wheels)
 

@@ -3,7 +3,7 @@
 void Robot::teensy_build(void *game){
     build_finished = false;
     teensy_send_command(0x04);//CMD_BUILD
-    usleep(500000);
+    usleep(400000);
     straightMotion(-0.12,game);//recule avec cremaillère
     usleep(3500000);
     straightMotion(0.12,game);//avance avec stack haut
@@ -21,6 +21,8 @@ void Robot::teensy_push_separate(void *game){
     straightMotion(-0.12,game);
     separate_finished = true ; 
 }
+
+
 /*
     int rasp_backward = 0;
     int rasp_forward = 0 ;

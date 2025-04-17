@@ -230,6 +230,35 @@ void fsm_build_romain(Robot *robot, GAME *game, int PRE_NODE, int GRAB_NODE){
         break ; 
     }
 }
+
+/*
+case 3 : 
+    if(robot->separated_finished){
+        //RECULE
+        STATE_BUILDING++;
+    }
+    break ; 
+case 4 : //MANEUVRING
+    if(robot->end_of_maneuver){
+        STATE_BUILDING++;
+    }
+    break ; 
+case 5 : //Move to construct
+    robot->highLevelController(PRE_NODE_CONSTRUCT, game);
+    if (robot->end_of_travel){
+        STATE_BUILDING++;
+    }
+    break ; 
+ case 6 : //ORIENTING TO BUILD ZONE
+    robot->orientate(-90, game);
+    if (robot->end_of_angle){
+        STATE_BUILDING++;
+    }
+    break;
+case 6 : //UP AND RELEASE
+    robot->
+    */
+
 /* TEST SEPARATING
     case GRABBING : 
         robot->teensy_send_command(0x02); // Grab

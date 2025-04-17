@@ -139,7 +139,7 @@ void loop_100ms(GAME *game){
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
-        auto sleep_time = milliseconds(20) - elapsed;
+        auto sleep_time = milliseconds(10) - elapsed;
         
         if (sleep_time > milliseconds(0)) {
             std::this_thread::sleep_for(sleep_time);
@@ -207,7 +207,7 @@ int main() {
 
     // Specify the starting position of the robot
     // 0 = blue_bottom, 1 = blue_side, 2 = yellow_bottom, 3 = yellow_side
-    robot->starting_pos = 0;
+    robot->starting_pos = 2;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
