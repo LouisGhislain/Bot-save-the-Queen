@@ -20,14 +20,13 @@ void Tail::Turn_tail(){
   //     Servo_Tail.write(tail_pos);              // tell servo to go to position in variable 'pos'
   //     delay(50);                       // waits 15ms for the servo to reach the position
   //   }
-  Servo_Tail.write(55); // Position neutre
-  delay(1000); // Attendre un peu avant de changer la position
-  Servo_Tail.write(97); // Position de mouvement
+  pinMode(PIN_TAIL, OUTPUT);
+  Servo_Tail.attach(PIN_TAIL); // Attacher le servo à la broche
+  Servo_Tail.write(10); // Position neutre
   delay(500); // Attendre un peu avant de changer la position
-  Servo_Tail.write(140); // Position de mouvement
-  delay(1000); // Attendre un peu avant de changer la position
-  Servo_Tail.write(97); // Position de mouvement
+  // Servo_Tail.write(40); // Position de mouvement
+  // delay(500); // Attendre un peu avant de changer la position
+  Servo_Tail.write(70); // Position de mouvement
   delay(500); // Attendre un peu avant de changer la position
-  Servo_Tail.write(55); // Position neutre
-  delay(1000); // Attendre un peu avant de changer la position
+  Servo_Tail.detach(); // Détacher le servo après utilisation
 }

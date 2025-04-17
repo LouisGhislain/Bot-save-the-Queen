@@ -3,12 +3,10 @@
 
 // Enum pour les états du robot
 typedef enum {
-    WAIT,
     STRAIGHT1,
     TURN,
     STRAIGHT2,
-    QUEUE,
-    END
+    QUEUE
 } EtatRobot;
 
 // Structure représentant l'état du robot

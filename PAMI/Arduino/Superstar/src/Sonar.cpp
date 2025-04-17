@@ -16,5 +16,5 @@ int Sonar::Sonar_Get_Distance(){
   digitalWrite(PIN_TRIG, LOW);
   duration = pulseIn(PIN_ECHO, HIGH, 30000);
   sonar_distance = (duration*.0343)/2;  
-  return sonar_distance ; 
+  return sonar_distance ;
 }

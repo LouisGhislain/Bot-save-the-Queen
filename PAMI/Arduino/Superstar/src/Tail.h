@@ -11,6 +11,5 @@ private :
 public : 
     Tail(int pin_tail);
     void Turn_tail();
-    void ActivateServo();
 };
 
