@@ -45,12 +45,22 @@ int role;
 void setup() {
     Serial.begin(9600);
 
+    while (analogRead(A5) < 1.5) {
+        Serial.println("Waiting for the microswitch to be pressed...");
+        delay(100); // Attendre un peu avant de vérifier à nouveau
+    }
+
+    while (analogRead(A5) > 1.5) {
+        Serial.println("Waiting for the microswitch to be released...");
+        delay(100); // Attendre un peu avant de vérifier à nouveau
+    }
+    Serial.println("Microswitch released. Starting the robot.");
     //Initialisation du PAMI
     pami = PAMI();
 
     Serial.println("Début du test de vitesse");
 
-    delay(5000);  // Attendre que le moniteur série soit prêt
+    delay(5500);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
     // pinMode(14, OUTPUT);
@@ -62,95 +72,7 @@ void setup() {
 }
 
 
-void Superstar(){
-
-    switch (SuperStar.state) {
-        case WAIT:
-            if (SuperStar.startTime == 0) {
-                SuperStar.startTime = millis();
-                Serial.println("Start wait");
-            }
-            if (millis() - SuperStar.startTime >= 85000) {
-                SuperStar.waitDone = true;
-                SuperStar.state = STRAIGHT1;
-                pami.setState(moving);
-                Serial.println("End wait");
-            }
-            break;
-
-        case STRAIGHT1:
-            
-            Serial.println("Start STRAIGHT1");
-            pami.middlecontrol(1.15, -0.05, 0.0, false);  // Avancer vers x = 1.0
-            SuperStar.firstPathDone = true;
-            SuperStar.state = TURN;
-            Serial.println("End STRAIGHT1");
-            
-            break;
-
-        case TURN:
-            pami.target_reached = false;
-            Serial.println("Start TURN");
-            // Exemple : tourner de 90° à droite
-            pami.Rotate(-93);  // Tourner de 90° à droite
-            // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
-            
-            SuperStar.turnDone = true;
-            SuperStar.state = STRAIGHT2;
-            Serial.println("End TURN");
-            
-            break;
-
-        case STRAIGHT2:
-            pami = PAMI();
-            Serial.println(digitalRead(12));
-            while(digitalRead(12) == HIGH){
-                Serial.println(digitalRead(12));
-                pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
-            }
-            // Pendant 0.5s faire encore lowlevelcontrol
-            double t_start = millis();
-            while (millis() - t_start < 150) {
-                pami.lowlevelcontrol(0.1, 0.1); // Avancer tout droit
-            }
-            Serial.println(digitalRead(12));
-
-            Serial.println("End STRAIGHT2");
-            pami.pami_brake(); // Freiner le robot
-            SuperStar.secondPathDone = true;
-            SuperStar.state = SWITCH;
-            break;
-
-        case SWITCH:
-            pami.turnTail();  // Agite un microswitch
-            SuperStar.switchActivated = true;
-            Serial.println("Microswitch activé");
-            while (true){ 
-                // pour qu'il ne bouge plus 
-            }
-            break;
-    }
-
-
-}
-
-
-void loop(){
-
-    // switch(role){
-    //     case 0:
-    //         while(true){
-    //             //Buzzer pin 13 ON
-    //             digitalWrite(13, HIGH);
-            
-    //         }
-
-    //     case 1:
-    //         Superstar();
-    //         break;
-
-    // }
-
+void loop(){   
 
     pami.update_position();
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
@@ -160,6 +82,11 @@ void loop(){
     else{
         leftMotor.stop_motor();
         rightMotor.stop_motor();
+        pami.turnTail(); // Tourner la queue
     }
+    // int sonar_distance = pam i.getSonarDistance();
+    // Serial.print("Distance: ");
+    // Serial.print(sonar_distance);
+    // Serial.println(" cm");
 
 }

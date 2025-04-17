@@ -109,8 +109,6 @@ void PAMI::update_position() {
 
 
     angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
-    // Serial.print("Angle: ");
-    // Serial.println(angle);
 
     // Update the position of the robot
     x_position = (dist_left + dist_right) / 2.0 * cos(angle * PI / 180.0) + x_start; // Position en x
@@ -151,74 +149,6 @@ void PAMI::Turn(double angle_ref) {
 }
 
 
-
-void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bool target){
-
-     // Met à jour la position du robot
-    // double Kp_switch = 0.005; // Coefficient proportionnel pour l'angle
-
-    double rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
-
-    if (!target_reached) {
-        while (rho > 0.08 && digitalRead(12) == HIGH) {
-            // Serial.print(" Angle: ");
-            // Serial.print(angle);
-            // Serial.print(" X: ");
-            // Serial.print(x_position);
-            // Serial.print(" Y: ");
-            // Serial.println(y_position);
-            double theta = angle * PI / 180.0; // Convertir l'angle en radians
-            rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
-            double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            double w = Kp_alpha * alpha; // Vitesse angulaire
-            double v = 0.35 - w; // Vitesse linéaire
-
-
-            double ref_speed_left = (v - w);
-            double ref_speed_right = (v + w);
-
-
-            // Limit the speed
-            if (ref_speed_left > MAX_LINEAR_SPEED) {
-                ref_speed_left = MAX_LINEAR_SPEED;
-            } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
-                ref_speed_left = -MAX_LINEAR_SPEED;
-            }
-            if (ref_speed_right > MAX_LINEAR_SPEED) {
-                ref_speed_right = MAX_LINEAR_SPEED;
-            } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
-                ref_speed_right = -MAX_LINEAR_SPEED;
-            }
-
-            lowlevelcontrol(ref_speed_left, ref_speed_right);
-
-            // Print the reference speed
-            Serial.print("Ref speed left: ");
-            Serial.print(ref_speed_left);
-            Serial.print(" Ref speed right: ");
-            Serial.println(ref_speed_right);
-            Serial.print(" Angle: ");
-            Serial.print(angle);
-            Serial.print(" X: ");
-            Serial.print(x_position);
-            Serial.print(" Y: ");
-            Serial.println(y_position);
-
-            delay(100); // Attendre un peu avant de mettre à jour la position
-
-            // Serial.print("Distance: ");
-            // Serial.println(rho);
-        }
-        // Stop the motors
-        leftMotor.set_motor(0);
-        rightMotor.set_motor(0);
-        target_reached = true;
-        Serial.println("Target reached");
-    }
-
-}
-
-
 void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target) {
 
 
@@ -230,77 +160,59 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
         while (rho > 0.08) {
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
-            double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            double w = Kp_alpha * alpha; // Vitesse angulai
-            double v = 0.3-w; // Vitesse linéaire
-
-            // Serial.print("Atan: ");
-            // Serial.print(atan2(y_ref - y_position, x_ref - x_position));
-
-            // Serial.print("Angle: ");
-            // Serial.print(theta);
-
-            // Serial.print("Alpha: ");
-            // Serial.println(alpha);
-            // Serial.print(" Distance: ");
-            // Serial.print(rho);
-
-            // Serial.print("v: ");
-            // Serial.print(v);
-            // Serial.print(" w: ");
-            // Serial.println(w);
-
-
-            // if (!start_angle) {
-            //     if (abs(alpha) > 0.1) {
-            //         // Serial.println("Calibration");
-            //         v = 0;
-            //         w = alpha*0.05;
-            //     } else {
-            //         start_angle = true;
-            //         // Serial.println("Start angle");
-            //     }
-            // }
-
-            double ref_speed_left = (v - w);
-            double ref_speed_right = (v + w);
-
-
-            // Limit the speed
-            if (ref_speed_left > MAX_LINEAR_SPEED) {
-                ref_speed_left = MAX_LINEAR_SPEED;
-            } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
-                ref_speed_left = -MAX_LINEAR_SPEED;
+            double distance_to_ennemy = getSonarDistance(); // Distance entre le robot et l'ennemi
+            Serial.print("Distance to ennemy: ");
+            Serial.println(distance_to_ennemy);
+            if (distance_to_ennemy < 15 && distance_to_ennemy > 1) { // Si l'ennemi est trop proche, on arrête le robot
+                Serial.println("Obstacle detected, stopping the robot");
+                leftMotor.set_motor(0); // Arrêter le robot
+                rightMotor.set_motor(0); // Arrêter le robot
+                pami_brake(); // Freiner le robot
             }
-            if (ref_speed_right > MAX_LINEAR_SPEED) {
-                ref_speed_right = MAX_LINEAR_SPEED;
-            } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
-                ref_speed_right = -MAX_LINEAR_SPEED;
+            else {
+                double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+                double w = Kp_alpha * alpha; // Vitesse angulai
+                double v = 0.3-w; // Vitesse linéaire
+
+                double ref_speed_left = (v - w);
+                double ref_speed_right = (v + w);
+
+
+                // Limit the speed
+                if (ref_speed_left > MAX_LINEAR_SPEED) {
+                    ref_speed_left = MAX_LINEAR_SPEED;
+                } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
+                    ref_speed_left = -MAX_LINEAR_SPEED;
+                }
+                if (ref_speed_right > MAX_LINEAR_SPEED) {
+                    ref_speed_right = MAX_LINEAR_SPEED;
+                } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
+                    ref_speed_right = -MAX_LINEAR_SPEED;
+                }
+
+                lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+                // Print the reference speed
+                Serial.print("Ref speed left: ");
+                Serial.print(ref_speed_left);
+                Serial.print(" Ref speed right: ");
+                Serial.println(ref_speed_right);
+                Serial.print(" Angle: ");
+                Serial.print(angle);
+                Serial.print(" X: ");
+                Serial.print(x_position);
+                Serial.print(" Y: ");
+                Serial.println(y_position);
+
+                delay(100); // Attendre un peu avant de mettre à jour la position
+
+                // Serial.print("Distance: ");
+                // Serial.println(rho);
             }
-
-            lowlevelcontrol(ref_speed_left, ref_speed_right);
-
-            // Print the reference speed
-            Serial.print("Ref speed left: ");
-            Serial.print(ref_speed_left);
-            Serial.print(" Ref speed right: ");
-            Serial.println(ref_speed_right);
-            Serial.print(" Angle: ");
-            Serial.print(angle);
-            Serial.print(" X: ");
-            Serial.print(x_position);
-            Serial.print(" Y: ");
-            Serial.println(y_position);
-
-            delay(100); // Attendre un peu avant de mettre à jour la position
-
-            // Serial.print("Distance: ");
-            // Serial.println(rho);
         }
         target_reached = true;
         Serial.println("Target reached");
     }
-
 }
 
 void PAMI::stop() {
