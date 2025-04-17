@@ -104,13 +104,9 @@ double PAMI::getSonarDistance() {
 }
 
 void PAMI::turnTail() {
-    tail.ActivateServo(); // Activer le servo uniquement quand nécessaire
-    while (digitalRead(12) == LOW) {
-        tail.Turn_tail(); // Agiter la queue
-        Serial.println("Agitation de la queue en cours...");
-        delay(300); // Attendre un peu avant de réagir à la prochaine lecture
-    }
-    // tail.Turn_tail();
+    tail.Turn_tail(); // Agiter la queue
+    Serial.println("Agitation de la queue en cours...");
+    delay(300); // Attendre un peu avant de réagir à la prochaine lecture
 }
 
 
