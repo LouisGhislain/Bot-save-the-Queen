@@ -48,6 +48,7 @@ void loop_1ms(GAME *game){
 
         robot->updateOdometry(game);
         robot->lowLevelController();
+        //std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
         //===========================================================================
         // 1ms loop - END
@@ -135,7 +136,7 @@ void loop_100ms(GAME *game){
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
-        auto sleep_time = milliseconds(100) - elapsed;
+        auto sleep_time = milliseconds(40) - elapsed;
         
         if (sleep_time > milliseconds(0)) {
             std::this_thread::sleep_for(sleep_time);
@@ -188,6 +189,12 @@ int main() {
 
     GAME *game = init_game();
 
+    // // Print queen's coordinates and angle every 10ms
+    // while (running) {
+    //     std::cout << "Queen's position and angle : (" << game->queen->cart_pos->x << ", " << game->queen->cart_pos->y << ") Angle : " << game->queen->angle << std::endl;
+    //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    // }
+
     pos_of_stack(game);
     
     running.store(true);
@@ -209,13 +216,11 @@ int main() {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
-
-
+    
     // must be the last thing to do before starting the game
     robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
+    
     // Create controller threads with different frequencies
-    // truc de margoulin pour appeler low level controller via fonction lambda
     std::thread thread_1ms(loop_1ms, game);
     std::thread thread_10ms(loop_10ms, game);
     std::thread thread_100ms(loop_100ms, game);

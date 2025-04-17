@@ -15,15 +15,16 @@ void Robot::teensy_separate_third_stage(void *game){
     teensy_send_command(0x13);
     usleep(500000); //delay test build
     straightMotion(-0.15, game); //recule avec cremaillère
-    usleep(300000); //PAS FIXE mais time de reculer les cremaillères
+    usleep(350000); //PAS FIXE mais time de reculer les cremaillères
     separate_finished = true ; 
 }
 
 void Robot::teensy_build_first_third_stage(int constructNodeNumber, void *game){
     build_finished = false ; 
     teensy_send_command(0x14);
+    usleep(2000000);
     maneuver(constructNodeNumber, game);//forward
-    usleep(4000000);
+    usleep(2000000);
     straightMotion(-0.15, game); //backward down lift
     build_finished = true ; 
 }
@@ -33,7 +34,7 @@ void Robot::teensy_build_second_third_stage(int constructNodeNumber, void *game)
     teensy_send_command(0x15); 
     usleep(2000000);
     maneuver(constructNodeNumber, game); //forward
-    usleep(4000000);
+    usleep(3000000);
     straightMotion(-0.15,game); //backward down lift
     build_finished = true ; 
 }

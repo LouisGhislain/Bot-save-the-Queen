@@ -613,7 +613,34 @@ CMakeFiles/exeRobotProgram.dir/src/Actuators/teensyCommand.cpp.o: src/Actuators/
   /usr/local/include/wiringPiI2C.h \
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
-  /usr/include/strings.h
+  /usr/include/strings.h \
+  /usr/include/linux/i2c-dev.h \
+  /usr/include/linux/types.h \
+  /usr/lib/linux/uapi/arm64/asm/types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/lib/linux/uapi/arm64/asm/posix_types.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/aarch64-linux-gnu/sys/ioctl.h \
+  /usr/include/aarch64-linux-gnu/bits/ioctls.h \
+  /usr/lib/linux/uapi/arm64/asm/ioctls.h \
+  /usr/include/asm-generic/ioctls.h \
+  /usr/include/linux/ioctl.h \
+  /usr/lib/linux/uapi/arm64/asm/ioctl.h \
+  /usr/include/asm-generic/ioctl.h \
+  /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
+  /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
+  /usr/include/fcntl.h \
+  /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+  /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/aarch64-linux-gnu/bits/stat.h \
+  /usr/include/aarch64-linux-gnu/bits/struct_stat.h
 
 CMakeFiles/exeRobotProgram.dir/src/Actuators/teensy_build.cpp.o: src/Actuators/teensy_build.cpp \
   /usr/include/stdc-predef.h \
@@ -9542,16 +9569,6 @@ src/main\ test.cpp:
 
 /usr/lib/linux/uapi/arm64/asm/sve_context.h:
 
-/usr/lib/linux/uapi/arm64/asm/posix_types.h:
-
-/usr/include/linux/posix_types.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/lib/linux/uapi/arm64/asm/types.h:
-
-/usr/lib/linux/uapi/arm64/asm/sigcontext.h:
-
 /usr/include/aarch64-linux-gnu/bits/sigcontext.h:
 
 /usr/include/aarch64-linux-gnu/bits/sigaction.h:
@@ -9569,8 +9586,6 @@ src/main\ test.cpp:
 src/main.cpp:
 
 src/Strategy/fsm_grab_stack.cpp:
-
-src/Strategy/fsm_drop_banner.cpp:
 
 src/Strategy/fsm_build_stack.cpp:
 
@@ -9611,6 +9626,40 @@ lib/rplidar_sdk/sdk/include/rplidar_driver.h:
 lib/rplidar_sdk/sdk/include/rplidar_protocol.h:
 
 lib/rplidar_sdk/sdk/include/rplidar_cmd.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_stat.h:
+
+/usr/include/aarch64-linux-gnu/bits/stat.h:
+
+/usr/include/linux/falloc.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h:
+
+/usr/include/fcntl.h:
+
+/usr/lib/linux/uapi/arm64/asm/ioctl.h:
+
+/usr/include/linux/ioctl.h:
+
+src/Strategy/fsm_drop_banner.cpp:
+
+/usr/include/asm-generic/ioctls.h:
+
+/usr/lib/linux/uapi/arm64/asm/sigcontext.h:
+
+/usr/lib/linux/uapi/arm64/asm/ioctls.h:
+
+/usr/include/aarch64-linux-gnu/bits/ioctls.h:
+
+/usr/lib/linux/uapi/arm64/asm/posix_types.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/include/aarch64-linux-gnu/bits/fcntl.h:
+
+/usr/lib/linux/uapi/arm64/asm/types.h:
 
 src/Lidar/lidar.cpp:
 
@@ -9698,6 +9747,8 @@ src/Actuators/teensy_build.cpp:
 
 /usr/include/c++/12/ostream:
 
+/usr/include/aarch64-linux-gnu/bits/ioctl-types.h:
+
 /usr/include/c++/12/tr1/gamma.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h:
@@ -9758,6 +9809,8 @@ src/Actuators/teensy_build.cpp:
 
 /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
 
+/usr/include/aarch64-linux-gnu/sys/ioctl.h:
+
 /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
 
 src/Actuators/teensyCheckIR.cpp:
@@ -9777,6 +9830,8 @@ lib/rplidar_sdk/sdk/include/rptypes.h:
 /usr/include/linux/stddef.h:
 
 /usr/include/c++/12/bits/cxxabi_init_exception.h:
+
+/usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
 
 /usr/include/aarch64-linux-gnu/bits/endianness.h:
 
@@ -10002,6 +10057,8 @@ lib/rplidar_sdk/sdk/include/sl_lidar_cmd.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/time_t.h:
 
+/usr/include/asm-generic/ioctl.h:
+
 /usr/include/aarch64-linux-gnu/bits/math-vector.h:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs.h:
@@ -10015,6 +10072,8 @@ src/Multimedia/Screen.cpp:
 /usr/include/c++/12/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/12/bits/basic_ios.tcc:
+
+/usr/include/aarch64-linux-gnu/bits/fcntl-linux.h:
 
 /usr/include/c++/12/ctime:
 
@@ -10138,6 +10197,8 @@ src/Multimedia/Buzzer.cpp:
 
 /usr/include/c++/12/locale:
 
+/usr/include/linux/i2c-dev.h:
+
 /usr/include/c++/12/iosfwd:
 
 /usr/include/c++/12/bits/ostream_insert.h:
@@ -10176,9 +10237,9 @@ lib/rplidar_sdk/sdk/include/sl_types.h:
 
 /usr/include/c++/12/exception:
 
-/usr/lib/linux/uapi/arm64/asm/bitsperlong.h:
-
 src/Mobility/Controller/lowLevelController.cpp:
+
+/usr/lib/linux/uapi/arm64/asm/bitsperlong.h:
 
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
 

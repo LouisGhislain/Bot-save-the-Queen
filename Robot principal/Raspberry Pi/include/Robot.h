@@ -123,16 +123,17 @@ public:
     void wait_starting_cord(GAME *game);
     bool checkIfAgainstWall(GAME *game);
     
-    // Teensy
+    // -------Teensy------
     void teensy_init();
     void teensy_send_command(uint8_t command);
     void teensy_build(void *game);
     int teensy_check_IR();
     void teensy_grab();
     void teensy_americain_third_stage(int nodeNumber, void *game);
-    void teensy_separate_third_stage(void *game);
-    void teensy_build_first_third_stage(int constructNodeNumber, void *game);
-    void teensy_build_second_third_stage(int constructNodeNumber, void *game);
+    void teensy_push_separate(void *game);
+    void teensy_separate_third_stage(void *game); //STRAT 1 
+    void teensy_build_first_third_stage(int constructNodeNumber, void *game); //STRAT 1 
+    void teensy_build_second_third_stage(int constructNodeNumber, void *game); //STRAT 1 
     bool build_finished = false;
     bool separate_finished = false; 
 

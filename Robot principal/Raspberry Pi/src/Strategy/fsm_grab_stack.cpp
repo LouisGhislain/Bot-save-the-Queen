@@ -13,7 +13,7 @@ void fsm_grab_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
             break ;
 
         case 1 : //MANEUVER TO STACK
-            robot->maneuver(NODE, game);
+            robot->straightMotion(0.21, game); //straight motion
             STATE_GRABBING++;
             break ; 
 
@@ -30,7 +30,7 @@ void fsm_grab_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
 
         case 4 : //MANEUVER BACK TO PRE_NODE
             if(NODE==NODE_STACK_8||NODE==NODE_STACK_9){ //avoid to hit the stage
-                robot->maneuver(PRE_NODE, game);    
+                robot->straightMotion(-0.21, game);    
             }
             STATE_GRABBING++;
             break;

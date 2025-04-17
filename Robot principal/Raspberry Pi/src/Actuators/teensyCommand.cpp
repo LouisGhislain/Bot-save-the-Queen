@@ -1,4 +1,8 @@
 #include "../../include/Robot.h"
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
 #define TEENSY_ADDR 0x08
 
 void Robot::teensy_init(){
@@ -8,27 +12,27 @@ void Robot::teensy_init(){
     }
 }
 
+
 void Robot::teensy_send_command(uint8_t command){
-    if (fd_teensy < 0) return;
-
-    int result = -1;
-    int max_retries = 5;
-    int attempt = 0;
-
-    while (attempt < max_retries && result < 0) {
-        result = wiringPiI2CWrite(fd_teensy, command);
-        if (result < 0) {
-            std::cerr << "Tentative " << attempt + 1 << " échouée : Impossible d'envoyer la commande à la Teensy !" << std::endl;
-            usleep(100000); // Attendre 100 ms avant de réessayer
-        }
-        attempt++;
+    const char *filename = "/dev/i2c-1";
+    int fd_teensy = open(filename, O_RDWR);
+    if (fd_teensy < 0) {
+        perror("Failed to open the i2c bus");
+        return;
     }
 
-    if (result < 0) {
-        std::cerr << "Toutes les tentatives ont échoué pour envoyer la commande à la Teensy." << std::endl;
+    if (ioctl(fd_teensy, I2C_SLAVE, TEENSY_ADDR) < 0) {
+        perror("Failed to acquire bus access and/or talk to slave");
+        close(fd_teensy);
+        return;
+    }
+
+    // Write only one byte (the command)
+    if (write(fd_teensy, &command, 1) != 1) {
+        perror("Failed to write to the i2c bus");
     } else {
-        std::cout << "Commande envoyée avec succès après " << attempt << " tentative(s)." << std::endl;
+        std::cout << "Commande envoyée avec succès." << std::endl;
     }
+
+    close(fd_teensy);
 }
-
-

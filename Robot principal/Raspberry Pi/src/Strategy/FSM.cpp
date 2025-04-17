@@ -7,7 +7,7 @@ void start_from_blue_bottom(Robot *robot, GAME *game){
     // pour le moment, on fait circuler le robot autour de la map
     // c'est uniquement des test, en aucun cas c'est la stratégie 
     switch (STATE){
-
+        
         case 0 : // go to node 36 23 37 22
             robot->highLevelController(36, game);
             if (robot->end_of_travel){
@@ -42,15 +42,43 @@ void start_from_blue_side(Robot *robot, GAME *game){
 void start_from_yellow_bottom(Robot *robot, GAME *game){
     // Print robot state
     std::cout << "Robot state: " << STATE << std::endl;
-
-   switch (STATE){
-
-        case 0 : // DROP THE BANNER
-            //drop_banner(robot, game);
-            // if(robot->banner_dropped){ // WAIT DROP
-            //      STATE++ ; 
-            // }
+    switch(STATE){
+    case 0 : 
+        drop_banner(robot, game);
+        if(robot->banner_dropped){ // WAIT DROP
+            STATE++ ; 
+        }
+        break ; 
+    case 1 : // GO TO FIRST STACK AND GRAB
+        fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
+        if(robot->stack_grabbed){ // WAIT GRAB
             STATE++;
+        }
+        break;
+
+    case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
+        fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
+        if(robot->stack_builded){
+            STATE++;
+        }
+        break;
+    case 3 : 
+        fsm_build_romain(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
+        if(robot->stack_builded){
+            STATE++;
+        }
+        break ; 
+    case 4 :
+        usleep(1000);
+        break ; 
+    }
+    /*
+   switch (STATE){
+        case 0 : // DROP THE BANNER
+            drop_banner(robot, game);
+            if(robot->banner_dropped){ // WAIT DROP
+                 STATE++ ; 
+            }
             break ; 
 
         case 1 : // GO TO FIRST STACK AND GRAB
@@ -85,6 +113,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
 
         case 5 : //GO TO THIRD STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
+            std::cout << "stack_grabbed: " << robot->stack_grabbed << std::endl;
             if(robot->stack_grabbed){
                 STATE++;
             }
@@ -109,11 +138,27 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
         
         default:
             break;
-    }
+    }*/
 }
 
 void start_from_yellow_side(Robot *robot, GAME *game){
-    return;
+    // switch (STATE){
+
+    //     case 0 : // DROP THE BANNER
+    //         robot->teensy_grab();
+    //         STATE++;
+    //         break ; 
+
+    switch (STATE){
+
+        case 1 : // DROP THE BANNER
+            //drop_banner(robot, game);
+            // if(robot->banner_dropped){ // WAIT DROP
+            //      STATE++ ; 
+            // }
+            STATE++;
+            break ; 
+    }
 }
 
 void choose_start(Robot *robot, GAME *game){
@@ -137,8 +182,8 @@ void choose_start(Robot *robot, GAME *game){
             start_from_yellow_bottom(robot, game);
             break;
         case 3: // Yellow side
-            //start_from_yellow_side(robot, game);
-            start_from_yellow_bottom(robot, game);
+            start_from_yellow_side(robot, game);
+            //start_from_yellow_bottom(robot, game);
             break;
         default:
             fprintf(stderr, "No starting position precised, do it !");

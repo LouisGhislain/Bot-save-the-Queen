@@ -31,15 +31,18 @@ void Robot::initializeSPI() {
  * 
  * This function sends a reset command to the encoder and resets the coordinates and distance values.
  */
-void Robot::resetValues() {
+ void Robot::resetValues() {
     // Send reset command to encoder
-    static unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
-    wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));    
-
-    // Print confirmation message
-    //std::cout << "Encoder values and coordinates reset." << std::endl;
+    unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
+    wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));
+    
+    // Check if reset was successful (should see 0x7F in the response)
+    // if (resetCommand[1] == 0x7F) {
+    //     std::cout << "Encoder values and coordinates reset successfully." << std::endl;
+    // } else {
+    //     std::cout << "Reset command may have failed!" << std::endl;
+    // }
 }
-
 void Robot::initialize_pins() {
     wiringPiSetupGpio();  // Use BCM numbering
     pinMode(STARTING_CORD_PIN, INPUT);

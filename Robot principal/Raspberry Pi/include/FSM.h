@@ -58,7 +58,7 @@
 #define CONSTRUCTION_YELLOW_3 35
 #define PRE_CONSTRUCTION_YELLOW_0 42
 #define PRE_CONSTRUCTION_YELLOW_1 43
-#define PRE_CONSTRUCTION_YELLOW_2 55
+#define PRE_CONSTRUCTION_YELLOW_2 53
 #define PRE_CONSTRUCTION_YELLOW_3 47
 
 #define CONSTRUCTION_BLUE_0 32
@@ -67,7 +67,7 @@
 #define CONSTRUCTION_BLUE_3 34
 #define PRE_CONSTRUCTION_BLUE_0 45
 #define PRE_CONSTRUCTION_BLUE_1 44
-#define PRE_CONSTRUCTION_BLUE_2 54
+#define PRE_CONSTRUCTION_BLUE_2 52
 #define PRE_CONSTRUCTION_BLUE_3 46
 
 // State
@@ -99,6 +99,7 @@ extern int STATE_GRABBING ; //state for grabbing one stack
 void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2);
+void fsm_build_romain(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 extern int STATE_BUILDING ; 
 
 #endif // FSM_H
