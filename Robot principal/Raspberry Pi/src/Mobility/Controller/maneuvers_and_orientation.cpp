@@ -72,5 +72,6 @@ void Robot::straightMotion(double dist, void *game) {
         GLOBAL_params = straight;
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
+        //fprintf(stderr, "Straight motion to (%f, %f)\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target);
     }
 }

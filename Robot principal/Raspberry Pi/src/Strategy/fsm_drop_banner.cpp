@@ -3,7 +3,6 @@ int BANNER_STATE = 0 ;
 
 void drop_banner(Robot *robot, GAME *game){
     // Print BANNER_STATE
-    std::cout << "BANNER_STATE: " << BANNER_STATE << std::endl;
     robot->banner_dropped = false ;
     switch(BANNER_STATE){
 
@@ -22,7 +21,7 @@ void drop_banner(Robot *robot, GAME *game){
         break;
 
     case 2 : 
-        robot->straightMotion(0.045,game);
+        robot->straightMotion(0.025,game);
         BANNER_STATE++;
         break ;
 

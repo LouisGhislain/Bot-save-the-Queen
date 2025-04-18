@@ -14,6 +14,7 @@ void Robot::updateOdometry(void *sqid){
     distl = leftMotor.getDistance(); // in m
     distr = rightMotor.getDistance(); // 
 
+    //fprintf(stderr, "distl = %f, distr = %f\n", distl, distr);
     {
         std::lock_guard<std::mutex> lock(queen->position_mutex);
         // Compute the angle of the robot
@@ -30,6 +31,7 @@ void Robot::updateOdometry(void *sqid){
         double displacement = (distl - last_distl + distr - last_distr) / 2;
         queen->cart_pos->x = queen->cart_pos->x + displacement * cosl(queen->angle);
         queen->cart_pos->y = queen->cart_pos->y + displacement * sinl(queen->angle);
+        //fprintf(stderr, "x = %f, y = %f, angle = %f\n", queen->cart_pos->x, queen->cart_pos->y, queen->angle);
     }
     // Update last distances
     last_distl = distl; 

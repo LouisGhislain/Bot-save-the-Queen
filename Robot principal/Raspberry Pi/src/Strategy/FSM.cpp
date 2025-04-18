@@ -118,7 +118,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             break ; 
 
         case 6 : //BUILD THIRD STAGES
-            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_CONSTRUCTION_YELLOW_0,CONSTRUCTION_YELLOW_0,CONSTRUCTION_YELLOW_1);
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
