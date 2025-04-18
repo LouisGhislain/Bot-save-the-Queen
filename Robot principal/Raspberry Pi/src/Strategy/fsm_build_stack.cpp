@@ -199,7 +199,7 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             break ; 
 
         case 11 : 
-            robot->straightMotion(0.05,game);
+            robot->straightMotion(0.10,game);
             STATE_BUILDING++;
             break ; 
 

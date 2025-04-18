@@ -15,8 +15,8 @@
 //  |_____________________________|
 //
 // préciser ici le positionnement des stacks
-#define PRE_END_ZONE_YELLOW 26
-#define PRE_END_ZONE_BLUE 27
+#define PRE_END_ZONE_YELLOW 36
+#define PRE_END_ZONE_BLUE 37
 #define END_ZONE_YELLOW 56
 #define END_ZONE_BLUE 57
 
