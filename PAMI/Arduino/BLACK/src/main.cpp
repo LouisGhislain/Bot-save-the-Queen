@@ -42,8 +42,12 @@ float startTime = 0;
 int role;
 Robot SuperStar;
 
-int middle_state = 0;
+int middle_state = 'a';
 unsigned long state_timer = 0;
+
+enum Team { YELLOW, BLUE };
+int team;
+
 
 
 void setup() {
@@ -69,72 +73,160 @@ void setup() {
 
     startTime = millis();
 
+    team = BLUE;
 
-    role = 0; // 0 pour le robot, 1 pour la superstar
 
     }
 
-void loop(){
 
+void team_yellow() {
     pami.update_position();
 
     switch (middle_state) {
-        case 0:
+        case 'a':
             if (!pami.target_reached) {
-                pami.middlecontrol(1, -0.5, 0.0, false, 0.08);
+                pami.middlecontrol(0.7, -0.57, 0.0, false, 0.08);
             } else {
                 pami.target_reached = false;
-                middle_state++;
+                middle_state = 'b'; // Changer d'état
                 state_timer = millis();  // Démarre un timer
                 Serial.println("Cible atteinte, changement d'état.");
             }
             break;
 
-        case 1:
-            
+        case 'b':
             if (!pami.target_reached) {
-                pami.middlecontrol(1.3, -0.5, 0.0, false, 0.15);
+                pami.middlecontrol(2.1, -0.47, 0.0, false, 0.1);
             } else {
                 pami.target_reached = false;
-                middle_state++;
-                state_timer = millis();
+                middle_state = 'c'; // Changer d'état
+                state_timer = millis();  // Démarre un timer
                 Serial.println("Cible atteinte, changement d'état.");
             }
-            
             break;
 
-        case 2:
-            
+        case 'c':
+            pami.Rotate(60); // Tourner à droite de 90 degrés
+            Serial.println("Rotation de 90 degrés effectuée.");
+            middle_state = 'd'; // Changer d'état
+            break;
+
+        case 'd':
+            pami = PAMI(); // Réinitialiser PAMI
+            middle_state = 'e'; // Changer d'état
+            break;
+
+        case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(1.7, -0.5, 0.0, false, 0.2);
+                pami.middlecontrol(0.15, 0, 0.0, false, 0.04);
+                leftMotor.set_motor(0); // Avancer lentement
+                rightMotor.set_motor(0); // Avancer lentement
+
+
             } else {
                 pami.target_reached = false;
-                middle_state++;
-                state_timer = millis();
+                middle_state = 'f'; // Changer d'état
+                state_timer = millis();  // Démarre un timer
                 Serial.println("Cible atteinte, changement d'état.");
             }
-            
             break;
 
-        case 3:
-        
-            if (!pami.target_reached) {
-                pami.middlecontrol(1.9, 0.2, 0.0, false, 0.25);
-            } else {
-                middle_state++;
-                Serial.println("Tous les déplacements terminés.");
-            }
-            
-            break;
-
-        case 4:
-            // Tous les déplacements sont faits
-            pami.pami_brake(); // Freiner le robot
-            leftMotor.set_motor(0);
-            rightMotor.set_motor(0);
-            Serial.println("Arrêt du robot.");
+        case 'f':
             pami.turnTail();  // Agite la queue
+            leftMotor.set_motor(0); // Arrêter le moteur gauche
+            rightMotor.set_motor(0); // Arrêter le moteur droit
+            Serial.println("Arrêt du robot.");
+            break;
+
+
+
+    }
+}
+
+void team_blue() {
+    pami.update_position();
+
+    switch (middle_state) {
+        case 'a':
+            if (!pami.target_reached) {
+                pami.middlecontrol(1, 0.5, 0.0, false, 0.1);
+                // leftMotor.set_motor(0); // Avancer lentement
+                // rightMotor.set_motor(0); // Avancer lentement
+            } else {
+                pami.target_reached = false;
+                middle_state = 'b'; // Changer d'état
+                state_timer = millis();  // Démarre un timer
+                Serial.println("Cible atteinte, changement d'état.");
+            }
+            break;
+
+        case 'b':
+            if (!pami.target_reached) {
+                pami.middlecontrol(2.02, -0.75, 0.0, false, 0.12);
+                leftMotor.set_motor(0); // Avancer lentement
+                rightMotor.set_motor(0); // Avancer lentement
+            } else {
+                pami.target_reached = false;
+                middle_state = 'c'; // Changer d'état
+                state_timer = millis();  // Démarre un timer
+                Serial.println("Cible atteinte, changement d'état.");
+            }
+            break;
+
+        case 'c':
+            delay(100); // Attendre 1 seconde avant de tourner
+            pami.Rotate(-90); // Tourner à droite de 90 degrés
+            Serial.println("Rotation de 90 degrés effectuée.");
+            middle_state = 'd'; // Changer d'état
+            break;
+
+        case 'd':
+            pami = PAMI(); // Réinitialiser PAMI
+            middle_state = 'e'; // Changer d'état
+            break;
+
+        case 'e':
+            if (!pami.target_reached) {
+                pami.middlecontrol(0.41, 0, 0.0, false, 0.2);
+                leftMotor.set_motor(0); // Avancer lentement
+                rightMotor.set_motor(0); // Avancer lentement
+
+
+            } else {
+                pami.target_reached = false;
+                middle_state = 'f'; // Changer d'état
+                state_timer = millis();  // Démarre un timer
+                Serial.println("Cible atteinte, changement d'état.");
+            }
+            break;
+
+        case 'f':
+            pami.turnTail();  // Agite la queue
+            leftMotor.set_motor(0); // Arrêter le moteur gauche
+            rightMotor.set_motor(0); // Arrêter le moteur droit
+            Serial.println("Arrêt du robot.");
+            break;
+        }
+}
+
+
+
+
+
+void loop(){
+    switch (team) {
+        case YELLOW:
+            team_yellow();
+            break;
+        case BLUE:
+            team_blue();
+            break;
+        default:
+            Serial.println("Équipe non reconnue.");
             break;
     }
+    
+
+   
 }
 

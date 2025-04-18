@@ -5,7 +5,7 @@
 
 #define WheelDiameter 0.058 // Diamètre de la roue en mètres
 #define DistanceBetweenWheels 0.0905 // Distance entre les roues en mètres
-#define MAX_LINEAR_SPEED 0.3 // Vitesse linéaire maximale en m/s
+#define MAX_LINEAR_SPEED 0.4 // Vitesse linéaire maximale en m/s
 #define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
 #define Kp_alpha 0.04 // Coefficient proportionnel pour l'angle
 
@@ -232,7 +232,7 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2));
             double distance_to_enemy = this->getSonarDistance();
 
-            if (distance_to_enemy < 15) {
+            if (distance_to_enemy < 15 && distance_to_enemy > 1) { // Si le robot est trop proche d'un obstacle
                 Serial.println("Obstacle détecté !");
                 lowlevelcontrol(0, 0);
             } else {
@@ -262,10 +262,10 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
                 lowlevelcontrol(ref_speed_left, ref_speed_right);
             }
 
-            delay(100); // <- Laisser le temps au robot d’avancer et aux capteurs de s’actualiser
+            delay(100); 
         }
 
-        lowlevelcontrol(0, 0); // Stop le robot une fois l'objectif atteint
+        // lowlevelcontrol(0, 0); // Stop le robot une fois l'objectif atteint
         target_reached = true;
         Serial.println("Target reached");
     }
@@ -280,16 +280,16 @@ void PAMI::stop() {
 
 void PAMI::Rotate(double angle_desired){
 
-    while (abs(angle_desired - angle) > 1){
+    while (abs(angle_desired - angle) > 5){
         double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
-        double angle_error = angle_desired - angle;
+        double angle_error = (angle_desired - angle);
 
         double ref_speed_left = -angle_error * Kp_turn;
         double ref_speed_right = angle_error * Kp_turn;
 
         lowlevelcontrol(ref_speed_left, ref_speed_right);
     }
-    pami_brake(); // Freiner le robot
+    // pami_brake(); // Freiner le robot
     Serial.println("Rotation terminée");
     Serial.print(angle);
 }
