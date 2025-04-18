@@ -123,7 +123,6 @@ void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     
 void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2, int PRE_PRE_CONSTRUCT_NODE_1){
     robot->stack_builded = false ;
-    std::cout << "State building : " << STATE_BUILDING << std::endl;
     switch(STATE_BUILDING){
         
         case 0 : // MOVING TO PRE NODE TO SEPARATE

@@ -6,33 +6,63 @@ int PRE_END_ZONE;
 int END_ZONE;
 
 void start_from_blue_bottom(Robot *robot, GAME *game){
-    // pour le moment, on fait circuler le robot autour de la map
-    // c'est uniquement des test, en aucun cas c'est la stratégie 
     switch (STATE){
+        case 0 : // DROP THE BANNER
+            drop_banner(robot, game);
+            if(robot->banner_dropped){ // WAIT DROP
+                 STATE++ ; 
+            }
+            break ; 
+
+        case 1 : // GO TO FIRST STACK AND GRAB
+            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_5, NODE_STACK_5);
+            if(robot->stack_grabbed){ // WAIT GRAB
+                STATE++;
+            }
+            break;
+
+        case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_BLUE_1 , CONSTRUCTION_BLUE_1);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+
+        case 3 : // GO TO SECOND STACK AND GRAB
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_1, NODE_STACK_1);
+            if(robot->stack_grabbed){ //WAIT GRAB
+                STATE++;
+            }
+            break;
+
+        case 4 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_BLUE_0 , CONSTRUCTION_BLUE_0);
+            if(robot->stack_builded){//WAIT BUILD
+                STATE++;
+            }
+            break;
+
+        case 5 : //GO TO THIRD STACK AND GRAB
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_9, NODE_STACK_9);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ; 
+
+        case 6 : //BUILD THIRD STAGES
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_BLUE_1, PRE_NODE_STACK_1, CONSTRUCTION_>BLUE_0, CONSTRUCTION_BLUE_1, PRE_PRE_CONSTUCTION_BLUE_1);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break ; 
+
+        case 7 : //RETURN TO BASE
+            return_to_base(robot, game);
+            break ;
+
+        // ENDING IN RETURN TO BASE
         
-        case 0 : // go to node 36 23 37 22
-            robot->highLevelController(36, game);
-            if (robot->end_of_travel){
-                STATE++;
-            }
-            break ;
-        case 1 : // 
-            robot->highLevelController(23, game);
-            if (robot->end_of_travel){
-                STATE++;
-            }
-            break ;
-        case 2 : // 
-            robot->highLevelController(37, game);
-            if (robot->end_of_travel){
-                STATE++;
-            }
-            break ;
-        case 3 : // 
-            robot->highLevelController(22, game);
-            if (robot->end_of_travel){
-                STATE = 0;
-            }
+        default:
             break;
     }
 }
@@ -42,40 +72,6 @@ void start_from_blue_side(Robot *robot, GAME *game){
 }
 
 void start_from_yellow_bottom(Robot *robot, GAME *game){
-    // Print robot state
-    //std::cout << "Robot state: " << STATE << std::endl;
-    /*
-    switch(STATE){
-    case 0 : 
-        drop_banner(robot, game);
-        if(robot->banner_dropped){ // WAIT DROP
-            STATE++ ; 
-        }
-        break ; 
-    case 1 : // GO TO FIRST STACK AND GRAB
-        fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
-        if(robot->stack_grabbed){ // WAIT GRAB
-            STATE++;
-        }
-        break;
-
-    case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
-        fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
-        if(robot->stack_builded){
-            STATE++;
-        }
-        break;
-    case 3 : 
-        fsm_build_romain(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
-        if(robot->stack_builded){
-            STATE++;
-        }
-        break ; 
-    case 4 :
-        usleep(1000);
-        break ; 
-    }
-    */
    switch (STATE){
         case 0 : // DROP THE BANNER
             drop_banner(robot, game);
@@ -152,6 +148,11 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 
 void choose_start(Robot *robot, GAME *game){
 
+    if(get_match_time(game) > 99.5){
+        robot->stop();
+        robot->screen_end_game(); //show the score on the screen
+    }
+
     if(robot->avoidance_loop_activated){
         return; // do nothing is we are avoiding an ennemy
     }
@@ -204,7 +205,6 @@ void return_to_base(Robot *robot, GAME *game){
             break;
 
         case 1 : //ORIENTATE TO BASE
-            robot->points_scored += 10 ;
             robot->orientate(90, game);
             STATE_RETURN_TO_BASE++;
             break;
@@ -213,31 +213,65 @@ void return_to_base(Robot *robot, GAME *game){
             if (robot->end_of_angle){
                 STATE_RETURN_TO_BASE++;
             }
-            robot->screen_end_game(); //show the score on the screen
             break;
 
         case 3 : // MANEUVER TO END ZONE   
             if(get_match_time(game) > time_reach_end_zone){
-                robot->maneuver(END_ZONE, game);
-                STATE_RETURN_TO_BASE++;
+                robot->highLevelController(END_ZONE, game);
+                if (robot->end_of_travel){
+                    STATE_RETURN_TO_BASE++;
+                    robot->points_scored += 10 ;
+                }
             }
             break; 
 
-        case 4 : // MANEUVERING
-            if(robot->end_of_manoeuvre){
-                STATE_RETURN_TO_BASE++;
-            }
-            break; 
-
-        case 5: // FINISHED MATCH
+        case 4: // FINISHED MATCH
             fprintf(stderr, "FINISHED MATCH\n");
             //robot->buzzBuzzer();
             STATE_RETURN_TO_BASE++;
             break;
 
-        case 6: // SHUTTING DOWN
+        case 5: // SHUTTING DOWN
             usleep(0.001*1000000);
             break;
 
     }
 }
+
+
+
+
+// Print robot state
+//std::cout << "Robot state: " << STATE << std::endl;
+/*
+switch(STATE){
+case 0 : 
+    drop_banner(robot, game);
+    if(robot->banner_dropped){ // WAIT DROP
+        STATE++ ; 
+    }
+    break ; 
+case 1 : // GO TO FIRST STACK AND GRAB
+    fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
+    if(robot->stack_grabbed){ // WAIT GRAB
+        STATE++;
+    }
+    break;
+
+case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
+    fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
+    if(robot->stack_builded){
+        STATE++;
+    }
+    break;
+case 3 : 
+    fsm_build_romain(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
+    if(robot->stack_builded){
+        STATE++;
+    }
+    break ; 
+case 4 :
+    usleep(1000);
+    break ; 
+}
+*/

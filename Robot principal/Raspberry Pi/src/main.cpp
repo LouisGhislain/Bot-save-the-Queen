@@ -220,6 +220,7 @@ int main() {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
+        robot->screen_display_intro();
 
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;

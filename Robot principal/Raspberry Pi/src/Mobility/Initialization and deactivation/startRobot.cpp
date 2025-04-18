@@ -11,6 +11,14 @@ void Robot::start() {
     resetValues();
     intEPosLeft = intEPosRight = 0.0;
     intESpeedLeft = intESpeedRight = 0.0;
+
+    // SAFETY FIRST: Zero motor commands
+    ref_speed_left = 0.0;
+    ref_speed_right = 0.0;
+    u_volt_left = 0.0;
+    u_volt_right = 0.0;
+    stop();  
+
     teensy_init(); //init I2C teensy
     digitalWrite(22, LOW); 
     screen_init(); //init I2C screen
@@ -36,12 +44,13 @@ void Robot::initializeSPI() {
     unsigned char resetCommand[5] = {0x7F, 0x00, 0x00, 0x00, 0x00};
     wiringPiSPIDataRW(SPI_CHANNEL, resetCommand, sizeof(resetCommand));
     
-    // Check if reset was successful (should see 0x7F in the response)
-    // if (resetCommand[1] == 0x7F) {
-    //     std::cout << "Encoder values and coordinates reset successfully." << std::endl;
-    // } else {
-    //     std::cout << "Reset command may have failed!" << std::endl;
-    // }
+    //Check if reset was successful (should see 0x7F in the response)
+    if (resetCommand[1] == 0x7F) {
+        std::cout << "Encoder values and coordinates reset successfully." << std::endl;
+    } 
+    else {
+        std::cout << "Reset command may have failed!" << std::endl;
+    }
 }
 void Robot::initialize_pins() {
     wiringPiSetupGpio();  // Use BCM numbering
