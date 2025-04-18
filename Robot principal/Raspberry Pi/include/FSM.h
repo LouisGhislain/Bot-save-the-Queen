@@ -20,6 +20,9 @@
 #define END_ZONE_YELLOW 56
 #define END_ZONE_BLUE 57
 
+extern int PRE_END_ZONE;
+extern int END_ZONE;
+
 #define PRE_NODE_STACK_0 10
 #define PRE_NODE_STACK_1 11
 #define PRE_NODE_STACK_2 12
@@ -61,6 +64,7 @@
 #define PRE_CONSTRUCTION_YELLOW_1 43
 #define PRE_CONSTRUCTION_YELLOW_2 53
 #define PRE_CONSTRUCTION_YELLOW_3 47
+#define PRE_PRE_CONSTUCTION_YELLOW_1 58
 
 #define CONSTRUCTION_BLUE_0 32
 #define CONSTRUCTION_BLUE_1 31
@@ -70,6 +74,8 @@
 #define PRE_CONSTRUCTION_BLUE_1 44
 #define PRE_CONSTRUCTION_BLUE_2 52
 #define PRE_CONSTRUCTION_BLUE_3 46
+#define PRE_PRE_CONSTUCTION_BLUE_1 59
+
 
 #define DISTANCE_NODE_PRE_NODE 0.21 // distance between the node and the pre_node to stop
 
@@ -102,7 +108,7 @@ extern int STATE_GRABBING ; //state for grabbing one stack
 //----Build stack----
 void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE);
-void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2);
+void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2, int PRE_PRE_CONSTRUCT_NODE_1);
 void fsm_build_romain(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 extern int STATE_BUILDING ; 
 

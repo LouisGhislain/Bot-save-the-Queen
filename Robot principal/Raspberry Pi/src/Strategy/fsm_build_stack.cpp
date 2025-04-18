@@ -121,7 +121,7 @@ void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     }
 }
     
-void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2){
+void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2, int PRE_PRE_CONSTRUCT_NODE_1){
     robot->stack_builded = false ;
     std::cout << "State building : " << STATE_BUILDING << std::endl;
     switch(STATE_BUILDING){
@@ -191,34 +191,56 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             }
             break ; 
 
-        case 10 : // MOVING TO SEPARATE STACK
-            robot->highLevelController(SEPARATE_NODE, game);
+        case 10 : // MOVING TO NODE BEFORE SEPARATE STACK
+            robot->highLevelController(PRE_PRE_CONSTRUCT_NODE_1, game);
             if (robot->end_of_travel){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 11 : 
-            robot->straightMotion(0.10,game);
+        case 11 : //ORIENTATE TO BASE
+            robot->orientate(-90, game);
             STATE_BUILDING++;
-            break ; 
+            break;
 
-        case 12 : 
-            //usleep(1000000);
+        case 12: // ORIENTATING 
+            if (robot->end_of_angle){
+                STATE_BUILDING++;
+            }
+            break;
+
+        case 13 : //MANEUVER TO SEPARATE STACK
+            robot->maneuver(SEPARATE_NODE, game);
+            STATE_BUILDING++;
+            break; 
+
+        case 14 : //MANEUVRING
             if(robot->end_of_manoeuvre){
-                robot->teensy_build_second_third_stage(CONSTRUCT_NODE_2, game);
+                robot->straightMotion(0.05, game);
                 STATE_BUILDING++;
             }
             break ; 
         
-        case 13 : 
+        case 15 : 
+            if(robot->end_of_manoeuvre){
+                STATE_BUILDING++;
+            }
+            break ; 
+            
+        case 16 : 
+            //usleep(1000000);
+            robot->teensy_build_second_third_stage(CONSTRUCT_NODE_2, game);
+            STATE_BUILDING++;
+            break ; 
+        
+        case 17 : 
             if(robot->build_finished){
                 robot->straightMotion(-0.25, game); //CHANGER EN MANEUVER ?
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 14 : 
+        case 18 : 
             if(robot->end_of_manoeuvre){
                 robot->stack_builded = true ; 
                 STATE_BUILDING = 0 ; 

@@ -13,7 +13,7 @@ void Robot::teensy_americain_third_stage(int nodeNumber, void *game){
 void Robot::teensy_separate_third_stage(void *game){
     separate_finished = false ; 
     teensy_send_command(0x13);
-    usleep(500000); //delay test build
+    usleep(0.25*1000000); //delay test build
     straightMotion(-0.15, game); //recule avec cremaillère
     usleep(350000); //PAS FIXE mais time de reculer les cremaillères
     separate_finished = true ; 

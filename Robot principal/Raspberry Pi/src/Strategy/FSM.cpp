@@ -2,6 +2,8 @@
 
 int STATE = 0;
 int STATE_RETURN_TO_BASE = 0;
+int PRE_END_ZONE;
+int END_ZONE;
 
 void start_from_blue_bottom(Robot *robot, GAME *game){
     // pour le moment, on fait circuler le robot autour de la map
@@ -118,7 +120,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             break ; 
 
         case 6 : //BUILD THIRD STAGES
-            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_NODE_STACK_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1);
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_NODE_STACK_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1, PRE_PRE_CONSTUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
@@ -184,25 +186,25 @@ void choose_start(Robot *robot, GAME *game){
 }
 
 void return_to_base(Robot *robot, GAME *game){
-    if (robot->starting_pos == 0 || robot->starting_pos == 1){ // in blue team
-        return_to_base_blue(robot, game);
-    }
-    else if (robot->starting_pos == 2 || robot->starting_pos == 3){ // in yellow team
-        return_to_base_yellow(robot, game);
-    }
-}
-
-void return_to_base_blue(Robot *robot, GAME *game){
     switch (STATE_RETURN_TO_BASE){
 
         case 0: // GO TO BASE NODE
-            robot->highLevelController(PRE_END_ZONE_BLUE, game);
+            if (robot->starting_pos == 0 || robot->starting_pos == 1){ // in blue team
+                PRE_END_ZONE = PRE_END_ZONE_BLUE;
+                END_ZONE = END_ZONE_BLUE;
+            }
+            else if (robot->starting_pos == 2 || robot->starting_pos == 3){ // in yellow team
+                PRE_END_ZONE = PRE_END_ZONE_YELLOW;
+                END_ZONE = END_ZONE_YELLOW;
+            }
+            robot->highLevelController(PRE_END_ZONE, game);
             if (robot->end_of_travel){
                 STATE_RETURN_TO_BASE++;
             }
             break;
 
         case 1 : //ORIENTATE TO BASE
+            robot->points_scored += 10 ;
             robot->orientate(90, game);
             STATE_RETURN_TO_BASE++;
             break;
@@ -216,59 +218,9 @@ void return_to_base_blue(Robot *robot, GAME *game){
 
         case 3 : // MANEUVER TO END ZONE   
             if(get_match_time(game) > time_reach_end_zone){
-                robot->maneuver(END_ZONE_BLUE, game);
+                robot->maneuver(END_ZONE, game);
                 STATE_RETURN_TO_BASE++;
             }
-            break; 
-
-        case 4 : // MANEUVERING
-            if(robot->end_of_manoeuvre){
-                STATE_RETURN_TO_BASE++;
-            }
-            break; 
-
-        case 5: // FINISHED MATCH
-            fprintf(stderr, "FINISHED MATCH\n");
-            //robot->buzzBuzzer();
-            STATE_RETURN_TO_BASE++;
-            break;
-
-        case 6: // SHUTTING DOWN
-            usleep(0.001*1000000);
-            break;
-
-    }
-}
-
-void return_to_base_yellow(Robot *robot, GAME *game){
-    //std::cout << "RETURN TO BASE STATE: " << STATE_RETURN_TO_BASE << std::endl;
-    switch (STATE_RETURN_TO_BASE){
-
-        case 0: // GO TO BASE NODE
-            robot->highLevelController(PRE_END_ZONE_YELLOW, game);
-            if (robot->end_of_travel){
-                STATE_RETURN_TO_BASE++;
-            }
-            break;
-
-        case 1 : //ORIENTATE TO BASE
-            robot->points_scored += 10 ; 
-            robot->orientate(90, game);
-            STATE_RETURN_TO_BASE++;
-            break;
-
-        case 2: // ORIENTATING 
-            if (robot->end_of_angle){
-                STATE_RETURN_TO_BASE++;
-            }
-            robot->screen_end_game(); //show the score on the screen
-            break;
-
-        case 3 : // MANEUVER TO END ZONE   
-            if(get_match_time(game) > time_reach_end_zone){
-                robot->maneuver(END_ZONE_YELLOW, game);
-                STATE_RETURN_TO_BASE++;
-                }
             break; 
 
         case 4 : // MANEUVERING
