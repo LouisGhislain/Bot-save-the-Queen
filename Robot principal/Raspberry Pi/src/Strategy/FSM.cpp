@@ -154,6 +154,7 @@ void choose_start(Robot *robot, GAME *game){
     }
 
     if(robot->avoidance_loop_activated){
+        // DON'T MODIFY THIS LINE
         return; // do nothing is we are avoiding an ennemy
     }
 

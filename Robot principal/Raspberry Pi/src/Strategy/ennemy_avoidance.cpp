@@ -7,8 +7,8 @@ void Robot::stop_if_ennemy(){
     // with number_of_iterations_to_stop = 0.5 sec / 0.010 sec = 50 iterations (0.010 is the loop time)
     {
         std::lock_guard<std::mutex> lock(ref_speed_mutex);
-        double next_ref_speed_left = ref_speed_left - 0.4746;
-        double next_ref_speed_right = ref_speed_right - 0.4746;
+        double next_ref_speed_left = ref_speed_left - 0.6; // 0.6 to decrease faster
+        double next_ref_speed_right = ref_speed_right - 0.6;
         if (next_ref_speed_left < 0) {
             next_ref_speed_left = 0;
         }
@@ -17,8 +17,6 @@ void Robot::stop_if_ennemy(){
         }
         ref_speed_left = next_ref_speed_left;
         ref_speed_right = next_ref_speed_right;
-
-        fprintf(stderr, "ref speed left: %f, ref speed right: %f\n", ref_speed_left, ref_speed_right);
     }
 }
 
@@ -49,7 +47,7 @@ std::pair<double, double> Robot::get_distance_to_ennemy(GAME *game){
     return {distance_to_ennemy, angle_to_ennemy};
 } 
 
-void Robot::reaction_to_ennemy(GAME *game){
+void Robot::reaction_to_ennemy_smart(GAME *game){
     
     switch(CASE_ennemy_avoidance){
         case 0: // record the time when the ennemy is detected

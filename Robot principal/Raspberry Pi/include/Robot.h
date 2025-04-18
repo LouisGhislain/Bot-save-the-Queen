@@ -98,7 +98,8 @@ public:
     // ennemy avoidance
     void stop_if_ennemy();
     std::pair<double, double> get_distance_to_ennemy(GAME *game);
-    void reaction_to_ennemy(GAME *game);    
+    void reaction_to_ennemy_smart(GAME *game);
+    void reaction_to_ennemy_stop(GAME *game);    
     // ennemy avoidance variables
     int CASE_ennemy_avoidance = 0;
     bool avoidance_loop_activated = false; // true if the ennemy avoidance is activated

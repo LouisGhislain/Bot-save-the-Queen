@@ -89,20 +89,15 @@ void loop_10ms(GAME *game){
         if (robot->backwards == true){ // if the robot goes backward, we change the interpreted angle
             angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
         }
-        //fprintf(stderr, "distance to ennemy: %f, angle to ennemy: %f\n", distance_ennemy, angle_ennemy);
         // profil d'évitement d'adversaire (voir screenshot desmos)
-        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * 0.4 / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY)) {  // stop distance parameter in the lidar.h file
-            //fprintf(stderr, "ennemy avoidance case = %d\n", robot->CASE_ennemy_avoidance);
-            robot->reaction_to_ennemy(game);
-            // print_Sauron_position(game);
-            fprintf(stderr, "ENNEMY TOO CLOSE, STOP ROBOT\n");
-            digitalWrite(BUZZER_PIN, HIGH);
+        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY)) {  // stop distance parameter in the lidar.h file
+            //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
+            robot->stop_if_ennemy(); // stop the robot
         }
         else{
             robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
-            digitalWrite(BUZZER_PIN, LOW);
         }
 
         //============================================================================
