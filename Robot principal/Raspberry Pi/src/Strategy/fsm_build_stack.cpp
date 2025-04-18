@@ -65,6 +65,7 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
             if (robot->end_of_manoeuvre){
                 robot->stack_builded = true ; 
                 STATE_BUILDING = 0 ;
+                robot->points_scored += 12 ; //4+8
             }
             break;
     }
@@ -75,40 +76,45 @@ void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     robot->stack_builded = false ; 
     switch(STATE_BUILDING){
 
-        case 0 : //MOVING TO STACK
+        case 0 : // MOVING TO STACK
             robot->highLevelController(PRE_NODE, game);
             if (robot->end_of_travel){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 1 : //ORIENTING TO BUILD ZONE
+        case 1 : // ORIENTATE TO BUILD ZONE
             robot->orientate(-90, game);
+            STATE_BUILDING++;
+            break;
+
+        case 2: // ORIENTATING   
             if (robot->end_of_angle){
                 STATE_BUILDING++;
             }
             break;
 
-        case 2 : //BUILD AMERICAIN STAGE
+        case 3 : // BUILD AMERICAIN STAGE
             robot->teensy_americain_third_stage(NODE, game);
             STATE_BUILDING++;
             break ; 
 
-        case 3 : //BUILDING
+        case 4 : // BUILDING
             if (robot->build_finished){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 4 : // BACKWARD MANEUVER AFTER BUILDING
+        case 5 : // BACKWARD MANEUVER AFTER BUILDING
             robot->maneuver(PRE_NODE, game);            
             STATE_BUILDING++;
             break;
 
-        case 5 : //MANEUVRING
+        case 6 : // MANEUVRING
             if (robot->end_of_manoeuvre){
                 robot->stack_builded = true ; 
                 STATE_BUILDING=0;
+                robot->points_scored+=16;
             }
             break;
 
@@ -117,90 +123,108 @@ void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     
 void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2){
     robot->stack_builded = false ;
+    std::cout << "State building : " << STATE_BUILDING << std::endl;
     switch(STATE_BUILDING){
         
-        case 0 : //MOVING TO PRE NODE TO SEPARATE
+        case 0 : // MOVING TO PRE NODE TO SEPARATE
             robot->highLevelController(SEPARATE_NODE, game);
             if (robot->end_of_travel){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 1 : //ORIENTING 
+        case 1 : // ORIENTATE TO SEPARATE ZONE
             robot->orientate(-90, game);
+            STATE_BUILDING++;
+            break;
+
+        case 2: // ORIENTATING
             if (robot->end_of_angle){
                 STATE_BUILDING++;
             }
             break;
 
-        case 2 : //SEPARATE 
+        case 3 : // SEPARATE 
             robot->teensy_separate_third_stage(game);
+            robot->points_scored+=4 ; 
             STATE_BUILDING++;
             break ; 
 
-        case 3 : //BACKWARD A LOT
-            if(robot->separate_finished && robot->end_of_manoeuvre){
-                robot->straightMotion(-0.15, game); //CHANGER EN MANEUVER ?
+        case 4 : // BACKWARD A LOT
+            if(robot->separate_finished){
+            //if(robot->separate_finished && robot->end_of_manoeuvre){
+                robot->straightMotion(-0.20, game); //CHANGER EN MANEUVER ?
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 4 : //MANEUVRING
+        case 5 : // MANEUVERING
             if(robot->end_of_manoeuvre){
                 usleep(1000000); //enlever si on a changé la vitesse lift
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 5 : //MOVING TO PRE NODE CONSTRUCT 1
+        case 6 : // MOVING TO PRE NODE CONSTRUCT 1
             robot->highLevelController(PRE_CONSTRUCT_NODE_1, game);
             if (robot->end_of_travel){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 6 : 
-            //usleep(2000000);
+        case 7: 
             robot->teensy_build_first_third_stage(CONSTRUCT_NODE_1,game);
             STATE_BUILDING++;
             break ; 
 
-        case 7 : //BACKWARD A LOT
+        case 8 : // BACKWARD A LOT
+            if(robot->build_finished){
+               robot->straightMotion(-0.25, game); //CHANGER EN MANEUVER ?
+               robot->points_scored+=16;
+                STATE_BUILDING++;
+            }
+            break ; 
+
+        case 9 : // MANEUVRING
+            if(robot->end_of_manoeuvre){
+                STATE_BUILDING++;
+            }
+            break ; 
+
+        case 10 : // MOVING TO SEPARATE STACK
+            robot->highLevelController(SEPARATE_NODE, game);
+            if (robot->end_of_travel){
+                STATE_BUILDING++;
+            }
+            break ; 
+
+        case 11 : 
+            robot->straightMotion(0.05,game);
+            STATE_BUILDING++;
+            break ; 
+
+        case 12 : 
+            //usleep(1000000);
+            if(robot->end_of_manoeuvre){
+                robot->teensy_build_second_third_stage(CONSTRUCT_NODE_2, game);
+                STATE_BUILDING++;
+            }
+            break ; 
+        
+        case 13 : 
             if(robot->build_finished){
                 robot->straightMotion(-0.25, game); //CHANGER EN MANEUVER ?
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 8 : //MANEUVRING
+        case 14 : 
             if(robot->end_of_manoeuvre){
-                STATE_BUILDING++;
-            }
-            break ; 
-
-        case 9 : //MOVING TO SEPARATE STACK
-            robot->highLevelController(SEPARATE_NODE, game);
-            if (robot->end_of_travel){
-                STATE_BUILDING++;
-            }
-            break ; 
-        case 10 : 
-            robot->straightMotion(0.05,game);
-            STATE++;
-        case 11 : 
-            if(robot->end_of_manoeuvre){
-                robot->teensy_build_second_third_stage(CONSTRUCT_NODE_2, game);
-                STATE_BUILDING++;
-            }
-            break ; 
-
-        case 12 : 
-            if(robot->build_finished){
                 robot->stack_builded = true ; 
                 STATE_BUILDING = 0 ; 
+                robot->points_scored += 12 ; //16 - 4 (on a enlevé un de 1 étage)
             }
             break ;
-        
     }
 }
 
@@ -229,6 +253,8 @@ void fsm_build_romain(Robot *robot, GAME *game, int PRE_NODE, int GRAB_NODE){
             if(robot->separate_finished){
                 STATE_BUILDING=0;
                 robot->stack_builded = true ;
+                robot->points_scored += 30 ; 
+
             }
         break ; 
     }
@@ -242,7 +268,7 @@ case 3 :
     }
     break ; 
 case 4 : //MANEUVRING
-    if(robot->end_of_maneuver){
+    if(robot->end_of_manoeuver){
         STATE_BUILDING++;
     }
     break ; 

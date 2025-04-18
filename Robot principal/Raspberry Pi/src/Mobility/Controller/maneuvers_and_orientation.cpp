@@ -31,6 +31,7 @@ void Robot::orientate(double angle, void *game) {
         std::lock_guard<std::mutex> lock(coord_mutex);
         GLOBAL_params = orientation;
         GLOBAL_angle_target = (angle/180) * M_PI; // Convert to radians
+        end_of_angle = false;
     }
 }
 

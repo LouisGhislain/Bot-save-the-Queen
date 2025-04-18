@@ -172,7 +172,6 @@ void free_game(GAME *game) {
     free_map(game->map);
     free_robot(game->queen);
     free_Ennemy(game->Sauron);
-    free(game->Sauron);
     free_Target(game->target);
     free(game);
 }

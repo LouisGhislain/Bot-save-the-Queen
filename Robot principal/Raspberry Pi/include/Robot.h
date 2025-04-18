@@ -26,6 +26,7 @@
 #include <wiringPiI2C.h>
 #include <string>
 #include <cstring>
+#include <atomic>
 #define SCREEN_ADDR 0x27
 #define STARTING_CORD_PIN 20 // starting cord on gpio 20
 #define MICROSWITCH_BACK_LEFT 26
@@ -182,6 +183,9 @@ public:
 
     //Number of points (count for screen)
     int points_scored = 0 ;
+
+    // MAIN
+    std::atomic<bool> running{false}; // Flag to control the main loop
 
 private:
     void initializeSPI(); 

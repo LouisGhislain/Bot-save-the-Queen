@@ -45,7 +45,6 @@ void Robot::middleLevelController(void *game) {
     
     double rho, x_coord_target, y_coord_target, angle_target;
     double my_x, my_y, my_angle;
-
     {
         std::lock_guard<std::mutex> lock(myqueen->position_mutex);
         my_x = myqueen->cart_pos->x;

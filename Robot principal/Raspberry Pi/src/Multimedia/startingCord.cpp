@@ -4,14 +4,16 @@ void Robot::wait_starting_cord(GAME *game) {
     // Wait for the starting cord to be inserted
     // starting pin inserted : HIGH
     // starting pin absent   : LOW
+
     if (digitalRead(STARTING_CORD_PIN) == HIGH) { // cord not inserted
         fprintf(stderr, "--------------------------------------------------------\n");
         fprintf(stderr, "Insert the starting cord in the robot !\n");
         fprintf(stderr, "Waiting insertion ...\n");
         fprintf(stderr, "--------------------------------------------------------\n");
     }
-    while(digitalRead(STARTING_CORD_PIN) == HIGH) {
-        usleep(300000); // Sleep for 0.3 seconds
+
+    while((digitalRead(STARTING_CORD_PIN) == HIGH) && running) {
+        usleep(100000); // Sleep for 0.1 seconds
     }
 
     if (digitalRead(STARTING_CORD_PIN) == LOW) { // cord inserted
@@ -21,14 +23,15 @@ void Robot::wait_starting_cord(GAME *game) {
         fprintf(stderr, "--------------------------------------------------------\n");
         usleep(2000000); // Sleep for 2 seconds to avoid inserting issues
     }
-    while(digitalRead(STARTING_CORD_PIN) == LOW) { // cord inserted
+    while((digitalRead(STARTING_CORD_PIN) == LOW) && running) { // cord inserted
         usleep(50000); // Sleep for 0.05 seconds
     }
-
     resetValues(); // reset the encoder values for not having odometry issues
-    // if we go out of the while, starting cord is released
-    initCoords(game); // Initialize coordinates
-    game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
-    fprintf(stderr, "STARTING !\n");
-    fprintf(stderr, "--------------------------------------------------------\n");
+    if(running) {
+        // if we go out of the while, starting cord is released
+        initCoords(game); // Initialize coordinates
+        game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
+        fprintf(stderr, "STARTING !\n");
+        fprintf(stderr, "--------------------------------------------------------\n");
+    }
 }

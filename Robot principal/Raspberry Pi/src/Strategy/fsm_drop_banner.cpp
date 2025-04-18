@@ -29,6 +29,7 @@ void drop_banner(Robot *robot, GAME *game){
         if(robot->end_of_manoeuvre){
             robot->banner_dropped = true ; 
             BANNER_STATE = 0 ;
+            robot->points_scored += 20; 
         }
         break;
     }

@@ -118,7 +118,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             break ; 
 
         case 6 : //BUILD THIRD STAGES
-            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1);
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_NODE_STACK_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
@@ -126,20 +126,9 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
 
         case 7 : //RETURN TO BASE
             return_to_base(robot, game);
-            if(robot->end_of_travel){
-                STATE++;
-            }
             break ;
 
-        case 8 : //BUZZ
-            robot->buzzBuzzer();
-            usleep(500);
-            STATE++;
-            break;
-            
-        case 9 : //SHUTTING DOWN
-            usleep(30000);
-            break;
+        // ENDING IN RETURN TO BASE
         
         default:
             break;
@@ -147,13 +136,6 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
 }
 
 void start_from_yellow_side(Robot *robot, GAME *game){
-    // switch (STATE){
-
-    //     case 0 : // DROP THE BANNER
-    //         robot->teensy_grab();
-    //         STATE++;
-    //         break ; 
-
     switch (STATE){
 
         case 1 : // DROP THE BANNER
@@ -211,51 +193,99 @@ void return_to_base(Robot *robot, GAME *game){
 }
 
 void return_to_base_blue(Robot *robot, GAME *game){
-switch (STATE_RETURN_TO_BASE){
-    case 0: // return to base
-        robot->highLevelController(END_ZONE_BLUE, game);
-        if (robot->end_of_travel){
-            STATE_RETURN_TO_BASE++;
-        }
-        break;
-    case 1: // extend crémaillère
-        // TODO // extend crémaillère
-        STATE_RETURN_TO_BASE++;
-        break;
-    case 2: // FINISHED MATCH
-        // print the score on the screen
-        fprintf(stderr, "FINISHED MATCH\n");
-        robot->buzzBuzzer();
-        STATE_RETURN_TO_BASE++;
-        break;
-    case 3: // SHUTTING DOWN
-        usleep(100000);
-        break;
-}
-
-
-}
-
-void return_to_base_yellow(Robot *robot, GAME *game){
     switch (STATE_RETURN_TO_BASE){
-        case 0: // return to base
-            robot->highLevelController(END_ZONE_YELLOW, game);
+
+        case 0: // GO TO BASE NODE
+            robot->highLevelController(PRE_END_ZONE_BLUE, game);
             if (robot->end_of_travel){
                 STATE_RETURN_TO_BASE++;
             }
             break;
-        case 1: // extend crémaillère
-            // TODO // extend crémaillère
+
+        case 1 : //ORIENTATE TO BASE
+            robot->orientate(90, game);
             STATE_RETURN_TO_BASE++;
             break;
-        case 2: // FINISHED MATCH
-            // print the score on the screen
+
+        case 2: // ORIENTATING 
+            if (robot->end_of_angle){
+                STATE_RETURN_TO_BASE++;
+            }
+            robot->screen_end_game(); //show the score on the screen
+            break;
+
+        case 3 : // MANEUVER TO END ZONE   
+            if(get_match_time(game) > time_reach_end_zone){
+                robot->maneuver(END_ZONE_BLUE, game);
+                STATE_RETURN_TO_BASE++;
+            }
+            break; 
+
+        case 4 : // MANEUVERING
+            if(robot->end_of_manoeuvre){
+                STATE_RETURN_TO_BASE++;
+            }
+            break; 
+
+        case 5: // FINISHED MATCH
             fprintf(stderr, "FINISHED MATCH\n");
-            robot->buzzBuzzer();
+            //robot->buzzBuzzer();
             STATE_RETURN_TO_BASE++;
             break;
-        case 3: // SHUTTING DOWN
-            usleep(100000);
+
+        case 6: // SHUTTING DOWN
+            usleep(0.001*1000000);
             break;
-        }
+
+    }
+}
+
+void return_to_base_yellow(Robot *robot, GAME *game){
+    //std::cout << "RETURN TO BASE STATE: " << STATE_RETURN_TO_BASE << std::endl;
+    switch (STATE_RETURN_TO_BASE){
+
+        case 0: // GO TO BASE NODE
+            robot->highLevelController(PRE_END_ZONE_YELLOW, game);
+            if (robot->end_of_travel){
+                STATE_RETURN_TO_BASE++;
+            }
+            break;
+
+        case 1 : //ORIENTATE TO BASE
+            robot->points_scored += 10 ; 
+            robot->orientate(90, game);
+            STATE_RETURN_TO_BASE++;
+            break;
+
+        case 2: // ORIENTATING 
+            if (robot->end_of_angle){
+                STATE_RETURN_TO_BASE++;
+            }
+            robot->screen_end_game(); //show the score on the screen
+            break;
+
+        case 3 : // MANEUVER TO END ZONE   
+            if(get_match_time(game) > time_reach_end_zone){
+                robot->maneuver(END_ZONE_YELLOW, game);
+                STATE_RETURN_TO_BASE++;
+                }
+            break; 
+
+        case 4 : // MANEUVERING
+            if(robot->end_of_manoeuvre){
+                STATE_RETURN_TO_BASE++;
+            }
+            break; 
+
+        case 5: // FINISHED MATCH
+            fprintf(stderr, "FINISHED MATCH\n");
+            //robot->buzzBuzzer();
+            STATE_RETURN_TO_BASE++;
+            break;
+
+        case 6: // SHUTTING DOWN
+            usleep(0.001*1000000);
+            break;
+
+    }
 }

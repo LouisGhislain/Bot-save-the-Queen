@@ -96,8 +96,8 @@ void Robot::screen_write(int x, int y, const char data[]) {
 void Robot::screen_end_game(){
     char buffer[50];
     sprintf(buffer, "%d points", points_scored);
-    screen_write(0, 0, "Je suis Bot Save The Queen");
-    screen_write(0, 1, "et j'ai marqué ");
+    screen_write(0, 0, "I am The Queen");
+    screen_write(0, 1, "and I scored : ");
     screen_write(0, 3, buffer);
 
 }

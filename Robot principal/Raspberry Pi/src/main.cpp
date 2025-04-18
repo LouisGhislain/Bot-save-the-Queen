@@ -15,8 +15,8 @@
 #include "../include/lidar.h"
 #include "../include/FSM.h"
 
-// Variables globales pour le multithreading
-std::atomic<bool> running{true};
+// // Variables globales pour le multithreading
+// std::atomic<bool> running{true};
 
 Robot *robot = new Robot();
 
@@ -27,13 +27,15 @@ void signalHandler(int signum) {
     // cleanup and close up stuff here  
     // terminate program
 
-    running.store(false);
+    //running.store(false);
+    robot->running = false; // Set the running flag to false
     robot->stop();
-    robot->stop();
-    robot->ref_speed_left = 0;
-    robot->ref_speed_right = 0;
 
-    exit(signum);
+    usleep(0.1*1000000); // Wait for 1 second to ensure the robot stops
+
+    robot->stop();
+    
+    //exit(signum);
 }   
 
 // Controller thread function that runs at specified interval
@@ -42,7 +44,7 @@ void loop_1ms(GAME *game){
     
     std::cout << "1ms loop started" << std::endl;
     
-    while (running) {
+    while (robot->running) {
         auto start_time = steady_clock::now();
         
         //===========================================================================
@@ -76,7 +78,7 @@ void loop_10ms(GAME *game){
     
     std::cout << "10ms loop started" << std::endl;
 
-    while (running) {
+    while (robot->running) {
         auto start_time = steady_clock::now();
 
         //===========================================================================
@@ -126,7 +128,7 @@ void loop_100ms(GAME *game){
     
     std::cout << "100ms loop started" << std::endl;
     
-    while (running) {
+    while (robot->running) {
         auto start_time = steady_clock::now();
         
         //===========================================================================
@@ -146,11 +148,12 @@ void loop_100ms(GAME *game){
         
         if (sleep_time > milliseconds(0)) {
             std::this_thread::sleep_for(sleep_time);
-        } else {
-            // Controller took longer than interval - log warning
-            std::cout << "Warning: 100ms loop exceeded time budget by "
-                      << -sleep_time.count() << "ms" << std::endl;
         }
+        // else {
+            // Controller took longer than interval - log warning
+            // std::cout << "Warning: 100ms loop exceeded time budget by "
+            //           << -sleep_time.count() << "ms" << std::endl;
+        // }
     }
 }
 
@@ -162,7 +165,7 @@ void lidar_thread_func(void* game_void) {
     
     std::cout << "lidar thread started" << std::endl;
 
-    while (running) {
+    while (robot->running) {
         auto start_time = steady_clock::now();
         // Appeler la fonction de récupération des données LIDAR
 
@@ -203,7 +206,8 @@ int main() {
 
     pos_of_stack(game);
     
-    running.store(true);
+    //running.store(true);
+    robot->running = true; // Set the running flag to true
 
     robot->loadNodes("src/Mobility/Localization/nodes.txt", game);
     robot->loadEdges("src/Mobility/Localization/links.txt", game);   
@@ -216,7 +220,6 @@ int main() {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
-        robot->screen_display_intro();
 
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
@@ -232,12 +235,11 @@ int main() {
     std::thread thread_100ms(loop_100ms, game);
     std::thread thread_lidar(lidar_thread_func, game);
 
+    // Waiting for interrupt signal:
+    while (robot->running) {
+        pause();  // wait for any signal (SIGINT wakes it up)
+    }
 
-    // Let the system run for a specified time (e.g., 10 seconds)
-    std::cout << "Controllers running. Press Enter to stop..." << std::endl;
-    std::cin.get();
-
-    running.store(false);
     // Arrêter les threads et nettoyer les ressources
     thread_1ms.join();
     thread_10ms.join();
