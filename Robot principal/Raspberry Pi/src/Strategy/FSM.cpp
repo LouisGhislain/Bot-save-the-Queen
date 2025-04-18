@@ -41,7 +41,7 @@ void start_from_blue_side(Robot *robot, GAME *game){
 
 void start_from_yellow_bottom(Robot *robot, GAME *game){
     // Print robot state
-    std::cout << "Robot state: " << STATE << std::endl;
+    //std::cout << "Robot state: " << STATE << std::endl;
     /*
     switch(STATE){
     case 0 : 
@@ -98,8 +98,6 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
 
         case 3 : // GO TO SECOND STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
-            // Print stack_grabbed
-            std::cout << "stack_grabbed: " << robot->stack_grabbed << std::endl;
             if(robot->stack_grabbed){ //WAIT GRAB
                 STATE++;
             }
@@ -114,7 +112,6 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
 
         case 5 : //GO TO THIRD STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
-            std::cout << "stack_grabbed: " << robot->stack_grabbed << std::endl;
             if(robot->stack_grabbed){
                 STATE++;
             }
@@ -127,13 +124,20 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             }
             break ; 
 
-        case 7 : //BUZZ
+        case 7 : //RETURN TO BASE
+            return_to_base(robot, game);
+            if(robot->end_of_travel){
+                STATE++;
+            }
+            break ;
+
+        case 8 : //BUZZ
             robot->buzzBuzzer();
             usleep(500);
             STATE++;
             break;
             
-        case 8 : //SHUTTING DOWN
+        case 9 : //SHUTTING DOWN
             usleep(30000);
             break;
         

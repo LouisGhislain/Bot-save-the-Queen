@@ -29,6 +29,9 @@ void signalHandler(int signum) {
 
     running.store(false);
     robot->stop();
+    robot->stop();
+    robot->ref_speed_left = 0;
+    robot->ref_speed_right = 0;
 
     exit(signum);
 }   
@@ -139,7 +142,7 @@ void loop_100ms(GAME *game){
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
-        auto sleep_time = milliseconds(10) - elapsed;
+        auto sleep_time = milliseconds(20) - elapsed;
         
         if (sleep_time > milliseconds(0)) {
             std::this_thread::sleep_for(sleep_time);
@@ -244,6 +247,5 @@ int main() {
     free_game(game);
     
     std::cout << "Programme terminé avec succès" << std::endl;
-
     return 0;
 }

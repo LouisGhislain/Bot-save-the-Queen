@@ -2,14 +2,23 @@
 
 void Robot::teensy_build(void *game){
     build_finished = false;
-    teensy_send_command(0x04);//CMD_BUILD
-    usleep(400000);
-    straightMotion(-0.12,game);//recule avec cremaillère
-    usleep(3500000);
-    straightMotion(0.12,game);//avance avec stack haut
-    usleep(2000000); //3000000
-    straightMotion(-0.1,game);
-    build_finished = true;
+    teensy_send_command(0x04);   // ENVOIE LA COMMANDE   (CMD_BUILD)
+
+    usleep(0.7*1000000);         // RELEASE LES EXTERIEURS    // previous 0.4
+
+    straightMotion(-0.12,game);  // RECULE AVEC LES CREMAILLERES
+
+    usleep(4*1000000);             // MONTE LE STACK AU 2e ETAGE // previous 3.5
+
+    straightMotion(0.12,game);   // AVANCE AVEC STACK HAUT
+
+    usleep(2000000);             // RELEASE LE STACK AU 2e ETAGE
+    
+    straightMotion(-0.1,game);   // RECULE POUR NE PAS CASSER LE GRADIN
+
+                                 // RABAISSE LE HOLD CANS AU 1er ETAGE
+    
+    build_finished = true;  
 
 }
 

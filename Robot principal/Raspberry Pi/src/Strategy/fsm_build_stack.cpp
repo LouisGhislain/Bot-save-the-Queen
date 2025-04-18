@@ -10,14 +10,12 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     switch(STATE_BUILDING){
 
         case 0 : //PATH PLANNING TO PRE_NODE BUILDING ZONE
-            if ((NODE == CONSTRUCTION_YELLOW_0)||(NODE ==  CONSTRUCTION_YELLOW_2)){
+            if ((NODE == CONSTRUCTION_YELLOW_0)||(NODE ==  CONSTRUCTION_BLUE_0)){
                 double dist_to_prenode;
                 {
                     std::lock_guard<std::mutex> lock(myqueen->position_mutex);
                     dist_to_prenode = sqrt(pow((mymap->nodes[PRE_NODE].x - myqueen->cart_pos->x),2) + pow((mymap->nodes[PRE_NODE].y - myqueen->cart_pos->y),2));
                 }
-                // Print dist_to_prenode
-                std::cout << "dist_to_prenode: " << dist_to_prenode << std::endl;
                 if (dist_to_prenode < 0.15){
                     STATE_BUILDING++;
                     break;
@@ -30,7 +28,14 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
             break;
 
         case 1 : //MANEUVER TO NODE BUILDING ZONE
-            robot->maneuver(NODE, game);
+            double dist_a_avancer;
+            if ((NODE == CONSTRUCTION_YELLOW_0)||(NODE ==  CONSTRUCTION_BLUE_0)){
+                dist_a_avancer = 0.09;
+            }
+            else{
+                dist_a_avancer = DISTANCE_NODE_PRE_NODE;
+            }
+            robot->straightMotion(dist_a_avancer, game); //robot->maneuver(NODE, game);
             STATE_BUILDING++;
             break ;
 
@@ -112,7 +117,6 @@ void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     
 void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2){
     robot->stack_builded = false ;
-    std::cout << "Robot_third_stage state: " << STATE_BUILDING << std::endl;
     switch(STATE_BUILDING){
         
         case 0 : //MOVING TO PRE NODE TO SEPARATE
@@ -137,7 +141,6 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
         case 3 : //BACKWARD A LOT
             if(robot->separate_finished && robot->end_of_manoeuvre){
                 robot->straightMotion(-0.15, game); //CHANGER EN MANEUVER ?
-                std::cout << "Target y : " << robot->GLOBAL_y_coord_target << std::endl;
                 STATE_BUILDING++;
             }
             break ; 

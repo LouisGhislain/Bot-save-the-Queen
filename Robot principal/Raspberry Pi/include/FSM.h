@@ -70,6 +70,8 @@
 #define PRE_CONSTRUCTION_BLUE_2 52
 #define PRE_CONSTRUCTION_BLUE_3 46
 
+#define DISTANCE_NODE_PRE_NODE 0.21 // distance between the node and the pre_node to stop
+
 // State
 extern int STATE;
 extern int STATE_RETURN_TO_BASE; // State for returning to base

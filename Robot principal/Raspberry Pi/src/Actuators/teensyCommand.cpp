@@ -5,17 +5,11 @@
 #include <unistd.h>
 #define TEENSY_ADDR 0x08
 
+int fd_teensy = -1;  // class member
+
 void Robot::teensy_init(){
-    fd_teensy= wiringPiI2CSetup(TEENSY_ADDR);
-    if (fd_teensy < 0) {
-        std::cerr << "Erreur : Impossible de se connecter à la Teensy !" << std::endl;
-    }
-}
-
-
-void Robot::teensy_send_command(uint8_t command){
     const char *filename = "/dev/i2c-1";
-    int fd_teensy = open(filename, O_RDWR);
+    fd_teensy = open(filename, O_RDWR);
     if (fd_teensy < 0) {
         perror("Failed to open the i2c bus");
         return;
@@ -24,15 +18,18 @@ void Robot::teensy_send_command(uint8_t command){
     if (ioctl(fd_teensy, I2C_SLAVE, TEENSY_ADDR) < 0) {
         perror("Failed to acquire bus access and/or talk to slave");
         close(fd_teensy);
+        fd_teensy = -1;
+    }
+}
+
+void Robot::teensy_send_command(uint8_t command){
+    if (fd_teensy < 0) {
+        std::cerr << "I2C not initialized!" << std::endl;
         return;
     }
 
-    // Write only one byte (the command)
-    if (write(fd_teensy, &command, 1) != 1) {
-        perror("Failed to write to the i2c bus");
-    } else {
-        std::cout << "Commande envoyée avec succès." << std::endl;
+    while (write(fd_teensy, &command, 1) != 1) {
+        perror("Failed to write to the i2c bus, retrying...");
     }
-
-    close(fd_teensy);
+    std::cout << "Commande envoyée avec succès." << std::endl;
 }

@@ -14,7 +14,7 @@ void drop_banner(Robot *robot, GAME *game){
 
     case 1 :
         // Print check if against wall
-        std::cout << "check if against wall: " << robot->checkIfAgainstWall(game) << std::endl;
+        //std::cout << "check if against wall: " << robot->checkIfAgainstWall(game) << std::endl;
         if (robot->checkIfAgainstWall(game)){
             //usleep(100000);
             BANNER_STATE++;

@@ -208,8 +208,8 @@ private:
     static constexpr double KpSpeed = 1.4048464035277164;
     static constexpr double KiSpeed = 2.6222100340415317;
 
-    // Middle level controller variables
-    static constexpr double KpAlpha = 3;
+    // Middle level controller variable
+    static constexpr double KpAlpha = 6;
     static constexpr double Kp_orientation = 7; // in rad/s/rad (proportional gain for the orientation controller)    
 
     double delta_x_target;

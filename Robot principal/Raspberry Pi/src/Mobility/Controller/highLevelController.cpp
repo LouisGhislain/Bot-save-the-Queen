@@ -31,8 +31,6 @@ void Robot::highLevelController(int goal, void *game) {
     // Checks if the goal has changed
     if (goal != current_destination){
 
-        fprintf(stderr, "New goal: %d\n", goal);
-
         // If the goal has changed, update the current destination
         current_destination = goal;
         end_of_travel = false;
@@ -93,10 +91,10 @@ void Robot::highLevelController(int goal, void *game) {
     // fprintf(stderr, "stop_robot_distance: %f\n", GLOBAL_params.stop_robot_distance);
 
     // If the robot has reached the target node, update the current step
-    if((myrho < d1_change_target) && (current_step < path.size())){
+    if((myrho < d1_change_target) && (current_step < path.size()-1)){
         current_step++;
         // Print step ++
-        fprintf(stderr, "Step ++");
+        //fprintf(stderr, "Step ++");
     }
 
     
@@ -115,7 +113,7 @@ void Robot::highLevelController(int goal, void *game) {
     // If the robot has not reached the destination, call the middle level controller
     if (current_step < path.size()){
         // Print step
-        fprintf(stderr, "Step: %d\n", current_step);
+        //fprintf(stderr, "Step: %d\n", current_step);
 
         // If last step of the travel 
         if (current_step == path.size()-1){
@@ -138,14 +136,12 @@ void Robot::highLevelController(int goal, void *game) {
 
     }
     // If the robot has reached the destination, stop the robot and set the end_of_travel flag to true
-    else if(rho_to_goal < GLOBAL_params.stop_robot_distance) {
+    if(rho_to_goal < GLOBAL_params.stop_robot_distance) {
         {
             std::lock_guard<std::mutex> lock(flags);
-            // Print myRho
-            fprintf(stderr, "myRho: %f\n", myrho);
             end_of_travel = true;
-            fprintf(stderr, "End of travel\n");
         }
+        fprintf(stderr, "End of travel\n");
         travelled_distance = 0;
     }
 

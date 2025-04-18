@@ -19,10 +19,10 @@ const MovementParams straight {
 
 const MovementParams deplacement {
     false,  // activated_target_angle
-    0.15,   // d0
+    0.30,   // d0
     0.6,    //0.7,    // vMax  --> à la roue : 0.7 / 0.0295 = 23.73 rad/s;  
-    8,     // wMax
-    0.03    // stop_robot_distance
+    4,     // wMax
+    0.01    // stop_robot_distance
 };
 
 const MovementParams orientation {
@@ -92,7 +92,7 @@ void Robot::middleLevelController(void *game) {
             ref_speed_right = 0;
             end_of_manoeuvre = true;
         }
-        std::cout << "Point reached" << std::endl;
+        //std::cout << "Point reached" << std::endl;
         return;
         }
     else{
