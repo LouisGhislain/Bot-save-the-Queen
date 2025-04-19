@@ -105,7 +105,7 @@ double PAMI::getSonarDistance() {
 
 void PAMI::turnTail() {
     tail.Turn_tail(); // Agiter la queue
-    Serial.println("Agitation de la queue en cours...");
+    // Serial.println("Agitation de la queue en cours...");
     delay(300); // Attendre un peu avant de réagir à la prochaine lecture
 }
 
@@ -119,11 +119,11 @@ void PAMI::update_position() {
     dist_right = rightMotor.getDistance();
 
     // Print vitesse
-    Serial.print(millis() - 5000);
-    Serial.print(" , ");
-    Serial.print(leftMotor.getSpeed());
-    Serial.print(" , ");
-    Serial.println(rightMotor.getSpeed());
+    // Serial.print(millis() - 5000);
+    // Serial.print(" , ");
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(" , ");
+    // Serial.println(rightMotor.getSpeed());
 
 
 
@@ -155,11 +155,11 @@ void PAMI::Turn(double angle_ref) {
 
     double t_start = millis(); // Temps de départ
     while (millis() - t_start  < 720) {
-        Serial.print(millis()-t_start);
-        Serial.print(" , ");
-        Serial.print(t_start );
-        Serial.print(" , ");
-        Serial.println(millis());
+        // Serial.print(millis()-t_start);
+        // Serial.print(" , ");
+        // Serial.print(t_start );
+        // Serial.print(" , ");
+        // Serial.println(millis());
         lowlevelcontrol(0.1, -0.1); // Tourner à gauche
     }
     pami_brake(); // Freiner le robot
@@ -236,7 +236,7 @@ void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bo
 }
 
 
-void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target) {
+void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target, double startGame) {
 
 
     update_position(); // Met à jour la position du robot
@@ -245,54 +245,62 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
 
     if (!target_reached) {
         while (rho > 0.08) {
-            double theta = angle * PI / 180.0; // Convertir l'angle en radians
-            rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
-            double distance_to_ennemy = getSonarDistance(); // Distance entre le robot et l'ennemi
-
-            if (distance_to_ennemy < 15 && distance_to_ennemy > 1) { // Si l'ennemi est trop proche, on arrête le robot
-                Serial.println("Obstacle detected, stopping the robot");
-                Serial.print("Distance to ennemy: ");
-                Serial.println(distance_to_ennemy);
+            if (millis() - startGame > 99000) { // Si le temps écoulé depuis le début du jeu est supérieur à 1 seconde
+                Serial.println("Time out, stopping the robot");
                 lowlevelcontrol(0, 0); // Arrêter le robot
+                tail.Turn_tail(); // Agiter la queue
+                break;
             }
-            
             else {
+                double theta = angle * PI / 180.0; // Convertir l'angle en radians
+                rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+                double distance_to_ennemy = getSonarDistance(); // Distance entre le robot et l'ennemi
 
-            double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
-            // Serial.print("alpha: ");
-            // Serial.print(alpha);
-            // Serial.println("");
+                if (distance_to_ennemy < 15 && distance_to_ennemy > 1) { // Si l'ennemi est trop proche, on arrête le robot
+                    // Serial.println("Obstacle detected, stopping the robot");
+                    // Serial.print("Distance to ennemy: ");
+                    // Serial.println(distance_to_ennemy);
+                    lowlevelcontrol(0, 0); // Arrêter le robot
+                }
+                
+                else {
 
-            while(alpha > M_PI){
-                alpha -= 2*M_PI;
+                double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+                // Serial.print("alpha: ");
+                // Serial.print(alpha);
+                // Serial.println("");
+
+                while(alpha > M_PI){
+                    alpha -= 2*M_PI;
+                }
+                while(alpha < -M_PI){
+                    alpha += 2*M_PI;
+                }
+                
+                double v = 0.15; // Vitesse linéaire
+                double w = Kp_alpha * alpha; // Vitesse angulai
+
+                double ref_speed_left = (v - w);
+                double ref_speed_right = (v + w);
+
+
+                // Limit the speed
+                if (ref_speed_left > MAX_LINEAR_SPEED) {
+                    ref_speed_left = MAX_LINEAR_SPEED;
+                } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
+                    ref_speed_left = -MAX_LINEAR_SPEED;
+                }
+                if (ref_speed_right > MAX_LINEAR_SPEED) {
+                    ref_speed_right = MAX_LINEAR_SPEED;
+                } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
+                    ref_speed_right = -MAX_LINEAR_SPEED;
+                }
+
+                lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+                delay(100); // Attendre un peu avant de mettre à jour la position
             }
-            while(alpha < -M_PI){
-                alpha += 2*M_PI;
             }
-            
-            double v = 0.15; // Vitesse linéaire
-            double w = Kp_alpha * alpha; // Vitesse angulai
-
-            double ref_speed_left = (v - w);
-            double ref_speed_right = (v + w);
-
-
-            // Limit the speed
-            if (ref_speed_left > MAX_LINEAR_SPEED) {
-                ref_speed_left = MAX_LINEAR_SPEED;
-            } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
-                ref_speed_left = -MAX_LINEAR_SPEED;
-            }
-            if (ref_speed_right > MAX_LINEAR_SPEED) {
-                ref_speed_right = MAX_LINEAR_SPEED;
-            } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
-                ref_speed_right = -MAX_LINEAR_SPEED;
-            }
-
-            lowlevelcontrol(ref_speed_left, ref_speed_right);
-
-            delay(100); // Attendre un peu avant de mettre à jour la position
-        }
         }
         // Stop the motors
         leftMotor.set_motor(0);

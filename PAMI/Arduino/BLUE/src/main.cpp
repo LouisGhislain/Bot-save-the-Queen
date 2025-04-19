@@ -62,10 +62,8 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
-    startTime = millis();
+    startGame = millis();
     delay(86000);  // Attendre que le moniteur série soit prêt
-
-
 
     role = 0; // 0 pour le robot, 1 pour la superstar
     SuperStar = {STRAIGHT1, 0, false, false, false, false, false, false}; // Initialisation de l'état du robot
@@ -82,9 +80,9 @@ void loop(){
     // pami.lowlevelcontrol(0.3, 0.3); // Arrêter le robot
     if (pami.target_reached == false){
         if (TEAM_COLOR == 'Y') {
-            pami.middlecontrol(0.9, -0.43, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(0.9, -0.43, 0.0, false, startGame);  // Avancer vers x = 1.0
         } else if (TEAM_COLOR == 'B') {
-            pami.middlecontrol(0.95, 0.45, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(0.95, 0.45, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
     } else {
         pami.turnTail();  // Agiter la queue
