@@ -310,7 +310,7 @@ void fetchLidarData(void * sqid_void) {
   
 void Emergency_stop(GAME* squid) {
   // if Sauron is too cloose
-  if (fabs(squid->Sauron->pol_pos->distance) < STOP_DISTANCE_ENNEMY*1000) {
+  if (fabs(squid->Sauron->pol_pos->distance) < STOP_DISTANCE_ENNEMY_FRONT*1000) {
     printf("Emergency stop\n");
     // Stop the robot
     squid->Sauron->too_close = true;

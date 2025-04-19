@@ -90,7 +90,7 @@ void loop_10ms(GAME *game){
             angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
         }
         // profil d'évitement d'adversaire (voir screenshot desmos)
-        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY)) {  // stop distance parameter in the lidar.h file
+        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
             //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
             robot->stop_if_ennemy(); // stop the robot
         }
@@ -215,7 +215,7 @@ int main() {
     // 2 = YELLOW BOTTOM
     //                                                                            (3 = YELLOW SIDE)
 
-    robot->starting_pos = 0;
+    robot->starting_pos = 2; // 0 or 2
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.

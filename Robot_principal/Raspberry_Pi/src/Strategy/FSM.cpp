@@ -18,6 +18,7 @@ void start_from_blue_bottom(Robot *robot, GAME *game){
             fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_5, NODE_STACK_5);
             if(robot->stack_grabbed){ // WAIT GRAB
                 STATE++;
+                usleep(0.5*1000000);
             }
             break;
 
@@ -85,6 +86,7 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
             fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
             if(robot->stack_grabbed){ // WAIT GRAB
                 STATE++;
+                usleep(0.5*1000000);
             }
             break;
 
@@ -150,8 +152,9 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 void choose_start(Robot *robot, GAME *game){
 
     if(get_match_time(game) > 99.5){
+        fprintf(stderr, "MATCH ENDED by timout\n");
         robot->stop();
-        //robot->screen_end_game(); //show the score on the screen
+        robot->screen_end_game(); //show the score on the screen
     }
 
     if(robot->avoidance_loop_activated){

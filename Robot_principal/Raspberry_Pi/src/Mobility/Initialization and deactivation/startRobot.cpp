@@ -21,7 +21,7 @@ void Robot::start() {
 
     teensy_init(); //init I2C teensy
     digitalWrite(22, LOW); 
-    //screen_init(); //init I2C screen
+    screen_init(); //init I2C screen
     initialize_pins();
 }
 

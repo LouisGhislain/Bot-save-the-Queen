@@ -84,7 +84,7 @@ extern int STATE;
 extern int STATE_RETURN_TO_BASE; // State for returning to base
 
 inline constexpr int time_return_to_base = 90; // in seconds, the time at which we stop everything to return to the base
-inline constexpr int time_reach_end_zone = 97;
+inline constexpr int time_reach_end_zone = 95;
 
 void start_from_yellow_side(Robot *robot, GAME *game);
 void start_from_blue_bottom(Robot *robot, GAME *game);
