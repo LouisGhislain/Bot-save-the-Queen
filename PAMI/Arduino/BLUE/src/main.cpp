@@ -24,6 +24,7 @@
 
 // Caractère Team en fonction de la couleur de l'équipe
 #define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
+// #define TEAM_COLOR 'B'
 
 
 // // Initialisation des encodeurs
