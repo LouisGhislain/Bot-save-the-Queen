@@ -31,11 +31,11 @@ public:
     bool isLeftPressed();
     double getSonarDistance();
     void turnTail();
-    void middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bool target);
+    void middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bool target, double time);
     void Turn(double angle_ref);
     void reset_last_time_ctrl();
     void reset_position();
-    void Rotate(double angle_ref);
+    void Rotate(double angle_ref, double time);
 
 private:
     Encoder leftEncoder;

@@ -39,7 +39,7 @@ Motor rightMotor(ENB, DIR3, DIR4, &rightEncoder, false);
 //Initialisation de PAMI
 PAMI pami;
 bool isStopped = false ; 
-float startTime = 0;
+double startGame;
 
 
 
@@ -68,9 +68,9 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
-    delay(85000);  // Attendre que le moniteur série soit prêt
+    startGame = millis();
 
-    startTime = millis();
+    delay(85000);  // Attendre que le moniteur série soit prêt
 
 
     role = 0; // 0 pour le robot, 1 pour la superstar
@@ -85,7 +85,7 @@ void Superstar_ORANGE(){
         case STRAIGHT1:
             
             Serial.println("Start STRAIGHT1");
-            pami.middlecontrol(1.15, -0.1, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(1.15, -0.1, 0.0, false, startGame);  // Avancer vers x = 1.0
             SuperStar.firstPathDone = true;
             SuperStar.state = TURN;
             Serial.println("End STRAIGHT1");
@@ -97,8 +97,8 @@ void Superstar_ORANGE(){
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
             delay(200);
-            pami.Rotate(-60);  // Tourner de 90° à droite
-            Serial.println(pami.getAngle());
+            pami.Rotate(-60, startGame);  // Tourner de 90° à droite
+            // Serial.println(pami.getAngle());
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
             SuperStar.turnDone = true;
@@ -147,7 +147,7 @@ void Superstar_BLUE(){
         case STRAIGHT1:
             
             Serial.println("Start STRAIGHT1");
-            pami.middlecontrol(1.15, 0, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(1.15, 0, 0.0, false, startGame);  // Avancer vers x = 1.0
             SuperStar.firstPathDone = true;
             SuperStar.state = TURN;
             Serial.println("End STRAIGHT1");
@@ -158,7 +158,7 @@ void Superstar_BLUE(){
             pami.target_reached = false;
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
-            pami.Rotate(60);  // Tourner de 90° à droite
+            pami.Rotate(60, startGame);  // Tourner de 90° à droite
             Serial.println(pami.getAngle());
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
@@ -210,10 +210,7 @@ void loop(){
         Superstar_BLUE();
     } else if (TEAM_COLOR == 'Y') {
         Superstar_ORANGE();
-    } else if (TEAM_COLOR == 'T') {
-        pami.middlecontrol(0.95, 0., 0.0, false);  // Avancer vers x = 1.0
-    }
-
+    } 
     // Print time_ms,left_ticks,left_speed,right_ticks,right_speed
     // pami.update_position();
     // // leftMotor.set_motor(9);
