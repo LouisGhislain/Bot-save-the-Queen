@@ -35,9 +35,7 @@ Motor rightMotor(ENB, DIR3, DIR4, &rightEncoder, false);
 //Initialisation de PAMI
 PAMI pami;
 bool isStopped = false ; 
-float startTime = 0;
-
-
+double startGame;
 
 int role;
 Robot SuperStar;
@@ -68,13 +66,13 @@ void setup() {
     pami = PAMI();
 
     Serial.println("Début du test de vitesse");
+    startGame = millis();
 
-    delay(5000);  // Attendre que le moniteur série soit prêt
+    delay(6000);  // Attendre que le moniteur série soit prêt
 
-    startTime = millis();
+    
 
-    team = BLUE;
-
+    team = YELLOW;
 
     }
 
@@ -85,7 +83,7 @@ void team_yellow() {
     switch (middle_state) {
         case 'a':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.7, -0.57, 0.0, false, 0.08);
+                pami.middlecontrol(0.7, -0.57, 0.0, false, 0.08, startGame);
             } else {
                 pami.target_reached = false;
                 middle_state = 'b'; // Changer d'état
@@ -96,7 +94,7 @@ void team_yellow() {
 
         case 'b':
             if (!pami.target_reached) {
-                pami.middlecontrol(2.1, -0.47, 0.0, false, 0.1);
+                pami.middlecontrol(2.1, -0.47, 0.0, false, 0.1, startGame);
             } else {
                 pami.target_reached = false;
                 middle_state = 'c'; // Changer d'état
@@ -106,7 +104,8 @@ void team_yellow() {
             break;
 
         case 'c':
-            pami.Rotate(60); // Tourner à droite de 90 degrés
+            delay(100); // Attendre 1 seconde avant de tourner
+            pami.Rotate(60, startGame); // Tourner à droite de 90 degrés
             Serial.println("Rotation de 90 degrés effectuée.");
             middle_state = 'd'; // Changer d'état
             break;
@@ -118,7 +117,7 @@ void team_yellow() {
 
         case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.15, 0, 0.0, false, 0.04);
+                pami.middlecontrol(0.15, 0, 0.0, false, 0.04, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
 
@@ -137,9 +136,6 @@ void team_yellow() {
             rightMotor.set_motor(0); // Arrêter le moteur droit
             Serial.println("Arrêt du robot.");
             break;
-
-
-
     }
 }
 
@@ -149,7 +145,7 @@ void team_blue() {
     switch (middle_state) {
         case 'a':
             if (!pami.target_reached) {
-                pami.middlecontrol(1, 0.5, 0.0, false, 0.1);
+                pami.middlecontrol(1, 0.5, 0.0, false, 0.1, startGame);
                 // leftMotor.set_motor(0); // Avancer lentement
                 // rightMotor.set_motor(0); // Avancer lentement
             } else {
@@ -162,7 +158,7 @@ void team_blue() {
 
         case 'b':
             if (!pami.target_reached) {
-                pami.middlecontrol(2.02, -0.75, 0.0, false, 0.12);
+                pami.middlecontrol(2.07, -0.8, 0.0, false, 0.12, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
             } else {
@@ -175,7 +171,7 @@ void team_blue() {
 
         case 'c':
             delay(100); // Attendre 1 seconde avant de tourner
-            pami.Rotate(-90); // Tourner à droite de 90 degrés
+            pami.Rotate(-90, startGame); // Tourner à droite de 90 degrés
             Serial.println("Rotation de 90 degrés effectuée.");
             middle_state = 'd'; // Changer d'état
             break;
@@ -187,7 +183,7 @@ void team_blue() {
 
         case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.41, 0, 0.0, false, 0.2);
+                pami.middlecontrol(0.22, -0.2, 0.0, false, 0.17, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
 
