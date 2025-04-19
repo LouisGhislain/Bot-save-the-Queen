@@ -135,18 +135,15 @@ void Superstar(){
 
 void loop(){
 
-    switch(role){
-        case 0:
-            while(true){
-                //Buzzer pin 13 ON
-                digitalWrite(13, HIGH);
-            
-            }
-
-        case 1:
-            Superstar();
-            break;
-
-    }
+    pami.turnTail();  // Agite un microswitch
+    // if (!pami.target_reached){
+    //     pami.middlecontrol(1.14, -0.45, 0.0, false);  // Avancer vers x = 1.0
+    // }
+    // else {
+    //     pami.turnTail();  // Agite un microswitch
+    //     leftMotor.set_motor(0);
+    //     rightMotor.set_motor(0); // Arrêter le moteur droit
+    //     pami.pami_brake(); // Freiner le robot
+    // }
 
 }
