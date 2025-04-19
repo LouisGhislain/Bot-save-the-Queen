@@ -94,13 +94,18 @@ void Robot::screen_write(int x, int y, const char data[]) {
 }
 
 void Robot::screen_end_game(){
+    screen_clear(); // Clear previous data
+
     char buffer[50];
-    sprintf(buffer, "points"); //sprintf(buffer, "%d points", points_scored);
+    snprintf(buffer, sizeof(buffer), "%d points", points_scored);
+
     screen_write(0, 0, "I am The Queen");
     screen_write(0, 1, "and I scored : ");
     screen_write(0, 3, buffer);
+    std::cout << "Points scored: " << points_scored << std::endl;
 
 }
+
 
 void Robot::screen_create_custom_chars() {
     uint8_t chars[6][8] = {

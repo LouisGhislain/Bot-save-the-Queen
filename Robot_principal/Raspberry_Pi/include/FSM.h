@@ -82,7 +82,9 @@ extern int END_ZONE;
 // State
 extern int STATE;
 extern int STATE_RETURN_TO_BASE; // State for returning to base
+extern int STATE_BUILDING ; 
 
+extern bool match_finished; // Flag to indicate if the match has finished
 inline constexpr int time_return_to_base = 90; // in seconds, the time at which we stop everything to return to the base
 inline constexpr int time_reach_end_zone = 95;
 
@@ -110,7 +112,6 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_american_stage(Robot *robot, GAME *game, int PRE_NODE, int NODE);
 void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, int PRE_CONSTRUCT_NODE_1, int CONSTRUCT_NODE_1, int CONSTRUCT_NODE_2, int PRE_PRE_CONSTRUCT_NODE_1);
 void fsm_build_romain(Robot *robot, GAME *game, int PRE_NODE, int NODE);
-extern int STATE_BUILDING ; 
 
 #endif // FSM_H
 

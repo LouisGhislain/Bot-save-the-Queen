@@ -4,6 +4,7 @@ int STATE = 0;
 int STATE_RETURN_TO_BASE = 0;
 int PRE_END_ZONE;
 int END_ZONE;
+bool match_finished = false;
 
 void start_from_blue_bottom(Robot *robot, GAME *game){
     switch (STATE){
@@ -152,9 +153,12 @@ void start_from_yellow_side(Robot *robot, GAME *game){
 void choose_start(Robot *robot, GAME *game){
 
     if(get_match_time(game) > 99.5){
-        fprintf(stderr, "MATCH ENDED by timout\n");
         robot->stop();
-        robot->screen_end_game(); //show the score on the screen
+        if(match_finished == false){
+            fprintf(stderr, "MATCH ENDED by timout\n");
+            robot->screen_end_game(); //show the score on the screen
+            match_finished = true;
+        }
     }
 
     if(robot->avoidance_loop_activated){
