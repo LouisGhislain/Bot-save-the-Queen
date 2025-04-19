@@ -165,7 +165,7 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             // Serial.print(" , ");
             // Serial.println(time);
     
-            if ((millis() - time) > 15000.0) { // Si le temps écoulé est supérieur à 10 secondes, on arrête le robot
+            if ((millis() - time) > 99000.0) { // Si le temps écoulé est supérieur à 10 secondes, on arrête le robot
                 Serial.println("Time out, stopping the robot");
                 lowlevelcontrol(0, 0); // Arrêter le robot
                 break;
@@ -244,12 +244,12 @@ void PAMI::Rotate(double angle_desired){
 
         lowlevelcontrol(ref_speed_left, ref_speed_right);
 
-        Serial.print("Angle desired: ");
-        Serial.print(angle_desired);
-        Serial.print(" Angle current: ");
-        Serial.print(angle);
-        Serial.print(" Angle error: ");
-        Serial.println(angle_error);
+        // Serial.print("Angle desired: ");
+        // Serial.print(angle_desired);
+        // Serial.print(" Angle current: ");
+        // Serial.print(angle);
+        // Serial.print(" Angle error: ");
+        // Serial.println(angle_error);
     }
     pami_brake(); // Freiner le robot
     Serial.println("Rotation terminée");

@@ -24,6 +24,7 @@
 
 // Caractère Team en fonction de la couleur de l'équipe
 #define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
+// #define TEAM_COLOR 'B'
 
 
 
@@ -64,7 +65,7 @@ void setup() {
     Serial.println("Début du test de vitesse");
 
     startGame = millis();
-    delay(5000);  // Attendre que le moniteur série soit prêt
+    delay(85000);  // Attendre que le moniteur série soit prêt
 
     
     // pinMode(14, OUTPUT);
