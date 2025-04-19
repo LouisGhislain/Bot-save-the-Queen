@@ -24,6 +24,7 @@
 
 // Caractère Team en fonction de la couleur de l'équipe
 #define TEAM_COLOR 'Y' // 'Y' pour jaune, 'B' pour bleu
+// #define TEAM_COLOR 'B'
 
 
 
@@ -97,7 +98,7 @@ void Superstar_ORANGE(){
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
             delay(200);
-            pami.Rotate(-60, startGame);  // Tourner de 90° à droite
+            pami.Rotate(-55, startGame);  // Tourner de 90° à droite
             // Serial.println(pami.getAngle());
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
@@ -158,7 +159,7 @@ void Superstar_BLUE(){
             pami.target_reached = false;
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
-            pami.Rotate(60, startGame);  // Tourner de 90° à droite
+            pami.Rotate(45, startGame);  // Tourner de 90° à droite
             Serial.println(pami.getAngle());
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
             
