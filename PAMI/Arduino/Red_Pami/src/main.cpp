@@ -38,7 +38,7 @@ Motor rightMotor(ENB, DIR3, DIR4, &rightEncoder, false);
 //Initialisation de PAMI
 PAMI pami;
 bool isStopped = false ; 
-float startTime = 0;
+double startGame;
 
 Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
 
@@ -63,15 +63,13 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
-    delay(85000);  // Attendre que le moniteur série soit prêt
+    startGame = millis();
+    delay(5000);  // Attendre que le moniteur série soit prêt
 
-    startTime = millis();
+    
     // pinMode(14, OUTPUT);
 
     role = 1; // 0 pour le robot, 1 pour la superstar
-
-
-
 }
 
 
@@ -81,10 +79,10 @@ void loop(){
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
     if(!pami.target_reached){
         if (TEAM_COLOR == 'Y') {
-            pami.middlecontrol(0.97, -0.35, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(0.97, -0.35, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
         else if (TEAM_COLOR == 'B') {
-            pami.middlecontrol(0.97, 0.22, 0.0, false);  // Avancer vers x = 1.0
+            pami.middlecontrol(0.97, 0.22, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
     }
     else{

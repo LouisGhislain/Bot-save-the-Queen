@@ -68,8 +68,8 @@ void Motor::set_motor(float tension) {
     // updateSpeed();
 
     float EMF = speed *18;
-    Serial.print("EMF: ");
-    Serial.println(EMF);
+    // Serial.print("EMF: ");
+    // Serial.println(EMF);
     
     if (tension > tension_max) {
         tension = tension_max;
