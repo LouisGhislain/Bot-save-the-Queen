@@ -18,7 +18,7 @@ public:
     double getX_position();
     double getY_position();
     void pami_brake();
-    void middlecontrol(double x_ref, double y_ref, double angle_ref, bool target);
+    void middlecontrol(double x_ref, double y_ref, double angle_ref, bool target, double time);
     void update_position();
     double getAngle();
     void stop();

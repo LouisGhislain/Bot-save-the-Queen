@@ -241,7 +241,7 @@ void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bo
 }
 
 
-void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target) {
+void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target, double time) {
 
 
     update_position(); // Met à jour la position du robot
