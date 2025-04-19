@@ -37,7 +37,7 @@ Motor rightMotor(ENB, DIR3, DIR4, &rightEncoder, false);
 //Initialisation de PAMI
 PAMI pami;
 bool isStopped = false ; 
-float startTime = 0;
+double startGame;
 
 
 
@@ -62,9 +62,9 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
+    startTime = millis();
     delay(86000);  // Attendre que le moniteur série soit prêt
 
-    startTime = millis();
 
 
     role = 0; // 0 pour le robot, 1 pour la superstar
