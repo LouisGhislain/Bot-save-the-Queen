@@ -14,7 +14,7 @@ void Robot::teensy_build(void *game){
 
     usleep(2000000);             // RELEASE LE STACK AU 2e ETAGE
     
-    straightMotion(-0.1,game);   // RECULE POUR NE PAS CASSER LE GRADIN
+    //straightMotion(-0.1,game);   // RECULE POUR NE PAS CASSER LE GRADIN
 
                                  // RABAISSE LE HOLD CANS AU 1er ETAGE
     

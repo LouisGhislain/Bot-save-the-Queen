@@ -6,7 +6,7 @@ void Robot::teensy_americain_third_stage(int nodeNumber, void *game){
     usleep(2000000);
     maneuver(nodeNumber, game); //forward
     usleep(4000000);
-    straightMotion(-0.15,game); //backward down lift
+    //straightMotion(-0.15,game); //backward down lift
     build_finished = true ; 
 }
 
