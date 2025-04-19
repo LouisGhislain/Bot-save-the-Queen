@@ -22,6 +22,9 @@
 // unsigned long lastMeasureTime;
 // int iteration = 0;
 
+// Caractère Team en fonction de la couleur de l'équipe
+#define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
+
 
 
 // // Initialisation des encodeurs
@@ -60,7 +63,7 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
-    delay(5500);  // Attendre que le moniteur série soit prêt
+    delay(85000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
     // pinMode(14, OUTPUT);
@@ -77,7 +80,12 @@ void loop(){
     pami.update_position();
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
     if(!pami.target_reached){
-        pami.middlecontrol(0.95, -0.32, 0.0, false);  // Avancer vers x = 1.0
+        if (TEAM_COLOR == 'Y') {
+            pami.middlecontrol(0.97, -0.35, 0.0, false);  // Avancer vers x = 1.0
+        }
+        else if (TEAM_COLOR == 'B') {
+            pami.middlecontrol(0.97, 0.22, 0.0, false);  // Avancer vers x = 1.0
+        }
     }
     else{
         leftMotor.stop_motor();

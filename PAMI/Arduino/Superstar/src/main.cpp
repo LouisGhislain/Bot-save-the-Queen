@@ -23,7 +23,7 @@
 // int iteration = 0;
 
 // Caractère Team en fonction de la couleur de l'équipe
-#define TEAM_COLOR 'B' // 'O' pour orange, 'B' pour bleu
+#define TEAM_COLOR 'Y' // 'Y' pour jaune, 'B' pour bleu
 
 
 
@@ -58,13 +58,17 @@ void setup() {
         Serial.println("Waiting for the microswitch to be released...");
         delay(100); // Attendre un peu avant de vérifier à nouveau
     }
+
+
     Serial.println("Microswitch released. Starting the robot.");
     //Initialisation du PAMI
     pami = PAMI();
 
+
+
     Serial.println("Début du test de vitesse");
 
-    delay(5000);  // Attendre que le moniteur série soit prêt
+    delay(85000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
 
@@ -92,6 +96,7 @@ void Superstar_ORANGE(){
             pami.target_reached = false;
             Serial.println("Start TURN");
             // Exemple : tourner de 90° à droite
+            delay(200);
             pami.Rotate(-60);  // Tourner de 90° à droite
             Serial.println(pami.getAngle());
             // pami.middlecontrol_switch(1.11, -1, 90.0, false);  // Tourner de 90° à droite
@@ -203,8 +208,10 @@ void Superstar_BLUE(){
 void loop(){
     if (TEAM_COLOR == 'B') {
         Superstar_BLUE();
-    } else if (TEAM_COLOR == 'O') {
+    } else if (TEAM_COLOR == 'Y') {
         Superstar_ORANGE();
+    } else if (TEAM_COLOR == 'T') {
+        pami.middlecontrol(0.95, 0., 0.0, false);  // Avancer vers x = 1.0
     }
 
     // Print time_ms,left_ticks,left_speed,right_ticks,right_speed

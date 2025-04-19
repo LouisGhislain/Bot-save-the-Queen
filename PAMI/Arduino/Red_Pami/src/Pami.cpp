@@ -161,18 +161,16 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double distance_to_ennemy = getSonarDistance(); // Distance entre le robot et l'ennemi
-            Serial.print("Distance to ennemy: ");
-            Serial.println(distance_to_ennemy);
             if (distance_to_ennemy < 15 && distance_to_ennemy > 1) { // Si l'ennemi est trop proche, on arrête le robot
                 Serial.println("Obstacle detected, stopping the robot");
-                leftMotor.set_motor(0); // Arrêter le robot
-                rightMotor.set_motor(0); // Arrêter le robot
-                pami_brake(); // Freiner le robot
+                Serial.print("Distance to ennemy: ");
+                Serial.println(distance_to_ennemy);
+                lowlevelcontrol(0, 0); // Arrêter le robot
             }
             else {
                 double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
                 double w = Kp_alpha * alpha; // Vitesse angulai
-                double v = 0.3-w; // Vitesse linéaire
+                double v = 0.25;
 
                 double ref_speed_left = (v - w);
                 double ref_speed_right = (v + w);

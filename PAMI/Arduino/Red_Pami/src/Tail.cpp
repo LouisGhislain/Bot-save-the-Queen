@@ -15,11 +15,11 @@ void Tail::Turn_tail(){
   pinMode(PIN_TAIL, OUTPUT);
   Servo_Tail.attach(PIN_TAIL); // Attacher le servo à la broche
   // reduce the speed of the servo
-  Servo_Tail.write(50); // Position neutre
+  Servo_Tail.write(70); // Position neutre
   delay(500); // Attendre un peu avant de changer la position
   // Servo_Tail.write(40); // Position de mouvement
   // delay(500); // Attendre un peu avant de changer la position
-  Servo_Tail.write(140); // Position de mouvement
+  Servo_Tail.write(120); // Position de mouvement
   delay(500); // Attendre un peu avant de changer la position
 
   Servo_Tail.detach(); // Détacher le servo après utilisation

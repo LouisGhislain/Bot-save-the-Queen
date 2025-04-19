@@ -253,10 +253,9 @@ void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool targ
             double theta = angle * PI / 180.0; // Convertir l'angle en radians
             rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
             double distance_to_ennemy = sonar.Sonar_Get_Distance(); // Distance au mur
-            if (distance_to_ennemy < 10 && distance_to_ennemy > 1) { // Si un obstacle est détecté
+            if (distance_to_ennemy < 20 && distance_to_ennemy > 1) { // Si un obstacle est détecté
                 Serial.println("Obstacle detected, stopping motors");
-                leftMotor.set_motor(0); 
-                rightMotor.set_motor(0); // Arrêter le robot
+                lowlevelcontrol(0, 0); // Arrêter le robot
             }
             else {
                 double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence

@@ -22,6 +22,8 @@
 // unsigned long lastMeasureTime;
 // int iteration = 0;
 
+// Caractère Team en fonction de la couleur de l'équipe
+#define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
 
 
 // // Initialisation des encodeurs
@@ -60,7 +62,7 @@ void setup() {
 
     Serial.println("Début du test de vitesse");
 
-    delay(6000);  // Attendre que le moniteur série soit prêt
+    delay(86000);  // Attendre que le moniteur série soit prêt
 
     startTime = millis();
 
@@ -75,22 +77,21 @@ void loop(){
 
     // // Print time_ms,left_ticks,left_speed,right_ticks,right_speed
     // pami.update_position();
-    // // leftMotor.set_motor(9);
-    // // rightMotor.set_motor(9);
-    // // pami.lowlevelcontrol(0.3, 0.3); // Arrêter le robot
-    // if (pami.target_reached == false){
-    //     pami.middlecontrol(0.9, -0.43, 0.0, false);  // Avancer vers x = 1.0
-    // } else {
-    //     pami.turnTail();  // Agiter la queue
-    //     leftMotor.set_motor(0);
-    //     rightMotor.set_motor(0);
-    //     pami.pami_brake(); // Freiner le robot
-    // }
+    // leftMotor.set_motor(9);
+    // rightMotor.set_motor(9);
+    // pami.lowlevelcontrol(0.3, 0.3); // Arrêter le robot
+    if (pami.target_reached == false){
+        if (TEAM_COLOR == 'Y') {
+            pami.middlecontrol(0.9, -0.43, 0.0, false);  // Avancer vers x = 1.0
+        } else if (TEAM_COLOR == 'B') {
+            pami.middlecontrol(0.95, 0.45, 0.0, false);  // Avancer vers x = 1.0
+        }
+    } else {
+        pami.turnTail();  // Agiter la queue
+        leftMotor.set_motor(0);
+        rightMotor.set_motor(0);
+    }
 
-    int distance = pami.getSonarDistance(); // Récupérer la distance du sonar
-    Serial.print("Distance: ");
-    Serial.print(distance); // Afficher la distance
-    Serial.println(" cm");
 
 
     }
