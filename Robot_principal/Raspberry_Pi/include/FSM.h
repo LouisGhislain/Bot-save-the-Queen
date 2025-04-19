@@ -86,7 +86,7 @@ extern int STATE_BUILDING ;
 
 extern bool match_finished; // Flag to indicate if the match has finished
 inline constexpr int time_return_to_base = 90; // in seconds, the time at which we stop everything to return to the base
-inline constexpr int time_reach_end_zone = 95;
+inline constexpr int time_reach_end_zone = 94;
 
 void start_from_yellow_side(Robot *robot, GAME *game);
 void start_from_blue_bottom(Robot *robot, GAME *game);

@@ -10,6 +10,9 @@
 #include <csignal>
 #include <condition_variable>
 
+#include <sys/select.h>
+#include <unistd.h>
+
 #include "../include/Robot.h"
 #include "../include/struct.h"
 #include "../include/lidar.h"
@@ -80,7 +83,6 @@ void loop_10ms(GAME *game){
 
     while (robot->running) {
         auto start_time = steady_clock::now();
-
         //===========================================================================
         // 10ms loop - START
         //===========================================================================
@@ -93,11 +95,15 @@ void loop_10ms(GAME *game){
         if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
             //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
             robot->stop_if_ennemy(); // stop the robot
+            //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
+            fprintf(stderr, "ennemy detected\n");
         }
         else{
             robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
+            fprintf(stderr, "not\n");
+            //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
         }
 
         //============================================================================
@@ -209,13 +215,65 @@ int main() {
 
     // Specify the starting position of the robot
 
-    // 0 = BLUE BOTTOM
+    // 0=BLUE=0
     //                                                                            (1 = BLUE SIDE)
 
-    // 2 = YELLOW BOTTOM
+    // 2=YELLOW=2
     //                                                                            (3 = YELLOW SIDE)
 
-    robot->starting_pos = 2; // 0 or 2
+    //robot->starting_pos = 0; // 0 or 2
+
+    int inputStarting_pos = -1;
+    std::string line;
+    std::cout << "Enter starting position (BLUE=0     YELLOW=2) : ";
+    while (robot->running) {
+        std::fflush(stdout);
+
+        // wait up to 0.5s for keystroke
+        fd_set rfds;
+        FD_ZERO(&rfds);
+        FD_SET(STDIN_FILENO, &rfds);
+        struct timeval tv{0, 500000};  // 0.5 seconds
+
+        int ret = select(STDIN_FILENO + 1, &rfds, nullptr, nullptr, &tv);
+        if (ret < 0) {
+            if (errno == EINTR || !robot->running) break; // interrupted!
+            perror("select");
+            break;
+        }
+        if (ret == 0) {
+            continue;  // timeout, loop around and re-check robot->running
+        }
+
+        // there's data, read the whole line
+        if (!std::getline(std::cin, line)) {
+            // EOF or error (e.g. Ctrl+D), treat as interrupt
+            break;
+        }
+
+        // try to parse it
+        try {
+            inputStarting_pos = std::stoi(line);
+        } catch (...) {
+            std::cout << "Invalid input. Please enter a number (0 or 2)." << std::endl;
+            continue;
+        }
+
+        if (inputStarting_pos == 0 || inputStarting_pos == 2) {
+            break;  // valid!
+        }
+        std::cout << "Invalid input. Please enter 0 or 2." << std::endl;
+    }
+
+    if (!robot->running) {
+        // handle early exit if you want, e.g. return or throw
+    }
+
+    robot->starting_pos = inputStarting_pos;
+
+    
+    // std::cout << "Enter starting position (BLUE=0     YELLOW=2) :\n";
+    // std::cin >> robot->starting_pos;
     
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.

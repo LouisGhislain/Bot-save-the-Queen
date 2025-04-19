@@ -7,8 +7,8 @@ void Robot::stop_if_ennemy(){
     // with number_of_iterations_to_stop = 0.5 sec / 0.010 sec = 50 iterations (0.010 is the loop time)
     {
         std::lock_guard<std::mutex> lock(ref_speed_mutex);
-        double next_ref_speed_left = ref_speed_left - 0.6; // 0.6 to decrease faster
-        double next_ref_speed_right = ref_speed_right - 0.6;
+        double next_ref_speed_left = ref_speed_left - 0.8; // 0.6 to decrease faster
+        double next_ref_speed_right = ref_speed_right - 0.8;
         if (next_ref_speed_left < 0) {
             next_ref_speed_left = 0;
         }
