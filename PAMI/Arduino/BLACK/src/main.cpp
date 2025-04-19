@@ -68,11 +68,10 @@ void setup() {
     Serial.println("Début du test de vitesse");
     startGame = millis();
 
-    delay(6000);  // Attendre que le moniteur série soit prêt
-
-    
+    delay(86000);  // Attendre que le moniteur série soit prêt
 
     team = YELLOW;
+    // team = BLUE;
 
     }
 
@@ -94,7 +93,7 @@ void team_yellow() {
 
         case 'b':
             if (!pami.target_reached) {
-                pami.middlecontrol(2.1, -0.47, 0.0, false, 0.1, startGame);
+                pami.middlecontrol(2.05, -0.47, 0.0, false, 0.1, startGame);
             } else {
                 pami.target_reached = false;
                 middle_state = 'c'; // Changer d'état
@@ -117,7 +116,7 @@ void team_yellow() {
 
         case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.15, 0, 0.0, false, 0.04, startGame);
+                pami.middlecontrol(0.16, 0.05, 0.0, false, 0.04, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
 
@@ -183,7 +182,7 @@ void team_blue() {
 
         case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.22, -0.2, 0.0, false, 0.17, startGame);
+                pami.middlecontrol(0.2, -0.2, 0.0, false, 0.17, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
 

@@ -303,7 +303,6 @@ void PAMI::Rotate(double angle_desired, double time){
             break;
         }
         else {
-        
             double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
             double angle_error = (angle_desired - angle);
 
