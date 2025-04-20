@@ -155,6 +155,7 @@ void choose_start(Robot *robot, GAME *game){
     if(get_match_time(game) > 99.5){
         robot->stop();
         if(match_finished == false){
+            robot->running = false;
             fprintf(stderr, "MATCH ENDED by timout\n");
             robot->screen_end_game(); //show the score on the screen
             match_finished = true;
@@ -197,8 +198,13 @@ void choose_start(Robot *robot, GAME *game){
 
 void return_to_base(Robot *robot, GAME *game){
     switch (STATE_RETURN_TO_BASE){
+        
+        case 0:
+            // release the stack
+            robot->teensy_send_command(0x30);
+            break;
 
-        case 0: // GO TO BASE NODE
+        case 1: // GO TO BASE NODE
             if (robot->starting_pos == 0 || robot->starting_pos == 1){ // in blue team
                 PRE_END_ZONE = PRE_END_ZONE_BLUE;
                 END_ZONE = END_ZONE_BLUE;
@@ -213,18 +219,18 @@ void return_to_base(Robot *robot, GAME *game){
             }
             break;
 
-        case 1 : //ORIENTATE TO BASE
+        case 2 : //ORIENTATE TO BASE
             robot->orientate(90, game);
             STATE_RETURN_TO_BASE++;
             break;
 
-        case 2: // ORIENTATING 
+        case 3: // ORIENTATING 
             if (robot->end_of_angle){
                 STATE_RETURN_TO_BASE++;
             }
             break;
 
-        case 3 : // MANEUVER TO END ZONE   
+        case 4 : // MANEUVER TO END ZONE   
             if(get_match_time(game) > time_reach_end_zone){
                 robot->highLevelController(END_ZONE, game);
                 if (robot->end_of_travel){
@@ -234,13 +240,13 @@ void return_to_base(Robot *robot, GAME *game){
             }
             break; 
 
-        case 4: // FINISHED MATCH
+        case 5: // FINISHED MATCH
             fprintf(stderr, "FINISHED MATCH\n");
             //robot->buzzBuzzer();
             STATE_RETURN_TO_BASE++;
             break;
 
-        case 5: // SHUTTING DOWN
+        case 6: // SHUTTING DOWN
             usleep(0.001*1000000);
             break;
 
