@@ -96,13 +96,12 @@ void loop_10ms(GAME *game){
             //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
             robot->stop_if_ennemy(); // stop the robot
             //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
-            fprintf(stderr, "ennemy detected\n");
+            //fprintf(stderr, "ennemy detected\n");
         }
         else{
             robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
-            fprintf(stderr, "not\n");
             //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
         }
 
@@ -271,7 +270,6 @@ int main() {
 
     robot->starting_pos = inputStarting_pos;
 
-    
     // std::cout << "Enter starting position (BLUE=0     YELLOW=2) :\n";
     // std::cin >> robot->starting_pos;
     
@@ -279,13 +277,12 @@ int main() {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
-
         robot->screen_display_intro();
-
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
+
     // must be the last thing to do before starting the game
     robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     
