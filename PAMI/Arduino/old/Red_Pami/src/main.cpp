@@ -80,10 +80,10 @@ void loop(){
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
     if(!pami.target_reached){
         if (TEAM_COLOR == 'Y') {
-            pami.middlecontrol(0.97, -0.35, 0.0, false, startGame);  // Avancer vers x = 1.0
+            pami.middlecontrol(1.1, -0.35, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
         else if (TEAM_COLOR == 'B') {
-            pami.middlecontrol(0.97, 0.22, 0.0, false, startGame);  // Avancer vers x = 1.0
+            pami.middlecontrol(1.05, 0.23, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
     }
     else{

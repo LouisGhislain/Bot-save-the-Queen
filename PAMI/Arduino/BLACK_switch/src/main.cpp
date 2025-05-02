@@ -157,7 +157,7 @@ void team_blue() {
 
         case 'b':
             if (!pami.target_reached) {
-                pami.middlecontrol(2.07, -0.8, 0.0, false, 0.12, startGame);
+                pami.middlecontrol(2.03, -0.8, 0.0, false, 0.12, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
             } else {
@@ -182,7 +182,7 @@ void team_blue() {
 
         case 'e':
             if (!pami.target_reached) {
-                pami.middlecontrol(0.2, -0.2, 0.0, false, 0.17, startGame);
+                pami.middlecontrol(0.21, -0.2, 0.0, false, 0.17, startGame);
                 leftMotor.set_motor(0); // Avancer lentement
                 rightMotor.set_motor(0); // Avancer lentement
 
@@ -209,19 +209,10 @@ void team_blue() {
 
 
 void loop(){
-    switch (team) {
-        case YELLOW:
-            team_yellow();
-            break;
-        case BLUE:
-            team_blue();
-            break;
-        default:
-            Serial.println("Équipe non reconnue.");
-            break;
-    }
-    
-
-   
+    if (digitalRead(A5) == LOW) { // a changer 
+        team_yellow(); // Appeler la fonction pour l'équipe jaune
+    } else  {
+        team_blue(); // Appeler la fonction pour l'équipe bleue
+    }   
 }
 
