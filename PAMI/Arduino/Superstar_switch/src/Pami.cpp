@@ -1,0 +1,342 @@
+#include "Pami.h"
+#include "Motor.h"
+#include "Encoder.h"
+
+
+#define WheelDiameter 0.06 // Diamètre de la roue en mètres
+#define DistanceBetweenWheels 0.095 // Distance entre les roues en mètres
+#define MAX_LINEAR_SPEED 0.4 // Vitesse linéaire maximale en m/s
+#define MAX_ANGULAR_SPEED 0.2 // Vitesse angulaire maximale en rad/s
+#define Kp_alpha 0.03 // Coefficient proportionnel pour l'angle
+
+
+PAMI::PAMI() : leftEncoder(2, A4, true), rightEncoder(3, A0, false), leftMotor(5, 7, 8, &leftEncoder, true), rightMotor(6, 10, 11, &rightEncoder, false), tail(9),sonar(A3,4) {
+    // Initialisation des moteurs et encodeurs
+    leftMotor.set_motor(0);
+    rightMotor.set_motor(0);
+    // PAMI_state = moving ; 
+}
+
+
+void PAMI::lowlevelcontrol(double ref_speed_left, double ref_speed_right) {
+
+    // Update the speed of the motors
+    update_position();
+
+    if (last_time_ctrl == 0) {
+        last_time_ctrl = millis() / 1000.0; // Convertir en secondes
+
+    }
+    // Update the current time
+    current_time_ctrl = millis() / 1000.0; // Convertir en secondes
+    double SAMPLING_TIME = current_time_ctrl - last_time_ctrl;
+
+    // Update the last time
+    last_time_ctrl = current_time_ctrl;
+    
+
+    // Speed error
+    double e_speed_left = ref_speed_left - leftMotor.getSpeed();
+    double e_speed_right = ref_speed_right - rightMotor.getSpeed();
+
+
+    // Integrate error
+    left_speed += e_speed_left * SAMPLING_TIME;
+    right_speed += e_speed_right * SAMPLING_TIME;
+
+
+    // Calculate control signal
+    left_voltage = Kp_left * e_speed_left + Ki_left * left_speed;
+    right_voltage = Kp_right * e_speed_right + Ki_right * right_speed;
+
+
+    if (left_voltage > 9) {
+        left_voltage = 9;
+    } else if (left_voltage < -9) {
+        left_voltage = -9;
+    }
+    if (right_voltage > 9) {
+        right_voltage = 9;
+    } else if (right_voltage < -9) {
+        right_voltage = -9;
+    }
+
+
+    // Serial.print("X: ");
+    // Serial.print(x_position);
+    // Serial.print(" Y: ");
+    // Serial.print(y_position);
+    // Serial.print(" Angle: ");
+    // Serial.print(angle);
+    // Serial.print(" Left speed: ");
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(" Right speed: ");
+    // Serial.print(rightMotor.getSpeed());
+    // Serial.print(" Left voltage: ");
+    // Serial.print(left_voltage);
+    // Serial.print(" Right voltage: ");
+    // Serial.println(right_voltage);
+
+
+    // Set motor speeds
+    leftMotor.set_motor(left_voltage);
+    rightMotor.set_motor(right_voltage);
+
+}
+
+void PAMI::pami_brake(){
+    leftMotor.brake();
+    rightMotor.brake();
+}
+
+
+State_t PAMI::getState() {
+    return PAMI_state;
+}
+
+void PAMI::setState(State_t new_state) {
+    PAMI_state = new_state;
+}
+
+
+double PAMI::getSonarDistance() {
+    return sonar.Sonar_Get_Distance();
+}
+
+void PAMI::turnTail() {
+    // tail.ActivateServo(); // Activer le servo uniquement quand nécessaire
+    while (digitalRead(12) == LOW) {
+        tail.Turn_tail(); // Agiter la queue
+        Serial.println("Agitation de la queue en cours...");
+        delay(300); // Attendre un peu avant de réagir à la prochaine lecture
+    }
+    // tail.Turn_tail();
+}
+
+
+void PAMI::update_position() {
+    // Update the distance of the motors
+    leftMotor.updateSpeed();
+    rightMotor.updateSpeed();
+
+    dist_left = leftMotor.getDistance();
+    dist_right = rightMotor.getDistance();
+
+    // Print vitesse
+    // Serial.print(millis() - 5000);
+    // Serial.print(" , ");
+    // Serial.print(leftMotor.getSpeed());
+    // Serial.print(" , ");
+    // Serial.println(rightMotor.getSpeed());
+
+
+
+    angle = 360*(dist_right - dist_left) / (2*PI*DistanceBetweenWheels); // Angle en degrés
+    // Serial.print("Angle: ");
+    // Serial.println(angle);
+
+    // Update the position of the robot
+    x_position = (dist_left + dist_right) / 2.0 * cos(angle * PI / 180.0) + x_start; // Position en x
+    y_position = (dist_left + dist_right) / 2.0 * sin(angle * PI / 180.0) + y_start; // Position en y
+
+
+    
+}
+
+double PAMI::getX_position() {
+    return x_position;
+}
+double PAMI::getY_position() {
+    return y_position;
+}
+double PAMI::getAngle() {
+    return angle;
+}
+
+
+
+void PAMI::Turn(double angle_ref) {
+
+    double t_start = millis(); // Temps de départ
+    while (millis() - t_start  < 720) {
+        // Serial.print(millis()-t_start);
+        // Serial.print(" , ");
+        // Serial.print(t_start );
+        // Serial.print(" , ");
+        // Serial.println(millis());
+        lowlevelcontrol(0.1, -0.1); // Tourner à gauche
+    }
+    pami_brake(); // Freiner le robot
+    delay(2000); // Attendre 1 seconde avant de continuer
+    leftMotor.set_motor(0); // Arrêter le robot
+    rightMotor.set_motor(0); // Arrêter le robot
+    delay(1000); // Attendre 1 seconde avant de continuer
+}
+
+
+
+void PAMI::middlecontrol_switch(double x_ref, double y_ref, double angle_ref, bool target, double time) {
+
+     // Met à jour la position du robot
+    // double Kp_switch = 0.005; // Coefficient proportionnel pour l'angle
+
+    double rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+
+    if (!target_reached) {
+        while (rho > 0.08 && digitalRead(12) == HIGH) {
+
+            if ((millis() - time) > 15000) {
+                Serial.println("Time out, stopping motors");
+                lowlevelcontrol(0, 0); // Arrêter le robot
+                tail.Turn_tail(); // Agiter la queue
+            }
+            else {
+                double theta = angle * PI / 180.0; // Convertir l'angle en radians
+                rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+                double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+                double v = 0.1; // Vitesse linéaire
+                double w = Kp_alpha * alpha; // Vitesse angulaire
+
+                double ref_speed_left = (v - w);
+                double ref_speed_right = (v + w);
+
+
+                // Limit the speed
+                if (ref_speed_left > MAX_LINEAR_SPEED) {
+                    ref_speed_left = MAX_LINEAR_SPEED;
+                } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
+                    ref_speed_left = -MAX_LINEAR_SPEED;
+                }
+                if (ref_speed_right > MAX_LINEAR_SPEED) {
+                    ref_speed_right = MAX_LINEAR_SPEED;
+                } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
+                    ref_speed_right = -MAX_LINEAR_SPEED;
+                }
+
+                lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+                delay(100); // Attendre un peu avant de mettre à jour la position
+
+                // Serial.print("Distance: ");
+                // Serial.println(rho);
+            }
+        }
+        // Stop the motors
+        leftMotor.set_motor(0);
+        rightMotor.set_motor(0);
+        target_reached = true;
+        Serial.println("Target reached");
+    }
+
+}
+
+
+void PAMI::middlecontrol(double x_ref, double y_ref, double angle_ref, bool target, double time) {
+
+
+    update_position(); // Met à jour la position du robot
+
+    double rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+
+    if (!target_reached) {
+        while (rho > 0.08) {
+            if ((millis() - time) > 99000) {
+                Serial.println("Time out, stopping motors");
+                lowlevelcontrol(0, 0); // Arrêter le robot
+                tail.Turn_tail(); // Agiter la queue
+            }
+            else {
+        
+                double theta = angle * PI / 180.0; // Convertir l'angle en radians
+                rho = sqrt(pow(x_ref - x_position, 2) + pow(y_ref - y_position, 2)); // Distance entre la position actuelle et la position de référence
+                double distance_to_ennemy = sonar.Sonar_Get_Distance(); // Distance au mur
+                if (distance_to_ennemy < 20 && distance_to_ennemy > 1) { // Si un obstacle est détecté
+                    Serial.println("Obstacle detected, stopping motors");
+                    lowlevelcontrol(0, 0); // Arrêter le robot
+                }
+                else {
+                    double alpha = atan2(y_ref - y_position, x_ref - x_position) - theta; // Angle entre la position actuelle et la position de référence
+
+                    while(alpha > M_PI){
+                        alpha -= 2*M_PI;
+                    }
+                    while(alpha < -M_PI){
+                        alpha += 2*M_PI;
+                    }
+                    
+                    double v = 0.2; // Vitesse linéaire
+                    double w = Kp_alpha * alpha; // Vitesse angulaire
+
+                    if (!start_angle) {
+                        if (abs(alpha) > 0.1) {
+                            // Serial.println("Calibration");
+                            v = 0;
+                            w = alpha*0.05;
+                        } else {
+                            start_angle = true;
+                            // Serial.println("Start angle");
+                        }
+                    }
+
+                    double ref_speed_left = (v - w);
+                    double ref_speed_right = (v + w);
+
+
+                    // Limit the speed
+                    if (ref_speed_left > MAX_LINEAR_SPEED) {
+                        ref_speed_left = MAX_LINEAR_SPEED;
+                    } else if (ref_speed_left < -MAX_LINEAR_SPEED) {
+                        ref_speed_left = -MAX_LINEAR_SPEED;
+                    }
+                    if (ref_speed_right > MAX_LINEAR_SPEED) {
+                        ref_speed_right = MAX_LINEAR_SPEED;
+                    } else if (ref_speed_right < -MAX_LINEAR_SPEED) {
+                        ref_speed_right = -MAX_LINEAR_SPEED;
+                    }
+
+                    lowlevelcontrol(ref_speed_left, ref_speed_right);
+
+                    delay(100); // Attendre un peu avant de mettre à jour la position
+
+                }
+            }
+        }
+        // Stop the motors
+        leftMotor.set_motor(0);
+        rightMotor.set_motor(0);
+        target_reached = true;
+        Serial.println("Target reached");
+    }
+}
+
+
+void PAMI::stop() {
+    leftMotor.set_motor(0);
+    rightMotor.set_motor(0);
+}
+
+
+void PAMI::Rotate(double angle_desired, double time){
+
+    while (abs(angle_desired - angle) > 1){
+        if ((millis() - time) > 99000) {
+            Serial.println("Time out, stopping motors");
+            lowlevelcontrol(0, 0); // Arrêter le robot
+            tail.Turn_tail(); // Agiter la queue
+        }
+        else {
+            
+            double Kp_turn = 0.002; // Coefficient proportionnel pour la rotation
+            double angle_error = angle_desired - angle;
+
+            double ref_speed_left = -angle_error * Kp_turn;
+            double ref_speed_right = angle_error * Kp_turn;
+
+            lowlevelcontrol(ref_speed_left, ref_speed_right);
+        }
+    }
+    // pami_brake(); // Freiner le robot
+    lowlevelcontrol(0, 0); // Arrêter le robot
+    Serial.println("Rotation terminée");
+    Serial.print(angle);
+}
