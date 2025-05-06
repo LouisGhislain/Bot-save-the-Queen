@@ -14,6 +14,7 @@
 #define DIR1 7
 #define DIR4 11
 #define DIR3 10
+#define BUZZ 13
 
 
 // const float TIME_INTERVAL = 0.0005; // 500µs en secondes
@@ -54,6 +55,27 @@ void setup() {
         delay(100); // Attendre un peu avant de vérifier à nouveau
     }
 
+    int val = analogRead(A1);  // read the input pin
+    Serial.println(val); 
+
+    if (analogRead(A1) > 900) {  // team bleu 
+        Serial.println("team jaune");
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre 1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+    }
+    else if (analogRead(A1) < 900) { // team jaune
+        Serial.println("team bleu");
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre 1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+        delay(500); // Attendre 1 seconde
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre 1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+    }
+    
+
     while (analogRead(A5) > 1.5) {
         Serial.println("Waiting for the microswitch to be released...");
         delay(100); // Attendre un peu avant de vérifier à nouveau
@@ -71,6 +93,8 @@ void setup() {
     // pinMode(14, OUTPUT);
 
     role = 1; // 0 pour le robot, 1 pour la superstar
+    val = analogRead(A1);  // read the input pin
+    Serial.println(val); 
 }
 
 
@@ -79,10 +103,12 @@ void loop(){
     pami.update_position();
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
     if(!pami.target_reached){
-        if (digitalRead(A5) == LOW) { // A changer 
+        if (analogRead(A1) >= 900) { // A changer 
+            Serial.println("team jaune");
             pami.middlecontrol(1.1, -0.35, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
         else {
+            Serial.println("team bleu");
             pami.middlecontrol(1.05, 0.23, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
     }
@@ -95,5 +121,6 @@ void loop(){
     // Serial.print("Distance: ");
     // Serial.print(sonar_distance);
     // Serial.println(" cm");
+
 
 }
