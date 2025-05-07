@@ -4,7 +4,7 @@ void Robot::teensy_build(void *game){
     build_finished = false;
     teensy_send_command(0x04);   // ENVOIE LA COMMANDE   (CMD_BUILD)
 
-    usleep(0.7*1000000);         // RELEASE LES EXTERIEURS    // previous 0.4
+    usleep(0.55*1000000);         // RELEASE LES EXTERIEURS    // previous 0.7 // old previous 0.4
 
     straightMotion(-0.12,game);  // RECULE AVEC LES CREMAILLERES
 

@@ -16,6 +16,7 @@ void drop_banner(Robot *robot, GAME *game){
         //std::cout << "check if against wall: " << robot->checkIfAgainstWall(game) << std::endl;
         if (robot->checkIfAgainstWall(game)){
             //usleep(100000);
+            usleep(0.3*1000000);
             BANNER_STATE++;
         }
         break;
