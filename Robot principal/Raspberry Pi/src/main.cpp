@@ -277,12 +277,13 @@ int main() {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
-        robot->screen_display_intro();
+        robot->screen_clear();
+       // robot->screen_display_intro();
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
+    robot->screen_menu(game);
     // must be the last thing to do before starting the game
     robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     

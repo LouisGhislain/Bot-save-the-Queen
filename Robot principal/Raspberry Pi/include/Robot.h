@@ -125,11 +125,16 @@ public:
     void screen_write_custom_char(int x, int y, int custom_char);
     void screen_display_intro();
     void screen_end_game();
+    void screen_menu(GAME *game);
+    int selected_team ; 
+    int opponent_start; 
 
     // starting cord
     void initialize_pins();
     void wait_starting_cord(GAME *game);
     bool checkIfAgainstWall(GAME *game);
+    bool is_right_pressed(GAME *game);
+    bool is_left_pressed(GAME *game);
     bool is_stack_present();
     
     // -------Teensy------

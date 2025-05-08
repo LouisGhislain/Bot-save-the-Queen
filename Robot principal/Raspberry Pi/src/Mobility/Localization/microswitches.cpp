@@ -11,3 +11,19 @@ bool Robot::checkIfAgainstWall(GAME *game) {
         return false;
     }
 }
+
+bool Robot::is_right_pressed(GAME *game){
+    if(digitalRead(MICROSWITCH_BACK_RIGHT) == HIGH){
+        return true ; 
+    } else{
+        return false ;
+    }
+}
+
+bool Robot::is_left_pressed(GAME *game){
+    if(digitalRead(MICROSWITCH_BACK_LEFT) == HIGH){
+        return true ; 
+    } else{
+        return false ;
+    } 
+}
