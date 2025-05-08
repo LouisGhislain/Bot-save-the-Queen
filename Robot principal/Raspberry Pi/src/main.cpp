@@ -189,42 +189,22 @@ void lidar_thread_func(void* game_void) {
     }
 }
 
-
-
-int main() {
-
-    // Signal handler initialization
-    signal(SIGINT, signalHandler);
-
-    GAME *game = init_game();
-
-    // // Print queen's coordinates and angle every 10ms
-    // while (running) {
-    //     std::cout << "Queen's position and angle : (" << game->queen->cart_pos->x << ", " << game->queen->cart_pos->y << ") Angle : " << game->queen->angle << std::endl;
-    //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    // }
-
-    pos_of_stack(game);
-    
-    //running.store(true);
-    robot->running = true; // Set the running flag to true
-
-    robot->loadNodes("src/Mobility/Localization/nodes.txt", game);
-    robot->loadEdges("src/Mobility/Localization/links.txt", game);   
-
-    // Specify the starting position of the robot
-
-    // 0=BLUE=0
-    //                                                                            (1 = BLUE SIDE)
-
-    // 2=YELLOW=2
-    //                                                                            (3 = YELLOW SIDE)
-
-    //robot->starting_pos = 0; // 0 or 2
-
+void get_input(){
     int inputStarting_pos = -1;
     std::string line;
-    std::cout << "Enter starting position (BLUE=0     YELLOW=2) : ";
+    // 0 = blue_bottom_adversary_bottom
+    // 1 = yellow_bottom_adversary_bottom
+    // 2 = blue_bottom_adversary_side
+    // 3 = yellow_bottom_adversary_side
+    // 4 = blue_side
+    // 5 = yellow_side
+    fprintf(stderr, "0 = blue_bottom_adversary_bottom\n");
+    fprintf(stderr, "1 = yellow_bottom_adversary_bottom\n");
+    fprintf(stderr, "2 = blue_bottom_adversary_side\n");
+    fprintf(stderr, "3 = yellow_bottom_adversary_side\n");
+    fprintf(stderr, "4 = blue_side\n");
+    fprintf(stderr, "5 = yellow_side\n");
+    std::cout << "Enter starting position number : ";
     while (robot->running) {
         std::fflush(stdout);
 
@@ -258,21 +238,50 @@ int main() {
             continue;
         }
 
-        if (inputStarting_pos == 0 || inputStarting_pos == 2) {
+        if (inputStarting_pos >= 0 && inputStarting_pos < 6) {
             break;  // valid!
         }
         std::cout << "Invalid input. Please enter 0 or 2." << std::endl;
     }
 
-    if (!robot->running) {
-        // handle early exit if you want, e.g. return or throw
-    }
-
     robot->starting_pos = inputStarting_pos;
+}
 
-    // std::cout << "Enter starting position (BLUE=0     YELLOW=2) :\n";
-    // std::cin >> robot->starting_pos;
+
+
+int main() {
+
+    // Signal handler initialization
+    signal(SIGINT, signalHandler);
+
+    GAME *game = init_game();
+
+    // // Print queen's coordinates and angle every 10ms
+    // while (running) {
+    //     std::cout << "Queen's position and angle : (" << game->queen->cart_pos->x << ", " << game->queen->cart_pos->y << ") Angle : " << game->queen->angle << std::endl;
+    //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    // }
+
+    pos_of_stack(game);
     
+    //running.store(true);
+    robot->running = true; // Set the running flag to true
+
+    robot->loadNodes("src/Mobility/Localization/nodes.txt", game);
+    robot->loadEdges("src/Mobility/Localization/links.txt", game);   
+
+    // Specify the starting position of the robot
+
+    // starting_pos :
+    // 0 = blue_bottom_adversary_bottom
+    // 1 = yellow_bottom_adversary_bottom
+    // 2 = blue_bottom_adversary_side
+    // 3 = yellow_bottom_adversary_side
+    // 4 = blue_side
+    // 5 = yellow_side
+
+    //robot->starting_pos = XXX;
+
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
@@ -283,7 +292,12 @@ int main() {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-    robot->screen_menu(game);
+
+    // get starting position from user via terminal (get_input) or via screen (screen_menu)
+    //get_input(); // Get the starting position from the user
+    robot->screen_menu(game); //Get the starting position from the screen
+    fprintf(stderr, "Starting position : %d\n", robot->starting_pos);
+    
     // must be the last thing to do before starting the game
     robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     

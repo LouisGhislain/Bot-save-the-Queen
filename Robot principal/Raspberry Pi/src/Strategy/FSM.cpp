@@ -6,7 +6,7 @@ int PRE_END_ZONE;
 int END_ZONE;
 bool match_finished = false;
 
-void start_from_blue_bottom(Robot *robot, GAME *game){
+void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
     switch (STATE){
         case 0 : // DROP THE BANNER
             drop_banner(robot, game);
@@ -70,11 +70,15 @@ void start_from_blue_bottom(Robot *robot, GAME *game){
     }
 }
 
+void start_from_blue_bottom_adversary_side(Robot *robot, GAME *game){
+    // to do 
+}
+
 void start_from_blue_side(Robot *robot, GAME *game){
     return;
 }
 
-void start_from_yellow_bottom(Robot *robot, GAME *game){
+void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game){
    switch (STATE){
         case 0 : // DROP THE BANNER
             drop_banner(robot, game);
@@ -137,6 +141,10 @@ void start_from_yellow_bottom(Robot *robot, GAME *game){
     }
 }
 
+void start_from_yellow_bottom_adversary_side(Robot *robot, GAME *game){
+    // to do 
+}
+
 void start_from_yellow_side(Robot *robot, GAME *game){
     switch (STATE){
 
@@ -174,26 +182,35 @@ void choose_start(Robot *robot, GAME *game){
 
     switch (robot->starting_pos)
     {
-        case 0: // Blue bottom
-            start_from_blue_bottom(robot, game);
-            //start_from_yellow_bottom(robot, game);
+        // 0 = blue_bottom_adversary_bottom
+        // 1 = yellow_bottom_adversary_bottom
+        // 2 = blue_bottom_adversary_side
+        // 3 = yellow_bottom_adversary_side
+        // 4 = blue_side
+        // 5 = yellow_side
+
+        case 0: // Blue bottom, adversary at bottom
+            start_from_blue_bottom_adversary_bottom(robot, game);
             break;
-        case 1: // Blue side
-            //start_from_blue_side(robot, game);
-            start_from_yellow_bottom(robot, game);
+        case 1: // Yellow bottom, adversary at bottom
+            start_from_yellow_bottom_adversary_bottom(robot, game);
             break;
-        case 2: // Yellow bottom
-            start_from_yellow_bottom(robot, game);
+        case 2: // Blue bottom, adversary at side
+            start_from_blue_bottom_adversary_side(robot, game);
             break;
-        case 3: // Yellow side
+        case 3: // Yellow bottom, adversary at side
+            start_from_yellow_bottom_adversary_side(robot, game);
+            break;
+        case 4: // Blue side
+            start_from_blue_side(robot, game);
+            break;
+        case 5: // Yellow side
             start_from_yellow_side(robot, game);
-            //start_from_yellow_bottom(robot, game);
             break;
         default:
             fprintf(stderr, "No starting position precised, do it !");
             break;
     }
-    
 }
 
 void return_to_base(Robot *robot, GAME *game){
@@ -211,11 +228,11 @@ void return_to_base(Robot *robot, GAME *game){
             break;
 
         case 2: // GO TO BASE NODE
-            if (robot->starting_pos == 0 || robot->starting_pos == 1){ // in blue team
+            if (robot->starting_pos == 0 || robot->starting_pos == 2 || robot->starting_pos == 4 ){ // in blue team
                 PRE_END_ZONE = PRE_END_ZONE_BLUE;
                 END_ZONE = END_ZONE_BLUE;
             }
-            else if (robot->starting_pos == 2 || robot->starting_pos == 3){ // in yellow team
+            else if (robot->starting_pos == 1 || robot->starting_pos == 3 || robot->starting_pos == 5 ){ // in yellow team
                 PRE_END_ZONE = PRE_END_ZONE_YELLOW;
                 END_ZONE = END_ZONE_YELLOW;
             }

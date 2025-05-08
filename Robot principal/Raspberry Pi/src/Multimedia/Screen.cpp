@@ -179,29 +179,48 @@ void Robot::screen_create_custom_chars() {
 
     for (int c = 0; c < 6; ++c) {
         screen_send_command(0x40 + (c * 8));  // Adresse CGRAM pour chaque caractère
-        delay(2);
+        delay(1);
         for (int i = 0; i < 8; ++i) {
             screen_send_data(chars[c][i]);
-            delay(2);  // délai entre chaque ligne pour fiabilité
+            delay(1);  // délai entre chaque ligne pour fiabilité
         }
     }
 }
 
 
-void Robot::screen_display_intro(){
-    screen_write(0, 0, "Je suis");
-    screen_write(0, 1, "Bot save the Queen");
+void Robot::screen_write_char(int x, int y, uint8_t character) {
+    int addr;
+    
+    if (x < 0)  x = 0;
+    if (x > 19) x = 19;
+    if (y < 0)  y = 0;
+    if (y > 3)  y = 3;
+    
+    // Address for LCD2004 rows
+    const int row_addr[] = {0x00, 0x40, 0x14, 0x54};
+    addr = 0x80 + row_addr[y] + x;
+    screen_send_command(addr);
+    
+    // Send a single character
+    screen_send_data(character);
+}
 
+// Now modify screen_display_intro to use this function
+void Robot::screen_display_intro() {
+    screen_clear(); // Clear previous data
+    screen_write(0, 0, "      Je suis");
+    screen_write(0, 1, " Bot save the Queen");
+    
     screen_create_custom_chars();
-    delay(20);
-    screen_write(7, 2, "\x00");
-    screen_write(8, 2, "\x01");
-    screen_write(9, 2, "\x02");
-    screen_write(7, 3, "\x03");
-    screen_write(8, 3, "\x04");
-    screen_write(9, 3, "\x05");
-    return;
-
+    delay(1);
+    
+    // Use the new function to write custom characters
+    screen_write_char(8, 2, 0);  // Character 0
+    screen_write_char(9, 2, 1);  // Character 1
+    screen_write_char(10, 2, 2);  // Character 2
+    screen_write_char(8, 3, 3);  // Character 3
+    screen_write_char(9, 3, 4);  // Character 4
+    screen_write_char(10, 3, 5);  // Character 5
 }
 
 void Robot::screen_menu(GAME *game) {
@@ -213,10 +232,8 @@ void Robot::screen_menu(GAME *game) {
     int previous_selected_team = -1 ; 
     int previous_selected_start = -1 ; 
 
-menu_start:  // <-- Point de redémarrage du menu
-
     // ÉTAPE 1 : Choix de l'équipe
-    while (true) {
+    while (true && running) {
         if(selected_team!=previous_selected_team){
                 screen_clear();
                 screen_write(0, 0, "Team :");
@@ -224,41 +241,42 @@ menu_start:  // <-- Point de redémarrage du menu
                 screen_write(8, 1, teams[1]);
                 // Affiche un curseur '>' devant la sélection
                 screen_write(6, team_index, ">");
+                screen_print_bottom_menu();
                 previous_selected_team = selected_team;
         }
 
-        delay(200);
+        delay(100);
         if (is_left_pressed(game)) {
             team_index = 1 - team_index;
             selected_team = (selected_team + 1) % 2;
-            delay(300);  // Anti-rebond
+            delay(100);  // Anti-rebond
         }
         if (is_right_pressed(game)) {
-            delay(300);
+            delay(100);
             break;
         }
     }
 
     // ÉTAPE 2 : Choix de la position de départ de l'adversaire
-    while (true) {
-        if(opponent_start!=previous_selected_start){
+    while (true && running) {
+        if(opponent_start != previous_selected_start){
             screen_clear();
-            screen_write(0, 0, "Depart de l'autre");
-            screen_write(0, 1, "equipe :");
-            screen_write(8, 2, positions[0]);
-            screen_write(8, 3, positions[1]);
-            screen_write(6, 2 + pos_index, ">");
-            previous_selected_start = opponent_start ;
+            screen_write(0, 0, "Depart adversaire:");
+            screen_write(8, 1, positions[0]);
+            screen_write(8, 2, positions[1]);
+            screen_write(6, 1 + pos_index, ">");
+            screen_print_bottom_menu();
+            previous_selected_start = opponent_start;
         }
 
-        delay(200);
+        delay(100);
         if (is_left_pressed(game)) {
             pos_index = 1 - pos_index;
             opponent_start = (opponent_start + 1) % 2;
-            delay(300);
+            delay(100);
         }
         if (is_right_pressed(game)) {
-            delay(300);
+            delay(100);
             break;
         }
     }
@@ -267,16 +285,17 @@ menu_start:  // <-- Point de redémarrage du menu
     bool confirmed = false;
     bool last_display = false;
     
-    while (!confirmed) {
+    while (!confirmed && running) {
         if (!last_display) {
             screen_clear();
             char line1[21];
             char line2[21];
-            snprintf(line1, sizeof(line1), "Je suis team %s", selected_team == 0 ? "BLEU " : "JAUNE");
-            snprintf(line2, sizeof(line2), "Adversaire : %s", opponent_start == 0 ? "BAS" : "COTE");
+            snprintf(line1, sizeof(line1), "Je suis team: %s", selected_team == 0 ? teams[0] : teams[1]);
+            snprintf(line2, sizeof(line2), "Adversaire  : %s", opponent_start == 0 ? positions[0] : positions[1]);
             screen_write(0, 0, line1);
             screen_write(0, 1, line2);
-            screen_write(0, 3, "Valider ?");
+            screen_write(0, 2, "Valider ?");
+            screen_print_bottom_menu();
             last_display = true;
         }
     
@@ -293,9 +312,15 @@ menu_start:  // <-- Point de redémarrage du menu
     
         delay(100); // Petit délai pour éviter boucle trop rapide
     }
-    
 
-    // Sauvegarde les choix si besoin
-    selected_team = team_index;      // 0 = BLEU, 1 = JAUNE
-    opponent_start = pos_index;      // 0 = BAS, 1 = CÔTÉ
+    // print the selected team and opponent start
+    fprintf(stderr, "selected_team  = %d\n", selected_team);
+    fprintf(stderr, "opponent_start = %d\n", opponent_start);
+
+    starting_pos = selected_team + opponent_start * 2; // 0 = blue_bottom_adversary_bottom, 1 = yellow_bottom_adversary_bottom, 2 = blue_bottom_adversary_side, 3 = yellow_bottom_adversary_side
+}
+
+void Robot::screen_print_bottom_menu() {
+    screen_write(0, 3, "change");
+    screen_write(13, 3, "confirm");
 }

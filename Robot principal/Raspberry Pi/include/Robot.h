@@ -126,8 +126,11 @@ public:
     void screen_display_intro();
     void screen_end_game();
     void screen_menu(GAME *game);
-    int selected_team ; 
-    int opponent_start; 
+    void screen_print_bottom_menu();
+    void screen_write_char(int x, int y, uint8_t character);
+
+    int selected_team = 0; 
+    int opponent_start = 0; 
 
     // starting cord
     void initialize_pins();

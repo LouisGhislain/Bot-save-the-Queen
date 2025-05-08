@@ -88,9 +88,11 @@ extern bool match_finished; // Flag to indicate if the match has finished
 inline constexpr int time_return_to_base = 90; // in seconds, the time at which we stop everything to return to the base
 inline constexpr int time_reach_end_zone = 92;
 
-void start_from_yellow_side(Robot *robot, GAME *game);
-void start_from_blue_bottom(Robot *robot, GAME *game);
-void start_from_yellow_bottom(Robot *robot, GAME *game);
+void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game);
+void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game);
+void start_from_blue_bottom_adversary_side(Robot *robot, GAME *game);
+void start_from_yellow_bottom_adversary_side(Robot *robot, GAME *game);
+void start_from_blue_side(Robot *robot, GAME *game);
 void start_from_yellow_side(Robot *robot, GAME *game);
 
 void return_to_base(Robot *robot, GAME *game);
