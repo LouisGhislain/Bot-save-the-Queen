@@ -60,7 +60,7 @@ void setup() {
     int sensorValueSum = 0;
     int delayTime = 100; // Temps d'attente entre les lectures (en millisecondes)
     int numReadings = 1000/delayTime;  // nombre d'échantillons sur 1 seconde
-    int threshold = 800;    // seuil pour distinguer HIGH/LOW (sur 10 bits ADC)
+    int threshold = 900;    // seuil pour distinguer HIGH/LOW (sur 10 bits ADC)
 
     for (int i = 0; i < numReadings; i++) {
         sensorValueSum += analogRead(A1);
@@ -80,6 +80,7 @@ void setup() {
         delay(100);
         digitalWrite(BUZZ, LOW);
 
+        pami.turnTailYellow(90); // Tourner la queue
         TEAM_COLOR = 'Y';
     } else {  // team bleu
         Serial.println("team bleu");
@@ -90,6 +91,8 @@ void setup() {
         digitalWrite(BUZZ, HIGH);
         delay(100);
         digitalWrite(BUZZ, LOW);
+
+        pami.turnTailYellow(140); // Tourner la queue
 
         TEAM_COLOR = 'B';
     }
@@ -106,7 +109,7 @@ void setup() {
     Serial.println("Début du test de vitesse");
 
     startGame = millis();
-    delay(85000);  // Attendre que le moniteur série soit prêt
+    delay(5000);  // Attendre que le moniteur série soit prêt
 
     
     // pinMode(14, OUTPUT);

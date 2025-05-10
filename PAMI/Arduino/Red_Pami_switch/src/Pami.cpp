@@ -91,6 +91,10 @@ void PAMI::turnTail() {
     tail.Turn_tail();
 }
 
+void PAMI::turnTailYellow(int angle) {
+    tail.Turn_tail_yellow(angle);
+}
+
 
 void PAMI::update_position() {
     // Update the distance of the motors
