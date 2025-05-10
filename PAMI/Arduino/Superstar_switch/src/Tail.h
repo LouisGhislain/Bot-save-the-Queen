@@ -11,5 +11,6 @@ private :
 public : 
     Tail(int pin_tail);
     void Turn_tail();
+    void Turn_tail_start(int angle);
 };
 

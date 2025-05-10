@@ -30,3 +30,11 @@ void Tail::Turn_tail(){
   delay(500); // Attendre un peu avant de changer la position
   Servo_Tail.detach(); // Détacher le servo après utilisation
 }
+
+void Tail::Turn_tail_start(int angle){
+  pinMode(PIN_TAIL, OUTPUT);
+  Servo_Tail.attach(PIN_TAIL); // Attacher le servo à la broche
+  Servo_Tail.write(angle); // Position neutre
+  delay(500); // Attendre un peu avant de changer la position
+  Servo_Tail.detach(); // Détacher le servo après utilisation
+}

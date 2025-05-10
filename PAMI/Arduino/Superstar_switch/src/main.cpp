@@ -14,6 +14,7 @@
 #define DIR1 7
 #define DIR4 11
 #define DIR3 10
+#define BUZZ 13
 
 // const float TIME_INTERVAL = 0.0005; // 500µs en secondes
 // float Interval = 0;
@@ -22,7 +23,7 @@
 // int iteration = 0;
 
 // Caractère Team en fonction de la couleur de l'équipe
-#define TEAM_COLOR 'Y' // 'Y' pour jaune, 'B' pour bleu
+// #define TEAM_COLOR 'Y' // 'Y' pour jaune, 'B' pour bleu
 // #define TEAM_COLOR 'B'
 
 
@@ -41,6 +42,7 @@ PAMI pami;
 bool isStopped = false ; 
 double startGame;
 
+char TEAM_COLOR; // 'Y' pour jaune, 'B' pour bleu
 
 
 int role;
@@ -52,6 +54,46 @@ void setup() {
     while (analogRead(A5) < 1.5) {
         Serial.println("Waiting for the microswitch to be pressed...");
         delay(100); // Attendre un peu avant de vérifier à nouveau
+    }
+
+    int sensorValueSum = 0;
+    int numReadings = 10;  // nombre d'échantillons sur 1 seconde
+    int threshold = 800;    // seuil pour distinguer HIGH/LOW (sur 10 bits ADC)
+
+    for (int i = 0; i < numReadings; i++) {
+        sensorValueSum += analogRead(A1);
+        Serial.print("Valeur de la broche A1 : ");
+        Serial.println(analogRead(A1)); // Afficher la valeur lue sur le moniteur série
+        Serial.print(sensorValueSum);
+        delay(100);  // 100 échantillons x 10ms = 1000ms = 1s
+    }
+
+    int averageValue = sensorValueSum / numReadings;
+    Serial.print("Valeur moyenne de la broche A1 : ");
+    Serial.println(averageValue); // Afficher la valeur lue sur le moniteur série
+
+    if (averageValue < threshold) {  // team jaune
+        Serial.println("team jaune");
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        pami.turnTail_start(25);  // Agiter la queue
+
+        TEAM_COLOR = 'Y';
+    } else {  // team bleu
+        Serial.println("team bleu");
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+        delay(500);
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        pami.turnTail_start(50);  // Agiter la queue
+
+        TEAM_COLOR = 'B';
     }
 
     while (analogRead(A5) > 1.5) {
@@ -70,7 +112,7 @@ void setup() {
 
     startGame = millis();
 
-    delay(85000);  // Attendre que le moniteur série soit prêt
+    delay(5000);  // Attendre que le moniteur série soit prêt
 
 
     role = 0; // 0 pour le robot, 1 pour la superstar
@@ -201,16 +243,15 @@ void Superstar_BLUE(){
 }
 
 
-
-
-
-
 void loop(){
 
-    if (digitalRead(12) == HIGH) { // changer le pin 12 par le pin du switch utilisé 
+    if (TEAM_COLOR == 'B') { // changer le pin 12 par le pin du switch utilisé 
         Superstar_BLUE();
-    } else {
+    } else if (TEAM_COLOR == 'Y') {
         Superstar_ORANGE();
+    }
+    else {
+        Serial.println("Invalid TEAM_COLOR. Please set it to 'Y' or 'B'.");
     }
 
     // Print time_ms,left_ticks,left_speed,right_ticks,right_speed

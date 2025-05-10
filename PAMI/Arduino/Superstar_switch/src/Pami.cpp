@@ -113,6 +113,12 @@ void PAMI::turnTail() {
     // tail.Turn_tail();
 }
 
+void PAMI::turnTail_start(int angle) {
+    tail.Turn_tail_start(angle); // Agiter la queue
+    Serial.println("Agitation de la queue en cours...");
+    delay(300); // Attendre un peu avant de réagir à la prochaine lecture
+}
+
 
 void PAMI::update_position() {
     // Update the distance of the motors

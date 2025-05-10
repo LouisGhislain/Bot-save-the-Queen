@@ -36,6 +36,7 @@ public:
     void reset_last_time_ctrl();
     void reset_position();
     void Rotate(double angle_ref, double time);
+    void turnTail_start(int angle);
 
 private:
     Encoder leftEncoder;
