@@ -24,7 +24,7 @@
 // int iteration = 0;
 
 // Caractère Team en fonction de la couleur de l'équipe
-#define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
+// #define TEAM_COLOR 'Y' // 'Y' pour orange, 'B' pour bleu
 // #define TEAM_COLOR 'B'
 
 
@@ -46,6 +46,8 @@ Robot SuperStar = {STRAIGHT1, 0, false, false, false, false, false};
 
 int role;
 
+char TEAM_COLOR; // 'Y' pour orange, 'B' pour bleu
+
 
 void setup() {
     Serial.begin(9600);
@@ -55,24 +57,41 @@ void setup() {
         delay(100); // Attendre un peu avant de vérifier à nouveau
     }
 
-    int val = analogRead(A1);  // read the input pin
-    Serial.println(val); 
+    int sensorValueSum = 0;
+    int delayTime = 100; // Temps d'attente entre les lectures (en millisecondes)
+    int numReadings = 1000/delayTime;  // nombre d'échantillons sur 1 seconde
+    int threshold = 800;    // seuil pour distinguer HIGH/LOW (sur 10 bits ADC)
 
-    if (analogRead(A1) > 900) {  // team bleu 
-        Serial.println("team jaune");
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre 1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+    for (int i = 0; i < numReadings; i++) {
+        sensorValueSum += analogRead(A1);
+        Serial.print("Valeur de la broche A1 : ");
+        Serial.println(analogRead(A1)); // Afficher la valeur lue sur le moniteur série
+        Serial.print(sensorValueSum);
+        delay(delayTime);  // 100 échantillons x 10ms = 1000ms = 1s
     }
-    else if (analogRead(A1) < 900) { // team jaune
+
+    int averageValue = sensorValueSum / numReadings;
+    Serial.print("Valeur moyenne de la broche A1 : ");
+    Serial.println(averageValue); // Afficher la valeur lue sur le moniteur série
+
+    if (averageValue < threshold) {  // team jaune
+        Serial.println("team jaune");
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        TEAM_COLOR = 'Y';
+    } else {  // team bleu
         Serial.println("team bleu");
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre 1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
-        delay(500); // Attendre 1 seconde
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre 1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+        delay(500);
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        TEAM_COLOR = 'B';
     }
     
 
@@ -93,8 +112,6 @@ void setup() {
     // pinMode(14, OUTPUT);
 
     role = 1; // 0 pour le robot, 1 pour la superstar
-    val = analogRead(A1);  // read the input pin
-    Serial.println(val); 
 }
 
 
@@ -103,7 +120,7 @@ void loop(){
     pami.update_position();
     // pami.lowlevelcontrol(0.38, 0.38); // Stop the motors
     if(!pami.target_reached){
-        if (analogRead(A1) >= 900) { // A changer 
+        if (TEAM_COLOR == 'Y') { // A changer 
             Serial.println("team jaune");
             pami.middlecontrol(1.1, -0.35, 0.0, false, startGame);  // Avancer vers x = 1.0
         }
