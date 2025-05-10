@@ -14,6 +14,7 @@
 #define DIR1 7
 #define DIR4 11
 #define DIR3 10
+#define BUZZ 13
 
 
 // const float TIME_INTERVAL = 0.0005; // 500µs en secondes
@@ -46,6 +47,8 @@ unsigned long state_timer = 0;
 enum Team { YELLOW, BLUE };
 int team;
 
+char TEAM_COLOR; // 'Y' pour jaune, 'B' pour bleu
+
 
 
 void setup() {
@@ -54,6 +57,27 @@ void setup() {
     while (analogRead(A5) > 1.5) {
         Serial.println("Waiting for the microswitch to be pressed...");
         delay(100); // Attendre un peu avant de vérifier à nouveau
+    }
+
+    if (digitalRead(A1) == LOW) {  // team jaune 
+        Serial.println("team jaune");
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre &1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+        
+        TEAM_COLOR = 'Y'; // 'Y' pour jaune
+
+    }
+    else if (digitalRead(A1) == HIGH) { // team bleu
+        Serial.println("team bleu");
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre 1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+        delay(500); // Attendre 1 seconde
+        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
+        delay(100); // Attendre 1 seconde
+        digitalWrite(BUZZ, LOW); // Relâcher le bouton
+        TEAM_COLOR = 'B'; // 'B' pour bleu
     }
 
     while (analogRead(A5) < 1.5) {
@@ -68,11 +92,7 @@ void setup() {
     Serial.println("Début du test de vitesse");
     startGame = millis();
 
-    delay(86000);  // Attendre que le moniteur série soit prêt
-
-    team = YELLOW;
-    // team = BLUE;
-
+    delay(6000);  // Attendre que le moniteur série soit prêt
     }
 
 
@@ -204,15 +224,19 @@ void team_blue() {
         }
 }
 
-
-
-
-
 void loop(){
-    if (digitalRead(A5) == LOW) { // a changer 
+    if (TEAM_COLOR == 'Y') { // a changer 
+        Serial.println("team jaune");
         team_yellow(); // Appeler la fonction pour l'équipe jaune
-    } else  {
+    } else if (TEAM_COLOR == 'B') { // a changer
+        Serial.println("team bleu");
         team_blue(); // Appeler la fonction pour l'équipe bleue
     }   
+    else {
+        Serial.println("Erreur : couleur d'équipe non reconnue.");
+    }
+    // int value = analogRead(A1); // Lire la valeur de la broche A1
+    // Serial.print("Valeur de la broche A1 : ");
+    // Serial.println(value); // Afficher la valeur lue
 }
 
