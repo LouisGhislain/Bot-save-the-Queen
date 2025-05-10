@@ -58,26 +58,41 @@ void setup() {
         Serial.println("Waiting for the microswitch to be pressed...");
         delay(100); // Attendre un peu avant de vérifier à nouveau
     }
+    int sensorValueSum = 0;
+    int delayTime = 100; // Temps d'attente entre les lectures
+    int numReadings = 1000/delayTime;  // nombre d'échantillons sur 1 seconde
+    int threshold = 800;    // seuil pour distinguer HIGH/LOW (sur 10 bits ADC)
 
-    if (digitalRead(A1) == LOW) {  // team jaune 
-        Serial.println("team jaune");
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre &1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
-        
-        TEAM_COLOR = 'Y'; // 'Y' pour jaune
-
+    for (int i = 0; i < numReadings; i++) {
+        sensorValueSum += analogRead(A1);
+        Serial.print("Valeur de la broche A1 : ");
+        Serial.println(analogRead(A1)); // Afficher la valeur lue sur le moniteur série
+        Serial.print(sensorValueSum);
+        delay(delayTime);  // 100 échantillons x 10ms = 1000ms = 1s
     }
-    else if (digitalRead(A1) == HIGH) { // team bleu
+
+    int averageValue = sensorValueSum / numReadings;
+    Serial.print("Valeur moyenne de la broche A1 : ");
+    Serial.println(averageValue); // Afficher la valeur lue sur le moniteur série
+
+    if (averageValue < threshold) {  // team jaune
+        Serial.println("team jaune");
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        TEAM_COLOR = 'Y';
+    } else {  // team bleu
         Serial.println("team bleu");
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre 1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
-        delay(500); // Attendre 1 seconde
-        digitalWrite(BUZZ, HIGH); // Simuler la pression du bouton
-        delay(100); // Attendre 1 seconde
-        digitalWrite(BUZZ, LOW); // Relâcher le bouton
-        TEAM_COLOR = 'B'; // 'B' pour bleu
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+        delay(500);
+        digitalWrite(BUZZ, HIGH);
+        delay(100);
+        digitalWrite(BUZZ, LOW);
+
+        TEAM_COLOR = 'B';
     }
 
     while (analogRead(A5) < 1.5) {
