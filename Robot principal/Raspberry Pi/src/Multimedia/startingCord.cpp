@@ -44,5 +44,6 @@ void Robot::wait_starting_cord(GAME *game) {
         screen_display_intro();
         fprintf(stderr, "STARTING !\n");
         fprintf(stderr, "--------------------------------------------------------\n");
+        delay(1);
     }
 }

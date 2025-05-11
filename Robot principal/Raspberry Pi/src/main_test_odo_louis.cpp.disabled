@@ -22,8 +22,6 @@
 // std::atomic<bool> running{true};
 
 Robot *robot = new Robot();
-int avant_arriere_STATE = 0;
-
 
 // Function to handle SIGINT (Ctrl+C)
 void signalHandler(int signum) {
@@ -58,8 +56,8 @@ void loop_1ms(GAME *game){
 
         //robot->printDistance();
         robot->updateOdometry(game);
-        //std::cout<< "X coordinate : "<< game->queen->cart_pos->x << "          Y coordinate : "<< game->queen->cart_pos->y << std::endl;
-        robot->lowLevelController();
+        std::cout<< "X coordinate : "<< game->queen->cart_pos->x << "          Y coordinate : "<< game->queen->cart_pos->y << std::endl;
+        //robot->lowLevelController();
 
 
         //===========================================================================
@@ -87,31 +85,31 @@ void loop_10ms(GAME *game){
 
     while (robot->running) {
         auto start_time = steady_clock::now();
-        //===========================================================================
-        // 10ms loop - START
-        //===========================================================================
-        auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game); 
+        // //===========================================================================
+        // // 10ms loop - START
+        // //===========================================================================
+        // auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game); 
 
-        if (robot->backwards == true){ // if the robot goes backward, we change the interpreted angle
-            angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
-        }
-        // profil d'évitement d'adversaire (voir screenshot desmos)
-        if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
-            //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
-            robot->stop_if_ennemy(); // stop the robot
-            //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
-            //fprintf(stderr, "ennemy detected\n");
-        }
-        else{
-            robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
-            robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
-            robot->middleLevelController(game);
-            //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
-        }
+        // if (robot->backwards == true){ // if the robot goes backward, we change the interpreted angle
+        //     angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
+        // }
+        // // profil d'évitement d'adversaire (voir screenshot desmos)
+        // if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
+        //     //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
+        //     robot->stop_if_ennemy(); // stop the robot
+        //     //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
+        //     //fprintf(stderr, "ennemy detected\n");
+        // }
+        // else{
+        //     robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
+        //     robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
+        //     robot->middleLevelController(game);
+        //     //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
+        // }
 
-        //============================================================================
-        // 10ms loop - END
-        //============================================================================
+        // //============================================================================
+        // // 10ms loop - END
+        // //============================================================================
 
         // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -135,39 +133,16 @@ void loop_100ms(GAME *game){
     while (robot->running) {
         auto start_time = steady_clock::now();
         
-        //===========================================================================
-        // 100ms loop - START
-        //===========================================================================
+        // //===========================================================================
+        // // 100ms loop - START
+        // //===========================================================================
 
         // choose_start(robot, game);
-        // print_match_time(game);
-        switch (avant_arriere_STATE){
-            case 0 : //MANEUVER TO STACK
-                robot->straightMotion(0.32, game); //robot->maneuver(NODE, game); // go to the stack
-                avant_arriere_STATE++;
-            break ; 
+        // // print_match_time(game);
 
-            case 1 : //MANEUVRING
-                if (robot->end_of_manoeuvre){
-                    delay(1000);
-                    robot->teensy_grab();
-                    avant_arriere_STATE++;
-                }
-                break ;
-            
-            case 2 : //GRABBING FIRST STACK
-                robot->straightMotion(-0.31, game); // go to the stack
-                avant_arriere_STATE++;
-                break ;
-
-            case 3 : //MANEUVER BACK TO PRE_NODE
-                delay(0.5);
-                break;
-        }
-
-        //===========================================================================
-        // 100ms loop - END
-        //===========================================================================
+        // //===========================================================================
+        // // 100ms loop - END
+        // //===========================================================================
 
         // // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
@@ -307,9 +282,7 @@ int main() {
     // 4 = blue_side
     // 5 = yellow_side
 
-    robot->starting_pos = 0;    
-    game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
-
+    //robot->starting_pos = XXX;
 
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
@@ -329,8 +302,7 @@ int main() {
     
     // must be the last thing to do before starting the game
     //robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
-    delay(1); // Wait for 1 second to ensure the robot is ready
-
+    
     // Create controller threads with different frequencies
     std::thread thread_1ms(loop_1ms, game);
     std::thread thread_10ms(loop_10ms, game);

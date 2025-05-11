@@ -49,29 +49,42 @@ void Robot::initCoords(void *sqid) {
 
     switch (starting_pos)
     {
-        case 0: // Blue bottom
+        case 0: // Blue bottom adversary bottom
             queen->cart_pos->x = 1.8;        // in m (origin at the bottom left, angle 0 = x-axis)
             queen->cart_pos->y = 0.19184;     // in m
             starting_angle     = M_PI/2;       // in radians
             break;
 
-        case 1: // Blue side
-            queen->cart_pos->x = 0.3673;
-            queen->cart_pos->y = 0.8365;
-            starting_angle     = 0.0;
-            break;
-
-        case 2: // Yellow bottom
+        case 1: // yellow bottom adversary bottom
             queen->cart_pos->x = 1.2;          
             queen->cart_pos->y = 0.19184;
             starting_angle     = M_PI/2;
             break;
 
-        case 3: // Yellow side
+        case 2: // Blue bottom adversary side
+            queen->cart_pos->x = 1.8;        // in m (origin at the bottom left, angle 0 = x-axis)
+            queen->cart_pos->y = 0.19184;     // in m
+            starting_angle     = M_PI/2;       // in radians
+            break;
+
+        case 3: // Yellow bottom adversary side
+            queen->cart_pos->x = 1.2;          
+            queen->cart_pos->y = 0.19184;
+            starting_angle     = M_PI/2;
+            break;
+        
+        case 4: // Blue side
+            queen->cart_pos->x = 0.3673;
+            queen->cart_pos->y = 0.8365;
+            starting_angle     = 0.0;
+            break;
+
+        case 5: // Yellow side
             queen->cart_pos->x = 2.6327;
             queen->cart_pos->y = 0.8365;
             starting_angle     = M_PI;
             break;
+            
         default:
             fprintf(stderr, "No starting position specified, do it !\n");
             break;

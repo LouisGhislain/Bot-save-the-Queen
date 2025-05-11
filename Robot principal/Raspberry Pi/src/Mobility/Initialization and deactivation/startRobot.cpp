@@ -18,6 +18,7 @@ void Robot::start() {
     u_volt_left = 0.0;
     u_volt_right = 0.0;
     stop();  
+    resetValues(); // reset the encoder values for not having odometry issues
     teensy_init(); //init I2C teensy
     digitalWrite(22, LOW); 
     screen_init(); //init I2C screen

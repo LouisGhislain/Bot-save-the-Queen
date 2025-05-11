@@ -87,50 +87,42 @@ void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game){
             }
             break ; 
 
-        case 1 : // GO TO FIRST STACK AND GRAB
-            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
-            if(robot->stack_grabbed){ // WAIT GRAB
-                STATE++;
-                usleep(0.5*1000000);
-            }
-            break;
-
-        case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
+        case 1 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
             break;
 
-        case 3 : // GO TO SECOND STACK AND GRAB
+        case 2 : // GO TO SECOND STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
             if(robot->stack_grabbed){ //WAIT GRAB
                 STATE++;
             }
             break;
 
-        case 4 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
+        case 3 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_0 , CONSTRUCTION_YELLOW_0);
             if(robot->stack_builded){//WAIT BUILD
                 STATE++;
             }
             break;
 
-        case 5 : //GO TO THIRD STACK AND GRAB
+        case 4 : //GO TO THIRD STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
             if(robot->stack_grabbed){
                 STATE++;
             }
             break ; 
 
-        case 6 : //BUILD THIRD STAGES
+        case 5 : //BUILD THIRD STAGES
             fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_NODE_STACK_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1, PRE_PRE_CONSTUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
             break ; 
 
-        case 7 : //RETURN TO BASE
+        case 6 : //RETURN TO BASE
             return_to_base(robot, game);
             break ;
 
