@@ -317,6 +317,9 @@ void Robot::screen_menu(GAME *game) {
     fprintf(stderr, "selected_team  = %d\n", selected_team);
     fprintf(stderr, "opponent_start = %d\n", opponent_start);
 
+    fprintf(stderr, "calibration");
+    teensy_send_command(0x10); // perform calibration of actuators through the teensy
+
     starting_pos = selected_team + opponent_start * 2; // 0 = blue_bottom_adversary_bottom, 1 = yellow_bottom_adversary_bottom, 2 = blue_bottom_adversary_side, 3 = yellow_bottom_adversary_side
 }
 

@@ -18,7 +18,7 @@ void Robot::updateOdometry(void *sqid){
     {
         std::lock_guard<std::mutex> lock(queen->position_mutex);
         // Compute the angle of the robot
-        queen->angle = ((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor 0.99810435
+        queen->angle = 1.002006583*((distr - distl) / (distanceBetweenOdometers)) + starting_angle; // in radians //corrective factor
         // Normalize angle to range [-π, π]
         while (queen->angle > M_PI) {    
             queen->angle -= 2 * M_PI;

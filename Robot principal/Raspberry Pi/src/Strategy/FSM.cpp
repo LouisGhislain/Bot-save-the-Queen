@@ -225,6 +225,7 @@ void return_to_base(Robot *robot, GAME *game){
         case 1:
             // release the stack
             robot->teensy_send_command(0x30);
+            STATE_RETURN_TO_BASE++;
             break;
 
         case 2: // GO TO BASE NODE

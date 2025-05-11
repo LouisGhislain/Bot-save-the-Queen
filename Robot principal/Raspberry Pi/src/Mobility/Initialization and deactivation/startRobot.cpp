@@ -22,8 +22,6 @@ void Robot::start() {
     digitalWrite(22, LOW); 
     screen_init(); //init I2C screen
     initialize_pins();
-    teensy_send_command(0x10); // perform calibration of actuators through the teensy
-
 }
 
 /**
