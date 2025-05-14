@@ -22,6 +22,8 @@
 // std::atomic<bool> running{true};
 
 Robot *robot = new Robot();
+int avant_arriere_STATE = 0;
+
 
 // Function to handle SIGINT (Ctrl+C)
 void signalHandler(int signum) {
@@ -54,9 +56,11 @@ void loop_1ms(GAME *game){
         // 1ms loop - START
         //===========================================================================
 
+        //robot->printDistance();
         robot->updateOdometry(game);
+        //std::cout<< "X coordinate : "<< game->queen->cart_pos->x << "          Y coordinate : "<< game->queen->cart_pos->y << std::endl;
         robot->lowLevelController();
-        //std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
 
         //===========================================================================
         // 1ms loop - END
@@ -135,14 +139,37 @@ void loop_100ms(GAME *game){
         // 100ms loop - START
         //===========================================================================
 
-        choose_start(robot, game);
+        // choose_start(robot, game);
         // print_match_time(game);
+        switch (avant_arriere_STATE){
+            case 0 : //MANEUVER TO STACK
+                robot->straightMotion(0.32, game); //robot->maneuver(NODE, game); // go to the stack
+                avant_arriere_STATE++;
+            break ; 
+
+            case 1 : //MANEUVRING
+                if (robot->end_of_manoeuvre){
+                    delay(1000);
+                    robot->teensy_grab();
+                    avant_arriere_STATE++;
+                }
+                break ;
+            
+            case 2 : //GRABBING FIRST STACK
+                robot->straightMotion(-0.31, game); // go to the stack
+                avant_arriere_STATE++;
+                break ;
+
+            case 3 : //MANEUVER BACK TO PRE_NODE
+                delay(0.5);
+                break;
+        }
 
         //===========================================================================
         // 100ms loop - END
         //===========================================================================
 
-        // Calculate how long to sleep to maintain desired frequency
+        // // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
         auto sleep_time = milliseconds(20) - elapsed;
         
@@ -167,20 +194,20 @@ void lidar_thread_func(void* game_void) {
 
     while (robot->running) {
         auto start_time = steady_clock::now();
-        // Appeler la fonction de récupération des données LIDAR
+        // // Appeler la fonction de récupération des données LIDAR
 
-        //===========================================================================
-        // lidar loop - START - (undifined period)
-        //===========================================================================
+        // //===========================================================================
+        // // lidar loop - START - (undifined period)
+        // //===========================================================================
 
-        fetchLidarData(game);
-        // print_Sauron_position(game);
+        // fetchLidarData(game);
+        // // print_Sauron_position(game);
 
-        //===========================================================================
-        // lidar loop - END - (undifined period)
-        //===========================================================================
+        // //===========================================================================
+        // // lidar loop - END - (undifined period)
+        // //===========================================================================
         
-        // Calculate how long to sleep to maintain desired frequency
+        // // Calculate how long to sleep to maintain desired frequency
         auto elapsed = duration_cast<milliseconds>(steady_clock::now() - start_time);
         //fprintf(stderr, "computation time lidar = %d\n", elapsed);
 
@@ -280,12 +307,14 @@ int main() {
     // 4 = blue_side
     // 5 = yellow_side
 
-    //robot->starting_pos = XXX;
+    robot->starting_pos = 0;    
+    game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
+
 
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         robot->initCoords(game); // Initialize coordinates
-        init_connectLidar(); // Initialiser et démarrer le LIDAR
+        //init_connectLidar(); // Initialiser et démarrer le LIDAR
         robot->screen_clear();
        // robot->screen_display_intro();
     } catch (const std::exception& e) {
@@ -295,12 +324,14 @@ int main() {
 
     // get starting position from user via terminal (get_input) or via screen (screen_menu)
     //get_input(); // Get the starting position from the user
-    robot->screen_menu(game); //Get the starting position from the screen
-    fprintf(stderr, "Starting position : %d\n", robot->starting_pos);
+    //robot->screen_menu(game); //Get the starting position from the screen
+    //fprintf(stderr, "Starting position : %d\n", robot->starting_pos);
     
     // must be the last thing to do before starting the game
-    robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
-    
+    //robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
+    robot->start(); // Start the robot
+    robot->initCoords(game); // Initialize coordinates
+    delay(1); // Wait for 1 second to ensure the robot is ready
     // Create controller threads with different frequencies
     std::thread thread_1ms(loop_1ms, game);
     std::thread thread_10ms(loop_10ms, game);

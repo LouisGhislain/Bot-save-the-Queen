@@ -36,7 +36,6 @@ void Robot::teensy_build_second_third_stage(int constructNodeNumber, void *game)
     maneuver(constructNodeNumber, game);//forward
     usleep(1.5*1000000); //Margoulin car end_of_manoeuvre bloquant
     build_finished = true ; 
-    
 }
 
 /*

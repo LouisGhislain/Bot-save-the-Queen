@@ -8,6 +8,7 @@ bool match_finished = false;
 
 void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
     switch (STATE){
+
         case 0 : // DROP THE BANNER
             drop_banner(robot, game);
             if(robot->banner_dropped){ // WAIT DROP
@@ -75,7 +76,7 @@ void start_from_blue_bottom_adversary_side(Robot *robot, GAME *game){
 }
 
 void start_from_blue_side(Robot *robot, GAME *game){
-    return;
+    //to do 
 }
 
 void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game){
@@ -86,43 +87,50 @@ void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game){
                  STATE++ ; 
             }
             break ; 
-
-        case 1 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
+        
+        case 1 : 
+            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
+            if(robot->stack_grabbed){
+                STATE++ ; 
+            }
+            break;
+            
+        case 2 : // GO TO BIG CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_1 , CONSTRUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
             break;
 
-        case 2 : // GO TO SECOND STACK AND GRAB
+        case 3 : // GO TO SECOND STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_0, NODE_STACK_0);
             if(robot->stack_grabbed){ //WAIT GRAB
                 STATE++;
             }
             break;
 
-        case 3 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
+        case 4 : //GO TO LITTLE CONSTRUCTION ZONE AND BUILD
             fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_0 , CONSTRUCTION_YELLOW_0);
             if(robot->stack_builded){//WAIT BUILD
                 STATE++;
             }
             break;
 
-        case 4 : //GO TO THIRD STACK AND GRAB
+        case 5 : //GO TO THIRD STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_8, NODE_STACK_8);
             if(robot->stack_grabbed){
                 STATE++;
             }
             break ; 
 
-        case 5 : //BUILD THIRD STAGES
+        case 6 : //BUILD THIRD STAGES
             fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_1, PRE_NODE_STACK_0, CONSTRUCTION_YELLOW_0, CONSTRUCTION_YELLOW_1, PRE_PRE_CONSTUCTION_YELLOW_1);
             if(robot->stack_builded){
                 STATE++;
             }
             break ; 
 
-        case 6 : //RETURN TO BASE
+        case 7 : //RETURN TO BASE
             return_to_base(robot, game);
             break ;
 
@@ -134,17 +142,71 @@ void start_from_yellow_bottom_adversary_bottom(Robot *robot, GAME *game){
 }
 
 void start_from_yellow_bottom_adversary_side(Robot *robot, GAME *game){
-    // to do 
+    switch(STATE){
+
+        case 0 : // DROP THE BANNER
+            drop_banner(robot, game);
+            if(robot->banner_dropped){ // WAIT DROP
+                 STATE++ ; 
+            }
+            break ; 
+
+        case 1 : 
+            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_5, NODE_STACK_5);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ;
+
+
+        case 2 : 
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_3, CONSTRUCTION_YELLOW_3);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+        
+        case 3 : 
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_3, NODE_STACK_3);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break; 
+
+        case 4 : 
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_YELLOW_2, CONSTRUCTION_YELLOW_2);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+        case 5 : 
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_7, NODE_STACK_7);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ; 
+
+        case 6 : 
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_YELLOW_3, PRE_CONSTRUCTION_YELLOW_2, CONSTRUCTION_YELLOW_2, CONSTRUCTION_YELLOW_3, 37);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break ; 
+        case 7 : 
+            break ; 
+        default : 
+            break ; 
+    }
 }
 
 void start_from_yellow_side(Robot *robot, GAME *game){
     switch (STATE){
 
         case 1 : // DROP THE BANNER
-            //drop_banner(robot, game);
-            // if(robot->banner_dropped){ // WAIT DROP
-            //      STATE++ ; 
-            // }
+            drop_banner(robot, game);
+            if(robot->banner_dropped){ // WAIT DROP
+                 STATE++ ; 
+            }
             STATE++;
             break ; 
     }

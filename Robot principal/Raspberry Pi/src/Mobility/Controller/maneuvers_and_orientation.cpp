@@ -44,7 +44,7 @@ void Robot::orientate(double angle, void *game) {
 void Robot::straightMotion(double dist, void *game) {
     GAME * mygame = (GAME *)game;
     Queen * myqueen = mygame->queen;
-    
+
     double my_x, my_y, my_angle;
 
     {
@@ -54,18 +54,28 @@ void Robot::straightMotion(double dist, void *game) {
         my_angle = myqueen->angle;
     }
 
-    // Set the angle to the closest angle between 0, M_PI/2, M_PI, -M_PI/2
-    double angles[4] = {0, M_PI/2, M_PI, -M_PI/2};
-    double min_diff = fabs(my_angle - angles[0]);
+    // Helper lambda to compute minimal angular difference (wrapped)
+    auto angle_diff = [](double a, double b) {
+        double diff = fmod(b - a + M_PI, 2 * M_PI);
+        if (diff < 0) diff += 2 * M_PI;
+        return diff - M_PI;
+    };
+
+    // Define cardinal directions
+    double angles[4] = {0, M_PI / 2, M_PI, -M_PI / 2};
+
+    // Find the closest cardinal direction
+    double min_diff = fabs(angle_diff(my_angle, angles[0]));
     int closest_idx = 0;
 
     for (int i = 1; i < 4; i++) {
-        double diff = fabs(my_angle - angles[i]);
+        double diff = fabs(angle_diff(my_angle, angles[i]));
         if (diff < min_diff) {
             min_diff = diff;
             closest_idx = i;
         }
     }
+
     my_angle = angles[closest_idx];
 
     {
@@ -73,6 +83,6 @@ void Robot::straightMotion(double dist, void *game) {
         GLOBAL_params = straight;
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
-        //fprintf(stderr, "Straight motion to (%f, %f)\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target);
+        // fprintf(stderr, "Straight motion to (%f, %f)\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target);
     }
 }
