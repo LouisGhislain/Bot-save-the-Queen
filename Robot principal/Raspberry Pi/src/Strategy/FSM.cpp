@@ -30,7 +30,6 @@ void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
                 STATE++;
             }
             break;
-            break;
 
         case 3 : // GO TO SECOND STACK AND GRAB
             fsm_grab_stack(robot, game, PRE_NODE_STACK_1, NODE_STACK_1);
@@ -72,7 +71,60 @@ void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
 }
 
 void start_from_blue_bottom_adversary_side(Robot *robot, GAME *game){
-    // to do 
+        switch(STATE){
+        case 0 : // DROP THE BANNER
+            drop_banner(robot, game);
+            if(robot->banner_dropped){ // WAIT DROP
+                 STATE++ ; 
+            }
+            break ; 
+
+        case 1 : 
+            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_5, NODE_STACK_5);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ;
+
+
+        case 2 : 
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_BLUE_3, CONSTRUCTION_BLUE_3);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+        
+        case 3 : 
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_2, NODE_STACK_2);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break; 
+
+        case 4 : 
+            fsm_build_stack(robot, game, PRE_CONSTRUCTION_BLUE_2, CONSTRUCTION_BLUE_2);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+        case 5 : 
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_6, NODE_STACK_6);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ; 
+
+        case 6 : 
+            fsm_build_normal_third_stage(robot, game, PRE_CONSTRUCTION_BLUE_3, PRE_CONSTRUCTION_BLUE_2, CONSTRUCTION_BLUE_2, CONSTRUCTION_BLUE_3, 36);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break ; 
+        case 7 : 
+            break ; 
+        default : 
+            break ; 
+    }
 }
 
 void start_from_blue_side(Robot *robot, GAME *game){
@@ -152,7 +204,7 @@ void start_from_yellow_bottom_adversary_side(Robot *robot, GAME *game){
             break ; 
 
         case 1 : 
-            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_5, NODE_STACK_5);
+            fsm_grab_stack(robot, game, PRE_NODE_BOTTOM_STACK_4, NODE_STACK_4);
             if(robot->stack_grabbed){
                 STATE++;
             }
@@ -229,7 +281,7 @@ void choose_start(Robot *robot, GAME *game){
         return; // do nothing is we are avoiding an ennemy
     }
 
-    if(get_match_time(game) > time_return_to_base){
+    if((get_match_time(game) > time_return_to_base) && (robot->starting_pos != 2) && (robot->starting_pos != 3)){
         return_to_base(robot, game);
         return;
     }

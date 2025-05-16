@@ -284,7 +284,7 @@ int main() {
 
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
-        robot->initCoords(game); // Initialize coordinates
+        //robot->initCoords(game); // Initialize coordinates
         init_connectLidar(); // Initialiser et démarrer le LIDAR
         robot->screen_clear();
        // robot->screen_display_intro();

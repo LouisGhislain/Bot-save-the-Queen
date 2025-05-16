@@ -164,7 +164,7 @@ public:
 
     double GLOBAL_x_coord_target;
     double GLOBAL_y_coord_target; 
-    double GLOBAL_angle_target = M_PI ; // in rad (angle of the robot with respect to the x-axis)
+    double GLOBAL_angle_target; // in rad (angle of the robot with respect to the x-axis)
     MovementParams GLOBAL_params = straight;
     double GLOBAL_rho = 0.0; // in m (distance to target)
     std::mutex coord_mutex;

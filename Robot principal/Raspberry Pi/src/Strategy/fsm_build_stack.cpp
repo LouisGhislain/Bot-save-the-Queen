@@ -159,9 +159,13 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             break ; 
 
         case 1 : // ORIENTATE TO SEPARATE ZONE
-            if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3||SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
+            if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3){
                 robot->orientate(0,game);
-            }else{
+            }
+            else if (SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
+                robot->orientate(180, game);
+            }
+            else{
                 robot->orientate(-90, game);
             }
             STATE_BUILDING++;
@@ -250,9 +254,12 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             break ; 
 
         case 14 : //ORIENTATE TO BASE
-            if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3||SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
+            if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3){
                 robot->orientate(0,game);
-            }else{
+            }else if (SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
+                robot->orientate(180,game);
+            }
+            else{
                 robot->orientate(-90, game);
             }
             STATE_BUILDING++;
@@ -271,7 +278,12 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
 
         case 17 : //MANEUVRING
             if(robot->end_of_manoeuvre){
-                robot->straightMotion(0.05, game);
+                if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3||SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
+                    robot->straightMotion(0.07, game);
+                }
+                else{
+                    robot->straightMotion(0.05, game);
+                }
                 STATE_BUILDING++;
             }
             break ; 

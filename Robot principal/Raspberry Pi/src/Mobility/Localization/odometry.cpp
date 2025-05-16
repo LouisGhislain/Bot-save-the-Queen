@@ -91,5 +91,4 @@ void Robot::initCoords(void *sqid) {
     }
     GLOBAL_x_coord_target = queen->cart_pos->x;
     GLOBAL_y_coord_target = queen->cart_pos->y;
-
 }
