@@ -23,6 +23,8 @@ void Robot::start() {
     screen_init(); //init I2C screen
     initialize_pins();    
     resetValues(); // reset the encoder values for not having odometry issues
+    teensy_send_command(0x10); // perform calibration of actuators through the teensy
+
 }
 
 /**
