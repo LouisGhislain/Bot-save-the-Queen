@@ -40,6 +40,7 @@ const MovementParams orientation {
  * 
  */
 void Robot::middleLevelController(void *game) {
+    //std::cerr << "MIDDLE"  << std::endl;
     GAME * mygame = (GAME *)game;
     Queen * myqueen = mygame->queen;
     
@@ -182,4 +183,5 @@ void Robot::middleLevelController(void *game) {
         ref_speed_left = (v_ref - distanceBetweenWheels * w_ref / 2) / wheel_radius;
         ref_speed_right = (v_ref + distanceBetweenWheels * w_ref / 2) / wheel_radius;
     }
+    // std::cerr << "END MIDDLE"  << std::endl;
 }

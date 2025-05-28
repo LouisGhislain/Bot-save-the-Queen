@@ -88,6 +88,7 @@ void loop_10ms(GAME *game){
         //===========================================================================
         auto [distance_ennemy, angle_ennemy] = robot->get_distance_to_ennemy(game); 
 
+        //fprintf(stderr, "distance_ennemy = %f, angle_ennemy = %f\n", distance_ennemy, angle_ennemy);
         if (robot->backwards == true){ // if the robot goes backward, we change the interpreted angle
             angle_ennemy = 180 - angle_ennemy; // get the absolute value of the angle
         }
@@ -95,14 +96,14 @@ void loop_10ms(GAME *game){
         if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
             //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
             robot->stop_if_ennemy(); // stop the robot
-            //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
-            //fprintf(stderr, "ennemy detected\n");
+            digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
+            // fprintf(stderr, "ennemy detected\n");
         }
         else{
             robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
-            //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
+            digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
         }
 
         //============================================================================
@@ -138,9 +139,9 @@ void loop_100ms(GAME *game){
         choose_start(robot, game);
         
         // print_match_time(game);
-        std::cerr << "x     : " << game->queen->cart_pos->x << std::endl;
-        std::cerr << "y     : " << game->queen->cart_pos->y << std::endl;
-        std::cerr << "angle : " << game->queen->angle << std::endl;
+        // std::cerr << "x     : " << game->queen->cart_pos->x << std::endl;
+        // std::cerr << "y     : " << game->queen->cart_pos->y << std::endl;
+        // std::cerr << "angle : " << game->queen->angle << std::endl;
 
 
 
@@ -178,9 +179,12 @@ void lidar_thread_func(void* game_void) {
         //===========================================================================
         // lidar loop - START - (undifined period)
         //===========================================================================
+        // fprintf(stderr, "lidar running1\n");
 
         fetchLidarData(game);
         // print_Sauron_position(game);
+        // fprintf(stderr, "lidar running2\n");
+
 
         //===========================================================================
         // lidar loop - END - (undifined period)
