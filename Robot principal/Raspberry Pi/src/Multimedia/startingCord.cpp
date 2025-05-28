@@ -36,6 +36,8 @@ void Robot::wait_starting_cord(GAME *game) {
     }
     game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
     resetValues(); // reset the encoder values for not having odometry issues
+    /*
+    // Previous version
     if(running) {
         // if we go out of the while, starting cord is released
         initCoords(game); // Initialize coordinates
@@ -45,5 +47,7 @@ void Robot::wait_starting_cord(GAME *game) {
         fprintf(stderr, "STARTING !\n");
         fprintf(stderr, "--------------------------------------------------------\n");
         delay(1);
-    }
+    }*/
+    initCoords(game); // Initialize coordinates
+    delay(1); // Wait for 1 second to ensure the robot is ready
 }

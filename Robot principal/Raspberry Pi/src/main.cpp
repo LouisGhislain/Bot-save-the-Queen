@@ -136,7 +136,13 @@ void loop_100ms(GAME *game){
         //===========================================================================
 
         choose_start(robot, game);
+        
         // print_match_time(game);
+        std::cerr << "x     : " << game->queen->cart_pos->x << std::endl;
+        std::cerr << "y     : " << game->queen->cart_pos->y << std::endl;
+        std::cerr << "angle : " << game->queen->angle << std::endl;
+
+
 
         //===========================================================================
         // 100ms loop - END
@@ -255,6 +261,10 @@ int main() {
     signal(SIGINT, signalHandler);
 
     GAME *game = init_game();
+    //std::cerr << "Starting angle: " << robot->starting_angle << std::endl;
+    std::cerr << "x: " << robot->GLOBAL_x_coord_target << std::endl;
+    std::cerr << "y: " << robot->GLOBAL_y_coord_target << std::endl;
+    std::cerr << "y: " << game->queen->angle << std::endl;
 
     // // Print queen's coordinates and angle every 10ms
     // while (running) {
@@ -296,8 +306,11 @@ int main() {
     // get starting position from user via terminal (get_input) or via screen (screen_menu)
     //get_input(); // Get the starting position from the user
     robot->screen_menu(game); //Get the starting position from the screen
+    robot->initCoords(game);
     fprintf(stderr, "Starting position : %d\n", robot->starting_pos);
-    
+    //std::cerr << "Starting angle: " << robot->starting_angle << std::endl;
+    std::cerr << "x: " << robot->GLOBAL_x_coord_target << std::endl;
+    std::cerr << "y: " << robot->GLOBAL_y_coord_target << std::endl;
     // must be the last thing to do before starting the game
     robot->wait_starting_cord(game); // Wait for the starting cord to be inserted
     

@@ -7,6 +7,8 @@ int END_ZONE;
 bool match_finished = false;
 
 void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
+
+    
     switch (STATE){
 
         case 0 : // DROP THE BANNER

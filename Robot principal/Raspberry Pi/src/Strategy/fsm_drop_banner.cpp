@@ -7,7 +7,8 @@ void drop_banner(Robot *robot, GAME *game){
     switch(BANNER_STATE){
 
     case 0 : //backward to drop 
-        robot->straightMotion(-0.10, game);
+        //fprintf(stderr, ">>> straightMotionLibre: x=%f y=%f angle=%f \n", game->queen->cart_pos->x,  game->queen->cart_pos->y,  game->queen->angle);
+        robot->straightMotionLibre(-0.10, game);
         BANNER_STATE++;
         break;
 

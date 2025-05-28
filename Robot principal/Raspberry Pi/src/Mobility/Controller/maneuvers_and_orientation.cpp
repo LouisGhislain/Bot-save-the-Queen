@@ -83,6 +83,33 @@ void Robot::straightMotion(double dist, void *game) {
         GLOBAL_params = straight;
         GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
         GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
-        // fprintf(stderr, "Straight motion to (%f, %f)\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target);
+        fprintf(stderr, "Straight motion to (%f, %f)\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target);
+    }
+}
+
+/*! \brief Straight motion libre
+* Cette fonction implémente un mouvement en ligne droite libre dans la direction actuelle du robot.
+* 
+* @param dist Distance à parcourir dans la direction actuelle de l'angle du robot (en mètres, peut être négative)
+*/
+void Robot::straightMotionLibre(double dist, void *game) {
+    GAME * mygame = (GAME *)game;
+    Queen * myqueen = mygame->queen;
+
+    double my_x, my_y, my_angle;
+
+    {
+        std::lock_guard<std::mutex> lock(myqueen->position_mutex);
+        my_x = myqueen->cart_pos->x;
+        my_y = myqueen->cart_pos->y;
+        my_angle = myqueen->angle;  // On garde l'angle tel quel (pas de snapping)
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(coord_mutex);
+        GLOBAL_params = straight;
+        GLOBAL_x_coord_target = my_x + (dist * cos(my_angle));
+        GLOBAL_y_coord_target = my_y + (dist * sin(my_angle));
+        //fprintf(stderr, "Straight motion libre to (%f, %f) with angle %f\n", GLOBAL_x_coord_target, GLOBAL_y_coord_target, my_angle);
     }
 }

@@ -35,6 +35,7 @@ Queen * init_robot() {
     queen->cart_pos = init_cartesian();
     queen->cart_pos->x = 0.0;
     queen->cart_pos->y = 0.0;
+    queen->angle = M_PI/2; // rajout suite aux problèmes
     return queen;
 }
 

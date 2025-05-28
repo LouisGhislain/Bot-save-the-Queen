@@ -51,10 +51,10 @@ void Robot::initializeSPI() {
     else {
         std::cout << "Reset command may have failed!" << std::endl;
     }
-    leftMotor.getSpeed();
-    rightMotor.getSpeed();
-    leftMotor.getDistance();
-    rightMotor.getDistance();
+    //leftMotor.getSpeed();
+    //rightMotor.getSpeed();
+    //leftMotor.getDistance();
+    //rightMotor.getDistance();
 }
 void Robot::initialize_pins() {
     wiringPiSetupGpio();  // Use BCM numbering

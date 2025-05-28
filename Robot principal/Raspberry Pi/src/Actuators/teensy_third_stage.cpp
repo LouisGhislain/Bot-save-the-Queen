@@ -19,14 +19,22 @@ void Robot::teensy_separate_third_stage(void *game){
     separate_finished = true ; 
 }
 
-void Robot::teensy_build_first_third_stage(int constructNodeNumber, void *game){
+void Robot::teensy_build_first_third_stage_1(int preConstructNodeNumber, int constructNodeNumber, void *game){
     build_finished = false ; 
     teensy_send_command(0x14);
     usleep(1.5*1000000);
-    maneuver(constructNodeNumber, game);//forward
+    maneuver(preConstructNodeNumber, game);//forward
     usleep(2.8*1000000); //Margoulin car end_of_manoeuvre bloquant
     build_finished = true ; 
 
+}
+
+void Robot::teensy_build_first_third_stage_2(int preConstructNodeNumber, int constructNodeNumber, void *game){
+    build_finished=false;
+    teensy_send_command(0x16);
+    maneuver(constructNodeNumber,game);
+    usleep(2*1000000); //Margoulin car end_of_manoeuvre bloquant
+    build_finished=true;
 }
 
 void Robot::teensy_build_second_third_stage(int constructNodeNumber, void *game){

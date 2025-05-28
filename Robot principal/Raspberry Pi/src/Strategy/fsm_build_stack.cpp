@@ -7,6 +7,7 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
     MAP * mymap = mygame->map;
     Queen * myqueen = mygame->queen;
 
+    std::cerr << "state building : " << STATE_BUILDING << std::endl;
     switch(STATE_BUILDING){
 
         case 0 : //PATH PLANNING TO PRE_NODE BUILDING ZONE
@@ -220,18 +221,32 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             break ; 
             
         case 9 : 
-            robot->teensy_build_first_third_stage(CONSTRUCT_NODE_1,game);
+            robot->teensy_build_first_third_stage_1(PRE_CONSTRUCT_NODE_1, CONSTRUCT_NODE_1,game);
             STATE_BUILDING++;
             break ; 
-        
+            
         case 10 : 
+            if(robot->build_finished){
+                robot->straightMotion(0.20,game);
+                STATE_BUILDING++;
+            }
+            break ; 
+
+        case 11 : 
+            if(robot->end_of_manoeuvre){
+                robot->teensy_build_first_third_stage_2(PRE_CONSTRUCT_NODE_1, CONSTRUCT_NODE_1,game);
+                STATE_BUILDING++ ; 
+            }
+            break ; 
+
+        case 12: 
             if(robot->build_finished){
                 robot->straightMotion(-0.12, game);
                 STATE_BUILDING++;
             }
             break;
             
-        case 11: 
+        case 13: 
             if(robot->end_of_manoeuvre){
                 robot->teensy_send_command(0x20);
                 robot->straightMotion(-0.13,game);//avant on reculait de 25 cm maintenant 12 puis down puis 13
@@ -240,20 +255,20 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             }
             break;
 
-        case 12: // MANEUVRING
+        case 14: // MANEUVRING
             if(robot->end_of_manoeuvre){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 13: // MOVING TO NODE BEFORE SEPARATE STACK
+        case 15: // MOVING TO NODE BEFORE SEPARATE STACK
             robot->highLevelController(PRE_PRE_CONSTRUCT_NODE_1, game);
             if (robot->end_of_travel){
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 14 : //ORIENTATE TO BASE
+        case 16: //ORIENTATE TO BASE
             if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3){
                 robot->orientate(0,game);
             }else if (SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
@@ -265,18 +280,18 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             STATE_BUILDING++;
             break;
 
-        case 15: // ORIENTATING 
+        case 17: // ORIENTATING 
             if (robot->end_of_angle){
                 STATE_BUILDING++;
             }
             break;
 
-        case 16: //MANEUVER TO SEPARATE STACK
+        case 18: //MANEUVER TO SEPARATE STACK
             robot->maneuver(SEPARATE_NODE, game);
             STATE_BUILDING++;
             break; 
 
-        case 17 : //MANEUVRING
+        case 19 : //MANEUVRING
             if(robot->end_of_manoeuvre){
                 if(SEPARATE_NODE==PRE_CONSTRUCTION_YELLOW_3||SEPARATE_NODE==PRE_CONSTRUCTION_BLUE_3){
                     robot->straightMotion(0.07, game);
@@ -288,25 +303,25 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             }
             break ; 
         
-        case 18 : 
+        case 20 : 
             if(robot->end_of_manoeuvre){
                 STATE_BUILDING++;
             }
             break ; 
             
-        case 19 : 
+        case 21 : 
             robot->teensy_build_second_third_stage(CONSTRUCT_NODE_2, game);
             STATE_BUILDING++;
             break ; 
         
-        case 20 : 
+        case 22 : 
             if(robot->build_finished){
                 robot->straightMotion(-0.12, game);
                 STATE_BUILDING++;
             }
             break ; 
 
-        case 21 : 
+        case 23 : 
             if(robot->end_of_manoeuvre){
                 robot->teensy_send_command(0x20);
                 robot->straightMotion(-0.13, game);//avant on reculait de 25, maintenant, 12->down->13
@@ -314,7 +329,7 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
             }
             break ;
 
-        case 22 : 
+        case 24 : 
             if(robot->end_of_manoeuvre){
                 robot->stack_builded = true ; 
                 STATE_BUILDING = 0 ; 

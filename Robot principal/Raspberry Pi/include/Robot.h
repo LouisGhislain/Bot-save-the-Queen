@@ -86,6 +86,7 @@ public:
     void middleLevelTest(void *game);
     void maneuver(int nodeIndex, void *game);
     void straightMotion(double dist, void *game);
+    void straightMotionLibre(double dist, void *game);
     void orientate(double angle, void *game);
 
     // Path planning
@@ -149,7 +150,8 @@ public:
     void teensy_americain_third_stage(int nodeNumber, void *game);
     void teensy_push_separate(void *game);
     void teensy_separate_third_stage(void *game); //STRAT 1 
-    void teensy_build_first_third_stage(int constructNodeNumber, void *game); //STRAT 1 
+    void teensy_build_first_third_stage_1(int preConstructNodeNumber, int constructNodeNumber, void *game); //STRAT 1 
+    void teensy_build_first_third_stage_2(int preConstructNodeNumber, int constructNodeNumber, void *game); //STRAT 1 
     void teensy_build_second_third_stage(int constructNodeNumber, void *game); //STRAT 1 
     bool build_finished = false;
     bool separate_finished = false; 
@@ -192,7 +194,7 @@ public:
 
     //Number of points (count for screen)
     int points_scored = 0 ;
-
+    //double starting_angle = 0.0; //A ENLVER
     // MAIN
     std::atomic<bool> running{false}; // Flag to control the main loop
 
