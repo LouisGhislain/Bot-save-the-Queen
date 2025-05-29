@@ -29,7 +29,7 @@ void print_Sauron_position(GAME *game){
     // Emergency_stop(game);
   }
   else{
-    //fprintf(stderr, "No oppponent detected !\n");
+    fprintf(stderr, "No oppponent detected !\n");
   }
 }
 
@@ -174,7 +174,7 @@ void Sauron_finder(GAME *squid){
   }
 
 
-  //printf("Nearest point: (%f, %f)\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
+  // printf("Nearest point: (%f, %f)\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
   //printf("Angle: %f, Distance: %f\n", squid->Sauron->pol_pos->angle, squid->Sauron->pol_pos->distance);
 }
 
@@ -252,11 +252,11 @@ void fetchLidarData(void * sqid_void) {
   sl_lidar_response_measurement_node_hq_t nodes[max_node_count];
   size_t count = max_node_count;
 
-  fprintf(stderr, "GrabScan...\n");
+  // fprintf(stderr, "GrabScan...\n");
 
   sl_result result = lidardriver->grabScanDataHq(nodes, count);
  
-  fprintf(stderr, "GrabScan done\n");
+  // fprintf(stderr, "GrabScan done\n");
   
   squid->map->all_map_count = 0;
   squid->map->inside_map_count = 0;
@@ -272,12 +272,6 @@ void fetchLidarData(void * sqid_void) {
     angle = angle * M_PI / 180.0;
     angle = angle - M_PI; // Convertir en radians et ajuster l'angle
     double distance = nodes[i].dist_mm_q2 / 4.0f;          // Distance en mm
-    // Ecire les points dans un fichier txt nommé points.txt
-    // FILE *file = fopen("points.txt", "a");
-    // if (file) {
-    //   fprintf(file, "%f %f\n", angle, distance);
-    //   fclose(file);
-    // }
     // fprintf(stderr, "Point %zu: Angle: %f, Distance: %f\n", i, angle, distance);
 
     if (distance > 50 && distance < 3900) { // 3900
@@ -315,7 +309,7 @@ void fetchLidarData(void * sqid_void) {
   // }
 
   Sauron_finder(squid); // Trouver le point le plus proche et c'est Sauron
-  fprintf(stderr, "Sauron position: X: %f, Y: %f, Angle: %f, Distance: %f\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
+  // fprintf(stderr, "Sauron position: X: %f, Y: %f, Angle: %f, Distance: %f\n", squid->Sauron->cart_pos->x, squid->Sauron->cart_pos->y);
   stack_is_taking_by_ennemy(squid); // Vérifier si un ennemi prend une stack
   Path_updating(squid); // Mettre à jour le chemin
   // print_free_nodes(squid); // Afficher les noeuds libres

@@ -224,11 +224,9 @@ void Robot::screen_display_intro() {
 }
 
 void Robot::screen_menu(GAME *game) {
-    const char* teams[] = {"BLEU", "JAUNE"};
+    const char* teams[] = {"PLEU", "JAUNE"};
     const char* positions[] = {"BAS", "COTE"};
 
-    int team_index = 0;
-    int pos_index = 0;
     int previous_selected_team = -1 ; 
     int previous_selected_start = -1 ; 
 
@@ -240,14 +238,13 @@ void Robot::screen_menu(GAME *game) {
                 screen_write(8, 0, teams[0]);
                 screen_write(8, 1, teams[1]);
                 // Affiche un curseur '>' devant la sélection
-                screen_write(6, team_index, ">");
+                screen_write(6, selected_team, ">");
                 screen_print_bottom_menu();
                 previous_selected_team = selected_team;
         }
 
         delay(100);
         if (is_left_pressed(game)) {
-            team_index = 1 - team_index;
             selected_team = (selected_team + 1) % 2;
             delay(100);  // Anti-rebond
         }
@@ -264,14 +261,13 @@ void Robot::screen_menu(GAME *game) {
             screen_write(0, 0, "Depart adversaire:");
             screen_write(8, 1, positions[0]);
             screen_write(8, 2, positions[1]);
-            screen_write(6, 1 + pos_index, ">");
+            screen_write(6, 1 + opponent_start, ">");
             screen_print_bottom_menu();
             previous_selected_start = opponent_start;
         }
 
         delay(100);
         if (is_left_pressed(game)) {
-            pos_index = 1 - pos_index;
             opponent_start = (opponent_start + 1) % 2;
             delay(100);
         }

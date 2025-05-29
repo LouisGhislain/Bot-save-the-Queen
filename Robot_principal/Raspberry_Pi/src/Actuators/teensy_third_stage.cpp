@@ -21,17 +21,16 @@ void Robot::teensy_separate_third_stage(void *game){
 
 void Robot::teensy_build_first_third_stage_1(int preConstructNodeNumber, int constructNodeNumber, void *game){
     build_finished = false ; 
-    teensy_send_command(0x14);
+    teensy_send_command(0x17);//lift to legal first height
     usleep(1.5*1000000);
-    maneuver(preConstructNodeNumber, game);//forward
-    usleep(2.8*1000000); //Margoulin car end_of_manoeuvre bloquant
+    maneuver(preConstructNodeNumber, game);//forward                //before legal constructNodeNumber
+    usleep(1.5*1000000); //Margoulin car end_of_manoeuvre bloquant //before legal 2.8
     build_finished = true ; 
-
 }
 
 void Robot::teensy_build_first_third_stage_2(int preConstructNodeNumber, int constructNodeNumber, void *game){
     build_finished=false;
-    teensy_send_command(0x16);
+    teensy_send_command(0x16);//lift to second height (max height)
     usleep(1*1000000);
     maneuver(constructNodeNumber,game);
     usleep(2*1000000); //Margoulin car end_of_manoeuvre bloquant

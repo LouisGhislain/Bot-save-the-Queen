@@ -96,14 +96,14 @@ void loop_10ms(GAME *game){
         if (robot->avoidance_loop_activated || (angle_ennemy < STOP_ANGLE_ENNEMY && distance_ennemy*(pow(angle_ennemy,2) * coef_detection_profile / pow(STOP_ANGLE_ENNEMY,2) + 1) < STOP_DISTANCE_ENNEMY_FRONT)) {  // stop distance parameter in the lidar.h file
             //robot->reaction_to_ennemy_smart(game); // uncomment this line to use the smart reaction
             robot->stop_if_ennemy(); // stop the robot
-            digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
+            //digitalWrite(BUZZER_PIN, HIGH);    // activate the buzzer
             // fprintf(stderr, "ennemy detected\n");
         }
         else{
             robot->avoidance_loop_activated = false; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->CASE_ennemy_avoidance = 0; // reset the ennemy avoidance case (because when we don't detect the ennemy anymore we cant update this flag in the ennemy detection loop)
             robot->middleLevelController(game);
-            digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
+            //digitalWrite(BUZZER_PIN, LOW); // deactivate the buzzer
         }
 
         //============================================================================
@@ -179,11 +179,10 @@ void lidar_thread_func(void* game_void) {
         //===========================================================================
         // lidar loop - START - (undifined period)
         //===========================================================================
-        // fprintf(stderr, "lidar running1\n");
-
+        //fprintf(stderr, "lidar running1\n");
         fetchLidarData(game);
-        // print_Sauron_position(game);
-        // fprintf(stderr, "lidar running2\n");
+        //print_Sauron_position(game);
+        //fprintf(stderr, "lidar running2\n");
 
 
         //===========================================================================
@@ -266,9 +265,9 @@ int main() {
 
     GAME *game = init_game();
     //std::cerr << "Starting angle: " << robot->starting_angle << std::endl;
-    std::cerr << "x: " << robot->GLOBAL_x_coord_target << std::endl;
-    std::cerr << "y: " << robot->GLOBAL_y_coord_target << std::endl;
-    std::cerr << "y: " << game->queen->angle << std::endl;
+    std::cerr << "x     : " << robot->GLOBAL_x_coord_target << std::endl;
+    std::cerr << "y     : " << robot->GLOBAL_y_coord_target << std::endl;
+    std::cerr << "theta : " << game->queen->angle << std::endl;
 
     // // Print queen's coordinates and angle every 10ms
     // while (running) {
@@ -299,14 +298,16 @@ int main() {
     try {
         robot->start();  // This will initialize SPI and perform other setup tasks.
         //robot->initCoords(game); // Initialize coordinates
+        fprintf(stderr, "init lidar begin\n");
         init_connectLidar(); // Initialiser et démarrer le LIDAR
-        robot->screen_clear();
-       // robot->screen_display_intro();
+        fprintf(stderr, "init lidar end\n");
+        //robot->screen_clear();
+        // robot->screen_display_intro();
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
+    fprintf(stderr, "time to display\n");
     // get starting position from user via terminal (get_input) or via screen (screen_menu)
     //get_input(); // Get the starting position from the user
     robot->screen_menu(game); //Get the starting position from the screen
