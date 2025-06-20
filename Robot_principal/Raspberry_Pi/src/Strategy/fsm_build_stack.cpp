@@ -32,14 +32,17 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
             break;
 
         case 1 : //SPECIAL CASE 
-            if(NODE== CONSTRUCTION_YELLOW_2||NODE== CONSTRUCTION_BLUE_2){
+            if(NODE== CONSTRUCTION_YELLOW_2||NODE== CONSTRUCTION_BLUE_2||NODE==PRE_CONSTRUCTION_BLUE_1||NODE==PRE_CONSTRUCTION_YELLOW_1){
                 robot->orientate(-90,game);
+                STATE_BUILDING++;
                 }
-            STATE_BUILDING++;
+            else {
+                STATE_BUILDING++;
+            }
             break ; 
         
         case 2 : //SPECIAL CASE BIS
-            if(NODE== CONSTRUCTION_YELLOW_2||NODE== CONSTRUCTION_BLUE_2){
+            if(NODE== CONSTRUCTION_YELLOW_2||NODE== CONSTRUCTION_BLUE_2||NODE==PRE_CONSTRUCTION_BLUE_1||NODE==PRE_CONSTRUCTION_YELLOW_1){
                if(robot->end_of_angle){
                     STATE_BUILDING++;
                }
@@ -48,7 +51,6 @@ void fsm_build_stack(Robot *robot, GAME *game, int PRE_NODE, int NODE){
                 STATE_BUILDING++;
             }
             break ; 
-
 
         case 3 : //MANEUVER TO NODE BUILDING ZONE
             double dist_a_avancer;
@@ -339,6 +341,7 @@ void fsm_build_normal_third_stage(Robot *robot, GAME *game, int SEPARATE_NODE, i
                 robot->stack_builded = true ; 
                 STATE_BUILDING = 0 ; 
                 robot->points_scored += 12 ; //16 - 4 (on a enlevé un de 1 étage)
+                //robot->points_scored -= 8; // estimation revue à la baisse
             }
             break ;
     }

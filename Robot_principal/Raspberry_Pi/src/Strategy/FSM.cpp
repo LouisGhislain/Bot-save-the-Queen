@@ -64,9 +64,27 @@ void start_from_blue_bottom_adversary_bottom(Robot *robot, GAME *game){
         case 7 : //RETURN TO BASE
             return_to_base(robot, game);
             break ;
+        /*
+        case 7 : 
+            fsm_grab_stack(robot, game, PRE_NODE_STACK_7,NODE_STACK_7);
+            if(robot->stack_grabbed){
+                STATE++;
+            }
+            break ; 
+        
+        case 8 : 
+            fsm_build_stack(robot, game, PRE_PRE_CONSTUCTION_BLUE_1, PRE_CONSTRUCTION_BLUE_1);
+            if(robot->stack_builded){
+                STATE++;
+            }
+            break;
+
+        case 9 : //RETURN TO BASE
+            return_to_base(robot, game);
+            break ;
 
         // ENDING IN RETURN TO BASE
-        
+        */
         default:
             break;
     }
@@ -284,8 +302,8 @@ void choose_start(Robot *robot, GAME *game){
     }
 
     if((get_match_time(game) > time_return_to_base) && (robot->starting_pos != 2) && (robot->starting_pos != 3)){
-        return_to_base(robot, game);
-        return;
+         return_to_base(robot, game);
+         return;
     }
 
     switch (robot->starting_pos)

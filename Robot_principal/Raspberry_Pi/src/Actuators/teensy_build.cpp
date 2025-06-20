@@ -4,11 +4,11 @@ void Robot::teensy_build(void *game){
     build_finished = false;
     teensy_send_command(0x04);   // ENVOIE LA COMMANDE   (CMD_BUILD)
 
-    usleep(0.55*1000000);         // RELEASE LES EXTERIEURS    // previous 0.7 // old previous 0.4
+    usleep(0.4*1000000);         // RELEASE LES EXTERIEURS  //previous 0.55 // old previous 0.7 // old old previous 0.4
 
     straightMotion(-0.12,game);  // RECULE AVEC LES CREMAILLERES
 
-    usleep(4*1000000);             // MONTE LE STACK AU 2e ETAGE // previous 3.5
+    usleep(4.2*1000000);             // MONTE LE STACK AU 2e ETAGE // previous 4 // old previous 3.5
 
     straightMotion(0.12,game);   // AVANCE AVEC STACK HAUT
 

@@ -32,7 +32,7 @@ void Robot::wait_starting_cord(GAME *game) {
         usleep(2000000); // Sleep for 2 seconds to avoid inserting issues
     }
     while((digitalRead(STARTING_CORD_PIN) == LOW) && running) { // cord inserted
-        usleep(50000); // Sleep for 0.05 seconds
+        usleep(1000); // Sleep for 0.001 seconds
     }
     game->starting_MATCH_TIME = std::chrono::steady_clock::now(); // set the actual time to the starting time
     resetValues(); // reset the encoder values for not having odometry issues
@@ -49,5 +49,5 @@ void Robot::wait_starting_cord(GAME *game) {
         delay(1);
     }*/
     initCoords(game); // Initialize coordinates
-    delay(1); // Wait for 1 second to ensure the robot is ready
+    //delay(1); // Wait for 1 second to ensure the robot is ready
 }
